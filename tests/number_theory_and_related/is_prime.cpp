@@ -1,0 +1,137 @@
+#include "../unit_test.h"
+
+#include "../../number_theory_and_related/is_prime.cpp"
+
+class is_prime_test : public unit_test
+{
+public:
+	is_prime_test() : unit_test("is_prime") { }
+
+	void run()
+	{
+            assert_equal<bool>(false, is_prime(0));
+            assert_equal<bool>(false, is_prime(1));
+            assert_equal<bool>(true, is_prime(2));
+            assert_equal<bool>(true, is_prime(3));
+            assert_equal<bool>(false, is_prime(4));
+            assert_equal<bool>(true, is_prime(5));
+            assert_equal<bool>(false, is_prime(6));
+            assert_equal<bool>(true, is_prime(7));
+            assert_equal<bool>(false, is_prime(8));
+            assert_equal<bool>(false, is_prime(9));
+            assert_equal<bool>(false, is_prime(10));
+            assert_equal<bool>(true, is_prime(11));
+            assert_equal<bool>(false, is_prime(12));
+            assert_equal<bool>(true, is_prime(13));
+            assert_equal<bool>(false, is_prime(14));
+            assert_equal<bool>(false, is_prime(15));
+            assert_equal<bool>(false, is_prime(16));
+            assert_equal<bool>(true, is_prime(17));
+            assert_equal<bool>(false, is_prime(18));
+            assert_equal<bool>(true, is_prime(19));
+            assert_equal<bool>(false, is_prime(20));
+            assert_equal<bool>(false, is_prime(21));
+            assert_equal<bool>(false, is_prime(22));
+            assert_equal<bool>(true, is_prime(23));
+            assert_equal<bool>(false, is_prime(24));
+            assert_equal<bool>(false, is_prime(25));
+            assert_equal<bool>(false, is_prime(26));
+            assert_equal<bool>(false, is_prime(27));
+            assert_equal<bool>(false, is_prime(28));
+            assert_equal<bool>(true, is_prime(29));
+            assert_equal<bool>(false, is_prime(30));
+            assert_equal<bool>(true, is_prime(31));
+            assert_equal<bool>(false, is_prime(32));
+            assert_equal<bool>(false, is_prime(33));
+            assert_equal<bool>(false, is_prime(34));
+            assert_equal<bool>(false, is_prime(35));
+            assert_equal<bool>(false, is_prime(36));
+            assert_equal<bool>(true, is_prime(37));
+            assert_equal<bool>(false, is_prime(38));
+            assert_equal<bool>(false, is_prime(39));
+            assert_equal<bool>(false, is_prime(40));
+            assert_equal<bool>(true, is_prime(41));
+            assert_equal<bool>(false, is_prime(42));
+            assert_equal<bool>(true, is_prime(43));
+            assert_equal<bool>(false, is_prime(44));
+            assert_equal<bool>(false, is_prime(45));
+            assert_equal<bool>(false, is_prime(46));
+            assert_equal<bool>(true, is_prime(47));
+            assert_equal<bool>(false, is_prime(48));
+            assert_equal<bool>(false, is_prime(49));
+            assert_equal<bool>(false, is_prime(50));
+            assert_equal<bool>(false, is_prime(51));
+            assert_equal<bool>(false, is_prime(52));
+            assert_equal<bool>(true, is_prime(53));
+            assert_equal<bool>(false, is_prime(54));
+            assert_equal<bool>(false, is_prime(55));
+            assert_equal<bool>(false, is_prime(56));
+            assert_equal<bool>(false, is_prime(57));
+            assert_equal<bool>(false, is_prime(58));
+            assert_equal<bool>(true, is_prime(59));
+            assert_equal<bool>(false, is_prime(60));
+            assert_equal<bool>(true, is_prime(61));
+            assert_equal<bool>(false, is_prime(62));
+            assert_equal<bool>(false, is_prime(63));
+            assert_equal<bool>(false, is_prime(64));
+            assert_equal<bool>(false, is_prime(65));
+            assert_equal<bool>(false, is_prime(66));
+            assert_equal<bool>(true, is_prime(67));
+            assert_equal<bool>(false, is_prime(68));
+            assert_equal<bool>(false, is_prime(69));
+            assert_equal<bool>(false, is_prime(70));
+            assert_equal<bool>(true, is_prime(71));
+            assert_equal<bool>(false, is_prime(72));
+            assert_equal<bool>(true, is_prime(73));
+            assert_equal<bool>(false, is_prime(74));
+            assert_equal<bool>(false, is_prime(75));
+            assert_equal<bool>(false, is_prime(76));
+            assert_equal<bool>(false, is_prime(77));
+            assert_equal<bool>(false, is_prime(78));
+            assert_equal<bool>(true, is_prime(79));
+            assert_equal<bool>(false, is_prime(80));
+            assert_equal<bool>(false, is_prime(81));
+            assert_equal<bool>(false, is_prime(82));
+            assert_equal<bool>(true, is_prime(83));
+            assert_equal<bool>(false, is_prime(84));
+            assert_equal<bool>(false, is_prime(85));
+            assert_equal<bool>(false, is_prime(86));
+            assert_equal<bool>(false, is_prime(87));
+            assert_equal<bool>(false, is_prime(88));
+            assert_equal<bool>(true, is_prime(89));
+            assert_equal<bool>(false, is_prime(90));
+            assert_equal<bool>(false, is_prime(91));
+            assert_equal<bool>(false, is_prime(92));
+            assert_equal<bool>(false, is_prime(93));
+            assert_equal<bool>(false, is_prime(94));
+            assert_equal<bool>(false, is_prime(95));
+            assert_equal<bool>(false, is_prime(96));
+            assert_equal<bool>(true, is_prime(97));
+            assert_equal<bool>(false, is_prime(98));
+            assert_equal<bool>(false, is_prime(99));
+            assert_equal<bool>(false, is_prime(100));
+            assert_equal<bool>(true, is_prime(101));
+            assert_equal<bool>(false, is_prime(102));
+            assert_equal<bool>(true, is_prime(103));
+            assert_equal<bool>(false, is_prime(104));
+            assert_equal<bool>(false, is_prime(105));
+            assert_equal<bool>(false, is_prime(106));
+            assert_equal<bool>(true, is_prime(107));
+            assert_equal<bool>(false, is_prime(108));
+            assert_equal<bool>(true, is_prime(109));
+            assert_equal<bool>(false, is_prime(110));
+            assert_equal<bool>(false, is_prime(111));
+            assert_equal<bool>(false, is_prime(112));
+            assert_equal<bool>(true, is_prime(113));
+            assert_equal<bool>(false, is_prime(114));
+            assert_equal<bool>(false, is_prime(115));
+            assert_equal<bool>(false, is_prime(116));
+            assert_equal<bool>(false, is_prime(117));
+            assert_equal<bool>(false, is_prime(118));
+            assert_equal<bool>(false, is_prime(119));
+            assert_equal<bool>(false, is_prime(120));
+            assert_equal<bool>(false, is_prime(121));
+            assert_equal<bool>(false, is_prime(122));
+            assert_equal<bool>(false, is_prime(123));
+	}
+};

@@ -37,7 +37,7 @@ Here is a list of algorithms and data structures that need to be added.
 - Divisor Sum (formula)
 - Divisor Count (formula)
 - Sieve of Eratosthenes
-- Primality Testing (at least Trial Division, maybe more)
+- Primality Testing (at least <del>Trial Division</del>, maybe more)
 
 ###More Algorithms
 - Review the [list of algorithms](http://en.wikipedia.org/wiki/List_of_algorithms) on Wikipedia.
