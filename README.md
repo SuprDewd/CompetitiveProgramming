@@ -39,5 +39,8 @@ Here is a list of algorithms and data structures that need to be added.
 - Sieve of Eratosthenes
 - Primality Testing (at least <del>Trial Division</del>, maybe more)
 
+###Computational Geometry
+- Graham Scan
+
 ###More Algorithms
 - Review the [list of algorithms](http://en.wikipedia.org/wiki/List_of_algorithms) on Wikipedia.
