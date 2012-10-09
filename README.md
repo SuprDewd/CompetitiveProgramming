@@ -38,6 +38,8 @@ Here is a list of algorithms and data structures that need to be added.
 - Divisor Count (formula)
 - Sieve of Eratosthenes
 - Primality Testing (at least <del>Trial Division</del>, maybe more)
+- <del>Greatest Common Divisor</del>
+- <del>Least Common Multiple</del>
 
 ###Computational Geometry
 - Graham Scan

@@ -1,3 +1,5 @@
+#ifndef NUMBER_THEORY_IS_PRIME
+#define NUMBER_THEORY_IS_PRIME
 #include "../header.cpp"
 
 int is_prime(int n)
@@ -18,3 +20,5 @@ int is_prime(int n)
 
 	return true;
 }
+
+#endif
