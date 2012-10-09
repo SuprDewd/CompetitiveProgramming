@@ -1,3 +1,5 @@
+#ifndef MAIN_HEADER
+#define MAIN_HEADER
 #include <vector>
 #include <map>
 #include <set>
@@ -24,3 +26,4 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> ii;
 template <class T> int size(T x) { return x.size(); }
+#endif
