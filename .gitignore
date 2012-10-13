@@ -14,3 +14,9 @@
 
 # Executables
 *.exe
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.pyg

@@ -1,0 +1,50 @@
+\documentclass[11pt,a4paper,titlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[vlined,ruled]{algorithm2e}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+% The minted package.
+% For code highlighting.
+\usepackage{minted}
+\usemintedstyle{default}
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\newminted{cpp}{bgcolor=codebg,linenos,mathescape}
+
+
+% Header/Footer
+\geometry{includeheadfoot, margin=2.5cm}
+\pagestyle{fancy}
+\chead{}
+\rhead{\small \textsc{Competitive Programming}}
+\cfoot{\thepage}
+\setlength{\headheight}{15.2pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+% New math operators
+\DeclareMathOperator{\lcm}{lcm}
+
+
+% Title/Author
+\title{Competitive Programming}
+\author{Bjarki Ágúst Guðmundsson \and Trausti Sæmundsson \and Ingólfur Eðvarðsson}
+
+
+\begin{document}
+
+	\maketitle
+	
+
+\end{document}
