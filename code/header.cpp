@@ -19,10 +19,12 @@ using namespace std;
 
 #define all(o) (o).begin(), (o).end()
 #define allr(o) (o).rbegin(), (o).rend()
+#define pb push_back
 #define INF 2147483647
 typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int, int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
+typedef vector<vector<ii> > vvii;
 template <class T> int size(T x) { return x.size(); }
