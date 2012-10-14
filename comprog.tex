@@ -8,7 +8,7 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage[vlined,ruled]{algorithm2e}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{color}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -45,6 +45,65 @@
 \begin{document}
 
 	\maketitle
-	
+	\tableofcontents
+	\newpage
+
+	\section{Data Structures}
+
+		\subsection{Union-Find}
+
+			\begin{cppcode}
+				\staticinclude{code/data-structures/unionfind.cpp}
+			\end{cppcode}
+
+		\subsection{Segment Tree}
+		\subsection{Fenwick Tree}
+		\subsection{Interval Tree}
+
+	\section{Graphs}
+
+		\subsection{Breadth-First Search}
+
+			An example of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex. Note that it assumes that the two vertices are connected.
+
+			\begin{cppcode}
+				\staticinclude{code/graph/bfs.cpp}
+			\end{cppcode}
+
+		\subsection{Depth-First Search}
+		\subsection{Single Source Shortest Path}
+			\subsubsection{Dijkstra's algorithm}
+			\subsubsection{Bellman-Ford algorithm}
+		\subsection{All Pairs Shortest Path}
+			\subsubsection{Floyd-Warshall algorithm}
+		\subsection{Connected Components}
+			\subsubsection{Modified Breadth-First Search}
+		\subsection{Strongly Connected Components}
+			\subsubsection{Kosaraju's algorithm}
+			\subsubsection{Tarjan's algorithm}
+		\subsection{Topological Sort}
+			\subsubsection{Modified Breadth-First Search}
+		\subsection{Articulation Points/Bridges}
+			\subsubsection{Modified Depth-First Search}
+
+	\section{Number Theory}
+
+		\subsection{Binomial Coefficients}
+			The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the number of ways to choose $k$ items out of a total of $n$ items.
+
+			\begin{cppcode}
+				\staticinclude{code/number-theory/nck_1.cpp}
+			\end{cppcode}
+
+			\begin{cppcode}
+				\staticinclude{code/number-theory/nck_2.cpp}
+			\end{cppcode}
+
+			\begin{cppcode}
+				\staticinclude{code/number-theory/nck_3.cpp}
+			\end{cppcode}
+
+
+
 
 \end{document}
