@@ -21,7 +21,6 @@
 *.out
 *.pyg
 *.toc
-*.static.tex
 
 # Other
 tester/tmp.cpp
