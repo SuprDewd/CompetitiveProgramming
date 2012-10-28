@@ -1,9 +1,6 @@
 int factorial(int n) {
 	int res = 1;
-	while (n) {
-		res *= n--;
-	}
-
+	while (n) res *= n--;
 	return res;
 }
 

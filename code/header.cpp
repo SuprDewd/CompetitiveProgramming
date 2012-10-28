@@ -26,5 +26,6 @@ typedef unsigned long long ull;
 typedef pair<int, int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
-typedef vector<vector<ii> > vvii;
+typedef vector<vi> vvi;
+typedef vector<vii> vvii;
 template <class T> int size(T x) { return x.size(); }

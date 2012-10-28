@@ -1,13 +1,11 @@
-void test_1()
-{
+void test_1() {
 	int n = 2;
 	vvii adj_list(n);
 	assert_equal(-1, dijkstra(0, 1, adj_list));
 	assert_equal(-1, dijkstra(1, 0, adj_list));
 }
 
-void test_2()
-{
+void test_2() {
 	int n = 2;
 	vvii adj_list(n);
 	adj_list[0].push_back(ii(42, 1));
@@ -15,8 +13,7 @@ void test_2()
 	assert_equal(-1, dijkstra(1, 0, adj_list));
 }
 
-void test_3()
-{
+void test_3() {
 	int n = 2;
 	vvii adj_list(n);
 	adj_list[0].push_back(ii(42, 1));
@@ -25,8 +22,7 @@ void test_3()
 	assert_equal(42, dijkstra(1, 0, adj_list));
 }
 
-void test_4()
-{
+void test_4() {
 	int n = 4;
 	vvii adj_list(n);
 	adj_list[0].push_back(ii(5, 1));
@@ -40,8 +36,7 @@ void test_4()
 	assert_equal(15, dijkstra(1, 3, adj_list));
 }
 
-void test()
-{
+void test() {
 	test_1();
 	test_2();
 	test_3();

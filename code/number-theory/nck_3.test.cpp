@@ -1,5 +1,4 @@
-void test()
-{
+void test() {
 	assert_equal(1, nck(0, 0));
 	assert_equal(1, nck(1, 0));
 	assert_equal(1, nck(1, 1));
