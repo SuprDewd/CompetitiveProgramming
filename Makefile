@@ -1,11 +1,9 @@
-PDFLATEX=pdflatex -shell-escape
+PDFLATEX=pdflatex
 
 all: comprog.pdf
 
 comprog.pdf: comprog.tex
-	python static_include.py comprog.tex > comprog.static.tex
-	$(PDFLATEX) comprog.static -jobname comprog
-	mv comprog.static.pdf comprog.pdf
+	$(PDFLATEX) comprog
 
 clean:
 	rm comprog.pdf

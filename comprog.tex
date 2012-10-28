@@ -12,15 +12,29 @@
 \usepackage{color}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{listings}
 
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{beramono}
 
-% The minted package.
-% For code highlighting.
-\usepackage{minted}
-\usemintedstyle{default}
-\definecolor{codebg}{rgb}{0.95,0.95,0.95}
-\newminted{cpp}{bgcolor=codebg,linenos,mathescape}
+\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.9,0,0}
 
+\usepackage{listings}
+\lstset{language=C++,
+numbers=left,
+showspaces=false,
+showtabs=false,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+commentstyle=\color{greencomments},
+keywordstyle=\color{bluekeywords}\bfseries,
+stringstyle=\color{redstrings},
+basicstyle=\ttfamily
+}
 
 % Header/Footer
 \geometry{includeheadfoot, margin=2.5cm}
@@ -51,10 +65,7 @@
 	\section{Data Structures}
 
 		\subsection{Union-Find}
-
-			\begin{cppcode}
-				\staticinclude{code/data-structures/unionfind.cpp}
-			\end{cppcode}
+			\lstinputlisting{code/data-structures/unionfind.cpp}
 
 		\subsection{Segment Tree}
 		\subsection{Fenwick Tree}
@@ -66,16 +77,12 @@
 
 			An example of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex. Note that it assumes that the two vertices are connected.
 
-			\begin{cppcode}
-				\staticinclude{code/graph/bfs.cpp}
-			\end{cppcode}
+			\lstinputlisting{code/graph/bfs.cpp}
 
 		\subsection{Depth-First Search}
 		\subsection{Single Source Shortest Path}
 			\subsubsection{Dijkstra's algorithm}
-				\begin{cppcode}
-					\staticinclude{code/graph/dijkstra.cpp}
-				\end{cppcode}
+				\lstinputlisting{code/graph/dijkstra.cpp}
 			\subsubsection{Bellman-Ford algorithm}
 		\subsection{All Pairs Shortest Path}
 			\subsubsection{Floyd-Warshall algorithm}
@@ -94,19 +101,10 @@
 		\subsection{Binomial Coefficients}
 			The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the number of ways to choose $k$ items out of a total of $n$ items.
 
-			\begin{cppcode}
-				\staticinclude{code/number-theory/nck_1.cpp}
-			\end{cppcode}
+			\lstinputlisting{code/number-theory/nck_1.cpp}
 
-			\begin{cppcode}
-				\staticinclude{code/number-theory/nck_2.cpp}
-			\end{cppcode}
+			\lstinputlisting{code/number-theory/nck_2.cpp}
 
-			\begin{cppcode}
-				\staticinclude{code/number-theory/nck_3.cpp}
-			\end{cppcode}
-
-
-
+			\lstinputlisting{code/number-theory/nck_3.cpp}
 
 \end{document}
