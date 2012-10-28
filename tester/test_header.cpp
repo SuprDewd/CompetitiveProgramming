@@ -9,6 +9,17 @@ void assert_equal(T expected, T actual)
 	}
 }
 
+template <class T>
+void assert_not_equal(T not_expected, T actual)
+{
+	if (not_expected == actual)
+	{
+		cout << "Assertion failed:" << endl;
+		cout << "Not expected: " << not_expected << endl;
+		cout << "      Actual: " << actual << endl;
+	}
+}
+
 void assert_true(bool actual)
 {
 	assert_equal(true, actual);
