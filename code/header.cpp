@@ -28,4 +28,5 @@ typedef vector<int> vi;
 typedef vector<ii> vii;
 typedef vector<vi> vvi;
 typedef vector<vii> vvii;
+template <class T> T mod(T a, T b) { return (a % b + b) % b; }
 template <class T> int size(T x) { return x.size(); }
