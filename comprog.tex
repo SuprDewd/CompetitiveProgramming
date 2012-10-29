@@ -86,6 +86,9 @@ basicstyle=\ttfamily
 			\subsubsection{Dijkstra's algorithm}
 				An implementation of Dijkstra's algorithm that returns the length of the shortest path from the starting vertex to the ending vertex.
 				\lstinputlisting{code/graph/dijkstra.cpp}
+
+				Another implementation that returns a map, where each key of the map is a vertex reachable from the starting vertex, and the value is a tuple of the length from the starting vertex to the current vertex and the vertex that preceeds the current vertex on the shortest path from the starting vertex to the current vertex.
+				\lstinputlisting{code/graph/dijkstra_path.cpp}
 			\subsubsection{Bellman-Ford algorithm}
 		\subsection{All Pairs Shortest Path}
 			\subsubsection{Floyd-Warshall algorithm}
