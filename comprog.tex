@@ -75,13 +75,16 @@ basicstyle=\ttfamily
 
 		\subsection{Breadth-First Search}
 
-			An example of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex. Note that it assumes that the two vertices are connected.
-
+			An implementation of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex in the specified unweighted graph (which is represented with an adjacency list). Note that it assumes that the two vertices are connected.
 			\lstinputlisting{code/graph/bfs.cpp}
+
+			Another implementation that doesn't assume the two vertices are connected. If there is no path from the starting vertex to the ending vertex, a \lstinline$-1$ is returned.
+			\lstinputlisting{code/graph/bfs_visited.cpp}
 
 		\subsection{Depth-First Search}
 		\subsection{Single Source Shortest Path}
 			\subsubsection{Dijkstra's algorithm}
+				An implementation of Dijkstra's algorithm that returns the length of the shortest path from the starting vertex to the ending vertex.
 				\lstinputlisting{code/graph/dijkstra.cpp}
 			\subsubsection{Bellman-Ford algorithm}
 		\subsection{All Pairs Shortest Path}
