@@ -75,7 +75,7 @@ basicstyle=\ttfamily
 
 		\subsection{Breadth-First Search}
 
-			An implementation of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex in the specified unweighted graph (which is represented with an adjacency list). Note that it assumes that the two vertices are connected.
+			An implementation of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex in the specified unweighted graph (which is represented with an adjacency list). Note that it assumes that the two vertices are connected. It runs in $O(|V|+|E|)$ time.
 			\lstinputlisting{code/graph/bfs.cpp}
 
 			Another implementation that doesn't assume the two vertices are connected. If there is no path from the starting vertex to the ending vertex, a \lstinline$-1$ is returned.
@@ -84,7 +84,7 @@ basicstyle=\ttfamily
 		\subsection{Depth-First Search}
 		\subsection{Single Source Shortest Path}
 			\subsubsection{Dijkstra's algorithm}
-				An implementation of Dijkstra's algorithm that returns the length of the shortest path from the starting vertex to the ending vertex.
+				An implementation of Dijkstra's algorithm that returns the length of the shortest path from the starting vertex to the ending vertex. It runs in $\Theta(|E|\log{|V|})$ time.
 				\lstinputlisting{code/graph/dijkstra.cpp}
 
 				Another implementation that returns a map, where each key of the map is a vertex reachable from the starting vertex, and the value is a tuple of the length from the starting vertex to the current vertex and the vertex that preceeds the current vertex on the shortest path from the starting vertex to the current vertex.
@@ -131,4 +131,36 @@ basicstyle=\ttfamily
 		\subsection{Chinese Remainder Theorem}
 			\lstinputlisting{code/mathematics/crt.cpp}
 
+	\section{Useful Information}
+
+		\subsection{Tips \&{} Tricks}
+			\begin{itemize}
+				\item How fast does our algorithm have to be? Can we use brute-force?
+				\item Does order matter?
+				\item Is it better to look at the problem in another way? Maybe backwards?
+				\item Are there subproblems that are recomputed? Can we cache them?
+				\item Do we need to remember everything we compute, or just the last few iterations of computation?
+				\item Does it help to sort the data?
+				\item Can we speed up lookup by using a map (tree or hash) or an array?
+				\item Can we binary search the answer?
+				\item Can we add vertices/edges to the graph to make the problem easier? Can we turn the graph into some other kind of a graph (perhaps a DAG, or a flow network)?
+				\item Make sure integers are not overflowing.
+				\item Is it better to compute the answer modulo $n$? Perhaps we can compute the answer modulo $m_1,m_2,\ldots,m_k$, where $m_1,m_2,\ldots,m_k$ are pairwise coprime integers, and find the real answer using CRT?
+				\item Are there any edge cases? When $n=0, n=-1, n=1, n=2^{31}-1$ or $n=-2^{31}$? When the list is empty, or contains a single element? When the graph is empty, or contains a single vertex? When the graph contains self-loops?  When the polygon is concave or non-simple?
+				\item Can we use exponentiation by squaring?
+			\end{itemize}
+
+		\subsection{Worst Time Complexity}
+			\begin{tabular}{c|c|c}
+				$n$ & Worst AC Algorithm & Comment \\
+				\hline
+				$\leq 10$ & $O(n!), O(n^6)$ & e.g. Enumerating a permutation \\
+				$\leq 15$ & $O(2^n\times n^2)$ & e.g. DP TSP \\
+				$\leq 20$ & $O(2^n), O(n^5)$ & e.g. DP + bitmask technique \\
+				$\leq 50$ & $O(n^4)$ & e.g. DP with 3 dimensions + $O(n)$ loop, choosing  $_nC_k=4$ \\
+				$\leq 10^2$ & $O(n^3)$ & e.g. Floyd Warshall's \\
+				$\leq 10^3$ & $O(n^2)$ & e.g. Bubble/Selection/Insertion sort \\
+				$\leq 10^5$ & $O(n\log_2{n})$ & e.g. Merge sort, building a Segment tree \\
+				$\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
+			\end{tabular}
 \end{document}
