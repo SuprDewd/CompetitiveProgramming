@@ -14,7 +14,10 @@ public:
 	}
 
 	~fenwick_tree() {
-		delete[] arr;
+		if (arr) {
+			delete[] arr;
+			arr = NULL;
+		}
 	}
 
 	fenwick_tree(const fenwick_tree& other) {
@@ -24,6 +27,9 @@ public:
 	}
 
 	void adjust(int i, int v) {
+		assert(arr != NULL);
+		assert(i >= 0 && i < cnt);
+
 		i++;
 		while (i <= cnt) {
 			arr[i] += v;
@@ -32,10 +38,14 @@ public:
 	}
 
 	int rsq(int i) {
-		i++;
-		if (i <= 0)
+		assert(arr != NULL);
+
+		if (i < 0)
 			return 0;
-		
+		if (i >= cnt)
+			return rsq(cnt - 1);
+
+		i++;
 		int sum = 0;
 		while (i) {
 			sum += arr[i];
