@@ -50,6 +50,13 @@ basicstyle=\ttfamily
 % New math operators
 \DeclareMathOperator{\lcm}{lcm}
 
+% Bit operators
+\newcommand*\BitAnd{\mathrel{\&}}
+\newcommand*\BitOr{\mathrel{|}}
+\newcommand*\ShiftLeft{\ll}
+\newcommand*\ShiftRight{\gg}
+\newcommand*\BitNeg{\ensuremath{\mathord{\sim}}}
+
 
 % Title/Author
 \title{Competitive Programming}
@@ -163,4 +170,12 @@ basicstyle=\ttfamily
 				$\leq 10^5$ & $O(n\log_2{n})$ & e.g. Merge sort, building a Segment tree \\
 				$\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
 			\end{tabular}
+
+		\subsection{Bit Hacks}
+			\begin{itemize}
+				\item \lstinline{n & -n} returns the first set bit in $n$.
+				\item \lstinline{n & (n - 1)} is $0$ only if $n$ is a power of two.
+				\item \lstinline{snoob(x)} returns the next integer that has the same amount of bits set as \lstinline{x}. Useful for iterating through subsets of some specified size.
+					\lstinputlisting{code/tricks/snoob.cpp}
+			\end{itemize}
 \end{document}
