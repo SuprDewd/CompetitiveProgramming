@@ -122,6 +122,12 @@ basicstyle=\ttfamily
 		\subsection{Articulation Points/Bridges}
 			\subsubsection{Modified Depth-First Search}
 
+	\section{Strings}
+		\subsection{The $Z$ algorithm}
+			Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for example, be used to find all occurrences of a pattern $P$ in a string $T$ in linear time. This is accomplished by computing $Z$ values of $S = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
+
+			\lstinputlisting{code/strings/z_algorithm.cpp}
+
 	\section{Mathematics}
 
 		\subsection{Fraction}
