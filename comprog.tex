@@ -97,7 +97,7 @@ basicstyle=\ttfamily
 
 		% TODO: \subsection{Depth-First Search}
 
-		\subsection{Single Source Shortest Path}
+		\subsection{Single-Source Shortest Paths}
 			\subsubsection{Dijkstra's algorithm}
 				An implementation of Dijkstra's algorithm that returns the length of the shortest path from the starting vertex to the ending vertex. It runs in $\Theta(|E|\log{|V|})$ time.
 				\lstinputlisting{code/graph/dijkstra.cpp}
@@ -105,8 +105,10 @@ basicstyle=\ttfamily
 				Another implementation that returns a map, where each key of the map is a vertex reachable from the starting vertex, and the value is a tuple of the length from the starting vertex to the current vertex and the vertex that preceeds the current vertex on the shortest path from the starting vertex to the current vertex.
 				\lstinputlisting{code/graph/dijkstra_path.cpp}
 			% TODO: \subsubsection{Bellman-Ford algorithm}
-		\subsection{All Pairs Shortest Path}
-			% TODO: \subsubsection{Floyd-Warshall algorithm}
+		\subsection{All-Pairs Shortest Paths}
+			\subsubsection{Floyd-Warshall algorithm}
+				The Floyd-Warshall algorithm solves the all-pairs shortest paths problem in $O(|V|^3)$ time.
+				\lstinputlisting{code/graph/floyd_warshall.cpp}
 		\subsection{Connected Components}
 			% TODO: \subsubsection{Modified Breadth-First Search}
 		\subsection{Strongly Connected Components}
