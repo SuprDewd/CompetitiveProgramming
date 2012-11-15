@@ -172,6 +172,17 @@ basicstyle=\ttfamily
 		\subsection{Chinese Remainder Theorem}
 			\lstinputlisting{code/mathematics/crt.cpp}
 
+	\section{Other Algorithms}
+		\subsection{Binary Search}
+			An implementation of binary search that finds a real value $x$ on the real interval $[a,b]$ such that $|f(x) - t| < \epsilon$, where $t$ is the target value and $\epsilon$ is the maximum error allowed.
+			\lstinputlisting{code/other/binary_search.cpp}
+
+			Another implementation that finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) = t \land f(x - 1) < t$, where $t$ is the target value.
+			\lstinputlisting{code/other/binary_search_low.cpp}
+
+			Another implementation that finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) = t \land f(x + 1) > t$, where $t$ is the target value.
+			\lstinputlisting{code/other/binary_search_high.cpp}
+
 	\section{Useful Information}
 
 		\subsection{Tips \&{} Tricks}
