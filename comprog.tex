@@ -131,7 +131,7 @@ basicstyle=\ttfamily
 			% TODO: \subsubsection{Modified Depth-First Search}
 		\subsection{Maximum Flow}
 			\subsubsection{Edmonds Karp's algorithm}
-				An implementation of Edmonds Karp's algorithm that runs in $O(|V|^3|E|)$. It computes the maximum flow of a flow network. The flow network is represented as a $|V|^2$ adjacency matrix called $\mathrm{arr}$. Before the algorithm is executed, $\mathrm{arr}[i][j]$ is the capacity of the edge from $i$ to $j$. The algorithm assumes that there is only an edge from $i$ to $j$ or edge from $j$ to $i$, not both ($\mathrm{arr}[i][j]$ and $\mathrm{arr}[j][i]$ cannot both be positive). This can easily be bypassed by creating a ghost vertex $k$ and include the edge from $i$ to $j$, and then an edge from $j$ to $k$ and an edge from $k$ to $i$. After the algorithm has been executed, $\mathrm{arr}[i][j]$ contains the residual capacity of the edge from $i$ to $j$, and $\mathrm{arr}[j][i]$ contains the flow through the edge from $i$ to $j$.
+				An implementation of Edmonds Karp's algorithm that runs in $O(|V||E|^2)$. It computes the maximum flow of a flow network.
 				\lstinputlisting{code/graph/edmonds_karps.cpp}
 
 	\section{Strings}
