@@ -89,9 +89,32 @@ void test_4() {
 	assert_equal(15, res[3].first);
 }
 
+void test_5() {
+	int n = 4;
+	vvii adj_list(4);
+	adj_list[0].push_back(ii(4, 1));
+	adj_list[0].push_back(ii(5, 2));
+	adj_list[1].push_back(ii(2, 3));
+	adj_list[2].push_back(ii(-5, 1));
+
+	res = dijkstra_path(0, adj_list);
+	assert_true(res.find(0) != res.end());
+	assert_equal(0, res[0].first);
+	assert_true(res.find(2) != res.end());
+	assert_equal(5, res[2].first);
+	assert_equal(0, res[2].second);
+	assert_true(res.find(1) != res.end());
+	assert_equal(0, res[1].first);
+	assert_equal(2, res[1].second);
+	assert_true(res.find(3) != res.end());
+	assert_equal(2, res[3].first);
+	assert_equal(1, res[3].second);
+}
+
 void test() {
 	test_1();
 	test_2();
 	test_3();
 	test_4();
+	test_5();
 }
