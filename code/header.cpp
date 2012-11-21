@@ -20,7 +20,9 @@ using namespace std;
 #define all(o) (o).begin(), (o).end()
 #define allr(o) (o).rbegin(), (o).rend()
 #define pb push_back
-#define INF 2147483647
+const int INF = 2147483647;
+const double EPS = 1e-9;
+const double pi = acos(-1);
 typedef long long ll;
 typedef unsigned long long ull;
 typedef pair<int, int> ii;
