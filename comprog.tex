@@ -187,14 +187,11 @@ basicstyle=\ttfamily
 
 	\section{Other Algorithms}
 		\subsection{Binary Search}
-			An implementation of binary search that finds a real value $x$ on the real interval $[a,b]$ such that $|f(x) - t| < \epsilon$, where $t$ is the target value and $\epsilon$ is the maximum error allowed.
-			\lstinputlisting{code/other/binary_search.cpp}
+			An implementation of binary search that finds a real valued root of the continous function $f$ on the interval $[a,b]$, with a maximum error of $\varepsilon$.
+			\lstinputlisting{code/other/binary_search_continuous.cpp}
 
-			Another implementation that finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) = t \land f(x - 1) < t$, where $t$ is the target value.
-			\lstinputlisting{code/other/binary_search_low.cpp}
-
-			Another implementation that finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) = t \land f(x + 1) > t$, where $t$ is the target value.
-			\lstinputlisting{code/other/binary_search_high.cpp}
+			Another implementation that takes a binary predicate $f$, and finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land \lnot f(x - 1)$.
+			\lstinputlisting{code/other/binary_search_discrete.cpp}
 
 		\subsection{$n$th Permutation}
 			A very fast algorithm for computing the $n$th permutation of the list $\{0,1,\ldots,k-1\}$.
