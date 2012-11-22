@@ -185,6 +185,29 @@ basicstyle=\ttfamily
 		\subsection{Chinese Remainder Theorem}
 			\lstinputlisting{code/mathematics/crt.cpp}
 
+		\subsection{Formulas}
+
+			\subsubsection{Combinatorics}
+
+				\begin{itemize}
+					\item Number of ways to choose $k$ objects from a total of $n$ objects where order matters and each item can only be chosen once: $P^n_k = \frac{n!}{(n-k)!}$
+					\item Number of ways to choose $k$ objects from a total of $n$ objects where order matters and each item can be chosen multiple times: $n^k$
+					\item Number of permutations of $n$ objects, where there are $n_1$ objects of type $1$, $n_2$ objects of type $2$, \ldots, $n_k$ objects of type $k$: $\binom{n}{n_1,n_2,\ldots,n_k} = \frac{n!}{n_1! \times n_2! \times \cdots \times n_k!}$
+					\item Number of ways to choose $k$ objects from a total of $n$ objects where order does not matter and each item can only be chosen once: \\ $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}k = \binom{n}{n-k} = \prod_{i=1}^k \frac{n-(k-i)}{i} = \frac{n!}{k!(n-k)!}, \binom n0 = 1, \binom 0k = 0$
+					\item Number of ways to choose $k$ objects from a total of $n$ objects where order does not matter and each item can be chosen multiple times: $f^n_k = \binom{n+k-1}{k} = \frac{(n+k-1)!}{k!(n-1)!}$
+					\item Number of integer solutions to $x_1 + x_2 + \cdots + x_n = k$ where $x_i \geq 0$: $f^n_k$
+					\item Number of subsets of a set with $n$ elements: $2^n$
+					\item $|A \cup B| = |A| + |B| - |A \cap B|$
+					\item $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$
+					\item Number of ways to walk from the lower-left corner to the upper-right corner of an $n\times m$ grid by walking only up and to the right: $\binom{n+m}{m}$
+					\item Number of strings with $n$ sets of brackets such that the brackets are balanced: \\ $C_n = \sum_{k=0}^{n-1} C_kC_{n-1-k} = \frac{1}{n+1}\binom{2n}n$
+					\item Number of triangulations of a convex polygon with $n$ points, number of rooted binary trees with $n+1$ vertices, number of paths across an $n\times n$ lattice which do not rise above the main diagonal: $C_n$
+					\item Number of permutations of $n$ objects with exactly $k$ ascending sequences or {\it runs}: \\ $\left\langle {n \atop k} \right\rangle = \left\langle {n \atop n - k - 1} \right\rangle = k\left\langle {n - 1 \atop k} \right\rangle + (n - k + 1)\left\langle {n-1 \atop k-1} \right\rangle = \sum_{i=0}^{k}(-1)^i \binom{n+1}{i} (k+1-i)^n, \left\langle {n \atop 0} \right\rangle = \left\langle {n \atop n -1} \right\rangle = 1$
+					\item Number of permutations of $n$ objects with exactly $k$ cycles: $\left[n \atop k\right] = \left[n-1 \atop k-1\right] + (n-1)\left[n-1 \atop k\right]$
+					\item Number of ways to partition $n$ objects into $k$ sets: $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} + \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} = \left\{n\atop n\right\} = 1$
+				\end{itemize}
+				
+
 	\section{Other Algorithms}
 		\subsection{Binary Search}
 			An implementation of binary search that finds a real valued root of the continous function $f$ on the interval $[a,b]$, with a maximum error of $\varepsilon$.
