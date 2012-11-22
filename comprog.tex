@@ -206,7 +206,21 @@ basicstyle=\ttfamily
 					\item Number of permutations of $n$ objects with exactly $k$ cycles: $\left[n \atop k\right] = \left[n-1 \atop k-1\right] + (n-1)\left[n-1 \atop k\right]$
 					\item Number of ways to partition $n$ objects into $k$ sets: $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} + \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} = \left\{n\atop n\right\} = 1$
 				\end{itemize}
-				
+
+	\section{Geometry}
+		\subsubsection{Primitives}
+			\lstinputlisting{code/geometry/primitives.cpp}
+
+		\subsubsection{Convex Hull}
+			\lstinputlisting{code/geometry/convex_hull.cpp}
+
+		\subsubsection{Formulas}
+			Let $a = (a_x, a_y)$ and $b = (b_x, b_y)$ be two-dimensional vectors.
+			\begin{itemize}
+				\item $a\cdot b = |a||b|\cos{\theta}$, where $\theta$ is the angle between $a$ and $b$.
+				\item $a\times b = |a||b|\sin{\theta}$, where $\theta$ is the signed angle between $a$ and $b$.
+				\item $a\times b$ is equal to the area of the parallelogram with two of its sides formed by $a$ and $b$. Half of that is the area of the triangle formed by $a$ and $b$.
+			\end{itemize}
 
 	\section{Other Algorithms}
 		\subsection{Binary Search}
