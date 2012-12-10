@@ -39,7 +39,7 @@ basicstyle=\ttfamily
 \geometry{includeheadfoot, margin=2.5cm}
 \pagestyle{fancy}
 \chead{}
-\rhead{\small \textsc{NWERC 2012}}
+\rhead{}
 \cfoot{\thepage}
 \setlength{\headheight}{15.2pt}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -58,8 +58,7 @@ basicstyle=\ttfamily
 
 
 % Title/Author
-\title{NWERC 2012}
-\author{IglooDwellers}
+\title{Algorithms and Data Structures for Competitive Programming}
 
 
 \begin{document}
@@ -148,18 +147,18 @@ basicstyle=\ttfamily
 
 	\section{Mathematics}
 
-		%\subsection{Fraction}
-		%	A fraction (rational number) class. Note that numbers are stored in lowest common terms.
-		%	\lstinputlisting{code/mathematics/fraction.cpp}
+		\subsection{Fraction}
+			A fraction (rational number) class. Note that numbers are stored in lowest common terms.
+			\lstinputlisting{code/mathematics/fraction.cpp}
 
-		%\subsection{Binomial Coefficients}
-		%	The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the number of ways to choose $k$ items out of a total of $n$ items.
-		%
-		%	\lstinputlisting{code/mathematics/nck_1.cpp}
-		%
-		%	\lstinputlisting{code/mathematics/nck_2.cpp}
-		%
-		%	\lstinputlisting{code/mathematics/nck_3.cpp}
+		\subsection{Binomial Coefficients}
+			The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the number of ways to choose $k$ items out of a total of $n$ items.
+		
+			\lstinputlisting{code/mathematics/nck_1.cpp}
+		
+			\lstinputlisting{code/mathematics/nck_2.cpp}
+		
+			\lstinputlisting{code/mathematics/nck_3.cpp}
 
 		\subsection{Euclidean algorithm}
 			The Euclidean algorithm computes the greatest common divisor of two integers $a$, $b$.
@@ -229,6 +228,8 @@ basicstyle=\ttfamily
 
 			Another implementation that takes a binary predicate $f$, and finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land \lnot f(x - 1)$.
 			\lstinputlisting{code/other/binary_search_discrete.cpp}
+
+		% TODO: \subsection{2SAT}
 
 		\subsection{$n$th Permutation}
 			A very fast algorithm for computing the $n$th permutation of the list $\{0,1,\ldots,k-1\}$.
