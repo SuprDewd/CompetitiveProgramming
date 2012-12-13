@@ -138,6 +138,9 @@ basicstyle=\ttfamily
 			\subsubsection{Edmonds Karp's algorithm}
 				An implementation of Edmonds Karp's algorithm that runs in $O(|V||E|^2)$. It computes the maximum flow of a flow network.
 				\lstinputlisting{code/graph/edmonds_karps.cpp}
+		\subsection{Minimum Cost Maximum Flow}
+			An implementation of Edmonds Karp's algorithm, modified to find shortest path to augment each time (instead of just any path). It computes the maximum flow of a flow network, and when there are multiple maximum flows, finds the maximum flow with minimum cost.
+			\lstinputlisting{code/graph/edmonds_karps_mcmf.cpp}
 
 	\section{Strings}
 		\subsection{The $Z$ algorithm}
