@@ -1,5 +1,5 @@
 void test() {
-	/* Field testing: UVa259 */
+	/* Field testing: UVa259, UVa670, UVa10080 */
 
 	vii* adj = new vii[4];
 	adj[0].push_back(ii(1, 133700));
