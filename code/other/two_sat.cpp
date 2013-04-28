@@ -1,9 +1,11 @@
-bool two_sat(int n, const vii& clauses, const vi& known_truthy, vi& all_truthy) {
+/* TODO: implement linear version using Tarjan's SCC algorithm */
+bool two_sat(int n, const vii& clauses, vi& all_truthy) {
 	all_truthy.clear();
 	vi* adj = new vi[2 * n + 1];
 	for (int i = 0, cnt = size(clauses); i < cnt; i++) {
 		adj[-clauses[i].first + n].push_back(clauses[i].second);
-		adj[-clauses[i].second + n].push_back(clauses[i].first);
+		if (clauses[i].first != clauses[i].second)
+			adj[-clauses[i].second + n].push_back(clauses[i].first);
 	}
 
 	char* ass = new char[2 * n + 1];
@@ -40,33 +42,6 @@ bool two_sat(int n, const vii& clauses, const vi& known_truthy, vi& all_truthy) 
 		}
 	
 	memset(ass, 0, 2 * n + 1);
-	for (int i = 0, cnt = size(known_truthy); i < cnt; i++) {
-		int cur = known_truthy[i];
-		if (negpath[cur + n] || ass[cur + n] == 2) {
-			delete[] ass;
-			delete[] negpath;
-			delete[] adj;
-			return false;
-		}
-		if (ass[cur + n] != 0) continue;
-		ass[cur + n] = 1;
-		assert(ass[-cur + n] != 1);
-		ass[-cur + n] = 2;
-		queue<int> Q;
-		Q.push(cur);
-		while (!Q.empty()) {
-			cur = Q.front(); Q.pop();
-			for (int j = 0, cnt2 = size(adj[cur + n]); j < cnt2; j++) {
-				int nxt = adj[cur + n][j];
-				if (ass[nxt + n] != 0) { assert(ass[nxt + n] == 1); continue; }
-				ass[nxt + n] = 1;
-				assert(ass[-nxt + n] != 1);
-				ass[-nxt + n] = 2;
-				Q.push(nxt);
-			}
-		}
-	}
-
 	for (int i = -n; i <= n; i++) {
 		if (i == 0 || ass[i + n] != 0 || negpath[i + n]) continue;
 		ass[i + n] = 1;

@@ -4,7 +4,7 @@ private:
 	vector<T> data;
 	int cnt;
 	inline T& at(int i, int j) {
-		return data[i * rows + j];
+		return data[i * cols + j];
 	}
 
 public:
@@ -69,7 +69,7 @@ public:
 		for (int i = 0; i < rows; i++)
 			for (int j = 0; j < other.cols; j++)
 				for (int k = 0; k < cols; k++)
-					res(i, j) += at(i, k) * other.data[other.rows * k + j];
+					res(i, j) += at(i, k) * other.data[k * other.cols + j];
 		return res;
 	}
 
@@ -91,6 +91,42 @@ public:
 			if (p & 1) res = res * sq;
 			p >>= 1;
 			if (p) sq = sq * sq;
+		}
+
+		return res;
+	}
+
+	matrix<T> triangular_form() {
+		matrix<T> res(*this);
+		for (int k = 0; k < res.rows; k++) {
+			int i_max = k;
+			for (int i = k + 1; i < res.rows; i++) {
+				if (res.at(i_max, k) < res.at(i, k)) {
+					i_max = i;
+				}
+			}
+
+			assert(res.at(i_max, k) != T(0));
+
+			for (int j = 0; j < res.cols; j++) {
+				swap(res.at(k, j), res.at(i_max, j));
+				//T tmp = res.at(k, j);
+				//res.at(k, j) = res.at(i_max, j);
+				//res.at(i_max, j) = tmp;
+			}
+
+			for (int i = k + 1; i < res.rows; i++) {
+				for (int j = k + 1; j < res.cols; j++) {
+					res.at(i, j) -= res.at(k, j) * res.at(i, k) / res.at(k, k);
+				}
+
+				res.at(i, k) = T(0);
+			}
+
+			for (int j = res.cols - 1; j >= k; j--)
+			{
+				res.at(k, j) /= res.at(k, k);
+			}
 		}
 
 		return res;
