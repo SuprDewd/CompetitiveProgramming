@@ -7,7 +7,6 @@ Things to do
 * Line intersection and construct perpendicular line
 * Matrix operations (mainly Gauss eliminiation)
 * Max Flow Min Cost
-* Balancing Tree
 * Code templates for C++ and Java
 * A few formulas from geometry, trigonometry, сombinatorics
 * Pollard's rho algorithm
@@ -21,7 +20,6 @@ Things to do
 * Add the alternating paths algorithm for maximum bipartite matching
 * Implement a faster version of Dijkstra's algorithm (like Igor)
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm
-* Simplify the System of Linear Congruence solver by solving two at a time
 
 Links
 =====
