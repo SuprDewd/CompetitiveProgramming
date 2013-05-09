@@ -1,4 +1,6 @@
 void test() {
+    /* Field testing: UVa 12049 */
+
     int cnt = 10000,
         range = 1000;
 
