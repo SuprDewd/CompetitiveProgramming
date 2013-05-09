@@ -11,6 +11,8 @@ public:
 
     avl_tree() : root(NULL) { }
 
+    node *root;
+
     node* find(const T &item) const {
         node *cur = root;
         while (cur) {
@@ -73,8 +75,6 @@ public:
     }
 
 private:
-
-    node *root;
 
     inline int sz(node *n) const { return n ? n->size : 0; }
     inline int height(node *n) const { return n ? n->height : -1; }

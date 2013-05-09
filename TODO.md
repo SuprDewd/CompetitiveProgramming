@@ -20,6 +20,7 @@ Things to do
 * Add the alternating paths algorithm for maximum bipartite matching
 * Implement a faster version of Dijkstra's algorithm (like Igor)
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm
+* Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
 
 Links
 =====
