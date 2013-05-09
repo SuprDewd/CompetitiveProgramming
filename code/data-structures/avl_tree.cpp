@@ -61,10 +61,10 @@ public:
 
     node* successor(node *n) const {
         if (!n) return NULL;
-        node *cur = n->r;
-        if (!cur) return n->p;
-        while (cur->l) cur = cur->l;
-        return cur;
+        if (n->r) return nth(0, n->r);
+        node *p = n->p;
+        while (p && p->r == n) n = p, p = p->p;
+        return p;
     }
 
     inline int size() const { return sz(root); }
@@ -72,6 +72,17 @@ public:
     void clear() {
         delete_tree(root);
         root = NULL;
+    }
+
+    node* nth(int n, node *cur = NULL) const {
+        if (!cur) cur = root;
+        while (cur) {
+            if (n < sz(cur->l)) cur = cur->l;
+            else if (n > sz(cur->l)) n -= sz(cur->l) + 1, cur = cur->r;
+            else break;
+        }
+
+        return cur;
     }
 
 private:
