@@ -1,3 +1,5 @@
+#define AVL_MULTISET 1
+
 template <class T>
 class avl_tree {
 public:
@@ -29,8 +31,12 @@ public:
         while (*cur) {
             prev = *cur;
             if ((*cur)->item < item) cur = &((*cur)->r);
+#if AVL_MULTISET
+            else cur = &((*cur)->l);
+#else
             else if (item < (*cur)->item) cur = &((*cur)->l);
             else return *cur;
+#endif
         }
 
         node *n = new node(item, prev);
