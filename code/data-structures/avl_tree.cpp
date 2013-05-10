@@ -3,9 +3,9 @@ class avl_tree {
 public:
 
     struct node {
+        T item;
         node *p, *l, *r;
         int size, height;
-        T item;
         node(const T &item, node *p = NULL) : item(item), p(p), l(NULL), r(NULL), size(1), height(0) { }
     };
 
@@ -104,7 +104,7 @@ private:
         if (!p) return root;
         if (p->l == c) return p->l;
         if (p->r == c) return p->r;
-        // assert(false);
+        assert(false);
     }
 
     void augment(node *n) {
