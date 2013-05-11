@@ -1,4 +1,4 @@
-#define AVL_MULTISET 1
+#define AVL_MULTISET 0
 
 template <class T>
 class avl_tree {
@@ -70,6 +70,14 @@ public:
         if (n->r) return nth(0, n->r);
         node *p = n->p;
         while (p && p->r == n) n = p, p = p->p;
+        return p;
+    }
+
+    node* predecessor(node *n) const {
+        if (!n) return NULL;
+        if (n->l) return nth(n->l->size-1, n->l);
+        node *p = n->p;
+        while (p && p->l == n) n = p, p = p->p;
         return p;
     }
 
