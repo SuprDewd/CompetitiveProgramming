@@ -18,9 +18,9 @@ Things to do
 * Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
 * Redo the Geometric part. Use complex<double> (or complex<T>) instead of pair<double, double>
 * Add the alternating paths algorithm for maximum bipartite matching
-* Implement a faster version of Dijkstra's algorithm (like Igor)
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm
 * Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
+* Do field testing on more of the code (especially fast Dijkstra)
 
 Links
 =====
