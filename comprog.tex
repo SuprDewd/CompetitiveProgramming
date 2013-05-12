@@ -93,6 +93,13 @@ basicstyle=\ttfamily
 		\subsection{Trie}
 			\lstinputlisting{code/data-structures/trie.cpp}
 
+        \subsection{AVL Tree}
+            A fast, easily augmentable, balanced binary search tree.
+            \lstinputlisting{code/data-structures/avl_tree.cpp}
+
+            Also a very simple wrapper over the AVL tree that implements a map interface.
+            \lstinputlisting{code/data-structures/avl_map.cpp}
+
 	\section{Graphs}
 
 		\subsection{Breadth-First Search}
@@ -262,6 +269,10 @@ basicstyle=\ttfamily
 				\item Are there any edge cases? When $n=0, n=-1, n=1, n=2^{31}-1$ or $n=-2^{31}$? When the list is empty, or contains a single element? When the graph is empty, or contains a single vertex? When the graph contains self-loops?  When the polygon is concave or non-simple?
 				\item Can we use exponentiation by squaring?
 			\end{itemize}
+            
+            \subsection{Fast Input Reading}
+            If input or output is huge, sometimes it is beneficial to optimize the input reading/output writing. This can be achieved by reading all input in at once (using fread), and then parsing it manually. Output can also be stored in an output buffer and then dumped once in the end (using fwrite). A simpler, but still effective, way to achieve speed is to use the following input reading method.
+            \lstinputlisting{code/other/fast_input.cpp}
 
 		\subsection{Worst Time Complexity}
 			\begin{tabular}{c|c|c}
