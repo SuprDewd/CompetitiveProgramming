@@ -21,6 +21,8 @@
 *.out
 *.pyg
 *.toc
+*.fdb_latexmk
+*.fls
 
 # Other
 tester/tmp.cpp
