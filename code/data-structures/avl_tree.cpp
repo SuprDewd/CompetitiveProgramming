@@ -49,10 +49,10 @@ public:
     void erase(node *n, bool free = true) {
         if (!n) return;
         if (!n->l && n->r) {
-            child_leg(n->p, n) = n->r;
+            parent_leg(n) = n->r;
             n->r->p = n->p;
         } else if (n->l && !n->r) {
-            child_leg(n->p, n) = n->l;
+            parent_leg(n) = n->l;
             n->l->p = n->p;
         } else if (n->l && n->r) {
             node *s = successor(n);
@@ -62,10 +62,10 @@ public:
             s->r = n->r;
             if (n->l) n->l->p = s;
             if (n->r) n->r->p = s;
-            child_leg(n->p, n) = s;
+            parent_leg(n) = s;
             fix(s);
             return;
-        } else child_leg(n->p, n) = NULL;
+        } else parent_leg(n) = NULL;
         fix(n->p);
         n->p = n->l = n->r = NULL;
         if (free) delete n;
@@ -120,10 +120,10 @@ private:
         delete n;
     }
 
-    node*& child_leg(node *p, node *c) {
-        if (!p) return root;
-        if (p->l == c) return p->l;
-        if (p->r == c) return p->r;
+    node*& parent_leg(node *n) {
+        if (!n->p) return root;
+        if (n->p->l == n) return n->p->l;
+        if (n->p->r == n) return n->p->r;
         assert(false);
     }
 
@@ -137,7 +137,7 @@ private:
         // assert(n->r);
         node *r = n->r;
         r->p = n->p;
-        child_leg(n->p, n) = r;
+        parent_leg(n) = r;
         n->r = r->l;
         if (r->l) r->l->p = n;
         r->l = n;
@@ -150,7 +150,7 @@ private:
         // assert(n->l);
         node *l = n->l;
         l->p = n->p;
-        child_leg(n->p, n) = l;
+        parent_leg(n) = l;
         n->l = l->r;
         if (l->r) l->r->p = n;
         l->r = n;
