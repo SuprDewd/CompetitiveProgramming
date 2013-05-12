@@ -107,11 +107,12 @@ basicstyle=\ttfamily
 
 		\subsection{Single-Source Shortest Paths}
 			\subsubsection{Dijkstra's algorithm}
-				An implementation of Dijkstra's algorithm that returns the length of the shortest path from the starting vertex to the ending vertex. It runs in $\Theta(|E|\log{|V|})$ time.
+				An implementation of Dijkstra's algorithm that returns a map, where each key of the map is a vertex reachable from the starting vertex, and the value is a tuple of the length from the starting vertex to the current vertex and the vertex that preceeds the current vertex on the shortest path from the starting vertex to the current vertex.
 				\lstinputlisting{code/graph/dijkstra.cpp}
 
-				Another implementation that returns a map, where each key of the map is a vertex reachable from the starting vertex, and the value is a tuple of the length from the starting vertex to the current vertex and the vertex that preceeds the current vertex on the shortest path from the starting vertex to the current vertex.
-				\lstinputlisting{code/graph/dijkstra_path.cpp}
+                A much faster implementation of Dijkstra's algorithm. It runs in $\Theta(|E|\log{|V|})$ time.
+				\lstinputlisting{code/graph/dijkstra_fast.cpp}
+
 			\subsubsection{Bellman-Ford algorithm}
 				The Bellman-Ford algorithm solves the single-source shortest paths problem in $O(|V||E|)$ time. It is slower than Dijkstra's algorithm, but it works on graphs with negative edges and has the ability to detect negative cycles, neither of which Dijkstra's algorithm can do.
 				\lstinputlisting{code/graph/bellman_ford.cpp}
