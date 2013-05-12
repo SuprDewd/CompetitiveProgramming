@@ -43,7 +43,7 @@ pair<int*, int*> dijkstra_fast(int n, int s, vector<ii> *adj) {
                 parent[nxt] = cur;
                 int at = loc[nxt];
                 while (at > 0) {
-                    int p = at/2;
+                    int p = (at-1)/2;
                     if (dist[nxt] < dist[heap[p]]) SWP(at, p), at = p;
                     else break;
                 }
