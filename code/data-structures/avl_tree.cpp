@@ -46,7 +46,7 @@ public:
     }
 
     void erase(const T &item) { erase(find(item)); }
-    void erase(node *n) {
+    void erase(node *n, bool free = true) {
         if (!n) return;
         if (!n->l && n->r) {
             child_leg(n->p, n) = n->r;
@@ -56,13 +56,19 @@ public:
             n->l->p = n->p;
         } else if (n->l && n->r) {
             node *s = successor(n);
-            n->item = s->item; // TODO: don't just copy contents
-            erase(s);
-            fix(n);
+            erase(s, false);
+            s->p = n->p;
+            s->l = n->l;
+            s->r = n->r;
+            if (n->l) n->l->p = s;
+            if (n->r) n->r->p = s;
+            child_leg(n->p, n) = s;
+            fix(s);
             return;
         } else child_leg(n->p, n) = NULL;
         fix(n->p);
-        delete n;
+        n->p = n->l = n->r = NULL;
+        if (free) delete n;
     }
 
     node* successor(node *n) const {
