@@ -142,6 +142,11 @@ basicstyle=\ttfamily
 				\lstinputlisting{code/graph/tsort.cpp}
 		% \subsection{Articulation Points/Bridges}
 			% TODO: \subsubsection{Modified Depth-First Search}
+
+        \subsection{Bipartite Matching}
+            The alternating paths algorithm solves bipartite matching in $O(mn^2)$ time, where $m$, $n$ are the number of vertices on the left and right side of the bipartite graph, respectively.
+            \lstinputlisting{code/graph/bipartite_matching.cpp}
+
 		\subsection{Maximum Flow}
 			\subsubsection{Edmonds Karp's algorithm}
 				An implementation of Edmonds Karp's algorithm that runs in $O(|V||E|^2)$. It computes the maximum flow of a flow network.
