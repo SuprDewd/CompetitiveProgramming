@@ -23,6 +23,7 @@
 *.toc
 *.fdb_latexmk
 *.fls
+*.dvi
 
 # Other
 tester/tmp.cpp
