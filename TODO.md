@@ -1,26 +1,24 @@
 Things to do
 ============
 
-* Convex Hull
-* Factoring
 * Prim's algorithm
-* Line intersection and construct perpendicular line
 * Matrix operations (mainly Gauss eliminiation)
-* Max Flow Min Cost
-* Code templates for C++ and Java
-* A few formulas from geometry, trigonometry, сombinatorics
+* More formulas for geometry, trigonometry, сombinatorics, number theory (sum of divisors to the i-th power, number of integers less than n relatively prime to n, ...)
 * Pollard's rho algorithm
 * Edmonds's maximum matching algorithm
+* Segment Tree
+* Interval Tree
 * Hungarian algorithm
 * Suffix arrays (fast construction and some example uses)
-* Sweeping line algorithm for finding the pair of intersecting segments in the set of segments
+* Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
+* Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
-* Redo the Geometric part. Use complex<double> (or complex<T>) instead of pair<double, double>
-* Add the alternating paths algorithm for maximum bipartite matching
+* Redo the Geometric part. Use complex<double> (or complex<T>) instead of pair<double, double>. Also try using normal vector and a point to represent a line. Perhaps point and vector should be merged into just point?
+* Add more Geometry stuff. Point in polygon, cutting polygons, etc.
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm
 * Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
-* Do field testing on more of the code (especially fast Dijkstra)
+* Do field testing on more of the code (especially fast Dijkstra, (Min-Cost) Max-Flow, geometry library and Convex Hull)
 
 Links
 =====
