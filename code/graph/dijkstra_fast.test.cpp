@@ -1,5 +1,6 @@
 #include "fstream"
 
+/* Field testing: USACO butter, UVa 721 */
 void test() {
     ifstream ifs("dijkstra_fast.test.in");
     int ts;

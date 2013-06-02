@@ -2,12 +2,12 @@ gs = []
 
 gs += [
        digraphs.RandomDirectedGNP(10, 0.2),
-       digraphs.RandomDirectedGNP(100, 0.01),
-       digraphs.RandomDirectedGNP(100, 0.2),
-       digraphs.RandomDirectedGNP(100, 0.4),
-       digraphs.RandomDirectedGNP(100, 0.6),
-       digraphs.RandomDirectedGNP(100, 0.8),
-       digraphs.RandomDirectedGNP(100, 0.9),
+       digraphs.RandomDirectedGNP(300, 0.01),
+       digraphs.RandomDirectedGNP(300, 0.2),
+       digraphs.RandomDirectedGNP(300, 0.4),
+       digraphs.RandomDirectedGNP(300, 0.6),
+       digraphs.RandomDirectedGNP(300, 0.8),
+       digraphs.RandomDirectedGNP(300, 0.9),
 ]
 
 gs += list(digraphs(1))
@@ -19,16 +19,16 @@ gs = [
         digraphs.Circuit(3),
         digraphs.Circuit(10),
         digraphs.Circulant(10, [2]),
-        digraphs.Circulant(100, [2, 8, 19]),
+        digraphs.Circulant(400, [2, 8, 19]),
         digraphs.Path(1),
         digraphs.Path(10),
-        digraphs.Path(100),
+        digraphs.Path(300),
         digraphs.RandomDirectedGN(10),
-        digraphs.RandomDirectedGN(100),
+        digraphs.RandomDirectedGN(300),
         digraphs.RandomDirectedGNC(10),
-        digraphs.RandomDirectedGNC(100),
+        digraphs.RandomDirectedGNC(300),
         digraphs.Tournament(10),
-        digraphs.Tournament(100),
+        digraphs.Tournament(300),
 ]
 
 print(len(gs))

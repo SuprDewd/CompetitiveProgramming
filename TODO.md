@@ -18,7 +18,7 @@ Things to do
 * Add more Geometry stuff. Point in polygon, cutting polygons, etc.
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm
 * Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
-* Do field testing on more of the code (especially fast Dijkstra, (Min-Cost) Max-Flow, geometry library and Convex Hull)
+* Do field testing on more of the code ((Min-Cost) Max-Flow, geometry library and Convex Hull)
 
 Links
 =====

@@ -39,7 +39,7 @@ public:
     heap(int init_len = 128) : count(0), len(init_len), _cmp(Compare()) {
         q = new int[len];
         loc = new int[len];
-        memset(loc, 255, init_len << 2);
+        memset(loc, 255, len << 2);
     }
 
     ~heap() {
@@ -48,11 +48,11 @@ public:
     }
 
     void push(int n, bool fix = true) {
-        assert(loc[n] == -1);
-        if (len == count) {
+        if (len == count || n >= len) {
 #ifdef RESIZE
-            int newlen = 2 * len,
-                *newq = new int[newlen],
+            int newlen = 2 * len;
+            while (n >= newlen) newlen *= 2;
+            int *newq = new int[newlen],
                 *newloc = new int[newlen];
 
             for (int i = 0; i < len; i++) {
@@ -63,12 +63,13 @@ public:
             memset(newloc + len, 255, (newlen - len) << 2);
             delete[] q;
             delete[] loc;
-            loc = newloc, q = newq;
+            loc = newloc, q = newq, len = newlen;
 #else
             assert(false);
 #endif
         }
 
+        assert(loc[n] == -1);
         loc[n] = count, q[count++] = n;
         if (fix) swim(count-1);
     }
@@ -86,4 +87,5 @@ public:
     void update_key(int n) { assert(loc[n] != -1), swim(loc[n]), sink(loc[n]); }
     bool empty() { return count == 0; }
     int size() { return count; }
+    void clear() { count = 0, memset(loc, 255, len << 2); }
 };
