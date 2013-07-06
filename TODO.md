@@ -16,7 +16,7 @@ Things to do
 * Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
 * Redo the Geometric part. Use complex<double> (or complex<T>) instead of pair<double, double>. Also try using normal vector and a point to represent a line. Perhaps point and vector should be merged into just point?
 * Add more Geometry stuff. Point in polygon, cutting polygons, etc.
-* Implement a faster version of min-cost max-flow using Dijkstra's algorithm
+* Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
 * Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
 * Do field testing on more of the code ((Min-Cost) Max-Flow, geometry library and Convex Hull)
 
@@ -32,3 +32,4 @@ Links
 * [Heron's formula](http://en.wikipedia.org/wiki/Heron's_formula)
 * [Shanks Algorithm](http://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm)
 * [Igor Naverniouk's code library](http://shygypsy.com/tools/)
+* [Julian Day](https://en.wikipedia.org/wiki/Julian_day)
