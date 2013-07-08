@@ -7,7 +7,7 @@ void test_1() {
     adj[2].push_back(3);
     adj[3].push_back(2);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
     vi dag = res.second;
 
@@ -24,7 +24,7 @@ void test_2() {
 
     adj[0].push_back(1);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_not_equal(scc.find(0), scc.find(1));
@@ -39,7 +39,7 @@ void test_3() {
     adj[3].push_back(4);
     adj[4].push_back(0);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_equal(scc.find(0), scc.find(1));
@@ -56,7 +56,7 @@ void test_4() {
     adj[2].push_back(3);
     adj[3].push_back(4);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_not_equal(scc.find(0), scc.find(1));
@@ -74,7 +74,7 @@ void test_4() {
 void test_5() {
     vvi adj(5);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_not_equal(scc.find(0), scc.find(1));
@@ -98,7 +98,7 @@ void test_6() {
         adj[1].push_back(1);
     }
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_not_equal(scc.find(0), scc.find(1));
@@ -115,7 +115,7 @@ void test_7() {
 
     adj[0].push_back(1);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_not_equal(scc.find(0), scc.find(1));
@@ -132,7 +132,7 @@ void test_8() {
 
     adj[1].push_back(0);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_not_equal(scc.find(0), scc.find(1));
@@ -150,7 +150,7 @@ void test_9() {
     adj[0].push_back(1);
     adj[1].push_back(0);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
 
     assert_equal(scc.find(0), scc.find(1));
@@ -165,7 +165,7 @@ void test_10() {
     adj[2].push_back(3);
     adj[3].push_back(2);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
     vi dag = res.second;
 
@@ -194,7 +194,7 @@ void test_11() {
     adj[7].push_back(2);
     adj[8].push_back(5);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
     vi dag = res.second;
 
@@ -249,7 +249,7 @@ void test_12() {
     // adj[2].push_back(3);
     // adj[3].push_back(0);
 
-    pair<union_find, vi> res = tarjan_scc(adj);
+    pair<union_find, vi> res = scc(adj);
     union_find scc = res.first;
     vi dag = res.second;
 
@@ -259,16 +259,16 @@ void test_12() {
 }
 
 void test() {
-    // test_1();
-    // test_2();
-    // test_3();
-    // test_4();
-    // test_5();
-    // test_6();
-    // test_7();
-    // test_8();
-    // test_9();
-    // test_10();
-    // test_11();
+    test_1();
+    test_2();
+    test_3();
+    test_4();
+    test_5();
+    test_6();
+    test_7();
+    test_8();
+    test_9();
+    test_10();
+    test_11();
     test_12();
 }
