@@ -2,7 +2,7 @@
 
 /* Field testing: USACO butter, UVa 721 */
 void test() {
-    ifstream ifs("dijkstra_fast.test.in");
+    ifstream ifs("dijkstra.test.in");
     int ts;
     ifs >> ts;
     for (int t = 0; t < ts; t++) {
@@ -16,7 +16,7 @@ void test() {
         }
 
         for (int i = 0; i < n; i++) {
-            pair<int*, int*> res = dijkstra_fast(n, i, adj);
+            pair<int*, int*> res = dijkstra(n, i, adj);
             for (int j = 0; j < n; j++) {
                 int correct;
                 ifs >> correct;

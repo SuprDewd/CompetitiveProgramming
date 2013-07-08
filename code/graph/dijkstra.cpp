@@ -3,7 +3,7 @@ struct cmp {
     bool operator()(int a, int b) { return dist[a] != dist[b] ? dist[a] < dist[b] : a < b; }
 };
 
-pair<int*, int*> dijkstra_fast(int n, int s, vector<ii> *adj) {
+pair<int*, int*> dijkstra(int n, int s, vector<ii> *adj) {
     dist = new int[n];
     dad = new int[n];
     for (int i = 0; i < n; i++) dist[i] = INF, dad[i] = -1;
