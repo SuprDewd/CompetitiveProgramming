@@ -1,4 +1,4 @@
-#include "../data-structures/unionfind.cpp"
+#include "../data-structures/union_find.cpp"
 
 // n is the number of vertices
 // edges is a list of edges of the form (weight, (a, b))

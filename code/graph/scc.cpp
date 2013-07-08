@@ -1,4 +1,4 @@
-#include "../data-structures/unionfind.cpp"
+#include "../data-structures/union_find.cpp"
 
 vector<bool> visited;
 vi order;
