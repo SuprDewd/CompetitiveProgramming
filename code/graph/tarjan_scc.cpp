@@ -1,45 +1,43 @@
-stack<int> t_s;
-set<int> t_z;
-int t_index;
-int* t_idx;
-int* t_ll;
+#include "../data-structures/unionfind.cpp"
 
-void t_strongconnect(int v, vvi& adj) {
-    t_idx[v] = t_ll[v] = t_index++;
-    t_s.push(v);
-    t_z.insert(v);
+stack<int> S;
+int *num, *low, idx, v;
+bool *visited;
 
-    int cnt = size(adj[v]);
-    for (int i = 0; i < cnt; i++) {
-        int w = adj[v][i];
-        if (t_idx[w] == -1) {
-            t_strongconnect(w, adj);
-            t_ll[v] = min(t_ll[v], t_ll[w]);
-        } else if (t_z.find(w) != t_z.end())
-            t_ll[v] = min(t_ll[v], t_idx[w]);
+void strongconnect(int u, vvi &adj, union_find &uf, vi &dag) {
+    num[u] = low[u] = idx++;
+    visited[u] = true, S.push(u);
+    for (int i = 0, cnt = size(adj[u]); i < cnt; i++) {
+        if (num[v = adj[u][i]] == -1) {
+            strongconnect(v, adj, uf, dag);
+            low[u] = min(low[u], low[v]);
+        } else if (visited[v]) {
+            low[u] = min(low[u], num[v]);
+        }
     }
 
-    if (t_ll[v] == t_idx[v])
-        while (true) {
-            // Vertices from top of stack down to v form a SCC
-            int w = t_s.top(); t_s.pop(); t_z.erase(t_z.find(w));
-            if (w == v) break;
-        }
+    if (num[u] != low[u]) return;
+    do uf.unite(u, v = S.top()), visited[v] = false, S.pop();
+    while (u != v);
+    dag.push_back(uf.find(u));
 }
 
-int* tarjan_scc(vvi adj) {
+pair<union_find, vi> tarjan_scc(vvi adj) {
     int n = size(adj);
-    t_idx = new int[n];
-    t_ll = new int[n];
-    t_index = 0;
+    union_find uf(n);
+    vi dag;
+    num = new int[n];
+    low = new int[n];
+    visited = new bool[n];
+    memset(num, 255, n << 2);
+    memset(low, 0, n << 2);
+    memset(visited, 0, n);
+    for (int i = idx = 0; i < n; i++)
+        if (num[i] == -1)
+            strongconnect(i, adj, uf, dag);
 
-    for (int i = 0; i < n; i++)
-        t_idx[i] = t_ll[i] = -1;
-
-    for (int i = 0; i < n; i++)
-        if (t_idx[i] == -1)
-            t_strongconnect(i, adj);
-
-    delete[] t_idx;
-    return t_ll;
+    delete[] num;
+    delete[] low;
+    delete[] visited;
+    return pair<union_find, vi>(uf, dag);
 }
