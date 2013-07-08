@@ -24,13 +24,6 @@ bool intersect(L(a, b), L(p, q), point &res, bool segment = false) {
     res = a + t * r;
     return true;
 }
-
-// point intersect(L(a, b), L(p, q)) {
-//     double d1 = cross(p - a, b - a);
-//     double d2 = cross(q - a, b - a);
-//     return (d1 * q - d2 * p) / (d1 - d2);
-// }
-
 point closest_point(L(a, b), P(c), bool segment = false) {
     if (segment) {
         if (dot(b - a, c - b) > 0) return b;
