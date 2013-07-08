@@ -1,17 +1,16 @@
 #include "primitives.cpp"
 
 point ch_main;
-bool ch_cmp(const point& a, const point& b) {
-    if (collinearPoints(ch_main, a, b))
-        return ch_main.vectorTo(a).magnitude() < ch_main.vectorTo(b).magnitude();
-    return atan2(a.y - ch_main.y, a.x - ch_main.x) < atan2(b.y - ch_main.y, b.x - ch_main.x);
+bool ch_cmp(P(a), P(b)) {
+    if (collinear(ch_main, a, b)) return abs(a - ch_main) < abs(b - ch_main);
+    return atan2(imag(a) - imag(ch_main), real(a) - real(ch_main)) < atan2(imag(b) - imag(ch_main), real(b) - real(ch_main));
 }
 
-vector<point> convex_hull(vector<point> pts, bool add_collinear = false) {
+polygon convex_hull(polygon pts, bool add_collinear = false) {
     int cnt = size(pts), main = 0, i = 1;
     if (cnt <= 3) return pts;
     for (int i = 1; i < cnt; i++)
-        if (pts[i].y < pts[main].y || (abs(pts[i].y - pts[main].y) < EPS && pts[i].y > pts[main].y))
+        if (imag(pts[i]) < imag(pts[main]) || abs(imag(pts[i]) - imag(pts[main]) < EPS && imag(pts[i]) > imag(pts[main])))
             main = i;
     swap(pts[0], pts[main]);
     ch_main = pts[0];

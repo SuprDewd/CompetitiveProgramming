@@ -1,81 +1,47 @@
-struct vector2d;
-struct point {
-    double x, y;
-    point(double _x = 0, double _y = 0) { x = _x; y = _y; }
-    bool operator <(point other) {
-        if (abs(x - other.x) > EPS) return x < other.x;
-        if (abs(y - other.y) > EPS) return y < other.y;
-        return false;
-    }
-    bool operator ==(point other) { return abs(x - other.x) < EPS && abs(y - other.y) < EPS; }
-    vector2d vectorTo(point other);
-    vector2d toVector();
-};
-struct vector2d {
-    double x, y;
-    vector2d(double _x = 0, double _y = 0) { x = _x; y = _y; }
-    bool operator <(vector2d other) {
-        if (abs(x - other.x) > EPS) return x < other.x;
-        if (abs(y - other.y) > EPS) return y < other.y;
-        return false;
-    }
-    bool operator ==(vector2d other) { return abs(x - other.x) < EPS && abs(y - other.y) < EPS; }
-    vector2d operator +(vector2d other) { return vector2d(x + other.x, y + other.y); }
-    vector2d operator -(vector2d other) { return vector2d(x - other.x, y - other.y); }
-    vector2d operator *(double c) { return vector2d(x * c, y * c); }
-    double dot(vector2d other) { return x * other.x + y * other.y; }
-    double cross(vector2d other) { return x * other.y - y * other.x; }
-    double magnitudeSquared() { return dot(*this); }
-    double magnitude() { return sqrt(magnitudeSquared()); }
-    double angleTo(vector2d other) { return acos(dot(other) / magnitude() / other.magnitude()); }
-    double signedAngleTo(vector2d other) { return asin(cross(other) / magnitude() / other.magnitude()); }
-    vector2d rotate(double theta) { return vector2d(x * cos(theta) - y * sin(theta), x * sin(theta) + y * cos(theta)); }
-};
-vector2d point::vectorTo(point other) { return vector2d(other.x - x, other.y - y); }
-vector2d point::toVector() { return vector2d(x, y); }
-double ccw(point a, point b, point c) { return a.vectorTo(b).cross(a.vectorTo(c)); }
-bool collinearPoints(point a, point b, point c) {
-    return abs(a.vectorTo(b).signedAngleTo(a.vectorTo(c))) < EPS;
-}
-point closestPointOnLine(point a, point b, point c, bool is_segment = false) {
-    if (is_segment) {
-        if (a.vectorTo(b).dot(b.vectorTo(c)) > 0) return b;
-        if (b.vectorTo(a).dot(a.vectorTo(c)) > 0) return a;
-    }
-    vector2d ac = a.vectorTo(c), ab = a.vectorTo(b);
-    double t = ac.dot(ab) / ab.magnitudeSquared();
-    return point(a.x + ab.x * t, a.y + ab.y * t);
-}
-struct line {
-    // ax + by + c = 0
-    double a, b, c;
+#include <complex>
+#define P(p) const point &p
+#define L(p0, p1) P(p0), P(p1)
 
-    line(point p1, point p2) {
-        if (abs(p1.x - p2.x) < EPS) { a = 1; b = 0; c = -p1.y; }
-        else {
-            a = -(p1.y - p2.y) / (p1.x - p2.y);
-            b = 1;
-            c = -a * p1.x - b * p1.y;
-        }
-    }
+typedef complex<double> point;
+typedef vector<point> polygon;
+double dot(P(a), P(b)) { return real(conj(a) * b); }
+double cross(P(a), P(b)) { return imag(conj(a) * b); }
+point rotate(P(p), P(about), double radians) { return (p - about) * exp(point(0, radians)) + about; }
+point reflect(P(p), L(about1, about2)) {
+    point z = p - about1, w = about2 - about1;
+    return conj(z / w) * w + about1; }
+bool parallel(L(a, b), L(p, q)) { return abs(cross(b - a, q - p)) < EPS; }
+double ccw(P(a), P(b), P(c)) { return cross(b - a, c - b); }
+bool collinear(P(a), P(b), P(c)) { return abs(ccw(a, b, c)) < EPS; }
+bool collinear(L(a, b), L(p, q)) { return abs(ccw(a, b, p)) < EPS && abs(ccw(a, b, q)) < EPS;  }
+double angle(P(a), P(b), P(c)) { return acos(dot(b - a, c - b)) / abs(b - a) / abs(c - b); }
+double signed_angle(P(a), P(b), P(c)) { return asin(cross(b - a, c - b)) / abs(b - a) / abs(c - b); }
+bool intersect(L(a, b), L(p, q), point &res, bool segment = false) {
+    // NOTE: check for parallel/collinear lines before calling this function
+    point r = b - a, s = q - p;
+    double c = cross(r, s), t = cross(p - a, s) / c, u = cross(p - a, r) / c;
+    if (segment && (t < 0-EPS || t > 1+EPS || u < 0-EPS || u > 1+EPS)) return false;
+    res = a + t * r;
+    return true;
+}
 
-    bool parallelTo(line other) { return abs(a - other.a) < EPS && abs(b - other.b) < EPS; }
-    bool operator ==(line other) { return parallelTo(other) && abs(c - other.c) < EPS; }
-    point intersection(line other) {
-        assert(!parallelTo(other));
-        double x = (other.b * c - b * other.c) / (other.a * b - a * other.b), y;
-        if (abs(b) > EPS) y = -(a * x + c) / b;
-        else y = -(other.a * x + other.c) / other.b;
-        return point(x, y);
+// point intersect(L(a, b), L(p, q)) {
+//     double d1 = cross(p - a, b - a);
+//     double d2 = cross(q - a, b - a);
+//     return (d1 * q - d2 * p) / (d1 - d2);
+// }
+
+point closest_point(L(a, b), P(c), bool segment = false) {
+    if (segment) {
+        if (dot(b - a, c - b) > 0) return b;
+        if (dot(a - b, c - a) > 0) return a;
     }
-};
-double polygon_area_signed(vector<point>& points) {
-    double area = 0; int cnt = size(points);
-    for (int i = 1; i + 1 < cnt; i++) {
-        area += points[0].vectorTo(points[i]).cross(points[0].vectorTo(points[i + 1]));
-    }
+    double t = dot(c - a, b - a) / norm(b - a);
+    return a + t * (b - a);
+}
+double polygon_area_signed(polygon p) {
+    double area = 0; int cnt = size(p);
+    for (int i = 1; i + 1 < cnt; i++) area += cross(p[i] - p[0], p[i + 1] - p[0]);
     return area / 2;
 }
-double polygon_area(vector<point>& points) {
-    return abs(polygon_area_signed(points));
-}
+double polygon_area(polygon p) { return abs(polygon_area_signed(p)); }

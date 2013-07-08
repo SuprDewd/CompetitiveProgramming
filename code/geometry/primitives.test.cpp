@@ -2,14 +2,9 @@ bool assert_nearly_equal(double a, double b) {
     assert_true(abs(a - b) < EPS);
 }
 
-bool assert_equal(vector2d a, vector2d b) {
-    assert_nearly_equal(a.x, b.x);
-    assert_nearly_equal(a.y, b.y);
-}
-
 bool assert_equal(point a, point b) {
-    assert_nearly_equal(a.x, b.x);
-    assert_nearly_equal(a.y, b.y);
+    assert_nearly_equal(real(a), real(b));
+    assert_nearly_equal(imag(a), imag(b));
 }
 
 void test() {
@@ -18,47 +13,47 @@ void test() {
     point a, b, c;
 
     a = point(-2, -2); b = point(3, 3); c = point(5, 5);
-    assert_true(collinearPoints(a, b, c));
-    assert_true(collinearPoints(a, c, b));
-    assert_true(collinearPoints(b, a, c));
-    assert_true(collinearPoints(b, c, a));
-    assert_true(collinearPoints(c, a, b));
-    assert_true(collinearPoints(c, b, a));
+    assert_true(collinear(a, b, c));
+    assert_true(collinear(a, c, b));
+    assert_true(collinear(b, a, c));
+    assert_true(collinear(b, c, a));
+    assert_true(collinear(c, a, b));
+    assert_true(collinear(c, b, a));
 
     a = point(-2, 2); b = point(3, 3); c = point(5, 5);
-    assert_false(collinearPoints(a, b, c));
-    assert_false(collinearPoints(a, c, b));
-    assert_false(collinearPoints(b, a, c));
-    assert_false(collinearPoints(b, c, a));
-    assert_false(collinearPoints(c, a, b));
-    assert_false(collinearPoints(c, b, a));
+    assert_false(collinear(a, b, c));
+    assert_false(collinear(a, c, b));
+    assert_false(collinear(b, a, c));
+    assert_false(collinear(b, c, a));
+    assert_false(collinear(c, a, b));
+    assert_false(collinear(c, b, a));
 
-    assert_equal(vector2d(-3, 3), vector2d(3, 3).rotate(pi / 2));
-    assert_equal(vector2d(-3, -3), vector2d(3, 3).rotate(pi));
-    assert_equal(vector2d(3, -3), vector2d(3, 3).rotate(pi + pi / 2));
-    assert_equal(vector2d(3, 3), vector2d(3, 3).rotate(2 * pi));
+    assert_equal(point(-3, 3), rotate(point(3, 3), point(0,0), pi / 2));
+    assert_equal(point(-3, -3), rotate(point(3, 3), point(0,0), pi));
+    assert_equal(point(3, -3), rotate(point(3, 3), point(0,0), pi + pi / 2));
+    assert_equal(point(3, 3), rotate(point(3, 3), point(0,0), 2 * pi));
 
-    assert_equal(point(1, 1), closestPointOnLine(point(2, 2), point(3, 3), point(2, 0)));
-    assert_equal(point(0.5, 0.5), closestPointOnLine(point(2, 2), point(3, 3), point(1, 0)));
-    assert_equal(point(1, 1), closestPointOnLine(point(2, 2), point(3, 3), point(0, 2)));
-    assert_equal(point(0.5, 0.5), closestPointOnLine(point(2, 2), point(3, 3), point(0, 1)));
-    assert_equal(point(0, 0), closestPointOnLine(point(2, 2), point(3, 3), point(0, 0)));
-    assert_equal(point(2, 2), closestPointOnLine(point(2, 2), point(3, 3), point(2, 2)));
-    assert_equal(point(1, 1), closestPointOnLine(point(2, 2), point(3, 3), point(1, 1)));
-    assert_equal(point(3, 3), closestPointOnLine(point(2, 2), point(3, 3), point(3, 3)));
-    assert_equal(point(2.5, 2.5), closestPointOnLine(point(2, 2), point(3, 3), point(2.5, 2.5)));
+    assert_equal(point(1, 1), closest_point(point(2, 2), point(3, 3), point(2, 0)));
+    assert_equal(point(0.5, 0.5), closest_point(point(2, 2), point(3, 3), point(1, 0)));
+    assert_equal(point(1, 1), closest_point(point(2, 2), point(3, 3), point(0, 2)));
+    assert_equal(point(0.5, 0.5), closest_point(point(2, 2), point(3, 3), point(0, 1)));
+    assert_equal(point(0, 0), closest_point(point(2, 2), point(3, 3), point(0, 0)));
+    assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(2, 2)));
+    assert_equal(point(1, 1), closest_point(point(2, 2), point(3, 3), point(1, 1)));
+    assert_equal(point(3, 3), closest_point(point(2, 2), point(3, 3), point(3, 3)));
+    assert_equal(point(2.5, 2.5), closest_point(point(2, 2), point(3, 3), point(2.5, 2.5)));
 
-    assert_equal(point(2.5, 2.5), closestPointOnLine(point(2, 2), point(3, 3), point(2.5, 2.5), true));
-    assert_equal(point(2, 2), closestPointOnLine(point(2, 2), point(3, 3), point(2, 2), true));
-    assert_equal(point(3, 3), closestPointOnLine(point(2, 2), point(3, 3), point(3, 3), true));
-    assert_equal(point(2, 2), closestPointOnLine(point(2, 2), point(3, 3), point(1, 1), true));
-    assert_equal(point(3, 3), closestPointOnLine(point(2, 2), point(3, 3), point(4, 4), true));
-    assert_equal(point(3, 3), closestPointOnLine(point(2, 2), point(3, 3), point(50, 100), true));
-    assert_equal(point(3, 3), closestPointOnLine(point(2, 2), point(3, 3), point(100, 50), true));
-    assert_equal(point(2, 2), closestPointOnLine(point(2, 2), point(3, 3), point(-50, -100), true));
-    assert_equal(point(2, 2), closestPointOnLine(point(2, 2), point(3, 3), point(-100, -50), true));
+    assert_equal(point(2.5, 2.5), closest_point(point(2, 2), point(3, 3), point(2.5, 2.5), true));
+    assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(2, 2), true));
+    assert_equal(point(3, 3), closest_point(point(2, 2), point(3, 3), point(3, 3), true));
+    assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(1, 1), true));
+    assert_equal(point(3, 3), closest_point(point(2, 2), point(3, 3), point(4, 4), true));
+    assert_equal(point(3, 3), closest_point(point(2, 2), point(3, 3), point(50, 100), true));
+    assert_equal(point(3, 3), closest_point(point(2, 2), point(3, 3), point(100, 50), true));
+    assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(-50, -100), true));
+    assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(-100, -50), true));
 
-    vector<point> pts;
+    polygon pts;
     pts.push_back(point(1, 1));
     pts.push_back(point(1, 4));
     pts.push_back(point(4, 4));
