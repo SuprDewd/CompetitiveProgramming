@@ -4,6 +4,7 @@ DIR=$(readlink -f $(dirname $0))
 DIR2=$(readlink -f $(dirname $1))
 TEST=$(basename ${1%.*})
 
+cd $DIR2
 rm -f $DIR/tmp.cpp
 cp $DIR/../code/header.cpp $DIR/tmp.cpp
 echo "" >> $DIR/tmp.cpp
