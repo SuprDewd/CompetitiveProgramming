@@ -1,58 +1,16 @@
-class fenwick_tree {
-private:
-    int* arr;
-    int cnt;
+struct fenwick_tree {
+    vi dataMul;
+    vi dataAdd;
 
-    inline int lsone(int n) {
-        return n & -n;
-    }
-
-public:
     fenwick_tree(int n) {
-        arr = new int[(cnt = n) + 1];
-        memset(arr, 0, (cnt + 1) << 2);
-    }
-
-    ~fenwick_tree() {
-        if (arr) {
-            delete[] arr;
-            arr = NULL;
-        }
-    }
-
-    fenwick_tree(const fenwick_tree& other) {
-        arr = new int[(cnt = other.cnt) + 1];
-        for (int i = 0; i <= cnt; i++)
-            arr[i] = other.arr[i];
+        dataMul.resize(n);
+        dataAdd.resize(n);
+        fill(all(dataMul), 0);
+        fill(all(dataAdd), 0);
     }
 
     void adjust(int i, int v) {
-        assert(arr != NULL);
-        assert(i >= 0 && i < cnt);
-
-        i++;
-        while (i <= cnt) {
-            arr[i] += v;
-            i += lsone(i);
-        }
-    }
-
-    int rsq(int i) {
-        assert(arr != NULL);
-
-        if (i < 0)
-            return 0;
-        if (i >= cnt)
-            return rsq(cnt - 1);
-
-        i++;
-        int sum = 0;
-        while (i) {
-            sum += arr[i];
-            i -= lsone(i);
-        }
-
-        return sum;
+        adjust(i, i, v);
     }
 
     inline int rsq(int i, int j) {
@@ -61,5 +19,28 @@ public:
 
     inline int get(int i) {
         return rsq(i) - rsq(i - 1);
+    }
+
+    void adjust(int left, int right, int by) {
+        internalUpdate(left, by, -by * (left - 1));
+        internalUpdate(right, -by, by * right);
+    }
+
+    void internalUpdate(int at, int mul, int add) {
+        while (at < size(dataMul)) {
+            dataMul[at] += mul;
+            dataAdd[at] += add;
+            at |= (at + 1);
+        }
+    }
+
+    int rsq(int at) {
+        int mul = 0, add = 0, start = at;
+        while (at >= 0) {
+            mul += dataMul[at];
+            add += dataAdd[at];
+            at = (at & (at + 1)) - 1;
+        }
+        return mul * start + add;
     }
 };
