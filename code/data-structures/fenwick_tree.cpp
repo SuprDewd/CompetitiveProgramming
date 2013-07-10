@@ -1,46 +1,21 @@
 struct fenwick_tree {
-    vi dataMul;
-    vi dataAdd;
-
-    fenwick_tree(int n) {
-        dataMul.resize(n);
-        dataAdd.resize(n);
-        fill(all(dataMul), 0);
-        fill(all(dataAdd), 0);
-    }
-
-    void adjust(int i, int v) {
-        adjust(i, i, v);
-    }
-
-    inline int rsq(int i, int j) {
-        return rsq(j) - rsq(i - 1);
-    }
-
-    inline int get(int i) {
-        return rsq(i) - rsq(i - 1);
-    }
-
-    void adjust(int left, int right, int by) {
-        internalUpdate(left, by, -by * (left - 1));
-        internalUpdate(right, -by, by * right);
-    }
-
-    void internalUpdate(int at, int mul, int add) {
-        while (at < size(dataMul)) {
-            dataMul[at] += mul;
-            dataAdd[at] += add;
-            at |= (at + 1);
-        }
-    }
-
-    int rsq(int at) {
-        int mul = 0, add = 0, start = at;
-        while (at >= 0) {
-            mul += dataMul[at];
-            add += dataAdd[at];
-            at = (at & (at + 1)) - 1;
-        }
-        return mul * start + add;
-    }
+    int n; vi data;
+    fenwick_tree(int _n) : n(_n), data(vi(n)) { }
+    void update(int at, int by) { while (at < n) data[at] += by, at |= at + 1; }
+    int query(int at) {
+        int res = 0;
+        while (at >= 0) res += data[at], at = (at & (at + 1)) - 1;
+        return res; }
+    int rsq(int a, int b) { return query(b) - query(a - 1); }
 };
+struct fenwick_tree_sq {
+    int n; fenwick_tree x1, x0;
+    fenwick_tree_sq(int _n) : n(_n), x1(fenwick_tree(n)), x0(fenwick_tree(n)) { }
+    // insert f(y) = my + c if x <= y
+    void update(int x, int m, int c) { x1.update(x, m); x0.update(x, c); }
+    int query(int x) { return x*x1.query(x) + x0.query(x); }
+};
+void range_update(fenwick_tree_sq &s, int a, int b, int k) {
+    s.update(a, k, k * (1 - a)); s.update(b+1, -k, k * b); }
+int range_query(fenwick_tree_sq &s, int a, int b) {
+    return s.query(b) - s.query(a-1); }
