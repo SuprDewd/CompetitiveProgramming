@@ -15,9 +15,10 @@ Things to do
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
 * Add more Geometry stuff. Point in polygon, cutting polygons, etc.
-* Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
+* Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm (or maybe even implement Dinic's algorithm)
 * Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
 * Do field testing on more of the code ((Min-Cost) Max-Flow, geometry library)
+* Edmond's optimum branching algorithm
 
 Links
 =====
