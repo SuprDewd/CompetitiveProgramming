@@ -6,7 +6,7 @@ Things to do
 * More formulas for geometry, trigonometry, сombinatorics, number theory (sum of divisors to the i-th power, number of integers less than n relatively prime to n, ...)
 * Pollard's rho algorithm
 * Edmonds's maximum matching algorithm
-* Segment Tree
+* Implement lazy range update in Segment Tree
 * Interval Tree
 * Hungarian algorithm
 * Suffix arrays (fast construction and some example uses)
