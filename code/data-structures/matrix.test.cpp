@@ -17,6 +17,12 @@ void test() {
     assert_equal(6765, A(0, 1));
     assert_equal(4181, A(1, 1));
 
+    matrix<int> A2(A);
+    assert_equal(10946, A2(0, 0));
+    assert_equal(6765, A2(1, 0));
+    assert_equal(6765, A2(0, 1));
+    assert_equal(4181, A2(1, 1));
+
     A = A * 5;
     assert_equal(10946 * 5, A(0, 0));
     assert_equal(6765 * 5, A(1, 0));
@@ -41,29 +47,92 @@ void test() {
     assert_equal(1, B.transpose()(0, 0));
     assert_equal(5, B.transpose()(1, 0));
 
-    matrix<double> C(3, 4);
-    C(0, 0) = 2;
-    C(0, 1) = 1;
-    C(0, 2) = -1;
-    C(0, 3) = 8;
-    C(1, 0) = -3;
-    C(1, 1) = -1;
+    matrix<double> C(2, 3);
+    C(0, 0) = 5;
+    C(0, 1) = 7;
+    C(0, 2) = 8;
+    C(1, 0) = 1;
+    C(1, 1) = 1;
     C(1, 2) = 2;
-    C(1, 3) = -11;
-    C(2, 0) = -2;
-    C(2, 1) = 1;
-    C(2, 2) = 2;
-    C(2, 3) = -3;
+    C = C.rref();
+    assert_equal(1.0, C(0, 0));
+    assert_equal(0.0, C(0, 1));
+    assert_equal(3.0, C(0, 2));
+    assert_equal(0.0, C(1, 0));
+    assert_equal(1.0, C(1, 1));
+    assert_equal(-1.0, C(1, 2));
 
-    C = C.triangular_form();
+    C = matrix<double>(2, 3);
+    C(0, 0) = 2;
+    C(0, 1) = 4;
+    C(0, 2) = 8;
+    C(1, 0) = 6;
+    C(1, 1) = 12;
+    C(1, 2) = 14;
+    C = C.rref();
+    assert_equal(1.0, C(0, 0));
+    assert_equal(2.0, C(0, 1));
+    assert_equal(0.0, C(0, 2));
+    assert_equal(0.0, C(1, 0));
+    assert_equal(0.0, C(1, 1));
+    assert_equal(1.0, C(1, 2));
 
-    for (int i = 0; i < C.rows; i++)
-    {
-        for (int j = 0; j < C.cols; j++)
-        {
-            printf("%lf ", C(i, j));
-        }
+    C = matrix<double>(3, 3);
+    C(0, 0) = 2;
+    C(0, 1) = 2;
+    C(0, 2) = 4;
+    C(1, 0) = 1;
+    C(1, 1) = 1;
+    C(1, 2) = 8;
+    C(2, 0) = 7;
+    C(2, 1) = 6;
+    C(2, 2) = 5;
+    C = C.rref();
+    assert_equal(1.0, C(0, 0));
+    assert_equal(0.0, C(0, 1));
+    assert_equal(0.0, C(0, 2));
+    assert_equal(0.0, C(1, 0));
+    assert_equal(1.0, C(1, 1));
+    assert_equal(0.0, C(1, 2));
+    assert_equal(0.0, C(2, 0));
+    assert_equal(0.0, C(2, 1));
+    assert_equal(1.0, C(2, 2));
 
-        printf("\n");
-    }
+    C = matrix<double>(2, 2);
+    C(0, 0) = 1;
+    C(0, 1) = 2;
+    C(1, 0) = 3;
+    C(1, 1) = 4;
+    C = C.rref();
+    assert_equal(1.0, C(0, 0));
+    assert_equal(0.0, C(0, 1));
+    assert_equal(0.0, C(1, 0));
+    assert_equal(1.0, C(1, 1));
+
+    C = matrix<double>(2, 2);
+    C(0, 0) = 3;
+    C(0, 1) = 3;
+    C(1, 0) = 9;
+    C(1, 1) = 9;
+    C = C.rref();
+    assert_equal(1.0, C(0, 0));
+    assert_equal(1.0, C(0, 1));
+    assert_equal(0.0, C(1, 0));
+    assert_equal(0.0, C(1, 1));
+
+    C = matrix<double>(3, 3);
+    C(0, 0) = 1;
+    C(0, 1) = 2;
+    C(0, 2) = 3;
+    C(1, 0) = 4;
+    C(1, 1) = 5;
+    C(1, 2) = 6;
+    C = C.rref();
+    assert_equal(1.0, C(0, 0));
+    assert_equal(0.0, C(0, 1));
+    assert_equal(-1.0, C(0, 2));
+    assert_equal(0.0, C(1, 0));
+    assert_equal(1.0, C(1, 1));
+    assert_equal(2.0, C(1, 2));
 }
+
