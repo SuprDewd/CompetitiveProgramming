@@ -2,7 +2,6 @@ Things to do
 ============
 
 * Prim's algorithm
-* Matrix operations (mainly Gauss eliminiation)
 * More formulas for geometry, trigonometry, сombinatorics, number theory (sum of divisors to the i-th power, number of integers less than n relatively prime to n, ...)
 * Pollard's rho algorithm
 * Edmonds's maximum matching algorithm
