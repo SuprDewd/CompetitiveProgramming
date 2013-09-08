@@ -51,7 +51,7 @@ public:
     matrix<T> pow(int p) {
         assert(rows == cols);
         matrix<T> res(rows, cols), sq(*this);
-        for (int i = 0; i < rows; i++) res(i, i) = 1;
+        for (int i = 0; i < rows; i++) res(i, i) = T(1);
         while (p) {
             if (p & 1) res = res * sq;
             p >>= 1;
