@@ -3,12 +3,11 @@ Things to do
 
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory (sum of divisors to the i-th power, number of integers less than n relatively prime to n, ...)
-* Pollard's rho algorithm
 * Edmonds's maximum matching algorithm
 * Implement lazy range update in Segment Tree
 * Interval Tree
 * Hungarian algorithm
-* Suffix arrays (fast construction and some example uses)
+* Suffix arrays (fast construction and some example uses. also LCP array)
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
