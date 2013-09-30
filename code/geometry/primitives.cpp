@@ -38,3 +38,16 @@ double polygon_area_signed(polygon p) {
     return area / 2;
 }
 double polygon_area(polygon p) { return abs(polygon_area_signed(p)); }
+// pair<polygon, polygon> cut_polygon(const polygon &poly, point a, point b) {
+//     polygon left, right;
+//     point it(-100, -100);
+//     for (int i = 0, cnt = poly.size(); i < cnt; i++) {
+//         int j = i == cnt-1 ? 0 : i + 1;
+//         point p = poly[i], q = poly[j];
+//         if (ccw(a, b, p) <= 0) left.push_back(p);
+//         if (ccw(a, b, p) >= 0) right.push_back(p);
+//         // myintersect = intersect where (a,b) is a line, (p,q) is a line segment
+//         if (myintersect(a, b, p, q, it)) left.push_back(it), right.push_back(it);
+//     }
+//     return pair<polygon, polygon>(left, right);
+// }
