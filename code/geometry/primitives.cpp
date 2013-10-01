@@ -14,8 +14,8 @@ bool parallel(L(a, b), L(p, q)) { return abs(cross(b - a, q - p)) < EPS; }
 double ccw(P(a), P(b), P(c)) { return cross(b - a, c - b); }
 bool collinear(P(a), P(b), P(c)) { return abs(ccw(a, b, c)) < EPS; }
 bool collinear(L(a, b), L(p, q)) { return abs(ccw(a, b, p)) < EPS && abs(ccw(a, b, q)) < EPS;  }
-double angle(P(a), P(b), P(c)) { return acos(dot(b - a, c - b)) / abs(b - a) / abs(c - b); }
-double signed_angle(P(a), P(b), P(c)) { return asin(cross(b - a, c - b)) / abs(b - a) / abs(c - b); }
+double angle(P(a), P(b), P(c)) { return acos(dot(b - a, c - b) / abs(b - a) / abs(c - b)); }
+double signed_angle(P(a), P(b), P(c)) { return asin(cross(b - a, c - b) / abs(b - a) / abs(c - b)); }
 bool intersect(L(a, b), L(p, q), point &res, bool segment = false) {
     // NOTE: check for parallel/collinear lines before calling this function
     point r = b - a, s = q - p;
