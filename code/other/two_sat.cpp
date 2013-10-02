@@ -21,4 +21,5 @@ bool two_sat(int n, const vii& clauses, vi& all_truthy) {
         truth[o] = 1 - truth[p];
         if (truth[p] == 1) all_truthy.push_back(cur);
     }
+    return true;
 }
