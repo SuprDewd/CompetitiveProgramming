@@ -10,7 +10,7 @@ void scc_dfs(const vvi &adj, int u) {
 }
 
 pair<union_find, vi> scc(const vvi &adj) {
-    int n = size(adj), u, v, w;
+    int n = size(adj), u, v;
     order.clear();
     union_find uf(n);
     vi dag;
