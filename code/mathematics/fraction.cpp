@@ -18,7 +18,7 @@ public:
             d = -d;
         }
 
-        T g = gcd(n, d);
+        T g = gcd(abs(n), abs(d));
         n /= g;
         d /= g;
     }
