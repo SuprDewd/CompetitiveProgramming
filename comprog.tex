@@ -73,7 +73,7 @@ Vim and (Caps Lock = Escape) configuration.
 \begin{lstlisting}
 xset r rate 150 100
 xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Escape" -e "add Lock = Caps_Lock"
-echo "set nocp et sw=4 ts=4 sts=4 si | syntax on" > ~/.vimrc
+echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on | colorscheme slate" > ~/.vimrc
 \end{lstlisting}
 
 \subsection{C++ Header}
