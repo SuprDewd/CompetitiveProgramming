@@ -5,16 +5,17 @@ struct mf_edge {
         u = _u; v = _v; w = _w; rev = _rev;
     }
 };
-
 int max_flow(int n, int s, int t, vii* adj) {
     vector<mf_edge*>* g = new vector<mf_edge*>[n];
+    vector<mf_edge*> t_prev;
     for (int i = 0; i < n; i++) {
         for (int j = 0, len = size(adj[i]); j < len; j++) {
             mf_edge *cur = new mf_edge(i, adj[i][j].first, adj[i][j].second),
                     *rev = new mf_edge(adj[i][j].first, i, 0, cur);
             cur->rev = rev;
             g[i].push_back(cur);
-            g[adj[i][j].first].push_back(rev);
+            g[cur->v].push_back(rev);
+            if(cur->v == t && cur->w > 0) t_prev.push_back(cur);
         }
     }
     int flow = 0;
@@ -33,23 +34,31 @@ int max_flow(int n, int s, int t, vii* adj) {
                 }
             }
         }
-        mf_edge* cure = back[t];
-        if (cure == NULL) break;
-        int cap = INF;
-        while (true) {
-            cap = min(cap, cure->w);
-            if (cure->u == s) break;
-            cure = back[cure->u];
+        if(back[t] == NULL || back[t]->w == 0) break;
+        for(int i = 0; i < t_prev.size(); ++i) {
+            mf_edge *z = t_prev[i];
+            if(!z || z->w == 0 || back[z->u] == NULL) continue;
+            int cap = z->w;
+            mf_edge* cure = back[z->u];
+            if (cure == NULL) break;
+            while (true) {
+                cap = min(cap, cure->w);
+                if (cure->u == s) break;
+                cure = back[cure->u];
+            }
+            if(cap == 0) continue;
+            assert(cap < INF);
+            z->w -= cap;
+            z->rev->w += cap;
+            cure = back[z->u];
+            while (true) {
+                cure->w -= cap;
+                cure->rev->w += cap;
+                if (cure->u == s) break;
+                cure = back[cure->u];
+            }
+            flow += cap;
         }
-        assert(cap > 0 && cap < INF);
-        cure = back[t];
-        while (true) {
-            cure->w -= cap;
-            cure->rev->w += cap;
-            if (cure->u == s) break;
-            cure = back[cure->u];
-        }
-        flow += cap;
     }
     // instead of deleting g, we could also
     // use it to get info about the actual flow
