@@ -133,31 +133,17 @@ private:
         n->height = 1 + max(height(n->l), height(n->r));
     }
 
-    void left_rotate(node *n) {
-        // assert(n->r);
-        node *r = n->r;
-        r->p = n->p;
-        parent_leg(n) = r;
-        n->r = r->l;
-        if (r->l) r->l->p = n;
-        r->l = n;
-        n->p = r;
-        augment(n);
-        augment(r);
-    }
+    #define rotate(l, r) \
+        node *l = n->l; \
+        l->p = n->p; \
+        parent_leg(n) = l; \
+        n->l = l->r; \
+        if (l->r) l->r->p = n; \
+        l->r = n, n->p = l; \
+        augment(n), augment(l)
 
-    void right_rotate(node *n) {
-        // assert(n->l);
-        node *l = n->l;
-        l->p = n->p;
-        parent_leg(n) = l;
-        n->l = l->r;
-        if (l->r) l->r->p = n;
-        l->r = n;
-        n->p = l;
-        augment(n);
-        augment(l);
-    }
+    void left_rotate(node *n) { rotate(r, l); }
+    void right_rotate(node *n) { rotate(l, r); }
 
     void fix(node *n) {
         while (n) {
