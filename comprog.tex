@@ -10,28 +10,32 @@
 \usepackage{fullpage}
 \usepackage{geometry}
 \usepackage{graphicx}
-\usepackage{listings}
+% \usepackage{listings}
 \usepackage{subcaption}
 \usepackage[scaled]{beramono}
 \usepackage[vlined,ruled]{algorithm2e}
 
 % Listings
-\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-\definecolor{greencomments}{rgb}{0,0.5,0}
-\definecolor{redstrings}{rgb}{0.9,0,0}
-\lstset{language=C++,
-    numbers=left,
-    showspaces=false,
-    showtabs=false,
-    breaklines=true,
-    showstringspaces=false,
-    breakatwhitespace=true,
-    escapeinside={(*@}{@*)},
-    commentstyle=\color{greencomments},
-    keywordstyle=\color{bluekeywords}\bfseries,
-    stringstyle=\color{redstrings},
-    basicstyle=\ttfamily
-}
+% \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
+% \definecolor{greencomments}{rgb}{0,0.5,0}
+% \definecolor{redstrings}{rgb}{0.9,0,0}
+% \lstset{language=C++,
+%     numbers=left,
+%     showspaces=false,
+%     showtabs=false,
+%     breaklines=true,
+%     showstringspaces=false,
+%     breakatwhitespace=true,
+%     escapeinside={(*@}{@*)},
+%     commentstyle=\color{greencomments},
+%     keywordstyle=\color{bluekeywords}\bfseries,
+%     stringstyle=\color{redstrings},
+%     basicstyle=\ttfamily
+% }
+
+% Minted
+\usepackage{minted}
+\newcommand{\code}[1]{\inputminted[linenos]{cpp}{code/#1}}
 
 % Header/Footer
 \geometry{includeheadfoot, margin=2.5cm}
@@ -64,57 +68,57 @@
 \section{Code Templates}
     \subsection{Basic Configuration}
         Vim and (Caps Lock = Escape) configuration.
-        \begin{lstlisting}
+        \begin{minted}{bash}
 xset r rate 150 100
 xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Escape" -e "add Lock = Caps_Lock"
 echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on | colorscheme slate" > ~/.vimrc
-        \end{lstlisting}
+        \end{minted}
 
     \subsection{C++ Header}
         A C++ header.
-        \lstinputlisting{code/header.cpp}
+        \code{header.cpp}
 
     \subsection{Java Template}
         A Java template.
-        \lstinputlisting{code/template.java}
+        \code{template.java}
 
 
 \section{Data Structures}
 
     \subsection{Union-Find}
         An implementation of the Union-Find disjoint sets data structure.
-        \lstinputlisting{code/data-structures/union_find.cpp}
+        \code{data-structures/union_find.cpp}
 
     \subsection{Segment Tree}
         An implementation of a Segment Tree.
-        \lstinputlisting{code/data-structures/segment_tree.cpp}
+        \code{data-structures/segment_tree.cpp}
 
     \subsection{Fenwick Tree}
         A Fenwick Tree is a data structure that represents an array of $n$
         numbers. It supports adjusting the $i$-th element in $O(\log n)$ time,
         and computing the sum of numbers in the range $i..j$ in $O(\log n)$
         time. It only needs $O(n)$ space.
-        \lstinputlisting{code/data-structures/fenwick_tree.cpp}
+        \code{data-structures/fenwick_tree.cpp}
 
     \subsection{Matrix}
         A Matrix class.
-        \lstinputlisting{code/data-structures/matrix.cpp}
+        \code{data-structures/matrix.cpp}
 
     \subsection{Trie}
         A Trie class.
-        \lstinputlisting{code/data-structures/trie.cpp}
+        \code{data-structures/trie.cpp}
 
     \subsection{AVL Tree}
         A fast, easily augmentable, balanced binary search tree.
-        \lstinputlisting{code/data-structures/avl_tree.cpp}
+        \code{data-structures/avl_tree.cpp}
 
         Also a very simple wrapper over the AVL tree that implements a map
         interface.
-        \lstinputlisting{code/data-structures/avl_map.cpp}
+        \code{data-structures/avl_map.cpp}
 
     \subsection{Heap}
         An implementation of a binary heap.
-        \lstinputlisting{code/data-structures/heap.cpp}
+        \code{data-structures/heap.cpp}
 
 
 \section{Graphs}
@@ -124,18 +128,18 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
         vertex in the specified unweighted graph (which is represented with an
         adjacency list). Note that it assumes that the two vertices are
         connected. It runs in $O(|V|+|E|)$ time.
-        \lstinputlisting{code/graph/bfs.cpp}
+        \code{graph/bfs.cpp}
 
         Another implementation that doesn't assume the two vertices are
         connected. If there is no path from the starting vertex to the ending
-        vertex, a \lstinline$-1$ is returned.
-        \lstinputlisting{code/graph/bfs_visited.cpp}
+        vertex, a $-1$ is returned.
+        \code{graph/bfs_visited.cpp}
 
     \subsection{Single-Source Shortest Paths}
         \subsubsection{Dijkstra's algorithm}
             An implementation of Dijkstra's algorithm. It runs in
             $\Theta(|E|\log{|V|})$ time.
-            \lstinputlisting{code/graph/dijkstra.cpp}
+            \code{graph/dijkstra.cpp}
 
         \subsubsection{Bellman-Ford algorithm}
             The Bellman-Ford algorithm solves the single-source shortest paths
@@ -143,46 +147,46 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
             algorithm, but it works on graphs with negative edges and has the
             ability to detect negative cycles, neither of which Dijkstra's
             algorithm can do.
-            \lstinputlisting{code/graph/bellman_ford.cpp}
+            \code{graph/bellman_ford.cpp}
 
     \subsection{All-Pairs Shortest Paths}
         \subsubsection{Floyd-Warshall algorithm}
             The Floyd-Warshall algorithm solves the all-pairs shortest paths
             problem in $O(|V|^3)$ time.
-            \lstinputlisting{code/graph/floyd_warshall.cpp}
+            \code{graph/floyd_warshall.cpp}
 
     \subsection{Strongly Connected Components}
         \subsubsection{Kosaraju's algorithm}
             Kosarajus's algorithm finds strongly connected components of a
             directed graph in $O(|V|+|E|)$ time.
-            \lstinputlisting{code/graph/scc.cpp}
+            \code{graph/scc.cpp}
 
     \subsection{Minimum Spanning Tree}
         \subsubsection{Kruskal's algorithm}
-            \lstinputlisting{code/graph/kruskals_mst.cpp}
+            \code{graph/kruskals_mst.cpp}
 
     \subsection{Topological Sort}
         \subsubsection{Modified Depth-First Search}
-            \lstinputlisting{code/graph/tsort.cpp}
+            \code{graph/tsort.cpp}
 
     \subsection{Bipartite Matching}
         The alternating paths algorithm solves bipartite matching in $O(mn^2)$
         time, where $m$, $n$ are the number of vertices on the left and right
         side of the bipartite graph, respectively.
-        \lstinputlisting{code/graph/bipartite_matching.cpp}
+        \code{graph/bipartite_matching.cpp}
 
     \subsection{Maximum Flow}
         \subsubsection{Edmonds Karp's algorithm}
             An implementation of Edmonds Karp's algorithm that runs in
             $O(|V||E|^2)$. It computes the maximum flow of a flow network.
-            \lstinputlisting{code/graph/edmonds_karps.cpp}
+            \code{graph/edmonds_karps.cpp}
 
     \subsection{Minimum Cost Maximum Flow}
         An implementation of Edmonds Karp's algorithm, modified to find
         shortest path to augment each time (instead of just any path). It
         computes the maximum flow of a flow network, and when there are
         multiple maximum flows, finds the maximum flow with minimum cost.
-        \lstinputlisting{code/graph/edmonds_karps_mcmf.cpp}
+        \code{graph/edmonds_karps_mcmf.cpp}
 
 
 \section{Strings}
@@ -194,48 +198,48 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
         $T$ in linear time. This is accomplished by computing $Z$ values of $S
         = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
 
-        \lstinputlisting{code/strings/z_algorithm.cpp}
+        \code{strings/z_algorithm.cpp}
 
 \section{Mathematics}
     \subsection{Fraction}
         A fraction (rational number) class. Note that numbers are stored in
         lowest common terms.
-        \lstinputlisting{code/mathematics/fraction.cpp}
+        \code{mathematics/fraction.cpp}
 
     \subsection{Binomial Coefficients}
         The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the
         number of ways to choose $k$ items out of a total of $n$ items.
-        \lstinputlisting{code/mathematics/nck.cpp}
+        \code{mathematics/nck.cpp}
 
     \subsection{Euclidean algorithm}
         The Euclidean algorithm computes the greatest common divisor of two
         integers $a$, $b$.
-        \lstinputlisting{code/mathematics/gcd.cpp}
+        \code{mathematics/gcd.cpp}
 
         The extended Euclidean algorithm computes the greatest common divisor
         $d$ of two integers $a$, $b$ and also finds two integers $x$, $y$ such
         that $a\times x + b\times y = d$.
-        \lstinputlisting{code/mathematics/egcd.cpp}
+        \code{mathematics/egcd.cpp}
 
     \subsection{Trial Division Primality Testing}
         An optimized trial division to check whether an integer is prime.
-        \lstinputlisting{code/mathematics/is_prime.cpp}
+        \code{mathematics/is_prime.cpp}
 
     \subsection{Sieve of Eratosthenes}
         An optimized implementation of Eratosthenes' Sieve.
-        \lstinputlisting{code/mathematics/prime_sieve.cpp}
+        \code{mathematics/prime_sieve.cpp}
 
     \subsection{Modular Multiplicative Inverse}
         A function to find a modular multiplicative inverse.
-        \lstinputlisting{code/mathematics/mod_inv.cpp}
+        \code{mathematics/mod_inv.cpp}
 
     \subsection{Modular Exponentiation}
         A function to perform fast modular exponentiation.
-        \lstinputlisting{code/mathematics/mod_pow.cpp}
+        \code{mathematics/mod_pow.cpp}
 
     \subsection{Chinese Remainder Theorem}
         An implementation of the Chinese Remainder Theorem.
-        \lstinputlisting{code/mathematics/crt.cpp}
+        \code{mathematics/crt.cpp}
 
     \subsection{Formulas}
         \begin{itemize}
@@ -295,11 +299,11 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
 \section{Geometry}
     \subsection{Primitives}
         Geometry primitives.
-        \lstinputlisting{code/geometry/primitives.cpp}
+        \code{geometry/primitives.cpp}
 
     \subsection{Convex Hull}
         An algorithm that finds the Convex Hull of a set of points.
-        \lstinputlisting{code/geometry/convex_hull.cpp}
+        \code{geometry/convex_hull.cpp}
 
     \subsection{Formulas}
         Let $a = (a_x, a_y)$ and $b = (b_x, b_y)$ be two-dimensional vectors.
@@ -319,29 +323,29 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
         An implementation of binary search that finds a real valued root of the
         continous function $f$ on the interval $[a,b]$, with a maximum error of
         $\varepsilon$.
-        \lstinputlisting{code/other/binary_search_continuous.cpp}
+        \code{other/binary_search_continuous.cpp}
 
         Another implementation that takes a binary predicate $f$, and finds an
         integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land
         \lnot f(x - 1)$.
-        \lstinputlisting{code/other/binary_search_discrete.cpp}
+        \code{other/binary_search_discrete.cpp}
 
     \subsection{2SAT}
         A fast 2SAT solver.
-        \lstinputlisting{code/other/two_sat.cpp}
+        \code{other/two_sat.cpp}
 
     \subsection{$n$th Permutation}
         A very fast algorithm for computing the $n$th permutation of the list
         $\{0,1,\ldots,k-1\}$.
-        \lstinputlisting{code/other/nth_permutation.cpp}
+        \code{other/nth_permutation.cpp}
 
     \subsection{Cycle-Finding}
         An implementation of Floyd's Cycle-Finding algorithm.
-        \lstinputlisting{code/other/floyds_algorithm.cpp}
+        \code{other/floyds_algorithm.cpp}
 
     \subsection{Dates}
         Functions to simplify date calculations.
-        \lstinputlisting{code/other/dates.cpp}
+        \code{other/dates.cpp}
 
 
 \section{Useful Information}
@@ -382,9 +386,10 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
         be stored in an output buffer and then dumped once in the end (using
         fwrite). A simpler, but still effective, way to achieve speed is to use
         the following input reading method.
-        \lstinputlisting{code/tricks/fast_input.cpp}
+        \code{tricks/fast_input.cpp}
 
     \subsection{Worst Time Complexity}
+    \begin{center}
         \begin{tabular}{c|c|c}
             $n$ & Worst AC Algorithm & Comment \\
             \hline
@@ -397,15 +402,16 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
             $\leq 10^5$ & $O(n\log_2{n})$ & e.g. Merge sort, building a Segment tree \\
             $\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
         \end{tabular}
+    \end{center}
 
     \subsection{Bit Hacks}
         \begin{itemize}
-            \item \lstinline{n & -n} returns the first set bit in $n$.
-            \item \lstinline{n & (n - 1)} is $0$ only if $n$ is a power of two.
-            \item \lstinline{snoob(x)} returns the next integer that has the
-                same amount of bits set as \lstinline{x}. Useful for iterating
+            \item \texttt{n \&{} -n} returns the first set bit in $n$.
+            \item \texttt{n \&{} (n - 1)} is $0$ only if $n$ is a power of two.
+            \item \texttt{snoob(x)} returns the next integer that has the
+                same amount of bits set as \texttt{x}. Useful for iterating
                 through subsets of some specified size.
-                \lstinputlisting{code/tricks/snoob.cpp}
+                \code{tricks/snoob.cpp}
         \end{itemize}
 
 \end{document}
