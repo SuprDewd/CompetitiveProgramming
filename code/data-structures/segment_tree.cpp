@@ -24,4 +24,3 @@ struct segment_tree {
         int m = (l + r) / 2;
         return data[j] = f(u(i, v, l, m, 2*j+1), u(i, v, m+1, r, 2*j+2)); }
 };
-
