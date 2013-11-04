@@ -3,18 +3,16 @@
 unsigned int bernoulli(unsigned int MAX) {
     unsigned int cnt = 0;
     while(((float) rand() / RAND_MAX) < BP && cnt < MAX) cnt++;
-    return cnt;
-}
-template<class T>
-class skiplist {
+    return cnt; }
+template<class T> class skiplist {
 public:
     struct node {
         T item;
-        int lens[MAX_LEVEL + 1];
+        int *lens;
         node **next;
-        node(int level, T i) : item(i), next((node**)calloc(level + 1, sizeof(node*))) { memset(lens, 0, sizeof(lens)); };
-        ~node() { free(next); next = NULL; };
-    };
+        #define CA(v, t) v((t*)calloc(level+1, sizeof(t)))
+        node(int level, T i) : item(i), CA(lens, int), CA(next, node*) {}
+        ~node() { free(lens); free(next); }; };
     int current_level, _size;
     node *head;
     skiplist() : current_level(0), _size(0), head(new node(MAX_LEVEL, 0)) { };
@@ -32,16 +30,12 @@ public:
         } x = x->next[0];
     int size() { return _size; }
     void clear() { while(head->next && head->next[0]) erase(head->next[0]->item); }
-    node *find(T target) {
-        FIND_UPDATE(x->next[i]->item, target);
-        return x && x->item == target ? x : NULL;
-    }
-    node *find_kth(int k) { FIND_UPDATE(pos[i] + x->lens[i], k); return x; }
-    int count_greater(T target) { FIND_UPDATE(x->next[i]->item, target); return _size - pos[0] - 1; }
+    node *find(T target) { FIND_UPDATE(x->next[i]->item, target); return x && x->item == target ? x : NULL; }
+    node *nth(int k) { FIND_UPDATE(pos[i] + x->lens[i], k+1); return x; }
+    int count_less(T target) { FIND_UPDATE(x->next[i]->item, target); return pos[0]; }
     node* insert(T target) {
         FIND_UPDATE(x->next[i]->item, target);
-        // SET
-        if(x && x->item == target) return x;
+        if(x && x->item == target) return x; // SET
         int lvl = bernoulli(MAX_LEVEL);
         if(lvl > current_level) current_level = lvl;
         x = new node(lvl, target);
@@ -53,8 +47,7 @@ public:
         }
         for(int i = lvl + 1; i <= MAX_LEVEL; i++) update[i]->lens[i]++;
         _size++;
-        return x;
-    }
+        return x; }
     void erase(T target) {
         FIND_UPDATE(x->next[i]->item, target);
         if(x && x->item == target) {
@@ -65,7 +58,4 @@ public:
                 } else update[i]->lens[i] = update[i]->lens[i] - 1;
             }
             delete x; _size--;
-            while(current_level > 0 && head->next[current_level] == NULL) current_level--;
-        }
-    }
-};
+            while(current_level > 0 && head->next[current_level] == NULL) current_level--; } } };
