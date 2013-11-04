@@ -1,9 +1,7 @@
 // const int ID = INF;
 // int f(int a, int b) { return min(a, b); }
-
 const int ID = 0;
 int f(int a, int b) { return a + b; }
-
 struct segment_tree {
     int n; vi data;
     segment_tree(const vi &arr) : n(size(arr)), data(4*n) { mk(arr, 0, n-1, 0); }
@@ -22,6 +20,4 @@ struct segment_tree {
         if (r < i || i < l) return data[j];
         if (l == i && r == i) return data[j] = v;
         int m = (l + r) / 2;
-        return data[j] = f(u(i, v, l, m, 2*j+1), u(i, v, m+1, r, 2*j+2)); }
-};
-
+        return data[j] = f(u(i, v, l, m, 2*j+1), u(i, v, m+1, r, 2*j+2)); } };

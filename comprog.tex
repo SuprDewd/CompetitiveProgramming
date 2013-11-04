@@ -1,28 +1,24 @@
 \documentclass[8pt,a4paper]{amsart}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
-\usepackage{graphicx}
-\usepackage{geometry}
-\usepackage{fancyhdr}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage[vlined,ruled]{algorithm2e}
-\usepackage{color}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{listings}
-
-\usepackage{fullpage}
-
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{fullpage}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{subcaption}
 \usepackage[scaled]{beramono}
+\usepackage[vlined,ruled]{algorithm2e}
 
+% Listings
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
 \definecolor{redstrings}{rgb}{0.9,0,0}
-
-\usepackage{listings}
 \lstset{language=C++,
     numbers=left,
     showspaces=false,
@@ -48,20 +44,16 @@
 \renewcommand{\footrulewidth}{0.4pt}
 
 
-% New math operators
+% Math and bit operators
 \DeclareMathOperator{\lcm}{lcm}
-
-% Bit operators
 \newcommand*\BitAnd{\mathrel{\&}}
 \newcommand*\BitOr{\mathrel{|}}
 \newcommand*\ShiftLeft{\ll}
 \newcommand*\ShiftRight{\gg}
 \newcommand*\BitNeg{\ensuremath{\mathord{\sim}}}
 
-
 % Title/Author
 \title{Algorithms and Data Structures for Competitive Programming}
-
 
 \begin{document}
 
@@ -70,249 +62,350 @@
 \newpage
 
 \section{Code Templates}
-\subsection{Basic Configuration}
-Vim and (Caps Lock = Escape) configuration.
-\begin{lstlisting}
+    \subsection{Basic Configuration}
+        Vim and (Caps Lock = Escape) configuration.
+        \begin{lstlisting}
 xset r rate 150 100
 xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Escape" -e "add Lock = Caps_Lock"
 echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on | colorscheme slate" > ~/.vimrc
-\end{lstlisting}
+        \end{lstlisting}
 
-\subsection{C++ Header}
-\lstinputlisting{code/header.cpp}
+    \subsection{C++ Header}
+        A C++ header.
+        \lstinputlisting{code/header.cpp}
 
-\subsection{Java Template}
-\lstinputlisting{code/template.java}
+    \subsection{Java Template}
+        A Java template.
+        \lstinputlisting{code/template.java}
+
 
 \section{Data Structures}
 
-\subsection{Union-Find}
-\lstinputlisting{code/data-structures/union_find.cpp}
+    \subsection{Union-Find}
+        An implementation of the Union-Find disjoint sets data structure.
+        \lstinputlisting{code/data-structures/union_find.cpp}
 
-        % TODO: \subsection{Segment Tree}
+    \subsection{Segment Tree}
+        An implementation of a Segment Tree.
+        \lstinputlisting{code/data-structures/segment_tree.cpp}
 
-\subsection{Segment Tree}
-\lstinputlisting{code/data-structures/segment_tree.cpp}
+    \subsection{Fenwick Tree}
+        A Fenwick Tree is a data structure that represents an array of $n$
+        numbers. It supports adjusting the $i$-th element in $O(\log n)$ time,
+        and computing the sum of numbers in the range $i..j$ in $O(\log n)$
+        time. It only needs $O(n)$ space.
+        \lstinputlisting{code/data-structures/fenwick_tree.cpp}
 
-\subsection{Fenwick Tree}
-A Fenwick Tree is a data structure that represents an array of $n$ numbers. It supports adjusting the $i$-th element in $O(\log n)$ time, and computing the sum of numbers in the range $i..j$ in $O(\log n)$ time. It only needs $O(n)$ space.
-\lstinputlisting{code/data-structures/fenwick_tree.cpp}
+    \subsection{Matrix}
+        A Matrix class.
+        \lstinputlisting{code/data-structures/matrix.cpp}
 
-        % TODO: \subsection{Interval Tree}
+    \subsection{Trie}
+        A Trie class.
+        \lstinputlisting{code/data-structures/trie.cpp}
 
-\subsection{Matrix}
-\lstinputlisting{code/data-structures/matrix.cpp}
+    \subsection{AVL Tree}
+        A fast, easily augmentable, balanced binary search tree.
+        \lstinputlisting{code/data-structures/avl_tree.cpp}
 
-\subsection{Trie}
-\lstinputlisting{code/data-structures/trie.cpp}
+        Also a very simple wrapper over the AVL tree that implements a map
+        interface.
+        \lstinputlisting{code/data-structures/avl_map.cpp}
 
-\subsection{AVL Tree}
-A fast, easily augmentable, balanced binary search tree.
-\lstinputlisting{code/data-structures/avl_tree.cpp}
+    \subsection{Heap}
+        An implementation of a binary heap.
+        \lstinputlisting{code/data-structures/heap.cpp}
 
-Also a very simple wrapper over the AVL tree that implements a map interface.
-\lstinputlisting{code/data-structures/avl_map.cpp}
-
-\subsection{Heap}
-An implementation of a binary heap.
-\lstinputlisting{code/data-structures/heap.cpp}
 
 \section{Graphs}
+    \subsection{Breadth-First Search}
+        An implementation of a breadth-first search that counts the number of
+        edges on the shortest path from the starting vertex to the ending
+        vertex in the specified unweighted graph (which is represented with an
+        adjacency list). Note that it assumes that the two vertices are
+        connected. It runs in $O(|V|+|E|)$ time.
+        \lstinputlisting{code/graph/bfs.cpp}
 
-\subsection{Breadth-First Search}
+        Another implementation that doesn't assume the two vertices are
+        connected. If there is no path from the starting vertex to the ending
+        vertex, a \lstinline$-1$ is returned.
+        \lstinputlisting{code/graph/bfs_visited.cpp}
 
-An implementation of a breadth-first search that counts the number of edges on the shortest path from the starting vertex to the ending vertex in the specified unweighted graph (which is represented with an adjacency list). Note that it assumes that the two vertices are connected. It runs in $O(|V|+|E|)$ time.
-\lstinputlisting{code/graph/bfs.cpp}
+    \subsection{Single-Source Shortest Paths}
+        \subsubsection{Dijkstra's algorithm}
+            An implementation of Dijkstra's algorithm. It runs in
+            $\Theta(|E|\log{|V|})$ time.
+            \lstinputlisting{code/graph/dijkstra.cpp}
 
-Another implementation that doesn't assume the two vertices are connected. If there is no path from the starting vertex to the ending vertex, a \lstinline$-1$ is returned.
-\lstinputlisting{code/graph/bfs_visited.cpp}
+        \subsubsection{Bellman-Ford algorithm}
+            The Bellman-Ford algorithm solves the single-source shortest paths
+            problem in $O(|V||E|)$ time. It is slower than Dijkstra's
+            algorithm, but it works on graphs with negative edges and has the
+            ability to detect negative cycles, neither of which Dijkstra's
+            algorithm can do.
+            \lstinputlisting{code/graph/bellman_ford.cpp}
 
-        % TODO: \subsection{Depth-First Search}
+    \subsection{All-Pairs Shortest Paths}
+        \subsubsection{Floyd-Warshall algorithm}
+            The Floyd-Warshall algorithm solves the all-pairs shortest paths
+            problem in $O(|V|^3)$ time.
+            \lstinputlisting{code/graph/floyd_warshall.cpp}
 
-\subsection{Single-Source Shortest Paths}
-\subsubsection{Dijkstra's algorithm}
-An implementation of Dijkstra's algorithm. It runs in $\Theta(|E|\log{|V|})$ time.
-\lstinputlisting{code/graph/dijkstra.cpp}
+    \subsection{Strongly Connected Components}
+        \subsubsection{Kosaraju's algorithm}
+            Kosarajus's algorithm finds strongly connected components of a
+            directed graph in $O(|V|+|E|)$ time.
+            \lstinputlisting{code/graph/scc.cpp}
 
-\subsubsection{Bellman-Ford algorithm}
-The Bellman-Ford algorithm solves the single-source shortest paths problem in $O(|V||E|)$ time. It is slower than Dijkstra's algorithm, but it works on graphs with negative edges and has the ability to detect negative cycles, neither of which Dijkstra's algorithm can do.
-\lstinputlisting{code/graph/bellman_ford.cpp}
-\subsection{All-Pairs Shortest Paths}
-\subsubsection{Floyd-Warshall algorithm}
-The Floyd-Warshall algorithm solves the all-pairs shortest paths problem in $O(|V|^3)$ time.
-\lstinputlisting{code/graph/floyd_warshall.cpp}
-\subsection{Connected Components}
-            % TODO: \subsubsection{Modified Breadth-First Search}
-\subsection{Strongly Connected Components}
-            % TODO: \subsubsection{Kosaraju's algorithm}
-\subsubsection{Kosaraju's algorithm}
-Kosarajus's algorithm finds strongly connected components of a directed graph in $O(|V|+|E|)$ time.
-\lstinputlisting{code/graph/scc.cpp}
-\subsection{Minimum Spanning Tree}
-\subsubsection{Kruskal's algorithm}
-\lstinputlisting{code/graph/kruskals_mst.cpp}
-\subsection{Topological Sort}
-\subsubsection{Modified Depth-First Search}
-\lstinputlisting{code/graph/tsort.cpp}
-        % \subsection{Articulation Points/Bridges}
-            % TODO: \subsubsection{Modified Depth-First Search}
+    \subsection{Minimum Spanning Tree}
+        \subsubsection{Kruskal's algorithm}
+            \lstinputlisting{code/graph/kruskals_mst.cpp}
 
-\subsection{Bipartite Matching}
-The alternating paths algorithm solves bipartite matching in $O(mn^2)$ time, where $m$, $n$ are the number of vertices on the left and right side of the bipartite graph, respectively.
-\lstinputlisting{code/graph/bipartite_matching.cpp}
+    \subsection{Topological Sort}
+        \subsubsection{Modified Depth-First Search}
+            \lstinputlisting{code/graph/tsort.cpp}
 
-\subsection{Maximum Flow}
-\subsubsection{Edmonds Karp's algorithm}
-An implementation of Edmonds Karp's algorithm that runs in $O(|V||E|^2)$. It computes the maximum flow of a flow network.
-\lstinputlisting{code/graph/edmonds_karps.cpp}
-\subsection{Minimum Cost Maximum Flow}
-An implementation of Edmonds Karp's algorithm, modified to find shortest path to augment each time (instead of just any path). It computes the maximum flow of a flow network, and when there are multiple maximum flows, finds the maximum flow with minimum cost.
-\lstinputlisting{code/graph/edmonds_karps_mcmf.cpp}
+    \subsection{Bipartite Matching}
+        The alternating paths algorithm solves bipartite matching in $O(mn^2)$
+        time, where $m$, $n$ are the number of vertices on the left and right
+        side of the bipartite graph, respectively.
+        \lstinputlisting{code/graph/bipartite_matching.cpp}
+
+    \subsection{Maximum Flow}
+        \subsubsection{Edmonds Karp's algorithm}
+            An implementation of Edmonds Karp's algorithm that runs in
+            $O(|V||E|^2)$. It computes the maximum flow of a flow network.
+            \lstinputlisting{code/graph/edmonds_karps.cpp}
+
+    \subsection{Minimum Cost Maximum Flow}
+        An implementation of Edmonds Karp's algorithm, modified to find
+        shortest path to augment each time (instead of just any path). It
+        computes the maximum flow of a flow network, and when there are
+        multiple maximum flows, finds the maximum flow with minimum cost.
+        \lstinputlisting{code/graph/edmonds_karps_mcmf.cpp}
+
 
 \section{Strings}
-\subsection{The $Z$ algorithm}
-Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for example, be used to find all occurrences of a pattern $P$ in a string $T$ in linear time. This is accomplished by computing $Z$ values of $S = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
+    \subsection{The $Z$ algorithm}
+        Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting
+        at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these
+        $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for
+        example, be used to find all occurrences of a pattern $P$ in a string
+        $T$ in linear time. This is accomplished by computing $Z$ values of $S
+        = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
 
-\lstinputlisting{code/strings/z_algorithm.cpp}
+        \lstinputlisting{code/strings/z_algorithm.cpp}
 
 \section{Mathematics}
+    \subsection{Fraction}
+        A fraction (rational number) class. Note that numbers are stored in
+        lowest common terms.
+        \lstinputlisting{code/mathematics/fraction.cpp}
 
-\subsection{Fraction}
-A fraction (rational number) class. Note that numbers are stored in lowest common terms.
-\lstinputlisting{code/mathematics/fraction.cpp}
+    \subsection{Binomial Coefficients}
+        The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the
+        number of ways to choose $k$ items out of a total of $n$ items.
+        \lstinputlisting{code/mathematics/nck.cpp}
 
-\subsection{Binomial Coefficients}
-The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the number of ways to choose $k$ items out of a total of $n$ items.
+    \subsection{Euclidean algorithm}
+        The Euclidean algorithm computes the greatest common divisor of two
+        integers $a$, $b$.
+        \lstinputlisting{code/mathematics/gcd.cpp}
 
-\lstinputlisting{code/mathematics/nck.cpp}
+        The extended Euclidean algorithm computes the greatest common divisor
+        $d$ of two integers $a$, $b$ and also finds two integers $x$, $y$ such
+        that $a\times x + b\times y = d$.
+        \lstinputlisting{code/mathematics/egcd.cpp}
 
-\lstinputlisting{code/mathematics/nck_precompute.cpp}
+    \subsection{Trial Division Primality Testing}
+        An optimized trial division to check whether an integer is prime.
+        \lstinputlisting{code/mathematics/is_prime.cpp}
 
-\subsection{Euclidean algorithm}
-The Euclidean algorithm computes the greatest common divisor of two integers $a$, $b$.
-\lstinputlisting{code/mathematics/gcd.cpp}
+    \subsection{Sieve of Eratosthenes}
+        An optimized implementation of Eratosthenes' Sieve.
+        \lstinputlisting{code/mathematics/prime_sieve.cpp}
 
-The extended Euclidean algorithm computes the greatest common divisor $d$ of two integers $a$, $b$ and also finds two integers $x$, $y$ such that $a\times x + b\times y = d$.
-\lstinputlisting{code/mathematics/egcd.cpp}
+    \subsection{Modular Multiplicative Inverse}
+        A function to find a modular multiplicative inverse.
+        \lstinputlisting{code/mathematics/mod_inv.cpp}
 
-\subsection{Trial Division Primality Testing}
-An optimized trial division to check whether an integer is prime.
-\lstinputlisting{code/mathematics/is_prime.cpp}
+    \subsection{Modular Exponentiation}
+        A function to perform fast modular exponentiation.
+        \lstinputlisting{code/mathematics/mod_pow.cpp}
 
-\subsection{Sieve of Eratosthenes}
-An optimized implementation of Eratosthenes' Sieve.
-\lstinputlisting{code/mathematics/prime_sieve.cpp}
+    \subsection{Chinese Remainder Theorem}
+        An implementation of the Chinese Remainder Theorem.
+        \lstinputlisting{code/mathematics/crt.cpp}
 
-\subsection{Modular Multiplicative Inverse}
-\lstinputlisting{code/mathematics/mod_inv.cpp}
+    \subsection{Formulas}
+        \begin{itemize}
+            \item Number of ways to choose $k$ objects from a total of $n$
+                objects where order matters and each item can only be chosen
+                once: $P^n_k = \frac{n!}{(n-k)!}$
+            \item Number of ways to choose $k$ objects from a total of $n$
+                objects where order matters and each item can be chosen
+                multiple times: $n^k$
+            \item Number of permutations of $n$ objects, where there are $n_1$
+                objects of type $1$, $n_2$ objects of type $2$, \ldots, $n_k$
+                objects of type $k$: $\binom{n}{n_1,n_2,\ldots,n_k} =
+                \frac{n!}{n_1! \times n_2! \times \cdots \times n_k!}$
+            \item Number of ways to choose $k$ objects from a total of $n$
+                objects where order does not matter and each item can only be
+                chosen once: \\ $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}k
+                = \binom{n}{n-k} = \prod_{i=1}^k \frac{n-(k-i)}{i} =
+                \frac{n!}{k!(n-k)!}, \binom n0 = 1, \binom 0k = 0$
+            \item Number of ways to choose $k$ objects from a total of $n$
+                objects where order does not matter and each item can be chosen
+                multiple times: $f^n_k = \binom{n+k-1}{k} =
+                \frac{(n+k-1)!}{k!(n-1)!}$
+            \item Number of integer solutions to $x_1 + x_2 + \cdots + x_n = k$
+                where $x_i \geq 0$: $f^n_k$
+            \item Number of subsets of a set with $n$ elements: $2^n$
+            \item $|A \cup B| = |A| + |B| - |A \cap B|$
+            \item $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap
+                C| - |B \cap C| + |A \cap B \cap C|$
+            \item Number of ways to walk from the lower-left corner to the
+                upper-right corner of an $n\times m$ grid by walking only up
+                and to the right: $\binom{n+m}{m}$
+            \item Number of strings with $n$ sets of brackets such that the
+                brackets are balanced: \\ $C_n = \sum_{k=0}^{n-1} C_kC_{n-1-k}
+                = \frac{1}{n+1}\binom{2n}n$
+            \item Number of triangulations of a convex polygon with $n$ points,
+                number of rooted binary trees with $n+1$ vertices, number of
+                paths across an $n\times n$ lattice which do not rise above the
+                main diagonal: $C_n$
+            \item Number of permutations of $n$ objects with exactly $k$
+                ascending sequences or {\it runs}: \\ $\left\langle {n \atop k}
+                \right\rangle = \left\langle {n \atop n - k - 1} \right\rangle
+                = k\left\langle {n - 1 \atop k} \right\rangle + (n - k +
+                1)\left\langle {n-1 \atop k-1} \right\rangle =
+                \sum_{i=0}^{k}(-1)^i \binom{n+1}{i} (k+1-i)^n, \left\langle {n
+                \atop 0} \right\rangle = \left\langle {n \atop n -1}
+                \right\rangle = 1$
+            \item Number of permutations of $n$ objects with exactly $k$
+                cycles: $\left[n \atop k\right] = \left[n-1 \atop k-1\right] +
+                (n-1)\left[n-1 \atop k\right]$
+            \item Number of ways to partition $n$ objects into $k$ sets:
+                $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} +
+                \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} =
+                \left\{n\atop n\right\} = 1$
+        \end{itemize}
 
-\subsection{Modular Exponentiation}
-\lstinputlisting{code/mathematics/mod_pow.cpp}
-
-\subsection{Chinese Remainder Theorem}
-\lstinputlisting{code/mathematics/crt.cpp}
-
-\subsection{Formulas}
-
-\subsubsection{Combinatorics}
-
-\begin{itemize}
-    \item Number of ways to choose $k$ objects from a total of $n$ objects where order matters and each item can only be chosen once: $P^n_k = \frac{n!}{(n-k)!}$
-    \item Number of ways to choose $k$ objects from a total of $n$ objects where order matters and each item can be chosen multiple times: $n^k$
-    \item Number of permutations of $n$ objects, where there are $n_1$ objects of type $1$, $n_2$ objects of type $2$, \ldots, $n_k$ objects of type $k$: $\binom{n}{n_1,n_2,\ldots,n_k} = \frac{n!}{n_1! \times n_2! \times \cdots \times n_k!}$
-    \item Number of ways to choose $k$ objects from a total of $n$ objects where order does not matter and each item can only be chosen once: \\ $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}k = \binom{n}{n-k} = \prod_{i=1}^k \frac{n-(k-i)}{i} = \frac{n!}{k!(n-k)!}, \binom n0 = 1, \binom 0k = 0$
-    \item Number of ways to choose $k$ objects from a total of $n$ objects where order does not matter and each item can be chosen multiple times: $f^n_k = \binom{n+k-1}{k} = \frac{(n+k-1)!}{k!(n-1)!}$
-    \item Number of integer solutions to $x_1 + x_2 + \cdots + x_n = k$ where $x_i \geq 0$: $f^n_k$
-    \item Number of subsets of a set with $n$ elements: $2^n$
-    \item $|A \cup B| = |A| + |B| - |A \cap B|$
-    \item $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$
-    \item Number of ways to walk from the lower-left corner to the upper-right corner of an $n\times m$ grid by walking only up and to the right: $\binom{n+m}{m}$
-    \item Number of strings with $n$ sets of brackets such that the brackets are balanced: \\ $C_n = \sum_{k=0}^{n-1} C_kC_{n-1-k} = \frac{1}{n+1}\binom{2n}n$
-    \item Number of triangulations of a convex polygon with $n$ points, number of rooted binary trees with $n+1$ vertices, number of paths across an $n\times n$ lattice which do not rise above the main diagonal: $C_n$
-    \item Number of permutations of $n$ objects with exactly $k$ ascending sequences or {\it runs}: \\ $\left\langle {n \atop k} \right\rangle = \left\langle {n \atop n - k - 1} \right\rangle = k\left\langle {n - 1 \atop k} \right\rangle + (n - k + 1)\left\langle {n-1 \atop k-1} \right\rangle = \sum_{i=0}^{k}(-1)^i \binom{n+1}{i} (k+1-i)^n, \left\langle {n \atop 0} \right\rangle = \left\langle {n \atop n -1} \right\rangle = 1$
-    \item Number of permutations of $n$ objects with exactly $k$ cycles: $\left[n \atop k\right] = \left[n-1 \atop k-1\right] + (n-1)\left[n-1 \atop k\right]$
-    \item Number of ways to partition $n$ objects into $k$ sets: $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} + \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} = \left\{n\atop n\right\} = 1$
-\end{itemize}
 
 \section{Geometry}
-\subsubsection{Primitives}
-\lstinputlisting{code/geometry/primitives.cpp}
+    \subsection{Primitives}
+        Geometry primitives.
+        \lstinputlisting{code/geometry/primitives.cpp}
 
-\subsubsection{Convex Hull}
-\lstinputlisting{code/geometry/convex_hull.cpp}
+    \subsection{Convex Hull}
+        An algorithm that finds the Convex Hull of a set of points.
+        \lstinputlisting{code/geometry/convex_hull.cpp}
 
-\subsubsection{Formulas}
-Let $a = (a_x, a_y)$ and $b = (b_x, b_y)$ be two-dimensional vectors.
-\begin{itemize}
-    \item $a\cdot b = |a||b|\cos{\theta}$, where $\theta$ is the angle between $a$ and $b$.
-    \item $a\times b = |a||b|\sin{\theta}$, where $\theta$ is the signed angle between $a$ and $b$.
-    \item $a\times b$ is equal to the area of the parallelogram with two of its sides formed by $a$ and $b$. Half of that is the area of the triangle formed by $a$ and $b$.
-\end{itemize}
+    \subsection{Formulas}
+        Let $a = (a_x, a_y)$ and $b = (b_x, b_y)$ be two-dimensional vectors.
+        \begin{itemize}
+            \item $a\cdot b = |a||b|\cos{\theta}$, where $\theta$ is the angle
+                between $a$ and $b$.
+            \item $a\times b = |a||b|\sin{\theta}$, where $\theta$ is the
+                signed angle between $a$ and $b$.
+            \item $a\times b$ is equal to the area of the parallelogram with
+                two of its sides formed by $a$ and $b$. Half of that is the
+                area of the triangle formed by $a$ and $b$.
+        \end{itemize}
+
 
 \section{Other Algorithms}
-\subsection{Binary Search}
-An implementation of binary search that finds a real valued root of the continous function $f$ on the interval $[a,b]$, with a maximum error of $\varepsilon$.
-\lstinputlisting{code/other/binary_search_continuous.cpp}
+    \subsection{Binary Search}
+        An implementation of binary search that finds a real valued root of the
+        continous function $f$ on the interval $[a,b]$, with a maximum error of
+        $\varepsilon$.
+        \lstinputlisting{code/other/binary_search_continuous.cpp}
 
-Another implementation that takes a binary predicate $f$, and finds an integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land \lnot f(x - 1)$.
-\lstinputlisting{code/other/binary_search_discrete.cpp}
+        Another implementation that takes a binary predicate $f$, and finds an
+        integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land
+        \lnot f(x - 1)$.
+        \lstinputlisting{code/other/binary_search_discrete.cpp}
 
-\subsection{2SAT}
-\lstinputlisting{code/other/two_sat.cpp}
+    \subsection{2SAT}
+        A fast 2SAT solver.
+        \lstinputlisting{code/other/two_sat.cpp}
 
-\subsection{$n$th Permutation}
-A very fast algorithm for computing the $n$th permutation of the list $\{0,1,\ldots,k-1\}$.
-\lstinputlisting{code/other/nth_permutation.cpp}
+    \subsection{$n$th Permutation}
+        A very fast algorithm for computing the $n$th permutation of the list
+        $\{0,1,\ldots,k-1\}$.
+        \lstinputlisting{code/other/nth_permutation.cpp}
 
-\subsection{Cycle-Finding}
-\subsubsection{Floyd's Cycle-Finding algorithm}
-\lstinputlisting{code/other/floyds_algorithm.cpp}
+    \subsection{Cycle-Finding}
+        An implementation of Floyd's Cycle-Finding algorithm.
+        \lstinputlisting{code/other/floyds_algorithm.cpp}
 
-\subsection{Dates}
-\lstinputlisting{code/other/dates.cpp}
+    \subsection{Dates}
+        Functions to simplify date calculations.
+        \lstinputlisting{code/other/dates.cpp}
+
 
 \section{Useful Information}
+    \subsection{Tips \&{} Tricks}
+        \begin{itemize}
+            \item How fast does our algorithm have to be? Can we use
+                brute-force?
+            \item Does order matter?
+            \item Is it better to look at the problem in another way? Maybe
+                backwards?
+            \item Are there subproblems that are recomputed? Can we cache them?
+            \item Do we need to remember everything we compute, or just the
+                last few iterations of computation?
+            \item Does it help to sort the data?
+            \item Can we speed up lookup by using a map (tree or hash) or an
+                array?
+            \item Can we binary search the answer?
+            \item Can we add vertices/edges to the graph to make the problem
+                easier? Can we turn the graph into some other kind of a graph
+                (perhaps a DAG, or a flow network)?
+            \item Make sure integers are not overflowing.
+            \item Is it better to compute the answer modulo $n$? Perhaps we can
+                compute the answer modulo $m_1,m_2,\ldots,m_k$, where
+                $m_1,m_2,\ldots,m_k$ are pairwise coprime integers, and find
+                the real answer using CRT?
+            \item Are there any edge cases? When $n=0, n=-1, n=1, n=2^{31}-1$
+                or $n=-2^{31}$? When the list is empty, or contains a single
+                element? When the graph is empty, or contains a single vertex?
+                When the graph contains self-loops?  When the polygon is
+                concave or non-simple?
+            \item Can we use exponentiation by squaring?
+        \end{itemize}
 
-\subsection{Tips \&{} Tricks}
-\begin{itemize}
-    \item How fast does our algorithm have to be? Can we use brute-force?
-    \item Does order matter?
-    \item Is it better to look at the problem in another way? Maybe backwards?
-    \item Are there subproblems that are recomputed? Can we cache them?
-    \item Do we need to remember everything we compute, or just the last few iterations of computation?
-    \item Does it help to sort the data?
-    \item Can we speed up lookup by using a map (tree or hash) or an array?
-    \item Can we binary search the answer?
-    \item Can we add vertices/edges to the graph to make the problem easier? Can we turn the graph into some other kind of a graph (perhaps a DAG, or a flow network)?
-    \item Make sure integers are not overflowing.
-    \item Is it better to compute the answer modulo $n$? Perhaps we can compute the answer modulo $m_1,m_2,\ldots,m_k$, where $m_1,m_2,\ldots,m_k$ are pairwise coprime integers, and find the real answer using CRT?
-    \item Are there any edge cases? When $n=0, n=-1, n=1, n=2^{31}-1$ or $n=-2^{31}$? When the list is empty, or contains a single element? When the graph is empty, or contains a single vertex? When the graph contains self-loops?  When the polygon is concave or non-simple?
-    \item Can we use exponentiation by squaring?
-\end{itemize}
+    \subsection{Fast Input Reading}
+        If input or output is huge, sometimes it is beneficial to optimize the
+        input reading/output writing. This can be achieved by reading all input
+        in at once (using fread), and then parsing it manually. Output can also
+        be stored in an output buffer and then dumped once in the end (using
+        fwrite). A simpler, but still effective, way to achieve speed is to use
+        the following input reading method.
+        \lstinputlisting{code/tricks/fast_input.cpp}
 
-\subsection{Fast Input Reading}
-If input or output is huge, sometimes it is beneficial to optimize the input reading/output writing. This can be achieved by reading all input in at once (using fread), and then parsing it manually. Output can also be stored in an output buffer and then dumped once in the end (using fwrite). A simpler, but still effective, way to achieve speed is to use the following input reading method.
-\lstinputlisting{code/tricks/fast_input.cpp}
+    \subsection{Worst Time Complexity}
+        \begin{tabular}{c|c|c}
+            $n$ & Worst AC Algorithm & Comment \\
+            \hline
+            $\leq 10$ & $O(n!), O(n^6)$ & e.g. Enumerating a permutation \\
+            $\leq 15$ & $O(2^n\times n^2)$ & e.g. DP TSP \\
+            $\leq 20$ & $O(2^n), O(n^5)$ & e.g. DP + bitmask technique \\
+            $\leq 50$ & $O(n^4)$ & e.g. DP with 3 dimensions + $O(n)$ loop, choosing  $_nC_k=4$ \\
+            $\leq 10^2$ & $O(n^3)$ & e.g. Floyd Warshall's \\
+            $\leq 10^3$ & $O(n^2)$ & e.g. Bubble/Selection/Insertion sort \\
+            $\leq 10^5$ & $O(n\log_2{n})$ & e.g. Merge sort, building a Segment tree \\
+            $\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
+        \end{tabular}
 
-\subsection{Worst Time Complexity}
-\begin{tabular}{c|c|c}
-    $n$ & Worst AC Algorithm & Comment \\
-    \hline
-    $\leq 10$ & $O(n!), O(n^6)$ & e.g. Enumerating a permutation \\
-    $\leq 15$ & $O(2^n\times n^2)$ & e.g. DP TSP \\
-    $\leq 20$ & $O(2^n), O(n^5)$ & e.g. DP + bitmask technique \\
-    $\leq 50$ & $O(n^4)$ & e.g. DP with 3 dimensions + $O(n)$ loop, choosing  $_nC_k=4$ \\
-    $\leq 10^2$ & $O(n^3)$ & e.g. Floyd Warshall's \\
-    $\leq 10^3$ & $O(n^2)$ & e.g. Bubble/Selection/Insertion sort \\
-    $\leq 10^5$ & $O(n\log_2{n})$ & e.g. Merge sort, building a Segment tree \\
-    $\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
-\end{tabular}
+    \subsection{Bit Hacks}
+        \begin{itemize}
+            \item \lstinline{n & -n} returns the first set bit in $n$.
+            \item \lstinline{n & (n - 1)} is $0$ only if $n$ is a power of two.
+            \item \lstinline{snoob(x)} returns the next integer that has the
+                same amount of bits set as \lstinline{x}. Useful for iterating
+                through subsets of some specified size.
+                \lstinputlisting{code/tricks/snoob.cpp}
+        \end{itemize}
 
-\subsection{Bit Hacks}
-\begin{itemize}
-    \item \lstinline{n & -n} returns the first set bit in $n$.
-    \item \lstinline{n & (n - 1)} is $0$ only if $n$ is a power of two.
-    \item \lstinline{snoob(x)} returns the next integer that has the same amount of bits set as \lstinline{x}. Useful for iterating through subsets of some specified size.
-        \lstinputlisting{code/tricks/snoob.cpp}
-\end{itemize}
 \end{document}

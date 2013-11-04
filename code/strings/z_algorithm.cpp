@@ -9,15 +9,10 @@ int* z_values(string s) {
             l = r = i;
             while (r < n && s[r - l] == s[r]) r++;
             z[i] = r - l; r--;
-        } else {
-            if (z[i - l] < r - i + 1) z[i] = z[i - l];
-            else {
-                l = i;
-                while (r < n && s[r - l] == s[r]) r++;
-                z[i] = r - l; r--;
-            }
-        }
-    }
-
+        } else if (z[i - l] < r - i + 1) z[i] = z[i - l];
+        else {
+            l = i;
+            while (r < n && s[r - l] == s[r]) r++;
+            z[i] = r - l; r--; } }
     return z;
 }
