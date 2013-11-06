@@ -1,4 +1,7 @@
+/* Field testing: UVa 12526 */
+
 void test() {
+
     trie<char> t; string s;
 
     s = "";

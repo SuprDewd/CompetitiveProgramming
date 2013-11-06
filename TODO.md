@@ -1,21 +1,21 @@
 Things to do
 ============
 
+* Ternary search
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory (sum of divisors to the i-th power, number of integers less than n relatively prime to n, ...)
 * Edmonds's maximum matching algorithm
 * Implement lazy range update in Segment Tree
 * Interval Tree
 * Hungarian algorithm
-* Suffix arrays (fast construction and some example uses. also LCP array)
+* Suffix arrays (fast construction and some example uses, also LCP array)
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
-* Add more Geometry stuff. Point in polygon, cutting polygons, etc.
+* Add more Geometry stuff. Point in polygon, etc.
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm (or maybe even implement Dinic's algorithm)
-* Make nicer interface to AVL Tree/Map (add iterators and hide pointers)
-* Do field testing on more of the code ((Min-Cost) Max-Flow, geometry library)
+* Do field testing on more of the code (Min-Cost Max-Flow)
 * Edmond's optimum branching algorithm
 
 Links
@@ -31,3 +31,4 @@ Links
 * [Shanks Algorithm](http://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm)
 * [Igor Naverniouk's code library](http://shygypsy.com/tools/)
 * [Julian Day](https://en.wikipedia.org/wiki/Julian_day)
+* [infnty/acm at github](https://github.com/infnty/acm/tree/master/lib)
