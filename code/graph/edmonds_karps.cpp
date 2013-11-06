@@ -35,13 +35,12 @@ int max_flow(int n, int s, int t, vii* adj) {
             }
         }
         if(back[t] == NULL || back[t]->w == 0) break;
-        for(int i = 0; i < t_prev.size(); ++i) {
+        for(int i = 0; i < t_prev.size(); i++) {
             mf_edge *z = t_prev[i];
-            if(!z || z->w == 0 || back[z->u] == NULL) continue;
+            if(!z || z->w == 0 || (back[z->u] == NULL && z->u != s)) continue;
             int cap = z->w;
             mf_edge* cure = back[z->u];
-            if (cure == NULL) break;
-            while (true) {
+            while (cure != NULL) {
                 cap = min(cap, cure->w);
                 if (cure->u == s) break;
                 cure = back[cure->u];
@@ -51,7 +50,7 @@ int max_flow(int n, int s, int t, vii* adj) {
             z->w -= cap;
             z->rev->w += cap;
             cure = back[z->u];
-            while (true) {
+            while (cure != NULL) {
                 cure->w -= cap;
                 cure->rev->w += cap;
                 if (cure->u == s) break;
