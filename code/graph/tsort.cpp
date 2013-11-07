@@ -1,6 +1,6 @@
 void tsort_dfs(int cur, char* color, const vvi& adj, stack<int>& res, bool& has_cycle) {
     color[cur] = 1;
-    for (int i = 0, cnt = size(adj[cur]); i < cnt; i++) {
+    for (int i = 0; i < size(adj[cur]); i++) {
         int nxt = adj[cur][i];
         if (color[nxt] == 0)
             tsort_dfs(nxt, color, adj, res, has_cycle);
