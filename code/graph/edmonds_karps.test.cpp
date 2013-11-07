@@ -8,7 +8,7 @@ void test() {
     adj[1].push_back(ii(3, 133700));
     adj[2].push_back(ii(3, 133700));
 
-    assert_equal(2 * 133700, max_flow(4, 0, 3, adj));
+    assert_equal(2 * 133700, max_flow(4, 0, 3, adj).first);
     delete[] adj;
 
     adj = new vii[5];
@@ -20,7 +20,7 @@ void test() {
     adj[3].push_back(ii(4, 100));
     adj[4].push_back(ii(0, 125));
 
-    assert_equal(150, max_flow(5, 1, 0, adj));
+    assert_equal(150, max_flow(5, 1, 0, adj).first);
     delete[] adj;
 
     adj = new vii[5];
@@ -32,7 +32,7 @@ void test() {
     adj[3].push_back(ii(4, 100));
     adj[4].push_back(ii(0, 75));
 
-    assert_equal(125, max_flow(5, 1, 0, adj));
+    assert_equal(125, max_flow(5, 1, 0, adj).first);
     delete[] adj;
 
     adj = new vii[5];
@@ -43,6 +43,6 @@ void test() {
     adj[3].push_back(ii(4, 100));
     adj[4].push_back(ii(0, 125));
 
-    assert_equal(60, max_flow(5, 1, 0, adj));
+    assert_equal(60, max_flow(5, 1, 0, adj).first);
     delete[] adj;
 }
