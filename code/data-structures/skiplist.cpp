@@ -4,8 +4,7 @@ unsigned int bernoulli(unsigned int MAX) {
     unsigned int cnt = 0;
     while(((float) rand() / RAND_MAX) < BP && cnt < MAX) cnt++;
     return cnt; }
-template<class T> class skiplist {
-public:
+template<class T> struct skiplist {
     struct node {
         T item;
         int *lens;
