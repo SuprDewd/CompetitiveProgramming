@@ -35,7 +35,7 @@
 
 % Minted
 \usepackage{minted}
-\newcommand{\code}[1]{\inputminted[linenos]{cpp}{code/#1}}
+\newcommand{\code}[1]{\inputminted[linenos]{cpp}{_code/#1}}
 
 % Header/Footer
 \geometry{includeheadfoot, margin=2.5cm}
@@ -190,6 +190,13 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on |
         computes the maximum flow of a flow network, and when there are
         multiple maximum flows, finds the maximum flow with minimum cost.
         \code{graph/edmonds_karps_mcmf.cpp}
+
+    \subsection{All Pairs Maximum Flow}
+        \subsubsection{Gomory-Hu Tree}
+        An implementation of the Gomory-Hu Tree. The spanning tree is constructed using Gusfield's algorithm
+        in $O(|V| ^ 3)$ plus $|V|-1$ times the time it takes to calculate the maximum flow.
+        If Edmonds Karp's algorithm is used to calculate the max flow the running time is $O(|V|^3 + |V|^2|E|^2)$.
+        \code{graph/gomory_hu_tree.cpp}
 
 \section{Strings}
     \subsection{The $Z$ algorithm}

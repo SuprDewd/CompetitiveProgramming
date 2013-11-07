@@ -8,7 +8,8 @@ polygon convex_hull(polygon pts, bool add_collinear = false) {
     int cnt = size(pts), main = 0, i = 1;
     if (cnt <= 3) return pts;
     for (int i = 1; i < cnt; i++)
-        if (imag(pts[i]) < imag(pts[main]) || abs(imag(pts[i]) - imag(pts[main]) < EPS && imag(pts[i]) > imag(pts[main])))
+        if (imag(pts[i]) < imag(pts[main]) || abs(imag(pts[i]) - imag(pts[main]) < EPS &&
+                    imag(pts[i]) > imag(pts[main])))
             main = i;
     swap(pts[0], pts[main]);
     ch_main = pts[0];
