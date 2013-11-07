@@ -11,7 +11,7 @@ pair<int*, int*> dijkstra(int n, int s, vii *adj) {
     dist[s] = 0, pq.insert(s);
     while (!pq.empty()) {
         int cur = *pq.begin(); pq.erase(pq.begin());
-        for (int i = 0, cnt = size(adj[cur]); i < cnt; i++) {
+        for (int i = 0; i < size(adj[cur]); i++) {
             int nxt = adj[cur][i].first, ndist = dist[cur] + adj[cur][i].second;
             if (ndist < dist[nxt]) pq.erase(nxt), dist[nxt] = ndist, dad[nxt] = cur, pq.insert(nxt);
         }

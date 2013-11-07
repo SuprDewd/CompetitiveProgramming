@@ -9,7 +9,7 @@ struct mcmf_edge {
 ii min_cost_max_flow(int n, int s, int t, vector<pair<int, ii> >* adj) {
     vector<mcmf_edge*>* g = new vector<mcmf_edge*>[n];
     for (int i = 0; i < n; i++) {
-        for (int j = 0, len = size(adj[i]); j < len; j++) {
+        for (int j = 0; j < size(adj[i]); j++) {
             mcmf_edge *cur = new mcmf_edge(i, adj[i][j].first, adj[i][j].second.first, adj[i][j].second.second),
                       *rev = new mcmf_edge(adj[i][j].first, i, 0, -adj[i][j].second.second, cur);
             cur->rev = rev;
@@ -26,7 +26,7 @@ ii min_cost_max_flow(int n, int s, int t, vector<pair<int, ii> >* adj) {
         for (int i = 0; i < n - 1; i++)
             for (int j = 0; j < n; j++)
                 if (dist[j] != INF)
-                    for (int k = 0, len = size(g[j]); k < len; k++)
+                    for (int k = 0; k < size(g[j]); k++)
                         if (g[j][k]->w > 0 && dist[j] + g[j][k]->c < dist[g[j][k]->v]) {
                             dist[g[j][k]->v] = dist[j] + g[j][k]->c;
                             back[g[j][k]->v] = g[j][k];
@@ -53,7 +53,7 @@ ii min_cost_max_flow(int n, int s, int t, vector<pair<int, ii> >* adj) {
     // instead of deleting g, we could also
     // use it to get info about the actual flow
     for (int i = 0; i < n; i++)
-        for (int j = 0, len = size(g[i]); j < len; j++)
+        for (int j = 0; j < size(g[i]); j++)
             delete g[i][j];
     delete[] g;
     delete[] back;
