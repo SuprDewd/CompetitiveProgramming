@@ -11,6 +11,7 @@ echo "" >> $DIR/tmp.cpp
 echo "#include \"$DIR2/$TEST.cpp\"" >> $DIR/tmp.cpp
 cat $DIR/test_header.cpp >> $DIR/tmp.cpp
 echo "" >> $DIR/tmp.cpp
+echo "#line 1 \"$DIR2/$TEST.test.cpp\"" >> $DIR/tmp.cpp
 cat "$DIR2/$TEST.test.cpp" >> $DIR/tmp.cpp
 echo "" >> $DIR/tmp.cpp
 cat $DIR/test_footer.cpp >> $DIR/tmp.cpp
