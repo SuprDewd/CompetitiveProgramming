@@ -6,7 +6,7 @@ void release(vector<vector<mf_edge*> > res) {
 }
 
 void test() {
-    /* Field testing: UVa259, UVa670, UVa10080, ICPC Live Archive 5905, ICPC Live Archive 3792 */
+    /* Field testing: UVa259, UVa670, UVa10080, UVa10330, ICPC Live Archive 5905, ICPC Live Archive 3792 */
 
     pair<int, vector<vector<mf_edge*> > > res;
 
