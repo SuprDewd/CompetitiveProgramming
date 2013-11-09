@@ -7,17 +7,15 @@ struct flow_network {
         edge(int v, int cap, int nxt) : v(v), cap(cap), nxt(nxt) { }
     };
     int n, ecnt, *head, *curh, *d;
-    edge *e;
-    flow_network(int n, int m) : n(n), ecnt(0) {
-        e = new edge[2*m];
-        head = new int[n];
-        curh = new int[n];
-        d = new int[n];
+    vector<edge> e, e_store;
+    flow_network(int n, int m = -1) : n(n), ecnt(0) {
+        e.reserve(2 * (m == -1 ? n : m));
+        head = new int[n], curh = new int[n], d = new int[n];
         memset(head, -1, n * sizeof(int));
     }
     void add_edge(int u, int v, int uv, int vu = 0) {
-        e[ecnt] = edge(v, uv, head[u]), head[u] = ecnt++;
-        e[ecnt] = edge(u, vu, head[v]), head[v] = ecnt++;
+        e.push_back(edge(v, uv, head[u])); head[u] = ecnt++;
+        e.push_back(edge(u, vu, head[v])); head[v] = ecnt++;
     }
     int dfs(int v, int t, int f) {
         if (v == t) return f;
@@ -28,6 +26,8 @@ struct flow_network {
         return 0;
     }
     int max_flow(int s, int t) {
+        if(s == t) return 0;
+        e_store = e;
         int f = 0, x, l, r;
         while (true) {
             memset(d, -1, n * sizeof(int));
@@ -40,6 +40,7 @@ struct flow_network {
             memcpy(curh, head, n * sizeof(int));
             while ((x = dfs(s, t, INF)) != 0) f += x;
         }
+        e = e_store;
         return f;
     }
 };
