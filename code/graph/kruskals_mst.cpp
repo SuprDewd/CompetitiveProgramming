@@ -5,7 +5,7 @@
 // the edges in the minimum spanning tree are returned on the same form
 vector<pair<int, ii> > mst(int n, vector<pair<int, ii> > edges) {
     union_find uf(n);
-    sort(all(edges));
+    sort(edges.begin(), edges.end());
     vector<pair<int, ii> > res;
     for (int i = 0; i < size(edges); i++)
         if (uf.find(edges[i].second.first) != uf.find(edges[i].second.second)) {

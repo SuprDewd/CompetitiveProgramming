@@ -27,7 +27,7 @@ template<class T> struct skiplist {
             while(x->next[i] != NULL && cmp < target) { pos[i] += x->lens[i]; x = x->next[i]; } \
             update[i] = x; \
         } x = x->next[0];
-    int size() { return _size; }
+    int size() const { return _size; }
     void clear() { while(head->next && head->next[0]) erase(head->next[0]->item); }
     node *find(T target) { FIND_UPDATE(x->next[i]->item, target); return x && x->item == target ? x : NULL; }
     node *nth(int k) { FIND_UPDATE(pos[i] + x->lens[i], k+1); return x; }

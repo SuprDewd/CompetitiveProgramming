@@ -44,7 +44,7 @@ public:
 
     fake_fenwick_tree(int n) {
         arr.resize(n);
-        fill(all(arr), 0);
+        fill(arr.begin(), arr.end(), 0);
     }
 
     void update(int i, int v) {
@@ -152,4 +152,3 @@ void test() {
     test1();
     test2();
 }
-

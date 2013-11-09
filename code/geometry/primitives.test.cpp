@@ -62,7 +62,7 @@ void test() {
     assert_nearly_equal(-9.0, polygon_area_signed(pts));
     assert_nearly_equal(9.0, polygon_area(pts));
 
-    reverse(all(pts));
+    reverse(pts.begin(), pts.end());
 
     assert_nearly_equal(9.0, polygon_area_signed(pts));
     assert_nearly_equal(9.0, polygon_area(pts));

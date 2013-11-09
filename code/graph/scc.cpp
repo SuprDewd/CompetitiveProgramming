@@ -16,9 +16,9 @@ pair<union_find, vi> scc(const vvi &adj) {
     vi dag;
     vvi rev(n);
     for (int i = 0; i < n; i++) for (int j = 0; j < size(adj[i]); j++) rev[adj[i][j]].push_back(i);
-    visited.resize(n), fill(all(visited), false);
+    visited.resize(n), fill(visited.begin(), visited.end(), false);
     for (int i = 0; i < n; i++) if (!visited[i]) scc_dfs(rev, i);
-    fill(all(visited), false);
+    fill(visited.begin(), visited.end(), false);
     stack<int> S;
     for (int i = n-1; i >= 0; i--) {
         if (visited[order[i]]) continue;

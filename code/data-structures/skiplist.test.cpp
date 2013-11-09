@@ -10,7 +10,7 @@ void test() {
     skiplist<int> t1;
     set<int> t2;
 
-    assert_equal(0, t1.size());
+    assert_equal(0, size(t1));
 
     for (int i = 0; i < cnt; i++) {
         int n = rand() % range;

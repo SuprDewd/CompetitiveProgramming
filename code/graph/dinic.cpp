@@ -1,5 +1,5 @@
-#define MAXV 1000
-int q[MAXV], prev[MAXV];
+#define MAXV 2000
+int q[MAXV];
 struct flow_network {
     struct edge {
         int v, cap, nxt;

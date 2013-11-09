@@ -17,9 +17,7 @@
 #include <vector>
 using namespace std;
 
-#define all(o) (o).begin(), (o).end()
-#define allr(o) (o).rbegin(), (o).rend()
-#define pb push_back
+#define foreach(u, o) for (typeof((o).begin()) u = (o).begin(); u != (o).end(); ++u)
 const int INF = 2147483647;
 const double EPS = 1e-9;
 const double pi = acos(-1);
