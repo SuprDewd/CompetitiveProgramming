@@ -26,4 +26,5 @@
 *.dvi
 
 # Other
-tester/tmp.cpp
+/tester/tmp.cpp
+/_code
