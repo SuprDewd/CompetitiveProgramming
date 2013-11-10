@@ -26,6 +26,6 @@ for path, dirs, files in os.walk('./code'):
 
             for dat, hash in zip(dat, mkhash(dat)):
                 if(len(dat) > MARGIN):
-                    print>>out, dat
+                    print>>out, dat.replace('    ', '----')
                 else:
                     print>>out, dat.ljust(MARGIN, '-').replace('    ', '----') + "// " + hash
