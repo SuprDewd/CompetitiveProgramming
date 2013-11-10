@@ -31,3 +31,4 @@ Links
 * [Shanks Algorithm](http://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm)
 * [Igor Naverniouk's code library](http://shygypsy.com/tools/)
 * [infnty/acm at github](https://github.com/infnty/acm/tree/master/lib)
+* [evandrix at github](https://github.com/evandrix/codejam/tree/master/lib)
