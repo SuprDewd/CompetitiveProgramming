@@ -1,7 +1,6 @@
-class intx
-{
+class intx {
 public:
-    intx() { normalize(1); } 
+    intx() { normalize(1); }
     intx(string n) { init(n); }
     intx(int n) { stringstream ss; ss << n; init(ss.str()); }
     intx(const intx& other) : sign(other.sign), data(other.data) { }
