@@ -14,7 +14,7 @@ Things to do
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
 * Add more Geometry stuff. Point in polygon, etc.
-* Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm (or maybe even implement Dinic's algorithm)
+* Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
 * Do field testing on more of the code (Min-Cost Max-Flow)
 * Edmond's optimum branching algorithm
 
@@ -30,5 +30,4 @@ Links
 * [Heron's formula](http://en.wikipedia.org/wiki/Heron's_formula)
 * [Shanks Algorithm](http://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm)
 * [Igor Naverniouk's code library](http://shygypsy.com/tools/)
-* [Julian Day](https://en.wikipedia.org/wiki/Julian_day)
 * [infnty/acm at github](https://github.com/infnty/acm/tree/master/lib)
