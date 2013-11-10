@@ -1,18 +1,20 @@
 #define MAXV 2000
-int q[MAXV];
+int q[MAXV], d[MAXV];
 struct flow_network {
     struct edge {
         int v, cap, nxt;
         edge() { }
         edge(int v, int cap, int nxt) : v(v), cap(cap), nxt(nxt) { }
     };
-    int n, ecnt, *head, *curh, *d;
+    int n, ecnt, *head, *curh;
     vector<edge> e, e_store;
     flow_network(int n, int m = -1) : n(n), ecnt(0) {
         e.reserve(2 * (m == -1 ? n : m));
-        head = new int[n], curh = new int[n], d = new int[n];
+        head = new int[n], curh = new int[n];
         memset(head, -1, n * sizeof(int));
     }
+    void destroy() { delete[] head; delete[] curh; }
+    void reset() { e = e_store; }
     void add_edge(int u, int v, int uv, int vu = 0) {
         e.push_back(edge(v, uv, head[u])); head[u] = ecnt++;
         e.push_back(edge(u, vu, head[v])); head[v] = ecnt++;
@@ -25,7 +27,7 @@ struct flow_network {
                     return (e[i].cap -= ret, e[i^1].cap += ret, ret);
         return 0;
     }
-    int max_flow(int s, int t) {
+    int max_flow(int s, int t, bool res = true) {
         if(s == t) return 0;
         e_store = e;
         int f = 0, x, l, r;
@@ -40,7 +42,7 @@ struct flow_network {
             memcpy(curh, head, n * sizeof(int));
             while ((x = dfs(s, t, INF)) != 0) f += x;
         }
-        e = e_store;
+        if (res) reset();
         return f;
     }
 };
