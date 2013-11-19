@@ -13,7 +13,6 @@ Things to do
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Add more Geometry stuff. Point in polygon, etc.
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
-* Do field testing on more of the code (Min-Cost Max-Flow)
 * Edmond's optimum branching algorithm
 
 Links
