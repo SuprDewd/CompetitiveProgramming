@@ -11,7 +11,6 @@ Things to do
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
-* Find Lexicographically minimal string rotation (perhaps using Duval's algorithm)
 * Add more Geometry stuff. Point in polygon, etc.
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
 * Do field testing on more of the code (Min-Cost Max-Flow)
