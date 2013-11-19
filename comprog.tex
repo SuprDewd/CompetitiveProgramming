@@ -205,6 +205,10 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn o
         \code{graph/gomory_hu_tree.cpp}
 
 \section{Strings}
+    \subsection{Suffix Array}
+        An $O(n \log n)$ construction of a Suffix Tree.
+        \code{strings/suffix_array.cpp}
+
     \subsection{The $Z$ algorithm}
         Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting
         at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these
@@ -212,7 +216,6 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn o
         example, be used to find all occurrences of a pattern $P$ in a string
         $T$ in linear time. This is accomplished by computing $Z$ values of $S
         = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
-
         \code{strings/z_algorithm.cpp}
 
 \section{Mathematics}
