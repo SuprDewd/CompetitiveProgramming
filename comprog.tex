@@ -1,4 +1,4 @@
-\documentclass[8pt,a4paper]{amsart}
+\documentclass[9pt,a4paper]{amsart}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -8,41 +8,32 @@
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{fullpage}
-\usepackage{geometry}
+%\usepackage{geometry}
+\usepackage[top=1cm, bottom=1cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{graphicx}
 % \usepackage{listings}
 \usepackage{subcaption}
 \usepackage[scaled]{beramono}
 \usepackage[vlined,ruled]{algorithm2e}
+\usepackage{titling}
 
-% Listings
-% \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-% \definecolor{greencomments}{rgb}{0,0.5,0}
-% \definecolor{redstrings}{rgb}{0.9,0,0}
-% \lstset{language=C++,
-%     numbers=left,
-%     showspaces=false,
-%     showtabs=false,
-%     breaklines=true,
-%     showstringspaces=false,
-%     breakatwhitespace=true,
-%     escapeinside={(*@}{@*)},
-%     commentstyle=\color{greencomments},
-%     keywordstyle=\color{bluekeywords}\bfseries,
-%     stringstyle=\color{redstrings},
-%     basicstyle=\ttfamily
-% }
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
 
 % Minted
 \usepackage{minted}
 \newcommand{\code}[1]{\inputminted[linenos]{cpp}{_code/#1}}
 
 % Header/Footer
-\geometry{includeheadfoot, margin=2.5cm}
+% \geometry{includeheadfoot}
 \pagestyle{fancy}
-\chead{}
-\rhead{}
-\cfoot{\thepage}
+\lhead{Reykjavik University}
+\rhead{\thepage}
+\cfoot{}
 \setlength{\headheight}{15.2pt}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
@@ -57,11 +48,13 @@
 \newcommand*\BitNeg{\ensuremath{\mathord{\sim}}}
 
 % Title/Author
-\title{Algorithms and Data Structures for Competitive Programming}
+\title{DanceParty}
+\subtitle{Team Reference Document}
 
 \begin{document}
 
 \maketitle
+\thispagestyle{fancy}
 \tableofcontents
 \newpage
 
@@ -69,9 +62,11 @@
     \subsection{Basic Configuration}
         Vim and (Caps Lock = Escape) configuration.
         \begin{minted}{bash}
+o.yqtxmal ekrpat  # setxkbmap dvorak for dvorak on qwerty
+set -o vi
 xset r rate 150 100
 xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Escape" -e "add Lock = Caps_Lock"
-echo "set nocp et sw=4 ts=4 sts=4 si cindent ru noeb showcmd showmode | syn on | colorscheme slate" > ~/.vimrc
+echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn on | colorscheme slate" > ~/.vimrc
         \end{minted}
 
     \subsection{C++ Header}
