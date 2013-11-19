@@ -8,7 +8,6 @@ Things to do
 * Implement lazy range update in Segment Tree
 * Interval Tree
 * Hungarian algorithm
-* Suffix arrays (fast construction and some example uses, also LCP array)
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
