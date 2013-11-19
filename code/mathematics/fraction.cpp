@@ -12,10 +12,14 @@ public:
         n /= g, d /= g; }
     fraction(T n_) : n(n_), d(1) { }
     fraction(const fraction<T>& other) : n(other.n), d(other.d) { }
-    fraction<T> operator +(const fraction<T>& other) const { return fraction<T>(n * other.d + other.n * d, d * other.d);}
-    fraction<T> operator -(const fraction<T>& other) const { return fraction<T>(n * other.d - other.n * d, d * other.d);}
-    fraction<T> operator *(const fraction<T>& other) const { return fraction<T>(n * other.n, d * other.d); }
-    fraction<T> operator /(const fraction<T>& other) const { return fraction<T>(n * other.d, d * other.n); }
+    fraction<T> operator +(const fraction<T>& other) const {
+        return fraction<T>(n * other.d + other.n * d, d * other.d);}
+    fraction<T> operator -(const fraction<T>& other) const {
+        return fraction<T>(n * other.d - other.n * d, d * other.d);}
+    fraction<T> operator *(const fraction<T>& other) const {
+        return fraction<T>(n * other.n, d * other.d); }
+    fraction<T> operator /(const fraction<T>& other) const {
+        return fraction<T>(n * other.d, d * other.n); }
     bool operator <(const fraction<T>& other) const { return n * other.d < other.n * d; }
     bool operator <=(const fraction<T>& other) const { return !(other < *this); }
     bool operator >(const fraction<T>& other) const { return other < *this; }

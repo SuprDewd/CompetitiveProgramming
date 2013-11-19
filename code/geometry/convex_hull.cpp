@@ -24,7 +24,8 @@ polygon convex_hull(polygon pts, bool add_collinear = false) {
         } else {
             prev = S.top();
             S.push(now);
-            if (ccw(prev, now, pts[i]) > 0 || (add_collinear && abs(ccw(prev, now, pts[i])) < EPS)) S.push(pts[i++]);
+            if (ccw(prev, now, pts[i]) > 0 || (add_collinear && abs(ccw(prev, now, pts[i])) < EPS))
+                S.push(pts[i++]);
             else S.pop();
         } }
     vector<point> res;
