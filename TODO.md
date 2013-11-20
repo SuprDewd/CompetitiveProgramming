@@ -1,9 +1,8 @@
 Things to do
 ============
 
-* Ternary search
 * Prim's algorithm
-* More formulas for geometry, trigonometry, сombinatorics, number theory (sum of divisors to the i-th power, number of integers less than n relatively prime to n, ...)
+* More formulas for geometry, trigonometry, сombinatorics, number theory
 * Edmonds's maximum matching algorithm
 * Implement lazy range update in Segment Tree
 * Interval Tree
@@ -23,8 +22,6 @@ Links
 * [List of Algorithms 3](http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&eotf=1&u=http%3A%2F%2Fe-maxx.ru%2Falgo%2F&act=url)
 * [The IOI syllabus](http://people.ksp.sk/~misof//ioi-syllabus/)
 * [TopCoder Algorithm tutorials](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=lineSweep)
-* [The Linear Congruence Theorem](http://en.wikipedia.org/wiki/Linear_congruence_theorem)
-* [Heron's formula](http://en.wikipedia.org/wiki/Heron's_formula)
 * [Shanks Algorithm](http://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm)
 * [Igor Naverniouk's code library](http://shygypsy.com/tools/)
 * [infnty/acm at github](https://github.com/infnty/acm/tree/master/lib)

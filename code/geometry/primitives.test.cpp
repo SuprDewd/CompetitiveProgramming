@@ -75,4 +75,7 @@ void test() {
 
     assert_nearly_equal(-3.0, polygon_area_signed(pts));
     assert_nearly_equal(3.0, polygon_area(pts));
+
+    assert_equal(point(6.0/25, -8.0/25), proj(point(-3, 4), point(2, 1)));
+
 }

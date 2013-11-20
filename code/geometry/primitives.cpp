@@ -10,6 +10,7 @@ point rotate(P(p), P(about), double radians) { return (p - about) * exp(point(0,
 point reflect(P(p), L(about1, about2)) {
     point z = p - about1, w = about2 - about1;
     return conj(z / w) * w + about1; }
+point proj(P(u), P(v)) { return dot(u, v) / dot(u, u) * u; }
 bool parallel(L(a, b), L(p, q)) { return abs(cross(b - a, q - p)) < EPS; }
 double ccw(P(a), P(b), P(c)) { return cross(b - a, c - b); }
 bool collinear(P(a), P(b), P(c)) { return abs(ccw(a, b, c)) < EPS; }

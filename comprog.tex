@@ -9,12 +9,11 @@
 \usepackage{float}
 \usepackage{fullpage}
 %\usepackage{geometry}
-\usepackage[top=1cm, bottom=1cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[top=0pt, bottom=1cm, left=1.5cm, right=1.5cm]{geometry}
 \usepackage{graphicx}
 % \usepackage{listings}
 \usepackage{subcaption}
 \usepackage[scaled]{beramono}
-\usepackage[vlined,ruled]{algorithm2e}
 \usepackage{titling}
 
 \newcommand{\subtitle}[1]{%
@@ -30,6 +29,7 @@
 
 % Header/Footer
 % \geometry{includeheadfoot}
+%\fancyhf{}
 \pagestyle{fancy}
 \lhead{Reykjavik University}
 \rhead{\thepage}
@@ -63,10 +63,11 @@
         Vim and (Caps Lock = Escape) configuration.
         \begin{minted}{bash}
 o.yqtxmal ekrpat  # setxkbmap dvorak for dvorak on qwerty
+setxkbmap -option caps:escape
 set -o vi
 xset r rate 150 100
-xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Escape" -e "add Lock = Caps_Lock"
-echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn on | colorscheme slate" > ~/.vimrc
+cat > ~/.vimrc
+set nocp et sw=4 ts=4 sts=4 si cindent hi=1000 nu ru noeb showcmd showmode | syn on | colorscheme slate
         \end{minted}
 
     \subsection{C++ Header}
@@ -263,6 +264,10 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn o
         An implementation of the Chinese Remainder Theorem.
         \code{mathematics/crt.cpp}
 
+    \subsection{Linear Congruence Solver}
+        A function that returns all solutions to $ax \equiv b \pmod{n}$, modulo $n$.
+        \code{mathematics/linear_congruence.cpp}
+
     \subsection{Formulas}
         \begin{itemize}
             \item Number of ways to choose $k$ objects from a total of $n$
@@ -315,6 +320,26 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn o
                 $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} +
                 \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} =
                 \left\{n\atop n\right\} = 1$
+            \item \textbf{Heron's formula:} A triangle with side lengths
+                $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
+                \frac{a+b+c}{2}$.
+            \item \textbf{Pick's theorem:} A polygon on an integer grid
+                containing $i$ lattice points and having $b$ lattice points on
+                the boundary has area $i + \frac{b}{2} - 1$.
+            \item \textbf{Divisor sigma:} The sum of divisors of $n$ to the
+                $x$th power is $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i +
+                1)x} - 1}{p_i^x - 1}$ where $n = \prod_{i=0}^r p_i^{a_i}$ is
+                the prime factorization.
+            \item \textbf{Divisor count:} A special case of the above is
+                $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$.
+            \item \textbf{Euler's totient:} The number of integers less than
+                $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
+                where each $p$ is a distinct prime factor of $n$.
+            \item \textbf{König's theorem:} In any bipartite graph, the number
+                of edges in a maximum matching is equal to the number of
+                vertices in a minimum vertex cover.
+            \item The number of vertices of a graph is equal to its minimum
+                vertex cover number plus the size of a maximum independent set.
         \end{itemize}
 
 
@@ -351,6 +376,12 @@ echo "set nocp et sw=4 ts=4 sts=4 si cindent nu ru noeb showcmd showmode | syn o
         integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land
         \lnot f(x - 1)$.
         \code{other/binary_search_discrete.cpp}
+
+    \subsection{Ternary Search}
+        Given a function $f$ that is first monotonically increasing and then
+        monotonically decreasing, ternary search finds the $x$ such that $f(x)$ is
+        maximized.
+        \code{other/ternary_search_continuous.cpp}
 
     \subsection{2SAT}
         A fast 2SAT solver.
