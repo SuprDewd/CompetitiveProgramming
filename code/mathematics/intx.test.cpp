@@ -1013,5 +1013,9 @@ void test() {
         a = a + b;
         swap(a, b);
     }
+
+    a = 0; b = 4;
+    assert_true(eq(4, b - a));
+    assert_true(eq(-4, a - b));
 }
 

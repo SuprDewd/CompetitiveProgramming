@@ -2,10 +2,6 @@ template <class K> bool eq(K a, K b) { return a == b; }
 template <> bool eq<double>(double a, double b) { return abs(a - b) < EPS; }
 template <class T>
 class matrix {
-private:
-    vector<T> data;
-    int cnt;
-    inline T& at(int i, int j) { return data[i * cols + j]; }
 public:
     int rows, cols;
     matrix(int r, int c) : rows(r), cols(c), cnt(r * c) { data.assign(cnt, T(0)); }
@@ -34,17 +30,24 @@ public:
             p >>= 1;
             if (p) sq = sq * sq;
         } return res; }
-    matrix<T> rref() {
-        matrix<T> mat(*this);
+    matrix<T> rref(T &det) {
+        matrix<T> mat(*this); det = T(1);
         for (int r = 0, c = 0; c < cols; c++) {
             int k = r;
             while (k < rows && eq<T>(mat(k, c), T(0))) k++;
             if (k >= rows) continue;
-            if (k != r) for (int i = 0; i < cols; i++) swap(mat.at(k, i), mat.at(r, i));
+            if (k != r) {
+                det *= T(-1);
+                for (int i = 0; i < cols; i++) swap(mat.at(k, i), mat.at(r, i));
+            } det *= mat(r, r);
             if (!eq<T>(mat(r, c), T(1))) for (int i = cols-1; i >= c; i--) mat(r, i) /= mat(r, c);
             for (int i = 0; i < rows; i++) {
                 T m = mat(i, c);
                 if (i != r && !eq<T>(m, T(0))) for (int j = 0; j < cols; j++) mat(i, j) -= m * mat(r, j);
             } r++;
         } return mat; }
+private:
+    int cnt;
+    vector<T> data;
+    inline T& at(int i, int j) { return data[i * cols + j]; }
 };

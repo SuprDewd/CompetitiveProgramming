@@ -8,6 +8,7 @@ public:
     friend bool operator <(const intx& a, const intx& b);
     friend intx operator +(const intx& a, const intx& b);
     friend intx operator -(const intx& a, const intx& b);
+    friend intx operator -(const intx& a);
     friend intx operator *(const intx& a, const intx& b);
     friend intx operator /(const intx& a, const intx& b);
     friend intx operator %(const intx& a, const intx& b);
@@ -70,7 +71,7 @@ bool operator <(const intx& a, const intx& b) {
     return false;
 }
 intx operator +(const intx& a, const intx& b) {
-    if (a.sign != b.sign) return intx() - (intx() - a - b);
+    if (a.sign != b.sign) return -(-a - b);
     intx c; c.data.clear();
     unsigned long long carry = 0;
     for (int i = 0; i < a.size() || i < b.size() || carry; i++) {
@@ -81,9 +82,10 @@ intx operator +(const intx& a, const intx& b) {
     c.normalize(a.sign);
     return c;
 }
+intx operator -(const intx& a) { intx res(a); res.sign *= -1; return res; }
 intx operator -(const intx& a, const intx& b) {
     if (a.sign != b.sign) return intx() - (intx() - a + b);
-    if (a < b) return intx() - (b - a);
+    if (a < b) return -(b - a);
     intx c; c.data.clear();
     long long borrow = 0;
     for (int i = 0; i < a.size(); i++) {
@@ -94,7 +96,6 @@ intx operator -(const intx& a, const intx& b) {
     c.normalize(a.sign);
     return c;
 }
-
 intx operator *(const intx& a, const intx& b) {
     int n = max(a.size(), b.size());
     if (n == 1) {
