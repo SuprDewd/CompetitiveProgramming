@@ -1,6 +1,7 @@
 Things to do
 ============
 
+* Shortest Path Faster Algorithm Algorithm (also use in Min Cost Max Flow)
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
 * Edmonds's maximum matching algorithm
@@ -20,6 +21,7 @@ Links
 * [List of Algorithms 1](http://translate.google.com/translate?prev=hp&hl=en&js=y&u=http%3A%2F%2Finfoarena.ro%2Ftraining-path&sl=ro&tl=en&history_state0=)
 * [List of Algorithms 2](http://translate.googleusercontent.com/translate_c?depth=1&hl=en&prev=hp&rurl=translate.google.com&sl=ro&tl=en&twu=1&u=http://www.scribd.com/doc/58361421/Programming-Camp-Syllabus&usg=ALkJrhhoVa_NFY8wuM547awYV-fnA3Pi8w)
 * [List of Algorithms 3](http://translate.google.com/translate?sl=auto&tl=en&js=n&prev=_t&hl=en&ie=UTF-8&eotf=1&u=http%3A%2F%2Fe-maxx.ru%2Falgo%2F&act=url)
+* [List of Algorithms 4](http://wcipeg.com/wiki/Special:AllPages)
 * [The IOI syllabus](http://people.ksp.sk/~misof//ioi-syllabus/)
 * [TopCoder Algorithm tutorials](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=lineSweep)
 * [Shanks Algorithm](http://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm)
