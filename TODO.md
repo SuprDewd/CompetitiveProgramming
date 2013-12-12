@@ -28,3 +28,4 @@ Links
 * [Igor Naverniouk's code library](http://shygypsy.com/tools/)
 * [infnty/acm at github](https://github.com/infnty/acm/tree/master/lib)
 * [evandrix at github](https://github.com/evandrix/codejam/tree/master/lib)
+* [COME ON CODE ON](http://comeoncodeon.wordpress.com/)
