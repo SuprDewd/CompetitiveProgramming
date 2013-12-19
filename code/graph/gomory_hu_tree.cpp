@@ -13,7 +13,8 @@ pair<vii, vvi> construct_gh_tree(flow_network &g) {
         while (l < r) {
             same[v = q[l++]] = true;
             for (int i = g.head[v]; i != -1; i = g.e[i].nxt)
-                if (g.e[i].cap > 0 && d[g.e[i].v] == 0) d[q[r++] = g.e[i].v] = 1;
+                if (g.e[i].cap > 0 && d[g.e[i].v] == 0)
+                    d[q[r++] = g.e[i].v] = 1;
         }
         for (int i = s + 1; i < n; i++)
             if (par[i].first == par[s].first && same[i]) par[i].first = s;
@@ -32,6 +33,7 @@ pair<vii, vvi> construct_gh_tree(flow_network &g) {
 int compute_max_flow(int s, int t, const pair<vii, vvi> &gh) {
     if (s == t) return 0;
     int cur = INF, at = s;
-    while (gh.second[at][t] == -1) cur = min(cur, gh.first[at].second), at = gh.first[at].first;
+    while (gh.second[at][t] == -1)
+        cur = min(cur, gh.first[at].second), at = gh.first[at].first;
     return min(cur, gh.second[at][t]);
 }

@@ -24,14 +24,18 @@ template<class T> struct skiplist {
         memset(update, 0, MAX_LEVEL + 1); \
         for(int i = MAX_LEVEL; i >= 0; i--) { \
             pos[i] = pos[i + 1]; \
-            while(x->next[i] != NULL && cmp < target) { pos[i] += x->lens[i]; x = x->next[i]; } \
+            while(x->next[i] != NULL && cmp < target) { \
+                pos[i] += x->lens[i]; x = x->next[i]; } \
             update[i] = x; \
         } x = x->next[0];
     int size() const { return _size; }
-    void clear() { while(head->next && head->next[0]) erase(head->next[0]->item); }
-    node *find(T target) { FIND_UPDATE(x->next[i]->item, target); return x && x->item == target ? x : NULL; }
+    void clear() { while(head->next && head->next[0])
+        erase(head->next[0]->item); }
+    node *find(T target) { FIND_UPDATE(x->next[i]->item, target);
+        return x && x->item == target ? x : NULL; }
     node *nth(int k) { FIND_UPDATE(pos[i] + x->lens[i], k+1); return x; }
-    int count_less(T target) { FIND_UPDATE(x->next[i]->item, target); return pos[0]; }
+    int count_less(T target) { FIND_UPDATE(x->next[i]->item, target);
+        return pos[0]; }
     node* insert(T target) {
         FIND_UPDATE(x->next[i]->item, target);
         if(x && x->item == target) return x; // SET
@@ -57,4 +61,5 @@ template<class T> struct skiplist {
                 } else update[i]->lens[i] = update[i]->lens[i] - 1;
             }
             delete x; _size--;
-            while(current_level > 0 && head->next[current_level] == NULL) current_level--; } } };
+            while(current_level > 0 && head->next[current_level] == NULL)
+                current_level--; } } };

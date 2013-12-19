@@ -9,8 +9,10 @@ pair<int, vector<vector<mf_edge*> > > max_flow(int n, int s, int t, vii* adj) {
     mf_edge *ce, *z;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < size(adj[i]); j++) {
-            g[i].push_back(ce = new mf_edge(i, adj[i][j].first, adj[i][j].second));
-            g[ce->v].push_back(ce->rev = new mf_edge(adj[i][j].first, i, 0, ce)); } }
+            ce = new mf_edge(i, adj[i][j].first, adj[i][j].second);
+            g[i].push_back(ce);
+            ce->rev = new mf_edge(adj[i][j].first, i, 0, ce);
+            g[ce->v].push_back(ce->rev); } }
     while (true) {
         back.assign(n, NULL);
         queue<int> Q; Q.push(s);

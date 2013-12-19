@@ -16,9 +16,12 @@ public:
             if (begin == end) { cur->words++; break; }
             else {
                 T head = *begin;
-                typename map<T, node*>::const_iterator it = cur->children.find(head);
-                if (it == cur->children.end()) it = cur->children.insert(pair<T, node*>(head, new node())).first;
-                begin++, cur = it->second; } } }
+                typename map<T, node*>::const_iterator it;
+                it = cur->children.find(head);
+                if (it == cur->children.end()) {
+                    pair<T, node*> nw(head, new node());
+                    it = cur->children.insert(nw).first;
+                } begin++, cur = it->second; } } }
     template<class I>
     int countMatches(I begin, I end) {
         node* cur = root;
@@ -26,7 +29,8 @@ public:
             if (begin == end) return cur->words;
             else {
                 T head = *begin;
-                typename map<T, node*>::const_iterator it = cur->children.find(head);
+                typename map<T, node*>::const_iterator it;
+                it = cur->children.find(head);
                 if (it == cur->children.end()) return 0;
                 begin++, cur = it->second; } } }
     template<class I>
@@ -36,6 +40,7 @@ public:
             if (begin == end) return cur->prefixes;
             else {
                 T head = *begin;
-                typename map<T, node*>::const_iterator it = cur->children.find(head);
+                typename map<T, node*>::const_iterator it;
+                it = cur->children.find(head);
                 if (it == cur->children.end()) return 0;
                 begin++, cur = it->second; } } } };

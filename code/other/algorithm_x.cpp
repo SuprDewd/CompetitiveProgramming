@@ -3,7 +3,8 @@ struct exact_cover {
     struct node {
         node *l, *r, *u, *d, *p;
         int row, col, size;
-        node(int row, int col) : row(row), col(col) { size = 0; l = r = u = d = p = NULL; }
+        node(int row, int col) : row(row), col(col) {
+            size = 0; l = r = u = d = p = NULL; }
     };
     int rows, cols, *sol;
     bool **arr;

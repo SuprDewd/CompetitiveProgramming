@@ -6,7 +6,8 @@ int* bellman_ford(int n, int s, vii* adj, bool& has_negative_cycle) {
         for (int j = 0; j < n; j++)
             if (dist[j] != INF)
                 for (int k = 0; k < size(adj[j]); k++)
-                    dist[adj[j][k].first] = min(dist[adj[j][k].first], dist[j] + adj[j][k].second);
+                    dist[adj[j][k].first] = min(dist[adj[j][k].first],
+                            dist[j] + adj[j][k].second);
     for (int j = 0; j < n; j++)
         for (int k = 0; k < size(adj[j]); k++)
             if (dist[j] + adj[j][k].second < dist[adj[j][k].first])

@@ -8,7 +8,8 @@ vector<pair<int, ii> > mst(int n, vector<pair<int, ii> > edges) {
     sort(edges.begin(), edges.end());
     vector<pair<int, ii> > res;
     for (int i = 0; i < size(edges); i++)
-        if (uf.find(edges[i].second.first) != uf.find(edges[i].second.second)) {
+        if (uf.find(edges[i].second.first) !=
+                uf.find(edges[i].second.second)) {
             res.push_back(edges[i]);
             uf.unite(edges[i].second.first, edges[i].second.second);
         }

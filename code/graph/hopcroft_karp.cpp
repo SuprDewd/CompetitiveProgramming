@@ -3,16 +3,19 @@ int dist[MAXN+1], q[MAXN+1];
 #define dist(v) dist[v == -1 ? MAXN : v]
 struct bipartite_graph {
     int N, M, *L, *R; vi *adj;
-    bipartite_graph(int N, int M) : N(N), M(M), L(new int[N]), R(new int[M]), adj(new vi[N]) {}
+    bipartite_graph(int N, int M) : N(N), M(M),
+        L(new int[N]), R(new int[M]), adj(new vi[N]) {}
     ~bipartite_graph() { delete[] adj; delete[] L; delete[] R; }
     bool bfs() {
         int l = 0, r = 0;
-        for(int v = 0; v < N; ++v) if(L[v] == -1) dist(v) = 0, q[r++] = v; else dist(v) = INF;
+        for(int v = 0; v < N; ++v) if(L[v] == -1) dist(v) = 0, q[r++] = v;
+            else dist(v) = INF;
         dist(-1) = INF;
         while(l < r) {
             int v = q[l++];
             if(dist(v) < dist(-1)) {
-                foreach(u, adj[v]) if(dist(R[*u]) == INF) dist(R[*u]) = dist(v) + 1, q[r++] = R[*u];
+                foreach(u, adj[v]) if(dist(R[*u]) == INF)
+                    dist(R[*u]) = dist(v) + 1, q[r++] = R[*u];
             }
         }
         return dist(-1) != INF;
@@ -35,7 +38,8 @@ struct bipartite_graph {
         int matching = 0;
         memset(L, -1, sizeof(int) * N);
         memset(R, -1, sizeof(int) * M);
-        while(bfs()) for(int i = 0; i < N; ++i) matching += L[i] == -1 && dfs(i);
+        while(bfs()) for(int i = 0; i < N; ++i)
+            matching += L[i] == -1 && dfs(i);
         return matching;
     }
 };

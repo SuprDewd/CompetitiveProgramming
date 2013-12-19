@@ -1,4 +1,4 @@
-\documentclass[9pt,a4paper]{amsart}
+\documentclass[9pt,a4paper,twocolumn,landscape,oneside]{amsart}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -9,7 +9,7 @@
 \usepackage{float}
 \usepackage{fullpage}
 %\usepackage{geometry}
-\usepackage[top=0pt, bottom=1cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[top=0pt, bottom=1cm, left=0.3cm, right=0.3cm]{geometry}
 \usepackage{graphicx}
 % \usepackage{listings}
 \usepackage{subcaption}
@@ -25,7 +25,7 @@
 
 % Minted
 \usepackage{minted}
-\newcommand{\code}[1]{\inputminted[linenos]{cpp}{_code/#1}}
+\newcommand{\code}[1]{\inputminted{cpp}{_code/#1}}
 
 % Header/Footer
 % \geometry{includeheadfoot}
@@ -67,7 +67,8 @@ setxkbmap -option caps:escape
 set -o vi
 xset r rate 150 100
 cat > ~/.vimrc
-set nocp et sw=4 ts=4 sts=4 si cindent hi=1000 nu ru noeb showcmd showmode | syn on | colorscheme slate
+set nocp et sw=4 ts=4 sts=4 si cindent hi=1000 nu ru noeb showcmd showmode
+syn on | colorscheme slate
         \end{minted}
 
     \subsection{C++ Header}

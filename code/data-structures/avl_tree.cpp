@@ -6,7 +6,8 @@ public:
     struct node {
         T item; node *p, *l, *r;
         int size, height;
-        node(const T &item, node *p = NULL) : item(item), p(p), l(NULL), r(NULL), size(1), height(0) { } };
+        node(const T &item, node *p = NULL) : item(item), p(p),
+        l(NULL), r(NULL), size(1), height(0) { } };
     avl_tree() : root(NULL) { }
     node *root;
     node* find(const T &item) const {
@@ -70,10 +71,14 @@ public:
 private:
     inline int sz(node *n) const { return n ? n->size : 0; }
     inline int height(node *n) const { return n ? n->height : -1; }
-    inline bool left_heavy(node *n) const { return n && height(n->l) > height(n->r); }
-    inline bool right_heavy(node *n) const { return n && height(n->r) > height(n->l); }
-    inline bool too_heavy(node *n) const { return n && abs(height(n->l) - height(n->r)) > 1; }
-    void delete_tree(node *n) { if (n) { delete_tree(n->l), delete_tree(n->r); delete n; } }
+    inline bool left_heavy(node *n) const {
+        return n && height(n->l) > height(n->r); }
+    inline bool right_heavy(node *n) const {
+        return n && height(n->r) > height(n->l); }
+    inline bool too_heavy(node *n) const {
+        return n && abs(height(n->l) - height(n->r)) > 1; }
+    void delete_tree(node *n) {
+        if (n) { delete_tree(n->l), delete_tree(n->r); delete n; } }
     node*& parent_leg(node *n) {
         if (!n->p) return root;
         if (n->p->l == n) return n->p->l;
@@ -97,7 +102,8 @@ private:
         while (n) { augment(n);
             if (too_heavy(n)) {
                 if (left_heavy(n) && right_heavy(n->l)) left_rotate(n->l);
-                else if (right_heavy(n) && left_heavy(n->r)) right_rotate(n->r);
+                else if (right_heavy(n) && left_heavy(n->r))
+                    right_rotate(n->r);
                 if (left_heavy(n)) right_rotate(n);
                 else left_rotate(n);
                 n = n->p; }

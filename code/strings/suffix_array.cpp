@@ -8,10 +8,12 @@ struct suffix_array {
         for (int stp = 1, cnt = 1; cnt >> 1 < n; stp++, cnt <<= 1) {
             P.push_back(vi(n));
             for (int i = 0; i < n; i++)
-                L[L[i].p = i].nr = ii(P[stp - 1][i], i + cnt < n ? P[stp - 1][i + cnt] : -1);
+                L[L[i].p = i].nr = ii(P[stp - 1][i],
+                        i + cnt < n ? P[stp - 1][i + cnt] : -1);
             sort(L.begin(), L.end());
             for (int i = 0; i < n; i++)
-                P[stp][L[i].p] = i > 0 && L[i].nr == L[i - 1].nr ? P[stp][L[i - 1].p] : i;
+                P[stp][L[i].p] = i > 0 &&
+                    L[i].nr == L[i - 1].nr ? P[stp][L[i - 1].p] : i;
         }
         for (int i = 0; i < n; i++) idx[P[size(P) - 1][i]] = i;
     }
