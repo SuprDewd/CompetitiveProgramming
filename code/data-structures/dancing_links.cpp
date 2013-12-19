@@ -3,7 +3,8 @@ struct dancing_links {
     struct node {
         T item;
         node *l, *r;
-        node(const T &item, node *l = NULL, node *r = NULL) : item(item), l(l), r(r) {
+        node(const T &item, node *l = NULL, node *r = NULL)
+            : item(item), l(l), r(r) {
             if (l) l->r = this;
             if (r) r->l = this;
         }

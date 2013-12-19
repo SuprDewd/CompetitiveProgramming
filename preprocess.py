@@ -2,7 +2,8 @@ import os
 import hashlib
 import re
 
-MARGIN = 100
+MARGIN = 100 - 21
+
 
 def mkhash(dat):
     conc = ""
@@ -24,8 +25,13 @@ for path, dirs, files in os.walk('./code'):
             dat = open(p).read().splitlines()
             out = open(q, 'w')
 
+            ok = True
             for dat, hash in zip(dat, mkhash(dat)):
                 if(len(dat) > MARGIN):
                     print>>out, dat.replace('    ', '----')
+                    ok = False
                 else:
                     print>>out, dat.ljust(MARGIN, '-').replace('    ', '----') + "// " + hash
+
+            if not ok:
+                print('Code too wide: %s' % p)

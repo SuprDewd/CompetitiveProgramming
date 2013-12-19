@@ -1,7 +1,8 @@
 struct fenwick_tree {
     int n; vi data;
     fenwick_tree(int _n) : n(_n), data(vi(n)) { }
-    void update(int at, int by) { while (at < n) data[at] += by, at |= at + 1; }
+    void update(int at, int by) {
+        while (at < n) data[at] += by, at |= at + 1; }
     int query(int at) {
         int res = 0;
         while (at >= 0) res += data[at], at = (at & (at + 1)) - 1;
@@ -10,7 +11,8 @@ struct fenwick_tree {
 };
 struct fenwick_tree_sq {
     int n; fenwick_tree x1, x0;
-    fenwick_tree_sq(int _n) : n(_n), x1(fenwick_tree(n)), x0(fenwick_tree(n)) { }
+    fenwick_tree_sq(int _n) : n(_n), x1(fenwick_tree(n)),
+        x0(fenwick_tree(n)) { }
     // insert f(y) = my + c if x <= y
     void update(int x, int m, int c) { x1.update(x, m); x0.update(x, c); }
     int query(int x) { return x*x1.query(x) + x0.query(x); }

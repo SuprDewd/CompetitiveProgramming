@@ -20,10 +20,16 @@ public:
         return fraction<T>(n * other.n, d * other.d); }
     fraction<T> operator /(const fraction<T>& other) const {
         return fraction<T>(n * other.d, d * other.n); }
-    bool operator <(const fraction<T>& other) const { return n * other.d < other.n * d; }
-    bool operator <=(const fraction<T>& other) const { return !(other < *this); }
-    bool operator >(const fraction<T>& other) const { return other < *this; }
-    bool operator >=(const fraction<T>& other) const { return !(*this < other); }
-    bool operator ==(const fraction<T>& other) const { return n == other.n && d == other.d; }
-    bool operator !=(const fraction<T>& other) const { return !(*this == other); }
+    bool operator <(const fraction<T>& other) const {
+        return n * other.d < other.n * d; }
+    bool operator <=(const fraction<T>& other) const {
+        return !(other < *this); }
+    bool operator >(const fraction<T>& other) const {
+        return other < *this; }
+    bool operator >=(const fraction<T>& other) const {
+        return !(*this < other); }
+    bool operator ==(const fraction<T>& other) const {
+        return n == other.n && d == other.d; }
+    bool operator !=(const fraction<T>& other) const {
+        return !(*this == other); }
 };

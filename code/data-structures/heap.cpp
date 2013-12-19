@@ -9,7 +9,8 @@ private:
     int len, count, *q, *loc, tmp;
     Compare _cmp;
     inline bool cmp(int i, int j) { return _cmp(q[i], q[j]); }
-    inline void swp(int i, int j) { SWP(q[i], q[j]), SWP(loc[q[i]], loc[q[j]]); }
+    inline void swp(int i, int j) {
+        SWP(q[i], q[j]), SWP(loc[q[i]], loc[q[j]]); }
     void swim(int i) {
         while (i > 0) {
             int p = (i - 1) / 2;
@@ -50,8 +51,10 @@ public:
         if (fix) sink(0);
     }
     int top() { assert(count > 0); return q[0]; }
-    void heapify() { for (int i = count - 1; i > 0; i--) if (cmp(i, (i - 1) / 2)) swp(i, (i - 1) / 2); }
-    void update_key(int n) { assert(loc[n] != -1), swim(loc[n]), sink(loc[n]); }
+    void heapify() { for (int i = count - 1; i > 0; i--)
+        if (cmp(i, (i - 1) / 2)) swp(i, (i - 1) / 2); }
+    void update_key(int n) {
+        assert(loc[n] != -1), swim(loc[n]), sink(loc[n]); }
     bool empty() { return count == 0; }
     int size() { return count; }
     void clear() { count = 0, memset(loc, 255, len << 2); } };

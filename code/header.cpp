@@ -17,7 +17,8 @@
 #include <vector>
 using namespace std;
 
-#define foreach(u, o) for (typeof((o).begin()) u = (o).begin(); u != (o).end(); ++u)
+#define foreach(u, o) \
+    for (typeof((o).begin()) u = (o).begin(); u != (o).end(); ++u)
 const int INF = 2147483647;
 const double EPS = 1e-9;
 const double pi = acos(-1);

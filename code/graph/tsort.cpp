@@ -1,4 +1,5 @@
-void tsort_dfs(int cur, char* color, const vvi& adj, stack<int>& res, bool& has_cycle) {
+void tsort_dfs(int cur, char* color, const vvi& adj, stack<int>& res,
+        bool& has_cycle) {
     color[cur] = 1;
     for (int i = 0; i < size(adj[cur]); i++) {
         int nxt = adj[cur][i];

@@ -37,7 +37,8 @@ protected:
     }
     void normalize(int nsign) {
         if (data.empty()) data.push_back(0);
-        for (int i = data.size() - 1; i > 0 && data[i] == 0; i--) data.erase(data.begin() + i);
+        for (int i = data.size() - 1; i > 0 && data[i] == 0; i--)
+            data.erase(data.begin() + i);
         sign = data.size() == 1 && data[0] == 0 ? 1 : nsign;
     }
     intx mult_radix(int n) {
@@ -65,7 +66,8 @@ ostream& operator <<(ostream& outs, const intx& n) {
 }
 bool operator <(const intx& a, const intx& b) {
     if (a.sign != b.sign) return a.sign < b.sign;
-    if (a.size() != b.size()) return a.sign == 1 ? a.size() < b.size() : a.size() > b.size();
+    if (a.size() != b.size())
+        return a.sign == 1 ? a.size() < b.size() : a.size() > b.size();
     for (int i = a.size() - 1; i >= 0; i--) if (a.data[i] != b.data[i])
             return a.sign == 1 ? a.data[i] < b.data[i] : a.data[i] > b.data[i];
     return false;
@@ -75,7 +77,8 @@ intx operator +(const intx& a, const intx& b) {
     intx c; c.data.clear();
     unsigned long long carry = 0;
     for (int i = 0; i < a.size() || i < b.size() || carry; i++) {
-        carry += (i < a.size() ? a.data[i] : 0ULL) + (i < b.size() ? b.data[i] : 0ULL);
+        carry += (i < a.size() ? a.data[i] : 0ULL) +
+            (i < b.size() ? b.data[i] : 0ULL);
         c.data.push_back(carry % intx::radix);
         carry /= intx::radix;
     }
@@ -99,7 +102,8 @@ intx operator -(const intx& a, const intx& b) {
 intx operator *(const intx& a, const intx& b) {
     int n = max(a.size(), b.size());
     if (n == 1) {
-        unsigned long long res = static_cast<unsigned long long>(a.data[0]) * b.data[0];
+        unsigned long long res = a.data[0];
+        res *= b.data[0];
         stringstream ss; ss << res;
         intx result(ss.str());
         result.normalize(a.sign * b.sign);
@@ -125,7 +129,8 @@ intx operator *(const intx& a, const intx& b) {
     intx j, l;
     j.data = buff1; l.data = buff2;
     intx ik = i * k, jl = j * l;
-    intx res = ik.mult_radix(n) + ((i + j) * (k + l) - (ik + jl)).mult_radix(n2) + jl;
+    intx res = ik.mult_radix(n) +
+        ((i + j) * (k + l) - (ik + jl)).mult_radix(n2) + jl;
     res.normalize(a.sign * b.sign);
     return res;
 }
