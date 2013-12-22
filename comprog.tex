@@ -216,6 +216,12 @@ syn on | colorscheme slate
         An $O(n \log n)$ construction of a Suffix Tree.
         \code{strings/suffix_array.cpp}
 
+    \subsection{Aho-Corasick Algorithm}
+        An implementation of the Aho-Corasick algorithm. Constructs a state
+        machine from a set of keywords which can be used to search a string for
+        any of the keywords.
+        \code{strings/aho_corasick.cpp}
+
     \subsection{The $Z$ algorithm}
         Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting
         at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these
