@@ -1,4 +1,4 @@
-int* z_values(string s) {
+int* z_values(const string &s) {
     int n = size(s);
     int* z = new int[n];
     int l = 0, r = 0;
