@@ -1,36 +1,22 @@
 #include "primitives.cpp"
-point ch_main;
-bool ch_cmp(P(a), P(b)) {
-    if (collinear(ch_main, a, b)) return abs(a - ch_main) < abs(b - ch_main);
-    return atan2(imag(a) - imag(ch_main), real(a) - real(ch_main)) <
-        atan2(imag(b) - imag(ch_main), real(b) - real(ch_main)); }
-polygon convex_hull(polygon pts, bool add_collinear = false) {
-    int cnt = size(pts), main = 0, i = 1;
-    if (cnt <= 3) return pts;
-    for (int i = 1; i < cnt; i++)
-        if (imag(pts[i]) < imag(pts[main]) ||
-                abs(imag(pts[i]) - imag(pts[main]) < EPS &&
-                    imag(pts[i]) > imag(pts[main])))
-            main = i;
-    swap(pts[0], pts[main]);
-    ch_main = pts[0];
-    sort(++pts.begin(), pts.end(), ch_cmp);
-    point prev, now;
-    stack<point> S; S.push(pts[cnt - 1]); S.push(pts[0]);
-    while (i < cnt) {
-        now = S.top(); S.pop();
-        if (S.empty()) {
-            S.push(now);
-            S.push(pts[i++]);
-        } else {
-            prev = S.top();
-            S.push(now);
-            if (ccw(prev, now, pts[i]) > 0 ||
-                    (add_collinear && abs(ccw(prev, now, pts[i])) < EPS))
-                S.push(pts[i++]);
-            else S.pop();
-        } }
-    vector<point> res;
-    while (!S.empty()) res.push_back(S.top()), S.pop();
-    return res;
+#define MAXN 1000
+point hull[MAXN];
+bool cmp(const point &a, const point &b) {
+    return abs(real(a) - real(b)) > EPS ?
+        real(a) < real(b) : imag(a) < imag(b); }
+int convex_hull(polygon p) {
+    int n = size(p), l = 0;
+    sort(p.begin(), p.end(), cmp);
+    for (int i = 0; i < n; i++) {
+        if (i > 0 && p[i] == p[i - 1]) continue;
+        while (l >= 2 && ccw(hull[l - 2], hull[l - 1], p[i]) >= 0) l--;
+        hull[l++] = p[i];
+    }
+    int r = l;
+    for (int i = n - 2; i >= 0; i--) {
+        if (p[i] == p[i + 1]) continue;
+        while (r - l >= 1 && ccw(hull[r - 2], hull[r - 1], p[i]) >= 0) r--;
+        hull[r++] = p[i];
+    }
+    return l == 1 ? 1 : r - 1;
 }
