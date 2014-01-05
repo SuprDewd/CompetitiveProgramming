@@ -284,6 +284,12 @@ syn on | colorscheme slate
         Numeric integration using Simpson's rule.
         \code{mathematics/numeric_integration.cpp}
 
+    \subsection{Fast Fourier Transform}
+        The Cooley-Tukey algorithm for quickly computing the discrete Fourier
+        transform. Note that this implementation only handles powers of two,
+        make sure to pad with zeros.
+        \code{mathematics/fft.cpp}
+
     \subsection{Formulas}
         \begin{itemize}
             \item Number of ways to choose $k$ objects from a total of $n$
