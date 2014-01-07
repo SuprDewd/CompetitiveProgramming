@@ -1,4 +1,6 @@
 int test() {
+    /* Field testing: UVa 11356, UVa 12019, UVa 893 (had to use long long) */
+
     int y, m, d;
     assert_equal(2451545, dateToInt(2000, 1, 1));
     intToDate(2451545, y, m, d);
