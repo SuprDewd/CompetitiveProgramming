@@ -38,6 +38,8 @@ string random_string(int n, int cc) {
 }
 
 void test() {
+    /* Field testing: Kattis stringmultimatching */
+
     int ts = 100,
         ts2 = 10;
 
