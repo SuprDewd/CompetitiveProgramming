@@ -1,8 +1,4 @@
 #include "primitives.cpp"
-double progress(P(p), L(a, b)) {
-    if (abs(real(a) - real(b)) < EPS)
-        return (imag(p) - imag(a)) / (imag(b) - imag(a));
-    else return (real(p) - real(a)) / (real(b) - real(a)); }
 bool line_segment_intersect(L(a, b), L(c, d), point &A, point &B) {
     if (abs(a - b) < EPS && abs(c - d) < EPS) {
         A = B = a; return abs(a - d) < EPS; }

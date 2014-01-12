@@ -53,29 +53,6 @@ void test() {
     assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(-50, -100), true));
     assert_equal(point(2, 2), closest_point(point(2, 2), point(3, 3), point(-100, -50), true));
 
-    polygon pts;
-    pts.push_back(point(1, 1));
-    pts.push_back(point(1, 4));
-    pts.push_back(point(4, 4));
-    pts.push_back(point(4, 1));
-
-    assert_nearly_equal(-9.0, polygon_area_signed(pts));
-    assert_nearly_equal(9.0, polygon_area(pts));
-
-    reverse(pts.begin(), pts.end());
-
-    assert_nearly_equal(9.0, polygon_area_signed(pts));
-    assert_nearly_equal(9.0, polygon_area(pts));
-
-    pts.clear();
-    pts.push_back(point(1, 1));
-    pts.push_back(point(1, 4));
-    pts.push_back(point(2, 2));
-    pts.push_back(point(4, 1));
-
-    assert_nearly_equal(-3.0, polygon_area_signed(pts));
-    assert_nearly_equal(3.0, polygon_area(pts));
-
     assert_equal(point(6.0/25, -8.0/25), proj(point(-3, 4), point(2, 1)));
 
 }
