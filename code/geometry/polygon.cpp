@@ -6,18 +6,16 @@ double polygon_area_signed(polygon p) {
         area += cross(p[i] - p[0], p[i + 1] - p[0]);
     return area / 2; }
 double polygon_area(polygon p) { return abs(polygon_area_signed(p)); }
+#define CHK(f,a,b,c) (f(a) < f(b) && f(b) <= f(c) && ccw(a,c,b) < 0)
 int point_in_polygon(polygon p, point q) {
-    int n = size(p); bool in = false;
+    int n = size(p); bool in = false; double d;
     for (int i = 0, j = n - 1; i < n; j = i++)
-        if (collinear(p[i], q, p[j])) {
-            double d = progress(q, p[i], p[j]);
-            if (0.0 <= d && d <= 1.0) return 0; }
+        if (collinear(p[i], q, p[j]) &&
+            0 <= (d = progress(q, p[i], p[j])) && d <= 1)
+            return 0;
     for (int i = 0, j = n - 1; i < n; j = i++)
-        if ((imag(p[i]) < imag(q) && imag(q) <= imag(p[j]))
-             || (imag(p[j]) < imag(q) && imag(q) <= imag(p[i])))
-            if (real(p[i]) + (imag(q) - imag(p[i])) / (imag(p[j])
-                - imag(p[i])) * (real(p[j]) - real(p[i])) < real(q))
-                in = !in;
+        if (CHK(real, p[i], q, p[j]) || CHK(real, p[j], q, p[i]))
+            in = !in;
     return in ? -1 : 1; }
 // pair<polygon, polygon> cut_polygon(const polygon &poly, point a, point b) {
 //     polygon left, right;

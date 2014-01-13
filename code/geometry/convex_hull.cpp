@@ -1,4 +1,4 @@
-#include "primitives.cpp"
+#include "polygon.cpp"
 #define MAXN 1000
 point hull[MAXN];
 bool cmp(const point &a, const point &b) {
