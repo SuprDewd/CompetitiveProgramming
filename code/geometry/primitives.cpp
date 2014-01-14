@@ -40,3 +40,18 @@ point closest_point(L(a, b), P(c), bool segment = false) {
     double t = dot(c - a, b - a) / norm(b - a);
     return a + t * (b - a);
 }
+double line_segment_distance(L(a,b), L(c,d)) {
+    double x = INFINITY;
+    if (abs(a - b) < EPS && abs(c - d) < EPS) x = abs(a - c);
+    else if (abs(a - b) < EPS) x = abs(a - closest_point(c, d, a, true));
+    else if (abs(c - d) < EPS) x = abs(c - closest_point(a, b, c, true));
+    else if ((ccw(a, b, c) < 0) != (ccw(a, b, d) < 0) &&
+             (ccw(c, d, a) < 0) != (ccw(c, d, b) < 0)) x = 0;
+    else {
+        x = min(x, abs(a - closest_point(c,d, a, true)));
+        x = min(x, abs(b - closest_point(c,d, b, true)));
+        x = min(x, abs(c - closest_point(a,b, c, true)));
+        x = min(x, abs(d - closest_point(a,b, d, true)));
+    }
+    return x;
+}

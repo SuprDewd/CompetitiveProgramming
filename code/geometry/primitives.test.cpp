@@ -8,7 +8,7 @@ bool assert_equal(point a, point b) {
 }
 
 void test() {
-    /* Field testing: UVa10263 */
+    /* Field testing: UVa10263, Kattis segmentdistance */
 
     point a, b, c;
 
