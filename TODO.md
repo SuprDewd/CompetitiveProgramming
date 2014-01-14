@@ -11,7 +11,7 @@ Things to do
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
-* Add more Geometry stuff. Point in polygon, etc.
+* Add more Geometry stuff.
 * Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
 * Edmond's optimum branching algorithm
 
