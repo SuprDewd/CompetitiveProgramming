@@ -1,7 +1,7 @@
 #include "intx.cpp"
 #include "fft.cpp"
 
-intx fastmul(intx an, intx bn) {
+intx fastmul(const intx &an, const intx &bn) {
     string as = an.to_string(), bs = bn.to_string();
     int n = size(as), m = size(bs), l = 1,
         len = 5, radix = 100000,

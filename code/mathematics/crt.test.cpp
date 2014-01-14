@@ -1,4 +1,6 @@
 void test() {
+    /* Field testing: Kattis CRT */
+
     vi as, ns;
 
     as.clear();
