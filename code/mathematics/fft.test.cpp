@@ -16,7 +16,7 @@ intx fastmul(intx an, intx bn)
         radix = 100000;
 
     int *a = new int[n],
-        *b = new int[n];
+        *b = new int[m];
 
     int alen = 0, blen = 0;
     for (int i = n - 1; i >= 0; i -= len)
@@ -102,9 +102,11 @@ void test() {
 
     for (int t = 0; t < ts; t++)
     {
-        int l = rand() % (l2 - l1 + 1) + l1;
-        intx a = randint(l),
-             b = randint(l),
+        int la = rand() % (l2 - l1 + 1) + l1,
+            lb = rand() % (l2 - l1 + 1) + l1;
+
+        intx a = randint(la),
+             b = randint(lb),
              c1 = a * b,
              c2 = fastmul(a, b);
 

@@ -1,5 +1,5 @@
 #include <complex>
-typedef complex<double> cpx;
+typedef complex<long double> cpx;
 void fft(cpx *x, int n, bool inv=false) {
     for (int i = 0, j = 0; i < n; i++) {
         if (i < j) swap(x[i], x[j]);

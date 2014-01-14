@@ -3,7 +3,6 @@ struct intx {
     intx(string n) { init(n); }
     intx(int n) { stringstream ss; ss << n; init(ss.str()); }
     intx(const intx& other) : sign(other.sign), data(other.data) { }
-
     int sign;
     vector<unsigned int> data;
     static const int dcnt = 9;
@@ -25,20 +24,15 @@ struct intx {
         data = res.data;
         normalize(res.sign);
     }
-    void normalize(int nsign) {
+    intx& normalize(int nsign) {
         if (data.empty()) data.push_back(0);
         for (int i = data.size() - 1; i > 0 && data[i] == 0; i--)
             data.erase(data.begin() + i);
         sign = data.size() == 1 && data[0] == 0 ? 1 : nsign;
-    }
-    intx mult_radix(int n) {
-        vector<unsigned int> d(n + data.size(), 0);
-        for (int i = 0; i < size(); i++) d[i + n] = data[i];
-        intx res; res.data = d; res.normalize(sign);
-        return res;
+        return *this;
     }
     friend ostream& operator <<(ostream& outs, const intx& n) {
-        if (n.sign == -1) outs << '-';
+        if (n.sign < 0) outs << '-';
         bool first = true;
         for (int i = n.size() - 1; i >= 0; i--) {
             if (first) outs << n.data[i], first = false;
@@ -53,6 +47,7 @@ struct intx {
         }
         return outs;
     }
+    string to_string() const { stringstream ss; ss << *this; return ss.str(); }
     bool operator <(const intx& b) const {
         if (sign != b.sign) return sign < b.sign;
         if (size() != b.size())
@@ -61,8 +56,12 @@ struct intx {
                 return sign == 1 ? data[i] < b.data[i] : data[i] > b.data[i];
         return false;
     }
+    intx operator -() const { intx res(*this); res.sign *= -1; return res; }
+    friend intx abs(const intx &n) { return n < 0 ? -n : n; }
     intx operator +(const intx& b) const {
-        if (sign != b.sign) return -(-*this - b);
+        if (sign > 0 && b.sign < 0) return *this - (-b);
+        if (sign < 0 && b.sign > 0) return b - (-*this);
+        if (sign < 0 && b.sign < 0) return -((-*this) + (-b));
         intx c; c.data.clear();
         unsigned long long carry = 0;
         for (int i = 0; i < size() || i < b.size() || carry; i++) {
@@ -71,12 +70,12 @@ struct intx {
             c.data.push_back(carry % intx::radix);
             carry /= intx::radix;
         }
-        c.normalize(sign);
-        return c;
+        return c.normalize(sign);
     }
-    intx operator -() const { intx res(*this); res.sign *= -1; return res; }
     intx operator -(const intx& b) const {
-        if (sign != b.sign) return intx() - (intx() - *this + b);
+        if (sign > 0 && b.sign < 0) return *this + (-b);
+        if (sign < 0 && b.sign > 0) return -(-*this + b);
+        if (sign < 0 && b.sign < 0) return (-b) - (-*this);
         if (*this < b) return -(b - *this);
         intx c; c.data.clear();
         long long borrow = 0;
@@ -85,45 +84,21 @@ struct intx {
             c.data.push_back(borrow < 0 ? intx::radix + borrow : borrow);
             borrow = borrow < 0 ? 1 : 0;
         }
-        c.normalize(sign);
-        return c;
+        return c.normalize(sign);
     }
     intx operator *(const intx& b) const {
-        int n = max(size(), b.size());
-        if (n == 1) {
-            unsigned long long res = data[0];
-            res *= b.data[0];
-            stringstream ss; ss << res;
-            intx result(ss.str());
-            result.normalize(sign * b.sign);
-            return result;
+        intx c; c.data.assign(size() + b.size() + 1, 0);
+        for (int i = 0; i < size(); i++) {
+            long long carry = 0;
+            for (int j = 0; j < b.size() || carry; j++) {
+                if (j < b.size()) carry += (long long)data[i] * b.data[j];
+                carry += c.data[i + j];
+                c.data[i + j] = carry % intx::radix;
+                carry /= intx::radix;
+            }
         }
-        if (n & 1) n++;
-        int n2 = n >> 1;
-        vector<unsigned int> buff1, buff2;
-        buff1.reserve(n2); buff2.reserve(n2);
-        for (int at = n2 - 1; at >= 0; at--) {
-            int idx = n - at - 1;
-            buff1.push_back(idx < size() ? data[idx] : 0);
-            buff2.push_back(idx < b.size() ? b.data[idx] : 0);
-        }
-        intx i, k;
-        i.data = buff1; k.data = buff2;
-        buff1.clear(); buff2.clear();
-        for (int at = n - 1; at >= n2; at--) {
-            int idx = n - at - 1;
-            buff1.push_back(idx < size() ? data[idx] : 0);
-            buff2.push_back(idx < b.size() ? b.data[idx] : 0);
-        }
-        intx j, l;
-        j.data = buff1; l.data = buff2;
-        intx ik = i * k, jl = j * l;
-        intx res = ik.mult_radix(n) +
-            ((i + j) * (k + l) - (ik + jl)).mult_radix(n2) + jl;
-        res.normalize(sign * b.sign);
-        return res;
+        return c.normalize(sign * b.sign);
     }
-    friend intx abs(const intx &n) { return n < 0 ? -n : n; }
     friend pair<intx,intx> divmod(const intx& n, const intx& d) {
         assert(!(d.size() == 1 && d.data[0] == 0));
         intx q, r; q.data.assign(n.size(), 0);
@@ -139,13 +114,10 @@ struct intx {
             while (r < 0) r = r + abs(d), k--;
             q.data[i] = k;
         }
-        q.normalize(n.sign * d.sign);
-        return pair<intx,intx>(q,r);
+        return pair<intx, intx>(q.normalize(n.sign * d.sign), r);
     }
     intx operator /(const intx& d) const {
-        pair<intx, intx> res = divmod(*this,d);
-        return res.first; }
+        return divmod(*this,d).first; }
     intx operator %(const intx& d) const {
-        pair<intx, intx> res = divmod(*this,d);
-        return res.second; }
+        return divmod(*this,d).second * sign; }
 };
