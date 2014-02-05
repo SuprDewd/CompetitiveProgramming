@@ -4,7 +4,7 @@ Things to do
 * Shortest Path Faster Algorithm Algorithm
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
-* Edmonds's maximum matching algorithm
+* Edmonds's maximum matching algorithm (Blossom algorithm)
 * Implement lazy range update in Segment Tree
 * Interval Tree
 * Hungarian algorithm
