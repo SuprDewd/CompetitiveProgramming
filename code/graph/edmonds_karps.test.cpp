@@ -1,65 +1,117 @@
+namespace dinic {
+#include "../code/graph/dinic.cpp"
+}
 
-void release(vector<vector<mf_edge*> > res) {
-    for (int i = 0; i < size(res); i++)
-        for (int j = 0; j < size(res[i]); j++)
-            delete res[i][j];
+void test1() {
+    int N = 20;
+    int MAX = 100000;
+
+    flow_network mf(N);
+    dinic::flow_network mf2(N);
+
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            int cap = rand() % MAX + 1;
+            mf.add_edge(i, j, cap);
+            mf2.add_edge(i, j, cap);
+        }
+    }
+
+    for(int i = 0; i < N; ++i) {
+        for(int j = 0; j < N; ++j) {
+            assert_equal(mf2.max_flow(i, j), mf.max_flow(i, j));
+        }
+    }
+}
+
+void test2() {
+    int N = 20;
+    int MAX = 100000;
+
+    flow_network mf(N);
+    dinic::flow_network mf2(N);
+
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            int cap = rand() % MAX + 1;
+            mf.add_edge(i, j, cap, cap);
+            mf2.add_edge(i, j, cap, cap);
+        }
+    }
+
+    for(int i = 0; i < N; ++i) {
+        for(int j = 0; j < N; ++j) {
+            assert_equal(mf2.max_flow(i, j), mf.max_flow(i, j));
+        }
+    }
+}
+
+void test3() {
+    int N = 20;
+    int MAX = 100000;
+
+    flow_network mf(N);
+    dinic::flow_network mf2(N);
+
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            int cap = rand() % MAX + 1;
+            mf.add_edge(i, j, cap, cap);
+            mf.add_edge(i, j, cap, cap);
+            mf2.add_edge(i, j, cap, cap);
+            mf2.add_edge(i, j, cap, cap);
+        }
+    }
+
+    for(int i = 0; i < N; ++i) {
+        for(int j = 0; j < N; ++j) {
+            assert_equal(mf2.max_flow(i, j), mf.max_flow(i, j));
+        }
+    }
 }
 
 void test() {
     /* Field testing: UVa259, UVa670, UVa10080, UVa10330, ICPC Live Archive 5905, ICPC Live Archive 3792 */
+    /* Field testing (v2): Kattis maxflow */
 
-    pair<int, vector<vector<mf_edge*> > > res;
+    flow_network mf(4, 4*4);
+    mf.add_edge(0, 1, 133700);
+    mf.add_edge(0, 2, 133700);
+    mf.add_edge(1, 2, 1);
+    mf.add_edge(1, 3, 133700);
+    mf.add_edge(2, 3, 133700);
+    assert_equal(2 * 133700, mf.max_flow(0, 3));
 
-    vii* adj = new vii[4];
-    adj[0].push_back(ii(1, 133700));
-    adj[0].push_back(ii(2, 133700));
-    adj[1].push_back(ii(2, 1));
-    adj[1].push_back(ii(3, 133700));
-    adj[2].push_back(ii(3, 133700));
+    mf = flow_network(5, 5*5);
+    mf.add_edge(1, 2, 100);
+    mf.add_edge(1, 3, 50);
+    mf.add_edge(2, 3, 50);
+    mf.add_edge(2, 4, 50);
+    mf.add_edge(2, 0, 50);
+    mf.add_edge(3, 4, 100);
+    mf.add_edge(4, 0, 125);
+    assert_equal(150, mf.max_flow(1, 0));
 
-    res = max_flow(4, 0, 3, adj);
-    assert_equal(2 * 133700, res.first);
-    release(res.second);
-    delete[] adj;
+    mf = flow_network(5, 5*5);
+    mf.add_edge(1, 2, 100);
+    mf.add_edge(1, 3, 50);
+    mf.add_edge(2, 3, 50);
+    mf.add_edge(2, 4, 50);
+    mf.add_edge(2, 0, 50);
+    mf.add_edge(3, 4, 100);
+    mf.add_edge(4, 0, 75);
+    assert_equal(125, mf.max_flow(1, 0));
 
-    adj = new vii[5];
-    adj[1].push_back(ii(2, 100));
-    adj[1].push_back(ii(3, 50));
-    adj[2].push_back(ii(3, 50));
-    adj[2].push_back(ii(4, 50));
-    adj[2].push_back(ii(0, 50));
-    adj[3].push_back(ii(4, 100));
-    adj[4].push_back(ii(0, 125));
+    mf = flow_network(5, 5*5);
+    mf.add_edge(1, 2, 100);
+    mf.add_edge(1, 3, 50);
+    mf.add_edge(2, 4, 5);
+    mf.add_edge(2, 0, 5);
+    mf.add_edge(3, 4, 100);
+    mf.add_edge(4, 0, 125);
+    assert_equal(60, mf.max_flow(1, 0));
 
-    res = max_flow(5, 1, 0, adj);
-    assert_equal(150, res.first);
-    release(res.second);
-    delete[] adj;
-
-    adj = new vii[5];
-    adj[1].push_back(ii(2, 100));
-    adj[1].push_back(ii(3, 50));
-    adj[2].push_back(ii(3, 50));
-    adj[2].push_back(ii(4, 50));
-    adj[2].push_back(ii(0, 50));
-    adj[3].push_back(ii(4, 100));
-    adj[4].push_back(ii(0, 75));
-
-    res = max_flow(5, 1, 0, adj);
-    assert_equal(125, res.first);
-    release(res.second);
-    delete[] adj;
-
-    adj = new vii[5];
-    adj[1].push_back(ii(2, 100));
-    adj[1].push_back(ii(3, 50));
-    adj[2].push_back(ii(4, 5));
-    adj[2].push_back(ii(0, 5));
-    adj[3].push_back(ii(4, 100));
-    adj[4].push_back(ii(0, 125));
-
-    res = max_flow(5, 1, 0, adj);
-    assert_equal(60, res.first);
-    release(res.second);
-    delete[] adj;
+    test1();
+    test2();
+    test3();
 }

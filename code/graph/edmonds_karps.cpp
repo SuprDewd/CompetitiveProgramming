@@ -1,36 +1,42 @@
-struct mf_edge {
-    int u, v, w; mf_edge* rev;
-    mf_edge(int _u, int _v, int _w, mf_edge* _rev = NULL) {
-        u = _u; v = _v; w = _w; rev = _rev; } };
-pair<int, vector<vector<mf_edge*> > > max_flow(int n, int s, int t, vii* adj) {
-    int flow = 0, cur, cap;
-    vector<vector<mf_edge*> > g(n);
-    vector<mf_edge*> back(n);
-    mf_edge *ce, *z;
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < size(adj[i]); j++) {
-            ce = new mf_edge(i, adj[i][j].first, adj[i][j].second);
-            g[i].push_back(ce);
-            ce->rev = new mf_edge(adj[i][j].first, i, 0, ce);
-            g[ce->v].push_back(ce->rev); } }
-    while (true) {
-        back.assign(n, NULL);
-        queue<int> Q; Q.push(s);
-        while (!Q.empty() && (cur = Q.front()) != t) {
-            Q.pop();
-            for (int i = 0; i < size(g[cur]); i++) {
-                mf_edge* nxt = g[cur][i];
-                if (nxt->v != s && nxt->w > 0 && !back[nxt->v])
-                    Q.push((back[nxt->v] = nxt)->v); } }
-        if (!back[t] || back[t]->w == 0) break;
-        for (int i = 0; i < size(g[t]); i++) {
-            if (!(z = g[t][i]->rev) || (!back[z->u] && z->u != s)) continue;
-            for (cap = z->w, ce = back[z->u]; ce && cap > 0; ce = back[ce->u])
-                cap = min(cap, ce->w);
-            if (cap == 0) continue;
-            assert(cap < INF);
-            z->w -= cap, z->rev->w += cap;
-            for (ce = back[z->u]; ce; ce = back[ce->u])
-                ce->w -= cap, ce->rev->w += cap;
-            flow += cap; } }
-    return make_pair(flow, g); }
+#define MAXV 2000
+int q[MAXV], d[MAXV], p[MAXV];
+struct flow_network {
+    struct edge {
+        int v, cap, nxt;
+        edge(int v, int cap, int nxt) : v(v), cap(cap), nxt(nxt) {  }
+    };
+    int n, ecnt, *head;
+    vector<edge> e, e_store;
+    flow_network(int n, int m = -1) : n(n), ecnt(0) {
+        e.reserve(2 * (m == -1 ? n : m));
+        memset(head = new int[n], -1, n << 2);
+    }
+    void destroy() { delete[] head; }
+    void reset() { e = e_store; }
+    void add_edge(int u, int v, int uv, int vu=0) {
+        e.push_back(edge(v, uv, head[u])); head[u] = ecnt++;
+        e.push_back(edge(u, vu, head[v])); head[v] = ecnt++;
+    }
+    int max_flow(int s, int t, bool res = true) {
+        if (s == t) return 0;
+        e_store = e;
+        int f = 0, l, r, v;
+        while (true) {
+            memset(d, -1, n << 2);
+            memset(p, -1, n << 2);
+            l = r = 0, d[q[r++] = s] = 0;
+            while (l < r)
+                for (int u = q[l++], i = head[u]; i != -1; i = e[i].nxt)
+                    if (e[i].cap > 0 && (d[v = e[i].v] == -1 || d[u] + 1 < d[v]))
+                        d[v] = d[u] + 1, p[q[r++] = v] = i;
+            if (p[t] == -1) break;
+            int x = INF, at = p[t];
+            while (at != -1) x = min(x, e[at].cap), at = p[e[at^1].v];
+            at = p[t], f += x;
+            while (at != -1)
+                e[at].cap -= x, e[at^1].cap += x, at = p[e[at^1].v];
+        }
+        if (res) reset();
+        return f;
+    }
+};
