@@ -181,14 +181,15 @@ syn on | colorscheme slate
 
     \subsection{Bipartite Matching}
 
-        \subsubsection{Bipartite Matching}
+        \subsubsection{Alternating Paths algorithm}
             The alternating paths algorithm solves bipartite matching in $O(mn^2)$
             time, where $m$, $n$ are the number of vertices on the left and right
             side of the bipartite graph, respectively.
             \code{graph/bipartite_matching.cpp}
 
-        \subsection{Hopcroft-Karp algorithm}
-            An implementation of Hopcroft-Karp algorithm.
+        \subsubsection{Hopcroft-Karp algorithm}
+            An implementation of Hopcroft-Karp algorithm for bipartite
+            matching. Running time is $O(|E|\sqrt{|V|})$.
             \code{graph/hopcroft_karp.cpp}
 
     \subsection{Maximum Flow}
@@ -206,7 +207,7 @@ syn on | colorscheme slate
         An implementation of Edmonds Karp's algorithm, modified to find
         shortest path to augment each time (instead of just any path). It
         computes the maximum flow of a flow network, and when there are
-        multiple maximum flows, finds the maximum flow with minimum cost.
+        multiple maximum flows, finds the maximum flow with minimum cost. Running time is $O(|V|^2|E|\log|V|)$.
         \code{graph/edmonds_karps_mcmf.cpp}
 
     \subsection{All Pairs Maximum Flow}

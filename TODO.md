@@ -1,18 +1,16 @@
 Things to do
 ============
 
-* Shortest Path Faster Algorithm Algorithm (also use in Min Cost Max Flow)
+* Shortest Path Faster Algorithm Algorithm
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
-* Edmonds's maximum matching algorithm
-* Implement lazy range update in Segment Tree
+* Edmonds's maximum matching algorithm (Blossom algorithm)
 * Interval Tree
 * Hungarian algorithm
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
 * Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Add more Geometry stuff.
-* Implement a faster version of min-cost max-flow using Dijkstra's algorithm + Johnson's algorithm
 * Edmond's optimum branching algorithm
 
 Links
