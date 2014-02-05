@@ -181,14 +181,15 @@ syn on | colorscheme slate
 
     \subsection{Bipartite Matching}
 
-        \subsubsection{Bipartite Matching}
+        \subsubsection{Alternating Paths algorithm}
             The alternating paths algorithm solves bipartite matching in $O(mn^2)$
             time, where $m$, $n$ are the number of vertices on the left and right
             side of the bipartite graph, respectively.
             \code{graph/bipartite_matching.cpp}
 
-        \subsection{Hopcroft-Karp algorithm}
-            An implementation of Hopcroft-Karp algorithm.
+        \subsubsection{Hopcroft-Karp algorithm}
+            An implementation of Hopcroft-Karp algorithm for bipartite
+            matching. Running time is $O(|E|\sqrt{|V|})$.
             \code{graph/hopcroft_karp.cpp}
 
     \subsection{Maximum Flow}
