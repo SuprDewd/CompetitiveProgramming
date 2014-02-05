@@ -5,7 +5,6 @@ Things to do
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
 * Edmonds's maximum matching algorithm (Blossom algorithm)
-* Implement lazy range update in Segment Tree
 * Interval Tree
 * Hungarian algorithm
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
