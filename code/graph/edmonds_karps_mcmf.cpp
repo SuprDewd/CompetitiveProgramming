@@ -1,65 +1,61 @@
-struct mcmf_edge {
-    int u, v, w, c;
-    mcmf_edge* rev;
-    mcmf_edge(int _u, int _v, int _w, int _c, mcmf_edge* _rev = NULL) {
-        u = _u; v = _v; w = _w; c = _c; rev = _rev;
+#define MAXV 2000
+int d[MAXV], p[MAXV], pi[MAXV];
+struct cmp {
+    bool operator ()(int i, int j) {
+        return d[i] == d[j] ? i < j : d[i] < d[j];
     }
 };
-
-ii min_cost_max_flow(int n, int s, int t, vector<pair<int, ii> >* adj) {
-    vector<mcmf_edge*>* g = new vector<mcmf_edge*>[n];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < size(adj[i]); j++) {
-            mcmf_edge *cur = new mcmf_edge(i, adj[i][j].first,
-                        adj[i][j].second.first, adj[i][j].second.second),
-                      *rev = new mcmf_edge(adj[i][j].first, i, 0,
-                              -adj[i][j].second.second, cur);
-            cur->rev = rev;
-            g[i].push_back(cur);
-            g[adj[i][j].first].push_back(rev);
-        }
+struct flow_network {
+    struct edge {
+        int v, cap, cost, nxt;
+        edge(int v, int cap, int cost, int nxt)
+            : v(v), cap(cap), cost(cost), nxt(nxt) {  }
+    };
+    int n, ecnt, *head;
+    vector<edge> e, e_store;
+    flow_network(int n, int m = -1) : n(n), ecnt(0) {
+        e.reserve(2 * (m == -1 ? n : m));
+        memset(head = new int[n], -1, n << 2);
     }
-    int flow = 0, cost = 0;
-    mcmf_edge** back = new mcmf_edge*[n];
-    int* dist = new int[n];
-    while (true) {
-        for (int i = 0; i < n; i++) back[i] = NULL, dist[i] = INF;
-        dist[s] = 0;
-        for (int i = 0; i < n - 1; i++)
-            for (int j = 0; j < n; j++)
-                if (dist[j] != INF)
-                    for (int k = 0; k < size(g[j]); k++)
-                        if (g[j][k]->w > 0 && dist[j] + g[j][k]->c <
-                                dist[g[j][k]->v]) {
-                            dist[g[j][k]->v] = dist[j] + g[j][k]->c;
-                            back[g[j][k]->v] = g[j][k];
-                        }
-        mcmf_edge* cure = back[t];
-        if (cure == NULL) break;
-        int cap = INF;
-        while (true) {
-            cap = min(cap, cure->w);
-            if (cure->u == s) break;
-            cure = back[cure->u];
-        }
-        assert(cap > 0 && cap < INF);
-        cure = back[t];
-        while (true) {
-            cost += cap * cure->c;
-            cure->w -= cap;
-            cure->rev->w += cap;
-            if (cure->u == s) break;
-            cure = back[cure->u];
-        }
-        flow += cap;
+    void destroy() { delete[] head; }
+    void reset() { e = e_store; }
+    void add_edge(int u, int v, int cost, int uv, int vu=0) {
+        e.push_back(edge(v, uv, cost, head[u])); head[u] = ecnt++;
+        e.push_back(edge(u, vu, -cost, head[v])); head[v] = ecnt++;
     }
-    // instead of deleting g, we could also
-    // use it to get info about the actual flow
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < size(g[i]); j++)
-            delete g[i][j];
-    delete[] g;
-    delete[] back;
-    delete[] dist;
-    return ii(flow, cost);
-}
+    ii min_cost_max_flow(int s, int t, bool res = true) {
+        if (s == t) return ii(0, 0);
+        e_store = e;
+        memset(pi, 0, n << 2);
+        int f = 0, c = 0, v;
+        while (true) {
+            memset(d, -1, n << 2);
+            memset(p, -1, n << 2);
+            set<int, cmp> q;
+            q.insert(s); d[s] = 0;
+            while (!q.empty()) {
+                int u = *q.begin();
+                q.erase(q.begin());
+                for (int i = head[u]; i != -1; i = e[i].nxt) {
+                    if (e[i].cap == 0) continue;
+                    int cd = d[u] + e[i].cost + pi[u] - pi[v = e[i].v];
+                    if (d[v] == -1 || cd < d[v]) {
+                        if (q.find(v) != q.end()) q.erase(q.find(v));
+                        d[v] = cd; p[v] = i;
+                        q.insert(v);
+                    }
+                }
+            }
+            if (p[t] == -1) break;
+            int x = INF, at = p[t];
+            while (at != -1) x = min(x, e[at].cap), at = p[e[at^1].v];
+            at = p[t], f += x;
+            while (at != -1)
+                e[at].cap -= x, e[at^1].cap += x, at = p[e[at^1].v];
+            c += x * (d[t] + pi[t] - pi[s]);
+            for (int i = 0; i < n; i++) if (p[i] != -1) pi[i] += d[i];
+        }
+        if (res) reset();
+        return ii(f, c);
+    }
+};
