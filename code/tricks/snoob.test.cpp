@@ -1,4 +1,6 @@
 void test() {
+    /* Field testing: UVa 729 */
+
     assert_equal(66, snoob(65));
     assert_equal(68, snoob(66));
     assert_equal(72, snoob(68));
