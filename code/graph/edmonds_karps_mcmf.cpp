@@ -1,5 +1,5 @@
 #define MAXV 2000
-int d[MAXV], p[MAXV], pi[MAXV];
+int d[MAXV], p[MAXV], pot[MAXV];
 struct cmp {
     bool operator ()(int i, int j) {
         return d[i] == d[j] ? i < j : d[i] < d[j];
@@ -26,7 +26,7 @@ struct flow_network {
     ii min_cost_max_flow(int s, int t, bool res = true) {
         if (s == t) return ii(0, 0);
         e_store = e;
-        memset(pi, 0, n << 2);
+        memset(pot, 0, n << 2);
         int f = 0, c = 0, v;
         while (true) {
             memset(d, -1, n << 2);
@@ -38,7 +38,7 @@ struct flow_network {
                 q.erase(q.begin());
                 for (int i = head[u]; i != -1; i = e[i].nxt) {
                     if (e[i].cap == 0) continue;
-                    int cd = d[u] + e[i].cost + pi[u] - pi[v = e[i].v];
+                    int cd = d[u] + e[i].cost + pot[u] - pot[v = e[i].v];
                     if (d[v] == -1 || cd < d[v]) {
                         if (q.find(v) != q.end()) q.erase(q.find(v));
                         d[v] = cd; p[v] = i;
@@ -52,8 +52,8 @@ struct flow_network {
             at = p[t], f += x;
             while (at != -1)
                 e[at].cap -= x, e[at^1].cap += x, at = p[e[at^1].v];
-            c += x * (d[t] + pi[t] - pi[s]);
-            for (int i = 0; i < n; i++) if (p[i] != -1) pi[i] += d[i];
+            c += x * (d[t] + pot[t] - pot[s]);
+            for (int i = 0; i < n; i++) if (p[i] != -1) pot[i] += d[i];
         }
         if (res) reset();
         return ii(f, c);
