@@ -19,11 +19,11 @@ struct flow_network {
         e.push_back(edge(v, uv, head[u])); head[u] = ecnt++;
         e.push_back(edge(u, vu, head[v])); head[v] = ecnt++;
     }
-    int dfs(int v, int t, int f) {
+    int augment(int v, int t, int f) {
         if (v == t) return f;
         for (int &i = curh[v], ret; i != -1; i = e[i].nxt)
             if (e[i].cap > 0 && d[e[i].v] + 1 == d[v])
-                if ((ret = dfs(e[i].v, t, min(f, e[i].cap))) > 0)
+                if ((ret = augment(e[i].v, t, min(f, e[i].cap))) > 0)
                     return (e[i].cap -= ret, e[i^1].cap += ret, ret);
         return 0;
     }
@@ -40,7 +40,7 @@ struct flow_network {
                         d[q[r++] = e[i].v] = d[v]+1;
             if (d[s] == -1) break;
             memcpy(curh, head, n * sizeof(int));
-            while ((x = dfs(s, t, INF)) != 0) f += x;
+            while ((x = augment(s, t, INF)) != 0) f += x;
         }
         if (res) reset();
         return f;
