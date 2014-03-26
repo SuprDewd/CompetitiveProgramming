@@ -356,6 +356,11 @@ syn on | colorscheme slate
                 $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} +
                 \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} =
                 \left\{n\atop n\right\} = 1$
+            \item Number of permutations of length $n$ that have no fixed
+                points (derangements): $D_0 = 1, D_1 = 0, D_n = (n - 1)(D_{n-1}
+                + D_{n-2})$
+            \item Number of permutations of length $n$ that have exactly $k$
+                fixed points: $\binom{n}{k} D_{n-k}$
             \item \textbf{Heron's formula:} A triangle with side lengths
                 $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
                 \frac{a+b+c}{2}$.
