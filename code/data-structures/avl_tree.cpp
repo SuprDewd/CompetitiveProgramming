@@ -68,6 +68,12 @@ public:
             else if (n > sz(cur->l)) n -= sz(cur->l) + 1, cur = cur->r;
             else break;
         } return cur; }
+    int count_less(node *cur) {
+        int sum = sz(cur->l);
+        while (cur) {
+            if (cur->p && cur->p->r == cur) sum += 1 + sz(cur->p->l);
+            cur = cur->p;
+        } return sum; }
 private:
     inline int sz(node *n) const { return n ? n->size : 0; }
     inline int height(node *n) const { return n ? n->height : -1; }

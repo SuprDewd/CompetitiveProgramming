@@ -1,5 +1,5 @@
 void test() {
-    /* Field testing: UVa 978, UVa 1513, UVa 12049 */
+    /* Field testing: UVa 978, UVa 1513, UVa 12049, Kattis turbo */
 
     int cnt = 10000,
         range = 1000;
