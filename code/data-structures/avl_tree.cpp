@@ -6,7 +6,7 @@ public:
     struct node {
         T item; node *p, *l, *r;
         int size, height;
-        node(const T &item, node *p = NULL) : item(item), p(p),
+        node(const T &_item, node *_p = NULL) : item(_item), p(_p),
         l(NULL), r(NULL), size(1), height(0) { } };
     avl_tree() : root(NULL) { }
     node *root;

@@ -3,11 +3,11 @@ int q[MAXV], d[MAXV], p[MAXV];
 struct flow_network {
     struct edge {
         int v, cap, nxt;
-        edge(int v, int cap, int nxt) : v(v), cap(cap), nxt(nxt) {  }
+        edge(int _v, int _cap, int _nxt) : v(_v), cap(_cap), nxt(_nxt) {  }
     };
     int n, ecnt, *head;
     vector<edge> e, e_store;
-    flow_network(int n, int m = -1) : n(n), ecnt(0) {
+    flow_network(int _n, int m = -1) : n(_n), ecnt(0) {
         e.reserve(2 * (m == -1 ? n : m));
         memset(head = new int[n], -1, n << 2);
     }

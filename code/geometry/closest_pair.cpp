@@ -7,7 +7,7 @@ struct cmpy { bool operator ()(const point &a, const point &b) {
     return abs(imag(a) - imag(b)) > EPS ?
             imag(a) < imag(b) : real(a) < real(b); } };
 double closest_pair(vector<point> pts) {
-    sort(all(pts), cmpx());
+    sort(pts.begin(), pts.end(), cmpx());
     set<point, cmpy> cur;
     set<point, cmpy>::const_iterator it, jt;
     double mn = INFINITY;

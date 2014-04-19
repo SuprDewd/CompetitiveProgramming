@@ -1,6 +1,6 @@
 struct monofunc {
     double a, b, c, d;
-    monofunc(double a, double b, double c, double d) : a(a), b(b), c(c), d(d) { }
+    monofunc(double _a, double _b, double _c, double _d) : a(_a), b(_b), c(_c), d(_d) { }
     double operator ()(double x) { return -c*(x-a)*(x-b) + d; }
 };
 

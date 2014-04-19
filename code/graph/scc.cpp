@@ -27,8 +27,8 @@ pair<union_find, vi> scc(const vvi &adj) {
         S.push(order[i]), dag.push_back(order[i]);
         while (!S.empty()) {
             visited[u = S.top()] = true, S.pop(), uf.unite(u, order[i]);
-            for (int i = 0; i < size(adj[u]); i++)
-                if (!visited[v = adj[u][i]]) S.push(v);
+            for (int j = 0; j < size(adj[u]); j++)
+                if (!visited[v = adj[u][j]]) S.push(v);
         }
     }
     return pair<union_find, vi>(uf, dag);

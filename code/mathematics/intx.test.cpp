@@ -96,7 +96,8 @@ void test() {
     enabled_ops.insert("fac");
     enabled_ops.insert("gcd");
 
-    int line = 0, n;
+    // int line = 0, n;
+    int n;
     string op, s, ans;
     intx a, b;
     while (input >> op) {

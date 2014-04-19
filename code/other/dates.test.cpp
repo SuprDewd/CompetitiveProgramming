@@ -1,4 +1,4 @@
-int test() {
+void test() {
     /* Field testing: UVa 11356, UVa 12019, UVa 893 (had to use long long) */
 
     int y, m, d;

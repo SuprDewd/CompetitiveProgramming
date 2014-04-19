@@ -21,6 +21,7 @@ public:
             for (int i = 0; i < K; i++)
                 if (abs(coord[i] - other.coord[i]) > EPS)
                     return coord[i] < other.coord[i];
+            return false;
         }
     };
 

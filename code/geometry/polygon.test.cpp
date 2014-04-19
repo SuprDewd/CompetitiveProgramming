@@ -1,8 +1,8 @@
-bool assert_nearly_equal(double a, double b) {
+void assert_nearly_equal(double a, double b) {
     assert_true(abs(a - b) < EPS);
 }
 
-bool assert_equal(point a, point b) {
+void assert_equal(point a, point b) {
     assert_nearly_equal(real(a), real(b));
     assert_nearly_equal(imag(a), imag(b));
 }

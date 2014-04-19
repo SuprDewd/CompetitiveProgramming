@@ -15,4 +15,4 @@ echo "#line 1 \"$DIR2/$TEST.test.cpp\"" >> $DIR/tmp.cpp
 cat "$DIR2/$TEST.test.cpp" >> $DIR/tmp.cpp
 echo "" >> $DIR/tmp.cpp
 cat $DIR/test_footer.cpp >> $DIR/tmp.cpp
-g++ $DIR/tmp.cpp -g -o $DIR/tmp.exe && $DIR/tmp.exe
+g++ $DIR/tmp.cpp -Wall -Wshadow -Wpedantic -Wno-long-long -g -o $DIR/tmp.exe && $DIR/tmp.exe

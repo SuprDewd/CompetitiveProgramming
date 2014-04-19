@@ -8,12 +8,12 @@ struct cmp {
 struct flow_network {
     struct edge {
         int v, cap, cost, nxt;
-        edge(int v, int cap, int cost, int nxt)
-            : v(v), cap(cap), cost(cost), nxt(nxt) {  }
+        edge(int _v, int _cap, int _cost, int _nxt)
+            : v(_v), cap(_cap), cost(_cost), nxt(_nxt) {  }
     };
     int n, ecnt, *head;
     vector<edge> e, e_store;
-    flow_network(int n, int m = -1) : n(n), ecnt(0) {
+    flow_network(int _n, int m = -1) : n(_n), ecnt(0) {
         e.reserve(2 * (m == -1 ? n : m));
         memset(head = new int[n], -1, n << 2);
     }

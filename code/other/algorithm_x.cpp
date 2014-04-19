@@ -3,13 +3,13 @@ struct exact_cover {
     struct node {
         node *l, *r, *u, *d, *p;
         int row, col, size;
-        node(int row, int col) : row(row), col(col) {
+        node(int _row, int _col) : row(_row), col(_col) {
             size = 0; l = r = u = d = p = NULL; }
     };
     int rows, cols, *sol;
     bool **arr;
     node *head;
-    exact_cover(int rows, int cols) : rows(rows), cols(cols), head(NULL) {
+    exact_cover(int _rows, int _cols) : rows(_rows), cols(_cols), head(NULL) {
         arr = new bool*[rows];
         sol = new int[rows];
         for (int i = 0; i < rows; i++)

@@ -4,7 +4,7 @@
 struct cmp {
     int *idx;
     string s;
-    cmp(int *idx, string s) : idx(idx), s(s) { }
+    cmp(int *_idx, string _s) : idx(_idx), s(_s) { }
     bool operator()(int a, int b) {
         return s.substr(a) < s.substr(b);
     }
@@ -18,7 +18,7 @@ public:
     int *idx;
 
     // naive_suffix_array(string s) : s(s + "\x0c"), n(size(s)+1) {
-    naive_suffix_array(string s) : s(s), n(size(s)) {
+    naive_suffix_array(string _s) : s(_s), n(size(s)) {
         idx = new int[n];
         for (int i = 0; i < n; i++) idx[i] = i;
         sort(idx, idx + n, cmp(idx,s));

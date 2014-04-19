@@ -3,7 +3,7 @@ int dist[MAXN+1], q[MAXN+1];
 #define dist(v) dist[v == -1 ? MAXN : v]
 struct bipartite_graph {
     int N, M, *L, *R; vi *adj;
-    bipartite_graph(int N, int M) : N(N), M(M),
+    bipartite_graph(int _N, int _M) : N(_N), M(_M),
         L(new int[N]), R(new int[M]), adj(new vi[N]) {}
     ~bipartite_graph() { delete[] adj; delete[] L; delete[] R; }
     bool bfs() {

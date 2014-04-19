@@ -3,7 +3,7 @@ struct aho_corasick_slow {
 
     vector<string> keywords;
 
-    aho_corasick_slow(vector<string> keywords) : keywords(keywords) {
+    aho_corasick_slow(vector<string> _keywords) : keywords(_keywords) {
     }
 
     vector<string> search(string s) {
