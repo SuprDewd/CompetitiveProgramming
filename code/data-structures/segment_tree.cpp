@@ -4,6 +4,7 @@ const int ID = 0;
 int f(int a, int b) { return a + b; }
 struct segment_tree {
     int n; vi data, lazy;
+    segment_tree() {}
     segment_tree(const vi &arr) : n(size(arr)), data(4*n), lazy(4*n,INF) {
         mk(arr, 0, n-1, 0); }
     int mk(const vi &arr, int l, int r, int i) {
