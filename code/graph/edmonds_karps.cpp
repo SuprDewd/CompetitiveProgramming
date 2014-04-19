@@ -27,7 +27,8 @@ struct flow_network {
             l = r = 0, d[q[r++] = s] = 0;
             while (l < r)
                 for (int u = q[l++], i = head[u]; i != -1; i = e[i].nxt)
-                    if (e[i].cap > 0 && (d[v = e[i].v] == -1 || d[u] + 1 < d[v]))
+                    if (e[i].cap > 0 &&
+                            (d[v = e[i].v] == -1 || d[u] + 1 < d[v]))
                         d[v] = d[u] + 1, p[q[r++] = v] = i;
             if (p[t] == -1) break;
             int x = INF, at = p[t];
