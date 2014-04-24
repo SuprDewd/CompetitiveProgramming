@@ -1,5 +1,11 @@
 void test() {
-    /* Field testing: UVa 11356, UVa 12019, UVa 893 (had to use long long) */
+    /*
+     * Field testing:
+     * - UVa 11356
+     * - UVa 12019
+     * - UVa 893 (had to use long long)
+     * - Kattis booking
+     **/
 
     int y, m, d;
     assert_equal(2451545, dateToInt(2000, 1, 1));
