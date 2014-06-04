@@ -15,6 +15,7 @@
 \usepackage{subcaption}
 \usepackage[scaled]{beramono}
 \usepackage{titling}
+\usepackage{datetime}
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -31,13 +32,12 @@
 % \geometry{includeheadfoot}
 %\fancyhf{}
 \pagestyle{fancy}
-\lhead{Reykjavik University}
+\lhead{Reykjavík University}
 \rhead{\thepage}
 \cfoot{}
 \setlength{\headheight}{15.2pt}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
-
 
 % Math and bit operators
 \DeclareMathOperator{\lcm}{lcm}
@@ -48,14 +48,16 @@
 \newcommand*\BitNeg{\ensuremath{\mathord{\sim}}}
 
 % Title/Author
-\title{DanceParty}
+\title{viRUs}
 \subtitle{Team Reference Document}
+\date{\ddmmyyyydate{\today{}}}
 
 \begin{document}
 
 \maketitle
 \thispagestyle{fancy}
 \tableofcontents
+
 \newpage
 
 \section{Code Templates}
