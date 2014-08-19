@@ -52,6 +52,11 @@
 \subtitle{Team Reference Document}
 \date{\ddmmyyyydate{\today{}}}
 
+% Output Verbosity
+\newif\ifverbose
+\verbosetrue
+% \verbosefalse
+
 \begin{document}
 
 \maketitle
@@ -253,10 +258,12 @@ syn on | colorscheme slate
         \code{strings/z_algorithm.cpp}
 
 \section{Mathematics}
+    \ifverbose
     \subsection{Fraction}
         A fraction (rational number) class. Note that numbers are stored in
         lowest common terms.
         \code{mathematics/fraction.cpp}
+    \fi
 
     \subsection{Big Integer}
         A big integer class.
