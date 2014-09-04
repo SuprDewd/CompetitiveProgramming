@@ -37,6 +37,14 @@ void assert_false(bool actual, bool kill = false) {
     }
 }
 
+void assert_almost_equal(double a, double b, double eps, bool kill = false) {
+    assert_true(abs(a - b) < eps, kill);
+}
+
+double randdouble(double a, double b) {
+    return static_cast<double>(rand()) / RAND_MAX * (b - a) + a;
+}
+
 int randint(int a, int b) {
-    return static_cast<int>(static_cast<double>(rand()) / RAND_MAX * (b - a) + a + 0.5);
+    return static_cast<int>(randdouble(a, b) + 0.5);
 }
