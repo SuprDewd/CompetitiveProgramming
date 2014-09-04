@@ -19,6 +19,8 @@ double angle(P(a), P(b), P(c)) {
     return acos(dot(b - a, c - b) / abs(b - a) / abs(c - b)); }
 double signed_angle(P(a), P(b), P(c)) {
     return asin(cross(b - a, c - b) / abs(b - a) / abs(c - b)); }
+double angle(P(p)) { return atan2(imag(p), real(p)); }
+point perp(P(p)) { return point(-imag(p), real(p)); }
 double progress(P(p), L(a, b)) {
     if (abs(real(a) - real(b)) < EPS)
         return (imag(p) - imag(a)) / (imag(b) - imag(a));
