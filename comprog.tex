@@ -139,6 +139,10 @@ syn on | colorscheme slate
         nearest neighbor queries.
         \code{data-structures/kd_tree.cpp}
 
+    \subsection{Sqrt Decomposition}
+        Design principle that supports many operations in amortized $\sqrt{n}$ per operation.
+        \code{data-structures/sqrt_decomposition.cpp}
+
 \section{Graphs}
     \subsection{Breadth-First Search}
         An implementation of a breadth-first search that counts the number of
@@ -256,6 +260,10 @@ syn on | colorscheme slate
         $T$ in linear time. This is accomplished by computing $Z$ values of $S
         = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
         \code{strings/z_algorithm.cpp}
+
+    \subsection{Palindromic Tree}
+        Constructs a Palindromic Tree in $O(n)$, one character at a time.
+        \code{strings/palindromic_tree.cpp}
 
 \section{Mathematics}
     \ifverbose
@@ -407,6 +415,11 @@ syn on | colorscheme slate
             \item $\gcd(2^a-1,2^b-1) = 2^{\gcd(a,b)}-1$
         \end{itemize}
 
+
+    \subsection{Numbers and Sequences}
+        Some random prime numbers: 1031, 32771, 1048583, 33554467,
+        1073741827, 34359738421, 1099511627791, 35184372088891,
+        1125899906842679, 36028797018963971.
 
 \section{Geometry}
     \subsection{Primitives}
