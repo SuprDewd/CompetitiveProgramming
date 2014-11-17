@@ -1,3 +1,7 @@
+#include <cmath>
+using namespace std;
+const double EPS = 1e-9;
+
 #define P(p) const point3d &p
 #define L(p0, p1) P(p0), P(p1)
 #define PL(p0, p1, p2) P(p0), P(p1), P(p2)
@@ -51,17 +55,17 @@ struct point3d {
        return (*this) * normal;
     }
     point3d rotate(double alpha, const point3d & normal) const {
-        return (*this) * cos(alpha) + v.rotate(normal) * sin(alpha);
+        return (*this) * cos(alpha) + rotate(normal) * sin(alpha);
     }
-    point3d rotatePoint(point3d O, point3d axe, double alpha) {
+    point3d rotatePoint(point3d O, point3d axe, double alpha) const{
         point3d Z = axe.normalize(axe % (*this - O));
-        return O + Z + (*this - O - Z).rotate(O, cos(alpha), sin(alpha));
+        return O + Z + (*this - O - Z).rotate(alpha, O);
     }
     bool isZero() const {
         return abs(x - 0) < EPS && abs(y - 0) < EPS && abs(z - 0) < EPS;
     }
-    bool isOnLine(const point3d & A, const point & B){
-        return ((A - *this) * (B - *&this)).isZero();
+    bool isOnLine(const point3d & A, const point3d & B) const {
+        return ((A - *this) * (B - *this)).isZero();
     }
     bool isInSegment(const point3d & A, const point3d & B) const {
         return isOnLine(A, B) && ((A - *this) % (B - *this)) < EPS;
@@ -72,11 +76,11 @@ struct point3d {
     double getAngle() const {
         return atan2(y, x);
     }
-    double getAngle(Point u) const {
+    double getAngle(point3d u) const {
         return atan2((*this * u).length(), *this % u);
     }
-    bool isOnPlane(const Point & A, const Point & B, const Point & C) const {
-        return abs((A - *this) * (B - *this) % (B - *this)) < EPS;
+    bool isOnPlane(const point3d & A, const point3d & B, const point3d & C) const {
+        return abs((A - *this) * (B - *this) % (C - *this)) < EPS;
     }
     int getIntersection ( const point3d & A, const point3d & B, const point3d & C, const point3d & D, point3d & O){
         // NOTE: The points must form a plane, can be checked by their parallelepipe
@@ -86,11 +90,11 @@ struct point3d {
         }
         point3d normal = ((A - B) * (C - B)).normalize();
         double s1 = (C - A) * (D - A) % normal;
-        O = A + s1 * ((B - A) / (s1 + ((D - B) * (C - B) % normal)));
+        O = A + ((B - A) / (s1 + ((D - B) * (C - B) % normal))) * s1;
         return 1;
     }
 
-    int getIntersection(const point3d & A, const point3d & B, const point3d & C, const point3d & D, const point3d & E, const point3d & O) {
+    int getIntersection(const point3d & A, const point3d & B, const point3d & C, const point3d & D, const point3d & E, point3d & O) {
         double V1 = (C - A) * (D - A) % (E - A);
         double V2 = (D - B) * (C - B) % (E - B);
         if ( abs(V1 + V2) < EPS ){
@@ -101,10 +105,10 @@ struct point3d {
         return 1;
     }
 
-    bool getIntersection(const point3d & A, const point3d & nA, const point3d & B, const point3d & nB, Point & P, Point & Q){
-        Point n = nA * nB;
+    bool getIntersection(const point3d & A, const point3d & nA, const point3d & B, const point3d & nB, point3d & P, point3d & Q){
+        point3d n = nA * nB;
         if(n.isZero()) return false;
-        Point v = n * nA;
+        point3d v = n * nA;
         P = A + (n * nA) * ((B - A) % nB / (v % nB));
         Q = P + n;
         return true;
