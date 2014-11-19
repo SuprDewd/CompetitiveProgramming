@@ -82,35 +82,35 @@ struct point3d {
     bool isOnPlane(const point3d & A, const point3d & B, const point3d & C) const {
         return abs((A - *this) * (B - *this) % (C - *this)) < EPS;
     }
-    int getIntersection ( const point3d & A, const point3d & B, const point3d & C, const point3d & D, point3d & O){
-        // NOTE: The points must form a plane, can be checked by their parallelepipe
-        if(((A - B) * (C - D)).length() < EPS){
-            if( A.isOnLine(C, D)) return 2;
-            return 0;
-        }
-        point3d normal = ((A - B) * (C - B)).normalize();
-        double s1 = (C - A) * (D - A) % normal;
-        O = A + ((B - A) / (s1 + ((D - B) * (C - B) % normal))) * s1;
-        return 1;
-    }
-
-    int getIntersection(const point3d & A, const point3d & B, const point3d & C, const point3d & D, const point3d & E, point3d & O) {
-        double V1 = (C - A) * (D - A) % (E - A);
-        double V2 = (D - B) * (C - B) % (E - B);
-        if ( abs(V1 + V2) < EPS ){
-            if(A.isOnPlane(C, D, E)) return 2;
-            return 0;
-        }
-        O = A + ((B - A) / (V1 + V2)) * V1;
-        return 1;
-    }
-
-    bool getIntersection(const point3d & A, const point3d & nA, const point3d & B, const point3d & nB, point3d & P, point3d & Q){
-        point3d n = nA * nB;
-        if(n.isZero()) return false;
-        point3d v = n * nA;
-        P = A + (n * nA) * ((B - A) % nB / (v % nB));
-        Q = P + n;
-        return true;
-    }
 };
+int intersect ( const point3d & A, const point3d & B, const point3d & C, const point3d & D, point3d & O){
+    // NOTE: The points must form a plane and not be colinear, can be checked by their parallelepipe
+    if(((A - B) * (C - D)).length() < EPS){
+        if( A.isOnLine(C, D)) return 2;
+        return 0;
+    }
+    point3d normal = ((A - B) * (C - B)).normalize();
+    double s1 = (C - A) * (D - A) % normal;
+    O = A + ((B - A) / (s1 + ((D - B) * (C - B) % normal))) * s1;
+    return 1;
+}
+
+int intersect(const point3d & A, const point3d & B, const point3d & C, const point3d & D, const point3d & E, point3d & O) {
+    double V1 = (C - A) * (D - A) % (E - A);
+    double V2 = (D - B) * (C - B) % (E - B);
+    if ( abs(V1 + V2) < EPS ){
+        if(A.isOnPlane(C, D, E)) return 2;
+        return 0;
+    }
+    O = A + ((B - A) / (V1 + V2)) * V1;
+    return 1;
+}
+
+bool intersect(const point3d & A, const point3d & nA, const point3d & B, const point3d & nB, point3d & P, point3d & Q){
+    point3d n = nA * nB;
+    if(n.isZero()) return false;
+    point3d v = n * nA;
+    P = A + (n * nA) * ((B - A) % nB / (v % nB));
+    Q = P + n;
+    return true;
+}
