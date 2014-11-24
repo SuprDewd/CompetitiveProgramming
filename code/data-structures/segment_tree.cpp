@@ -1,7 +1,10 @@
-// const int ID = INF;
-// int f(int a, int b) { return min(a, b); }
+#ifdef SEG_MIN
+const int ID = INF;
+int f(int a, int b) { return min(a, b); }
+#else
 const int ID = 0;
 int f(int a, int b) { return a + b; }
+#endif
 struct segment_tree {
     int n; vi data, lazy;
     segment_tree() {}
