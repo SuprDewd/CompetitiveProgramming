@@ -144,6 +144,7 @@ syn on | colorscheme slate
         \code{data-structures/sqrt_decomposition.cpp}
 
 \section{Graphs}
+    \ifverbose
     \subsection{Breadth-First Search}
         An implementation of a breadth-first search that counts the number of
         edges on the shortest path from the starting vertex to the ending
@@ -156,6 +157,7 @@ syn on | colorscheme slate
         connected. If there is no path from the starting vertex to the ending
         vertex, a $-1$ is returned.
         \code{graph/bfs_visited.cpp}
+    \fi
 
     \subsection{Single-Source Shortest Paths}
         \subsubsection{Dijkstra's algorithm}
@@ -463,6 +465,9 @@ syn on | colorscheme slate
     \subsection{3D Primitives}
         Three-dimensional geometry primitives.
         \code{geometry/primitives3d.cpp}
+
+    \subsection{Polygon Centroid}
+        \code{geometry/polygon_centroid.cpp}
 
     \subsection{Formulas}
         Let $a = (a_x, a_y)$ and $b = (b_x, b_y)$ be two-dimensional vectors.

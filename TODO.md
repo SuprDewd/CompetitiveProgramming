@@ -1,6 +1,7 @@
 Things to do
 ============
 
+* Fix convex hull edge case (some small edge case that included at least three collinear lines would return the same point on both the upper and lower hull)
 * Shortest Path Faster Algorithm
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
