@@ -54,8 +54,8 @@
 
 % Output Verbosity
 \newif\ifverbose
-\verbosetrue
-% \verbosefalse
+% \verbosetrue
+\verbosefalse
 
 \begin{document}
 
@@ -566,10 +566,12 @@ syn on | colorscheme slate
         the following input reading method.
         \code{tricks/fast_input.cpp}
 
+    \ifverbose
     \subsection{128-bit Integer}
         GCC has a 128-bit integer data type named \texttt{\_\_int128}. Useful
         if doing multiplication of 64-bit integers, or something needing a
         little more than 64-bits to represent.
+    \fi
 
     \subsection{Worst Time Complexity}
     \begin{center}
