@@ -1,7 +1,7 @@
 #include <complex>
 #define P(p) const point &p
 #define L(p0, p1) P(p0), P(p1)
-#define C(p0, r) P(p0), const double r
+#define C(p0, r) P(p0), double r
 #define PP(pp) pair<point,point> &pp
 typedef complex<double> point;
 double dot(P(a), P(b)) { return real(conj(a) * b); }

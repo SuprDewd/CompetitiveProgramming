@@ -1,7 +1,8 @@
 Things to do
 ============
 
-* Shortest Path Faster Algorithm Algorithm
+* Fix convex hull edge case (some small edge case that included at least three collinear lines would return the same point on both the upper and lower hull)
+* Shortest Path Faster Algorithm
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
 * Edmonds's maximum matching algorithm (Blossom algorithm)
@@ -9,7 +10,6 @@ Things to do
 * Hungarian algorithm
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Simplex method
-* Articulation points and bridges in a graph (similar to Tarjan's SCC algorithm)
 * Add more Geometry stuff.
 * Edmond's optimum branching algorithm
 

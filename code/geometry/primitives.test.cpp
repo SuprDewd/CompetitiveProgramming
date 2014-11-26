@@ -57,7 +57,7 @@ void test() {
     assert_equal(point(6.0/25, -8.0/25), proj(point(-3, 4), point(2, 1)));
 
     point res1, res2;
-    // Circle, cirple intersection
+    // Circle circle intersection
     assert_equal(intersect(point(0,0), 2, point(3,0), 2, res1, res2), 2);
     assert_equal(intersect(point(0,0), 2, point(3,2), 2, res1, res2), 2);
     assert_equal(intersect(point(0,0), 2, point(2,3), 2, res1, res2), 2);
@@ -107,8 +107,7 @@ void test() {
     assert_equal(1, tangent(point(0,0), point(2,0), 2.0, M, N));
     assert_equal(0, tangent(point(3.4142135,1.4142135), point(2,0), 2.0, M, N));
 
-    // Circle, circle tangent
-    //
+    // Circle circle tangent
     pair<point, point> res3, res4;
     tangent_outer(point(0,1), 1.0, point(8,1), 1.0, res3, res4);
     assert_equal(res3.first, point(0.0,2.0));

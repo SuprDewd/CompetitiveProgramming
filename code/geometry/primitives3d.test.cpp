@@ -1,6 +1,3 @@
-#include <cmath>
-
-// TODO
 void assert_nearly_equal(double a, double b) {
     //printf("Expected: %.10f, but got %.10f\n", a, b);
     assert_true(abs(a - b) < EPS);
@@ -34,5 +31,4 @@ void test() {
 
     assert_nearly_equal(point3d(exp(2.7), pi*2, -log(1000000.0)).normalize().length(), 1.0);
     assert_nearly_equal(point3d(exp(2.7), pi*2, -log(1000000.0)).normalize(7.93).length(), 7.93);
-
 }

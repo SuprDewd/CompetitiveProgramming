@@ -1,6 +1,6 @@
 struct segment {
     vi arr;
-    segment(vi arr) : arr(arr) { } };
+    segment(vi _arr) : arr(_arr) { } };
 vector<segment> T;
 int K;
 void rebuild() {
