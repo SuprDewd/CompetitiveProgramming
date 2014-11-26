@@ -84,7 +84,7 @@ struct point3d {
     }
 };
 int intersect ( const point3d & A, const point3d & B, const point3d & C, const point3d & D, point3d & O){
-    // NOTE: The points must form a plane and not be colinear, can be checked by their parallelepipe
+    // NOTE: The points must form a plane and not be colinear, can be checked by their parallelepiped
     if(((A - B) * (C - D)).length() < EPS){
         if( A.isOnLine(C, D)) return 2;
         return 0;

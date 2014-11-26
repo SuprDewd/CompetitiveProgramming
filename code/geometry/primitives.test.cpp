@@ -28,10 +28,11 @@ void test() {
     assert_false(collinear(c, a, b));
     assert_false(collinear(c, b, a));
 
-    assert_equal(point(-3, 3), rotate(point(3, 3), point(0,0), pi / 2));
-    assert_equal(point(-3, -3), rotate(point(3, 3), point(0,0), pi));
-    assert_equal(point(3, -3), rotate(point(3, 3), point(0,0), pi + pi / 2));
-    assert_equal(point(3, 3), rotate(point(3, 3), point(0,0), 2 * pi));
+    assert_equal(point(-3, 3), rotate(point(3, 3), pi / 2, point(0,0)));
+    assert_equal(point(-3, 3), rotate(point(3, 3)));
+    assert_equal(point(-3, -3), rotate(point(3, 3), pi, point(0,0)));
+    assert_equal(point(3, -3), rotate(point(3, 3), pi + pi / 2, point(0,0)));
+    assert_equal(point(3, 3), rotate(point(3, 3), 2 * pi, point(0,0)));
 
     assert_equal(point(1, 1), closest_point(point(2, 2), point(3, 3), point(2, 0)));
     assert_equal(point(0.5, 0.5), closest_point(point(2, 2), point(3, 3), point(1, 0)));
@@ -97,4 +98,25 @@ void test() {
 
     assert_equal(1, intersect(point(-5,0), point(5,0), point(0,3), 3, res1, res2));
     assert_equal(1, intersect(point(0,-5), point(0,5), point(3, -3234.234), 3, res1, res2));
+
+    // Point circle tangent
+    point M, N;
+    assert_equal(2, tangent(point(0,2), point(2,0), 2.0, M, N));
+    assert_equal(N, point(0,0));
+    assert_equal(M, point(2,2));
+    assert_equal(1, tangent(point(0,0), point(2,0), 2.0, M, N));
+    assert_equal(0, tangent(point(3.4142135,1.4142135), point(2,0), 2.0, M, N));
+
+    // Circle, circle tangent
+    //
+    pair<point, point> res3, res4;
+    tangent_outer(point(0,1), 1.0, point(8,1), 1.0, res3, res4);
+    assert_equal(res3.first, point(0.0,2.0));
+    assert_equal(res3.second, point(8.0,2.0));
+    assert_equal(res4.first, point(0.0,0.0));
+    assert_equal(res4.second, point(8.0,0.0));
+
+    tangent_outer(point(0,1), 1.0, point(8,4), 4.0, res3, res4);
+    assert_equal(res4.first, point(0.0,0.0));
+    assert_equal(res4.second, point(8.0,0.0));
 }

@@ -2,16 +2,18 @@
 #define P(p) const point &p
 #define L(p0, p1) P(p0), P(p1)
 #define C(p0, r) P(p0), const double r
+#define PP(pp) pair<point,point> &pp
 typedef complex<double> point;
 double dot(P(a), P(b)) { return real(conj(a) * b); }
 double cross(P(a), P(b)) { return imag(conj(a) * b); }
-point rotate(P(p), P(about) = complex<double>(0,0), double radians = pi / 2) { //TODO: TEST
+point rotate(P(p), double radians = pi / 2, P(about) = point(0,0)) { 
     return (p - about) * exp(point(0, radians)) + about; }
 point reflect(P(p), L(about1, about2)) {
     point z = p - about1, w = about2 - about1;
     return conj(z / w) * w + about1; }
 point proj(P(u), P(v)) { return dot(u, v) / dot(u, u) * u; }
-point normalize(P(p), double k = 1.0) { return p * (k / abs(p)); } //TODO: TEST
+point normalize(P(p), double k = 1.0) { 
+    return abs(p) == 0 ? point(0,0) : p / abs(p) * k; } //TODO: TEST
 bool parallel(L(a, b), L(p, q)) { return abs(cross(b - a, q - p)) < EPS; }
 double ccw(P(a), P(b), P(c)) { return cross(b - a, c - b); }
 bool collinear(P(a), P(b), P(c)) { return abs(ccw(a, b, c)) < EPS; }
@@ -59,89 +61,35 @@ double line_segment_distance(L(a,b), L(c,d)) {
     }
     return x;
 }
-
-int intersect ( C(A, rA), C(B, rB), point & M, point & N) { //TODO: TEST
-        double d = abs(B - A);
-        if ( rA + rB <  d - EPS || d < abs(rA - rB) - EPS) return 0;
-        double a = (rA*rA - rB*rB + d*d) / 2 / d;
-        double h = sqrt(rA*rA - a*a);
-        point v = normalize(B - A, a);
-        point u = normalize(rotate(B-A), h);
-        //v = v.normalize(a);
-        //u = u.normalize(h);
-        //Point H = A + v;
-        M = A + v + u;
-        N = A + v - u;
-        //M = H + u;
-        //N = H - u;
-        if (abs(u) < EPS) return 1;
-        return 2;
+int intersect(C(A, rA), C(B, rB), point & res1, point & res2) { 
+    double d = abs(B - A);
+    if ( rA + rB <  d - EPS || d < abs(rA - rB) - EPS) return 0;
+    double a = (rA*rA - rB*rB + d*d) / 2 / d, h = sqrt(rA*rA - a*a);
+    point v = normalize(B - A, a), u = normalize(rotate(B-A), h);
+    res1 = A + v + u, res2 = A + v - u;
+    if (abs(u) < EPS) return 1; return 2;
 }
- 
-//int getIntersection ( const Point & A, const Point & B, const Point & O, double r, Point & M, Point & N) {
-int intersect ( L(A, B), C(O, r), point & M, point & N) {
-         //double h = O.distTo(A, B);
-         double h = abs(O - closest_point(A, B, O));
-         if(r < h - EPS) return 0;
-         //if (doubleLess(r, h))
-         //{
-                 //return 0;
-         //}
-         point H = proj(O - A, B - A) + A;
-         //Point H = O.getH(A, B);
-         //Point v = B - A;
-         //double k = mySqrt(sqr(r) - sqr(h));
-         point v = normalize((B - A), sqrt(r*r - h*h));
-         M = H + v;
-         N = H - v;
-         if(abs(v) < EPS) return 1;
-         //if (v.isZero()) return 1;
-         return 2;
+int intersect(L(A, B), C(O, r), point & res1, point & res2) {
+     double h = abs(O - closest_point(A, B, O));
+     if(r < h - EPS) return 0;
+     point H = proj(O - A, B - A) + A, v = normalize((B - A), sqrt(r*r - h*h));
+     res1 = H + v; res2 = H - v;
+     if(abs(v) < EPS) return 1; return 2;
  }
-
-// int getTangent  // from A to circle (O, r)
-//         (
-//                 const Point & A,
-//                 const Point & O,
-//                 double r,
-//                 Point & M,
-//                 Point & N
-//         )
-// {
-//         Point v = O - A;
-//         double d = v.length();
-//         if (doubleLess(d, r)) return 0;
-//         double alpha = asin(r / d);
-//         double L = mySqrt(sqr(d) - sqr(r));
-//         v = v.normalize(L);
-//         M = A + v.rotate(alpha);
-//         N = A - v.rotate(alpha);
-//         if (doubleEqual(r, d)) return 1;
-//         return 2;
-// }
-//  
-//  
-// void getOutTangent  // of circles (A, rA) and (B, rB)
-//         (
-//                 Point A,
-//                 double rA,
-//                 Point B,
-//                 double rB,
-//                 pair<Point, Point> & P,
-//                 pair<Point, Point> & Q
-//         )
-// {
-//         if (rA > rB)
-//         {
-//                 swap(rA, rB);
-//                 swap(A, B);
-//         }
-//         double d = A.distTo(B);
-//         Point u = (A - B).rotate(asin(rA / d)).rotate().normalize(rA);
-//         P.first = A + u;
-//         Q.first = A - u;
-//         Point T1, T2;
-//         getTangent(A, B, rB - rA, T1, T2);
-//         P.second = T1 + u;
-//         Q.second = T2 - u;
-// }
+int tangent(P(A), C(O, r), point & res1, point & res2) {
+    point v = O - A; double d = abs(v);
+    if (d < r - EPS) return 0;
+    double alpha = asin(r / d), L = sqrt(d*d - r*r);
+    v = normalize(v, L);
+    res1 = A + rotate(v, alpha); res2 = A + rotate(v, -alpha);
+    if (abs(r - d) < EPS || abs(v) < EPS) return 1;
+    return 2;
+}
+void tangent_outer(point A, double rA, point B, double rB, PP(P), PP(Q)) {
+    if (rA - rB > EPS) { swap(rA, rB); swap(A, B); }
+    double theta = asin((rB - rA)/abs(A - B));
+    point v = rotate(B - A, theta + pi/2), u = rotate(B - A, -(theta + pi/2));
+    u = normalize(u, rA);
+    P.first = A + normalize(v, rA); P.second = B + normalize(v, rB);
+    Q.first = A + normalize(u, rA); Q.second = B + normalize(u, rB);
+}
