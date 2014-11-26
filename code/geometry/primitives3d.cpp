@@ -1,4 +1,3 @@
-#include <cmath>
 #define P(p) const point3d &p
 #define L(p0, p1) P(p0), P(p1)
 #define PL(p0, p1, p2) P(p0), P(p1), P(p2)
