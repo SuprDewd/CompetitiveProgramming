@@ -1,7 +1,3 @@
-#include <cmath>
-using namespace std;
-const double EPS = 1e-9;
-
 #define P(p) const point3d &p
 #define L(p0, p1) P(p0), P(p1)
 #define PL(p0, p1, p2) P(p0), P(p1), P(p2)
@@ -21,10 +17,10 @@ struct point3d {
         return point3d(-x, -y, -z);
     }
     point3d operator*(double k) const {
-        return point3d(x * y, y * k, z * k);
+        return point3d(x * k, y * k, z * k);
     }
     point3d operator/(double k) const {
-        return point3d(x / y, y / k, z / k);
+        return point3d(x / k, y / k, z / k);
     }
     double operator%(const point3d & p) const {
         return x* p.x + y * p.y + z * p.z;
@@ -39,11 +35,9 @@ struct point3d {
         return (*this - p).length();
     }
     double distTo(const point3d & A, const point3d & B) const {
-        // A and B must be two different points
         return ((*this - A) * (*this - B)).length() / A.distTo(B);
     }
     point3d normalize(double k = 1) const {
-        // length() must not return 0
         return (*this) * (k / length());
     }
     point3d getProjection(const point3d & A, const point3d & B) const {
@@ -95,10 +89,10 @@ int intersect ( const point3d & A, const point3d & B, const point3d & C, const p
     return 1;
 }
 
-int intersect(const point3d & A, const point3d & B, const point3d & C, const point3d & D, const point3d & E, point3d & O) {
+int intersect(PL(A, B, C), L(D, E), point3d & O){
     double V1 = (C - A) * (D - A) % (E - A);
     double V2 = (D - B) * (C - B) % (E - B);
-    if ( abs(V1 + V2) < EPS ){
+    if (abs(V1 + V2) < EPS ){
         if(A.isOnPlane(C, D, E)) return 2;
         return 0;
     }
