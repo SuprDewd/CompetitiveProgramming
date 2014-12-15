@@ -26,7 +26,7 @@ public:
 };
 
 void make_sure_ok(string s) {
-    s = s + "~";
+    // s = s + "~";
     suffix_array sa1(s);
     naive_suffix_array sa2(s);
 
@@ -88,7 +88,6 @@ void test() {
     make_sure_ok("ABAAAAA");
     make_sure_ok("ABAAAAAA");
     make_sure_ok("ABAAAAAAA");
-
 
     for (int i = 0; i < 10000; i++) {
         int len = rand() % 1000;
