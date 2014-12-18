@@ -2,10 +2,9 @@ struct entry { ii nr; int p; };
 bool operator <(const entry &a, const entry &b) { return a.nr < b.nr; }
 struct suffix_array {
     string s; int n; vvi P; vector<entry> L; vi idx;
-    // REMINDER: Append a large character ('\x7F') to s
     suffix_array(string _s) : s(_s), n(size(s)) {
         L = vector<entry>(n), P.push_back(vi(n)), idx = vi(n);
-        for (int i = 0; i < n; i++) P[0][i] = s[i] - 'a';
+        for (int i = 0; i < n; i++) P[0][i] = s[i];
         for (int stp = 1, cnt = 1; cnt >> 1 < n; stp++, cnt <<= 1) {
             P.push_back(vi(n));
             for (int i = 0; i < n; i++)
