@@ -63,7 +63,7 @@ double line_segment_distance(L(a,b), L(c,d)) {
 }
 int intersect(C(A, rA), C(B, rB), point & res1, point & res2) { 
     double d = abs(B - A);
-    if ( rA + rB <  d - EPS || d < abs(rA - rB) - EPS) return 0;
+    if ((rA + rB) <  (d - EPS) || d < abs(rA - rB) - EPS) return 0;
     double a = (rA*rA - rB*rB + d*d) / 2 / d, h = sqrt(rA*rA - a*a);
     point v = normalize(B - A, a), u = normalize(rotate(B-A), h);
     res1 = A + v + u, res2 = A + v - u;
