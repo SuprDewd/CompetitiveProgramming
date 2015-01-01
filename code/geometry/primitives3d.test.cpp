@@ -10,8 +10,6 @@ void assert_equal(point3d a, point3d b) {
 }
 
 void test() {
-    /* Field testing MIPT Fall Trainig */
-
     point3d p;
     assert_equal(p, point3d(0,0,0));
 

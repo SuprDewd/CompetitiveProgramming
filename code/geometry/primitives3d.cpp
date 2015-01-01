@@ -54,7 +54,7 @@ struct point3d {
         return atan2((*this * u).length(), *this % u); }
     bool isOnPlane(PL(A, B, C)) const {
         return abs((A - *this) * (B - *this) % (C - *this)) < EPS; } };
-int intersect(L(A, B), L(C, D), point3d &O){
+int line_line_intersect(L(A, B), L(C, D), point3d &O){
     if (abs((B - A) * (C - A) % (D - A)) > EPS) return 0;
     if (((A - B) * (C - D)).length() < EPS)
         return A.isOnLine(C, D) ? 2 : 0;
@@ -62,14 +62,14 @@ int intersect(L(A, B), L(C, D), point3d &O){
     double s1 = (C - A) * (D - A) % normal;
     O = A + ((B - A) / (s1 + ((D - B) * (C - B) % normal))) * s1;
     return 1; }
-int intersect(L(A, B), PL(C, D, E), point3d & O) {
+int line_plane_intersect(L(A, B), PL(C, D, E), point3d & O) {
     double V1 = (C - A) * (D - A) % (E - A);
     double V2 = (D - B) * (C - B) % (E - B);
     if (abs(V1 + V2) < EPS)
         return A.isOnPlane(C, D, E) ? 2 : 0;
     O = A + ((B - A) / (V1 + V2)) * V1;
     return 1; }
-bool intersect(P(A), P(nA), P(B), P(nB), point3d &P, point3d &Q) {
+bool plane_plane_intersect(P(A), P(nA), P(B), P(nB), point3d &P, point3d &Q) {
     point3d n = nA * nB;
     if (n.isZero()) return false;
     point3d v = n * nA;
