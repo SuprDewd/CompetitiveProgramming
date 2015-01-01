@@ -1,3 +1,5 @@
+// Field testing: Kattis triangles
+
 void assert_nearly_equal(double a, double b) {
     //printf("Expected: %.10f, but got %.10f\n", a, b);
     assert_true(abs(a - b) < EPS);
