@@ -343,8 +343,9 @@ syn on | colorscheme slate
 
     \subsection{Fast Fourier Transform}
         The Cooley-Tukey algorithm for quickly computing the discrete Fourier
-        transform. Note that this implementation only handles powers of two,
-        make sure to pad with zeros.
+        transform. The \texttt{fft} function only supports powers of twos. The
+        \texttt{czt} function implements the Chirp Z-transform and supports any
+        size, but is slightly slower.
         \code{mathematics/fft.cpp}
 
     \subsection{Formulas}
