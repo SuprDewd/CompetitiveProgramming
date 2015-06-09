@@ -51,8 +51,8 @@ public:
                 for (int i = 0; i < cols; i++)
                     swap(mat.at(k, i), mat.at(r, i));
             } det *= mat(r, r);
-            if (!eq<T>(mat(r, c), T(1)))
-                for (int i = cols-1; i >= c; i--) mat(r, i) /= mat(r, c);
+            T d = mat(r,c);
+            for (int i = 0; i < cols; i++) mat(r, i) /= d;
             for (int i = 0; i < rows; i++) {
                 T m = mat(i, c);
                 if (i != r && !eq<T>(m, T(0)))
