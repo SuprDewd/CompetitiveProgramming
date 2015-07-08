@@ -3,12 +3,12 @@ point polygon_centroid(polygon p) {
     double cx = 0.0, cy = 0.0;
     double mnx = 0.0, mny = 0.0;
     int n = size(p);
-    for (int i = 0; i < n; i++)
+    rep(i,0,n)
         mnx = min(mnx, real(p[i])),
         mny = min(mny, imag(p[i]));
-    for (int i = 0; i < n; i++)
+    rep(i,0,n)
         p[i] = point(real(p[i]) - mnx, imag(p[i]) - mny);
-    for (int i = 0; i < n; i++) {
+    rep(i,0,n) {
         int j = (i + 1) % n;
         cx += (real(p[i]) + real(p[j])) * cross(p[i], p[j]);
         cy += (imag(p[i]) + imag(p[j])) * cross(p[i], p[j]); }

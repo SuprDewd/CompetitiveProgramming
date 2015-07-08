@@ -9,7 +9,7 @@ bool is_probable_prime(ll n, int k) {
         ll x = mod_pow(a, d, n);
         if (x == 1 || x == n - 1) continue;
         bool ok = false;
-        for (int i = 0; i < s - 1; i++) {
+        rep(i,0,s-1) {
             x = (x * x) % n;
             if (x == 1) return false;
             if (x == n - 1) { ok = true; break; }

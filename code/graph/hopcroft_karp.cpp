@@ -8,7 +8,7 @@ struct bipartite_graph {
     ~bipartite_graph() { delete[] adj; delete[] L; delete[] R; }
     bool bfs() {
         int l = 0, r = 0;
-        for(int v = 0; v < N; ++v) if(L[v] == -1) dist(v) = 0, q[r++] = v;
+        rep(v,0,N) if(L[v] == -1) dist(v) = 0, q[r++] = v;
             else dist(v) = INF;
         dist(-1) = INF;
         while(l < r) {
@@ -38,7 +38,7 @@ struct bipartite_graph {
         int matching = 0;
         memset(L, -1, sizeof(int) * N);
         memset(R, -1, sizeof(int) * M);
-        while(bfs()) for(int i = 0; i < N; ++i)
+        while(bfs()) rep(i,0,N)
             matching += L[i] == -1 && dfs(i);
         return matching;
     }

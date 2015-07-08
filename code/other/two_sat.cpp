@@ -3,7 +3,7 @@
 bool two_sat(int n, const vii& clauses, vi& all_truthy) {
     all_truthy.clear();
     vvi adj(2*n+1);
-    for (int i = 0; i < size(clauses); i++) {
+    rep(i,0,size(clauses)) {
         adj[-clauses[i].first + n].push_back(clauses[i].second + n);
         if (clauses[i].first != clauses[i].second)
             adj[-clauses[i].second + n].push_back(clauses[i].first + n);

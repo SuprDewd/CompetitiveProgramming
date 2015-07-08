@@ -3,7 +3,7 @@ int* z_values(const string &s) {
     int* z = new int[n];
     int l = 0, r = 0;
     z[0] = n;
-    for (int i = 1; i < n; i++) {
+    rep(i,1,n) {
         z[i] = 0;
         if (i > r) {
             l = r = i;

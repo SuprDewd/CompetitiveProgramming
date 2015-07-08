@@ -1,9 +1,8 @@
 vi stable_marriage(int n, int** m, int** w) {
     queue<int> q;
     vi at(n, 0), eng(n, -1), res(n, -1); vvi inv(n, vi(n));
-    for (int i = 0; i < n; i++) for (int j = 0; j < n; j++)
-        inv[i][w[i][j]] = j;
-    for (int i = 0; i < n; i++) q.push(i);
+    rep(i,0,n) rep(j,0,n) inv[i][w[i][j]] = j;
+    rep(i,0,n) q.push(i);
     while (!q.empty()) {
         int curm = q.front(); q.pop();
         for (int &i = at[curm]; i < n; i++) {

@@ -7,7 +7,7 @@ bool cmp(const point &a, const point &b) {
 int convex_hull(polygon p) {
     int n = size(p), l = 0;
     sort(p.begin(), p.end(), cmp);
-    for (int i = 0; i < n; i++) {
+    rep(i,0,n) {
         if (i > 0 && p[i] == p[i - 1]) continue;
         while (l >= 2 && ccw(hull[l - 2], hull[l - 1], p[i]) >= 0) l--;
         hull[l++] = p[i];

@@ -4,7 +4,7 @@ vi adj[MAXV];
 int n, m, indeg[MAXV], outdeg[MAXV], res[MAXE + 1];
 ii start_end() {
     int start = -1, end = -1, any = 0, c = 0;
-    for (int i = 0; i < n; i++) {
+    rep(i,0,n) {
         if (outdeg[i] > 0) any = i;
         if (indeg[i] + 1 == outdeg[i]) start = i, c++;
         else if (indeg[i] == outdeg[i] + 1) end = i, c++;

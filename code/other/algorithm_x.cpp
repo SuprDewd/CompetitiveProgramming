@@ -12,20 +12,20 @@ struct exact_cover {
     exact_cover(int _rows, int _cols) : rows(_rows), cols(_cols), head(NULL) {
         arr = new bool*[rows];
         sol = new int[rows];
-        for (int i = 0; i < rows; i++)
+        rep(i,0,rows)
             arr[i] = new bool[cols], memset(arr[i], 0, cols);
     }
     void set_value(int row, int col, bool val = true) { arr[row][col] = val; }
     void setup() {
         node ***ptr = new node**[rows + 1];
-        for (int i = 0; i <= rows; i++) {
+        rep(i,0,rows+1) {
             ptr[i] = new node*[cols];
-            for (int j = 0; j < cols; j++)
+            rep(j,0,cols)
                 if (i == rows || arr[i][j]) ptr[i][j] = new node(i, j);
                 else ptr[i][j] = NULL;
         }
-        for (int i = 0; i <= rows; i++) {
-            for (int j = 0; j < cols; j++) {
+        rep(i,0,rows+1) {
+            rep(j,0,cols) {
                 if (!ptr[i][j]) continue;
                 int ni = i + 1, nj = j + 1;
                 while (true) {
@@ -49,13 +49,13 @@ struct exact_cover {
         ptr[rows][0]->l = head;
         head->l = ptr[rows][cols - 1];
         ptr[rows][cols - 1]->r = head;
-        for (int j = 0; j < cols; j++) {
+        rep(j,0,cols) {
             int cnt = -1;
-            for (int i = 0; i <= rows; i++)
+            rep(i,0,rows+1)
                 if (ptr[i][j]) cnt++, ptr[i][j]->p = ptr[rows][j];
             ptr[rows][j]->size = cnt;
         }
-        for (int i = 0; i <= rows; i++) delete[] ptr[i];
+        rep(i,0,rows+1) delete[] ptr[i];
         delete[] ptr;
     }
     #define COVER(c, i, j) \
@@ -71,7 +71,7 @@ struct exact_cover {
     bool search(int k = 0) {
         if (head == head->r) {
             vi res(k);
-            for (int i = 0; i < k; i++) res[i] = sol[i];
+            rep(i,0,k) res[i] = sol[i];
             sort(res.begin(), res.end());
             return handle_solution(res);
         }

@@ -5,12 +5,12 @@ vector<segment> T;
 int K;
 void rebuild() {
     int cnt = 0;
-    for (int i = 0; i < size(T); i++)
+    rep(i,0,size(T))
         cnt += size(T[i].arr);
     K = static_cast<int>(ceil(sqrt(cnt)) + 1e-9);
     vi arr(cnt);
     for (int i = 0, at = 0; i < size(T); i++)
-        for (int j = 0; j < size(T[i].arr); j++)
+        rep(j,0,size(T[i].arr))
             arr[at++] = T[i].arr[j];
     T.clear();
     for (int i = 0; i < cnt; i += K)

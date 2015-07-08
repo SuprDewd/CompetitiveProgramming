@@ -42,7 +42,7 @@ template<class T> struct skiplist {
         int lvl = bernoulli(MAX_LEVEL);
         if(lvl > current_level) current_level = lvl;
         x = new node(lvl, target);
-        for(int i = 0; i <= lvl; i++) {
+        rep(i,0,lvl+1) {
             x->next[i] = update[i]->next[i];
             x->lens[i] = pos[i] + update[i]->lens[i] - pos[0];
             update[i]->next[i] = x;
@@ -54,7 +54,7 @@ template<class T> struct skiplist {
     void erase(T target) {
         FIND_UPDATE(x->next[i]->item, target);
         if(x && x->item == target) {
-            for(int i = 0; i <= current_level; i++) {
+            rep(i,0,current_level+1) {
                 if(update[i]->next[i] == x) {
                     update[i]->next[i] = x->next[i];
                     update[i]->lens[i] = update[i]->lens[i] + x->lens[i] - 1;

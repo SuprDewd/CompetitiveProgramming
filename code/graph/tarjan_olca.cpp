@@ -18,14 +18,14 @@ struct tarjan_olca {
     }
     void process(int u) {
         ancestor[u] = u;
-        for (int i = 0; i < size(adj[u]); i++) {
+        rep(i,0,size(adj[u])) {
             int v = adj[u][i];
             process(v);
             uf.unite(u,v);
             ancestor[uf.find(u)] = u;
         }
         colored[u] = true;
-        for (int i = 0; i < size(queries[u]); i++) {
+        rep(i,0,size(queries[u])) {
             int v = queries[u][i].first;
             if (colored[v]) {
                 answers[queries[u][i].second] = ancestor[uf.find(v)];

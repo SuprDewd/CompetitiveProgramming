@@ -9,15 +9,15 @@ struct HLD {
     void update_cost(int u, int v, int c) {
         if (parent[v] == u) swap(u, v); assert(parent[u] == v);
         values.update(loc[u], c); }
-    void csz(int u) { for (int i = 0; i < size(below[u]); i++)
+    void csz(int u) { rep(i,0,size(below[u]))
             csz(below[u][i]), sz[u] += sz[below[u][i]]; }
     void part(int u) {
         head[u] = curhead; loc[u] = curloc++;
         int best = -1;
-        for (int i = 0; i < size(below[u]); i++)
+        rep(i,0,size(below[u]))
             if (best == -1 || sz[below[u][i]] > sz[best]) best = below[u][i];
         if (best != -1) part(best);
-        for (int i = 0; i < size(below[u]); i++)
+        rep(i,0,size(below[u]))
             if (below[u][i] != best) part(curhead = below[u][i]); }
     void build() { int u = curloc = 0;
         while (parent[u] != -1) u++;

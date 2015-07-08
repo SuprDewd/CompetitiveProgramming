@@ -6,12 +6,12 @@ struct cmp {
 pair<int*, int*> dijkstra(int n, int s, vii *adj) {
     dist = new int[n];
     dad = new int[n];
-    for (int i = 0; i < n; i++) dist[i] = INF, dad[i] = -1;
+    rep(i,0,n) dist[i] = INF, dad[i] = -1;
     set<int, cmp> pq;
     dist[s] = 0, pq.insert(s);
     while (!pq.empty()) {
         int cur = *pq.begin(); pq.erase(pq.begin());
-        for (int i = 0; i < size(adj[cur]); i++) {
+        rep(i,0,size(adj[cur])) {
             int nxt = adj[cur][i].first,
                 ndist = dist[cur] + adj[cur][i].second;
             if (ndist < dist[nxt]) pq.erase(nxt),

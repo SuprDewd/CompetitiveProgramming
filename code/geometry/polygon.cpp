@@ -2,8 +2,7 @@
 typedef vector<point> polygon;
 double polygon_area_signed(polygon p) {
     double area = 0; int cnt = size(p);
-    for (int i = 1; i + 1 < cnt; i++)
-        area += cross(p[i] - p[0], p[i + 1] - p[0]);
+    rep(i,1,cnt-1) area += cross(p[i] - p[0], p[i + 1] - p[0]);
     return area / 2; }
 double polygon_area(polygon p) { return abs(polygon_area_signed(p)); }
 #define CHK(f,a,b,c) (f(a) < f(b) && f(b) <= f(c) && ccw(a,c,b) < 0)

@@ -34,7 +34,7 @@ public:
             int newlen = 2 * len;
             while (n >= newlen) newlen *= 2;
             int *newq = new int[newlen], *newloc = new int[newlen];
-            for (int i = 0; i < len; i++) newq[i] = q[i], newloc[i] = loc[i];
+            rep(i,0,len) newq[i] = q[i], newloc[i] = loc[i];
             memset(newloc + len, 255, (newlen - len) << 2);
             delete[] q, delete[] loc;
             loc = newloc, q = newq, len = newlen;

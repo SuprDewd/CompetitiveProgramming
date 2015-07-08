@@ -11,7 +11,7 @@ int bfs(int start, int end, vvi& adj_list) {
             return cur.second;
 
         vi& adj = adj_list[cur.first];
-        for (vi::iterator it = adj.begin(); it != adj.end(); it++)
+        iter(it,adj)
             if (visited.find(*it) == visited.end()) {
                 Q.push(ii(*it, cur.second + 1));
                 visited.insert(*it);

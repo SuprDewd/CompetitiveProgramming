@@ -17,14 +17,14 @@ intx fastmul(const intx &an, const intx &bn) {
             b[blen] = b[blen] * 10 + bs[i - j] - '0';
     while (l < 2*max(alen,blen)) l <<= 1;
     cpx *A = new cpx[l], *B = new cpx[l];
-    for (int i = 0; i < l; i++) A[i] = cpx(i < alen ? a[i] : 0, 0);
-    for (int i = 0; i < l; i++) B[i] = cpx(i < blen ? b[i] : 0, 0);
+    rep(i,0,l) A[i] = cpx(i < alen ? a[i] : 0, 0);
+    rep(i,0,l) B[i] = cpx(i < blen ? b[i] : 0, 0);
     fft(A, l); fft(B, l);
-    for (int i = 0; i < l; i++) A[i] *= B[i];
+    rep(i,0,l) A[i] *= B[i];
     fft(A, l, true);
     ull *data = new ull[l];
-    for (int i = 0; i < l; i++) data[i] = (ull)(round(real(A[i])));
-    for (int i = 0; i < l - 1; i++)
+    rep(i,0,l) data[i] = (ull)(round(real(A[i])));
+    rep(i,0,l-1)
         if (data[i] >= (unsigned int)(radix)) {
             data[i+1] += data[i] / radix;
             data[i] %= radix;

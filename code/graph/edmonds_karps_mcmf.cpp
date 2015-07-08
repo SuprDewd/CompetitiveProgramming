@@ -53,7 +53,7 @@ struct flow_network {
             while (at != -1)
                 e[at].cap -= x, e[at^1].cap += x, at = p[e[at^1].v];
             c += x * (d[t] + pot[t] - pot[s]);
-            for (int i = 0; i < n; i++) if (p[i] != -1) pot[i] += d[i];
+            rep(i,0,n) if (p[i] != -1) pot[i] += d[i];
         }
         if (res) reset();
         return ii(f, c);

@@ -7,7 +7,7 @@ vector<pair<int, ii> > mst(int n, vector<pair<int, ii> > edges) {
     union_find uf(n);
     sort(edges.begin(), edges.end());
     vector<pair<int, ii> > res;
-    for (int i = 0; i < size(edges); i++)
+    rep(i,0,size(edges))
         if (uf.find(edges[i].second.first) !=
                 uf.find(edges[i].second.second)) {
             res.push_back(edges[i]);

@@ -4,6 +4,6 @@ vi linear_congruence(int a, int b, int n) {
     vi res;
     if (b % d != 0) return res;
     int x0 = mod(b / d * x, n);
-    for (int k = 0; k < d; k++) res.push_back(mod(x0 + k * n / d, n));
+    rep(k,0,d) res.push_back(mod(x0 + k * n / d, n));
     return res;
 }

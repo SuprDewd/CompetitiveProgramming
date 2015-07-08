@@ -10,11 +10,11 @@ public:
         cnt(other.cnt), data(other.data) { }
     T& operator()(int i, int j) { return at(i, j); }
     void operator +=(const matrix& other) {
-        for (int i = 0; i < cnt; i++) data[i] += other.data[i]; }
+        rep(i,0,cnt) data[i] += other.data[i]; }
     void operator -=(const matrix& other) {
-        for (int i = 0; i < cnt; i++) data[i] -= other.data[i]; }
+        rep(i,0,cnt) data[i] -= other.data[i]; }
     void operator *=(T other) {
-        for (int i = 0; i < cnt; i++) data[i] *= other; }
+        rep(i,0,cnt) data[i] *= other; }
     matrix<T> operator +(const matrix& other) {
         matrix<T> res(*this); res += other; return res; }
     matrix<T> operator -(const matrix& other) {
@@ -23,18 +23,16 @@ public:
         matrix<T> res(*this); res *= other; return res; }
     matrix<T> operator *(const matrix& other) {
         matrix<T> res(rows, other.cols);
-        for (int i = 0; i < rows; i++) for (int j = 0; j < other.cols; j++)
-            for (int k = 0; k < cols; k++)
+        rep(i,0,rows) rep(j,0,other.cols) rep(k,0,cols)
                 res(i, j) += at(i, k) * other.data[k * other.cols + j];
         return res; }
     matrix<T> transpose() {
         matrix<T> res(cols, rows);
-        for (int i = 0; i < rows; i++)
-            for (int j = 0; j < cols; j++) res(j, i) = at(i, j);
+        rep(i,0,rows) rep(j,0,cols) res(j, i) = at(i, j);
         return res; }
     matrix<T> pow(int p) {
         matrix<T> res(rows, cols), sq(*this);
-        for (int i = 0; i < rows; i++) res(i, i) = T(1);
+        rep(i,0,rows) res(i, i) = T(1);
         while (p) {
             if (p & 1) res = res * sq;
             p >>= 1;
@@ -48,15 +46,15 @@ public:
             if (k >= rows) continue;
             if (k != r) {
                 det *= T(-1);
-                for (int i = 0; i < cols; i++)
+                rep(i,0,cols)
                     swap(mat.at(k, i), mat.at(r, i));
             } det *= mat(r, r);
             T d = mat(r,c);
-            for (int i = 0; i < cols; i++) mat(r, i) /= d;
-            for (int i = 0; i < rows; i++) {
+            rep(i,0,cols) mat(r, i) /= d;
+            rep(i,0,rows) {
                 T m = mat(i, c);
                 if (i != r && !eq<T>(m, T(0)))
-                    for (int j = 0; j < cols; j++) mat(i, j) -= m * mat(r, j);
+                    rep(j,0,cols) mat(i, j) -= m * mat(r, j);
             } r++;
         } return mat; }
 private:

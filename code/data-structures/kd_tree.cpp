@@ -5,11 +5,10 @@ public:
     struct pt {
         double coord[K];
         pt() {}
-        pt(double c[K]) { for (int i = 0; i < K; i++) coord[i] = c[i]; }
+        pt(double c[K]) { rep(i,0,K) coord[i] = c[i]; }
         double dist(const pt &other) const {
             double sum = 0.0;
-            for (int i = 0; i < K; i++)
-                sum += pow(coord[i] - other.coord[i], 2.0);
+            rep(i,0,K) sum += pow(coord[i] - other.coord[i], 2.0);
             return sqrt(sum); } };
     struct cmp {
         int c;
@@ -26,7 +25,7 @@ public:
         bb(pt _from, pt _to) : from(_from), to(_to) {}
         double dist(const pt &p) {
             double sum = 0.0;
-            for (int i = 0; i < K; i++) {
+            rep(i,0,K) {
                 if (p.coord[i] < from.coord[i])
                     sum += pow(from.coord[i] - p.coord[i], 2.0);
                 else if (p.coord[i] > to.coord[i])
@@ -67,9 +66,9 @@ public:
     pt nearest_neighbour(const pt &p, bool allow_same=true) {
         assert(root);
         double mn = INFINITY, cs[K];
-        for (int i = 0; i < K; i++) cs[i] = -INFINITY;
+        rep(i,0,K) cs[i] = -INFINITY;
         pt from(cs);
-        for (int i = 0; i < K; i++) cs[i] = INFINITY;
+        rep(i,0,K) cs[i] = INFINITY;
         pt to(cs);
         return _nn(p, root, bb(from, to), mn, 0, allow_same).first;
     }
@@ -80,7 +79,7 @@ public:
         pt resp = n->p;
         if (found) mn = min(mn, p.dist(resp));
         node *n1 = n->l, *n2 = n->r;
-        for (int i = 0; i < 2; i++) {
+        rep(i,0,2) {
             if (i == 1 || cmp(c)(n->p, p)) swap(n1, n2), swap(l1, l2);
             pair<pt, bool> res =
                 _nn(p, n1, b.bound(n->p.coord[c], c, l1), mn, INC(c), same);
