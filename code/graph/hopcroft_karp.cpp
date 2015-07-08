@@ -14,7 +14,7 @@ struct bipartite_graph {
         while(l < r) {
             int v = q[l++];
             if(dist(v) < dist(-1)) {
-                foreach(u, adj[v]) if(dist(R[*u]) == INF)
+                iter(u, adj[v]) if(dist(R[*u]) == INF)
                     dist(R[*u]) = dist(v) + 1, q[r++] = R[*u];
             }
         }
@@ -22,7 +22,7 @@ struct bipartite_graph {
     }
     bool dfs(int v) {
         if(v != -1) {
-            foreach(u, adj[v])
+            iter(u, adj[v])
                 if(dist(R[*u]) == dist(v) + 1)
                     if(dfs(R[*u])) {
                         R[*u] = v, L[v] = *u;

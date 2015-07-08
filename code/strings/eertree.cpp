@@ -5,9 +5,9 @@ char *s = new char[MAXN];
 struct state {
     int len, link, to[SIGMA];
 } *st = new state[MAXN+2];
-struct palindromic_tree {
+struct eertree {
     int last, sz, n;
-    palindromic_tree() : last(1), sz(2), n(0) {
+    eertree() : last(1), sz(2), n(0) {
         st[0].len = st[0].link = -1;
         st[1].len = st[1].link = 0; }
     int extend() {

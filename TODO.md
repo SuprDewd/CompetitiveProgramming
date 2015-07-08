@@ -1,7 +1,9 @@
 Things to do
 ============
 
+* Fix min cost max flow (infinite loop on negative weights, e.g. https://icpc.kattis.com/problems/catering)
 * Fix convex hull edge case (some small edge case that included at least three collinear lines would return the same point on both the upper and lower hull)
+* Fix 2d-Tree (for some reason it's segfaulting on tests)
 * Shortest Path Faster Algorithm
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory

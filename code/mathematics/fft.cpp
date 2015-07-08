@@ -1,5 +1,6 @@
 #include <complex>
 typedef complex<long double> cpx;
+// NOTE: n must be a power of two
 void fft(cpx *x, int n, bool inv=false) {
     for (int i = 0, j = 0; i < n; i++) {
         if (i < j) swap(x[i], x[j]);
@@ -23,12 +24,12 @@ void czt(cpx *x, int n, bool inv=false) {
     int len = 2*n+1;
     while (len & (len - 1)) len &= len - 1;
     len <<= 1;
-    cpx w = exp(-2.0 * pi / n * cpx(0,1)),
+    cpx w = exp(-2.0L * pi / n * cpx(0,1)),
         *c = new cpx[n], *a = new cpx[len],
         *b = new cpx[len];
     for (int i = 0; i < n; i++) c[i] = pow(w, (inv ? -1.0 : 1.0)*i*i/2);
-    for (int i = 0; i < n; i++) a[i] = x[i] * c[i], b[i] = 1.0/c[i];
-    for (int i = 0; i < n - 1; i++) b[len - n + i + 1] = 1.0/c[n-i-1];
+    for (int i = 0; i < n; i++) a[i] = x[i] * c[i], b[i] = 1.0L/c[i];
+    for (int i = 0; i < n - 1; i++) b[len - n + i + 1] = 1.0L/c[n-i-1];
     fft(a, len); fft(b, len);
     for (int i = 0; i < len; i++) a[i] *= b[i];
     fft(a, len, true);

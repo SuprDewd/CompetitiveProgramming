@@ -11,18 +11,18 @@ struct aho_corasick {
     go_node *go;
     aho_corasick(vector<string> keywords) {
         go = new go_node();
-        foreach(k, keywords) {
+        iter(k, keywords) {
             go_node *cur = go;
-            foreach(c, *k)
+            iter(c, *k)
                 cur = cur->next.find(*c) != cur->next.end() ? cur->next[*c] :
                     (cur->next[*c] = new go_node());
             cur->out = new out_node(*k, cur->out);
         }
         queue<go_node*> q;
-        foreach(a, go->next) q.push(a->second);
+        iter(a, go->next) q.push(a->second);
         while (!q.empty()) {
             go_node *r = q.front(); q.pop();
-            foreach(a, r->next) {
+            iter(a, r->next) {
                 go_node *s = a->second;
                 q.push(s);
                 go_node *st = r->fail;
@@ -44,7 +44,7 @@ struct aho_corasick {
     vector<string> search(string s) {
         vector<string> res;
         go_node *cur = go;
-        foreach(c, s) {
+        iter(c, s) {
             while (cur && cur->next.find(*c) == cur->next.end())
                 cur = cur->fail;
             if (!cur) cur = go;
