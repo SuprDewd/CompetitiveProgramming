@@ -91,150 +91,183 @@ syn on | colorscheme slate
 \section{Data Structures}
 
     \subsection{Union-Find}
+        \ifverbose
         An implementation of the Union-Find disjoint sets data structure.
+        \fi
         \code{data-structures/union_find.cpp}
 
     \subsection{Segment Tree}
+        \ifverbose
         An implementation of a Segment Tree.
+        \fi
         \code{data-structures/segment_tree.cpp}
 
     \subsection{Fenwick Tree}
+        \ifverbose
         A Fenwick Tree is a data structure that represents an array of $n$
         numbers. It supports adjusting the $i$-th element in $O(\log n)$ time,
         and computing the sum of numbers in the range $i..j$ in $O(\log n)$
         time. It only needs $O(n)$ space.
+        \fi
         \code{data-structures/fenwick_tree.cpp}
 
     \subsection{Matrix}
+        \ifverbose
         A Matrix class.
+        \fi
         \code{data-structures/matrix.cpp}
 
     \subsection{AVL Tree}
+        \ifverbose
         A fast, easily augmentable, balanced binary search tree.
+        \fi
         \code{data-structures/avl_tree.cpp}
 
+        \ifverbose
         Also a very simple wrapper over the AVL tree that implements a map
         interface.
         \code{data-structures/avl_map.cpp}
+        \fi
 
     \subsection{Heap}
+        \ifverbose
         An implementation of a binary heap.
+        \fi
         \code{data-structures/heap.cpp}
 
-    \subsection{Skiplist}
-        An implementation of a skiplist.
-        \code{data-structures/skiplist.cpp}
-
     \subsection{Dancing Links}
+        \ifverbose
         An implementation of Donald Knuth's Dancing Links data structure. A
         linked list supporting deletion and restoration of elements.
+        \fi
         \code{data-structures/dancing_links.cpp}
 
     \subsection{Misof Tree}
+        \ifverbose
         A simple tree data structure for inserting, erasing, and querying the
         $n$th largest element.
+        \fi
         \code{data-structures/misof_tree.cpp}
 
     \subsection{$k$-d Tree}
+        \ifverbose
         A $k$-dimensional tree supporting fast construction, adding points, and
         nearest neighbor queries.
+        \fi
         \code{data-structures/kd_tree.cpp}
 
     \subsection{Sqrt Decomposition}
+        \ifverbose
         Design principle that supports many operations in amortized $\sqrt{n}$ per operation.
+        \fi
         \code{data-structures/sqrt_decomposition.cpp}
 
     \subsection{Monotonic Queue}
+        \ifverbose
         A queue that supports querying for the minimum element. Useful for sliding window algorithms.
+        \fi
         \code{data-structures/monotonic_queue.cpp}
 
 \section{Graphs}
-    \ifverbose
-    \subsection{Breadth-First Search}
-        An implementation of a breadth-first search that counts the number of
-        edges on the shortest path from the starting vertex to the ending
-        vertex in the specified unweighted graph (which is represented with an
-        adjacency list). Note that it assumes that the two vertices are
-        connected. It runs in $O(|V|+|E|)$ time.
-        \code{graph/bfs.cpp}
-
-        Another implementation that doesn't assume the two vertices are
-        connected. If there is no path from the starting vertex to the ending
-        vertex, a $-1$ is returned.
-        \code{graph/bfs_visited.cpp}
-    \fi
-
     \subsection{Single-Source Shortest Paths}
         \subsubsection{Dijkstra's algorithm}
+            \ifverbose
             An implementation of Dijkstra's algorithm. It runs in
             $\Theta(|E|\log{|V|})$ time.
+            \fi
             \code{graph/dijkstra.cpp}
 
         \subsubsection{Bellman-Ford algorithm}
+            \ifverbose
             The Bellman-Ford algorithm solves the single-source shortest paths
             problem in $O(|V||E|)$ time. It is slower than Dijkstra's
             algorithm, but it works on graphs with negative edges and has the
             ability to detect negative cycles, neither of which Dijkstra's
             algorithm can do.
+            \fi
             \code{graph/bellman_ford.cpp}
 
+    \ifverbose
     \subsection{All-Pairs Shortest Paths}
         \subsubsection{Floyd-Warshall algorithm}
             The Floyd-Warshall algorithm solves the all-pairs shortest paths
             problem in $O(|V|^3)$ time.
             \code{graph/floyd_warshall.cpp}
+    \fi
 
     \subsection{Strongly Connected Components}
         \subsubsection{Kosaraju's algorithm}
+            \ifverbose
             Kosarajus's algorithm finds strongly connected components of a
             directed graph in $O(|V|+|E|)$ time.
+            \fi
             \code{graph/scc.cpp}
 
     \subsection{Cut Points and Bridges}
         \code{graph/cut_points_and_bridges.cpp}
 
+    \ifverbose
     \subsection{Minimum Spanning Tree}
         \subsubsection{Kruskal's algorithm}
             \code{graph/kruskals_mst.cpp}
+    \fi
 
+    \ifverbose
     \subsection{Topological Sort}
         \subsubsection{Modified Depth-First Search}
             \code{graph/tsort.cpp}
+    \fi
 
     \subsection{Euler Path}
+        \ifverbose
         Finds an euler path (or circuit) in a directed graph, or reports that
         none exist.
+        \fi
         \code{graph/euler_path.cpp}
 
     \subsection{Bipartite Matching}
 
         \subsubsection{Alternating Paths algorithm}
+            \ifverbose
             The alternating paths algorithm solves bipartite matching in $O(mn^2)$
             time, where $m$, $n$ are the number of vertices on the left and right
             side of the bipartite graph, respectively.
+            \fi
             \code{graph/bipartite_matching.cpp}
 
         \subsubsection{Hopcroft-Karp algorithm}
+            \ifverbose
             An implementation of Hopcroft-Karp algorithm for bipartite
-            matching. Running time is $O(|E|\sqrt{|V|})$.
+            matching.
+            \fi
+            Running time is $O(|E|\sqrt{|V|})$.
             \code{graph/hopcroft_karp.cpp}
 
     \subsection{Maximum Flow}
         \subsubsection{Dinic's algorithm}
             An implementation of Dinic's algorithm that runs in
-            $O(|V|^2|E|)$. It computes the maximum flow of a flow network.
+            $O(|V|^2|E|)$.
+            \ifverbose
+            It computes the maximum flow of a flow network.
+            \fi
             \code{graph/dinic.cpp}
 
         \subsubsection{Edmonds Karp's algorithm}
             An implementation of Edmonds Karp's algorithm that runs in
-            $O(|V||E|^2)$. It computes the maximum flow of a flow network.
+            $O(|V||E|^2)$.
+            \ifverbose
+            It computes the maximum flow of a flow network.
+            \fi
             \code{graph/edmonds_karps.cpp}
 
     \subsection{Minimum Cost Maximum Flow}
+        \ifverbose
         An implementation of Edmonds Karp's algorithm, modified to find
         shortest path to augment each time (instead of just any path). It
         computes the maximum flow of a flow network, and when there are
-        multiple maximum flows, finds the maximum flow with minimum cost. Running time is $O(|V|^2|E|\log|V|)$.
+        multiple maximum flows, finds the maximum flow with minimum cost.
+        \fi
+        Running time is $O(|V|^2|E|\log|V|)$.
         \code{graph/edmonds_karps_mcmf.cpp}
 
     \subsection{All Pairs Maximum Flow}
@@ -251,31 +284,39 @@ syn on | colorscheme slate
         \code{graph/tarjan_olca.cpp}
 
 \section{Strings}
+    \ifverbose
     \subsection{Trie}
         A Trie class.
         \code{strings/trie.cpp}
+    \fi
 
     \subsection{Suffix Array}
         An $O(n \log^2 n)$ construction of a Suffix Tree.
         \code{strings/suffix_array.cpp}
 
     \subsection{Aho-Corasick Algorithm}
+        \ifverbose
         An implementation of the Aho-Corasick algorithm. Constructs a state
         machine from a set of keywords which can be used to search a string for
         any of the keywords.
+        \fi
         \code{strings/aho_corasick.cpp}
 
     \subsection{The $Z$ algorithm}
+        \ifverbose
         Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting
         at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these
         $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for
         example, be used to find all occurrences of a pattern $P$ in a string
         $T$ in linear time. This is accomplished by computing $Z$ values of $S
         = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
+        \fi
         \code{strings/z_algorithm.cpp}
 
     \subsection{Eertree}
+        \ifverbose
         Constructs an Eertree in $O(n)$, one character at a time.
+        \fi
         \code{strings/eertree.cpp}
         % http://arxiv.org/pdf/1506.04862v1.pdf
 
@@ -288,11 +329,15 @@ syn on | colorscheme slate
     \fi
 
     \subsection{Big Integer}
+        \ifverbose
         A big integer class.
+        \fi
         \code{mathematics/intx.cpp}
 
         \subsubsection{Fast Multiplication}
+            \ifverbose
             Fast multiplication for the big integer using Fast Fourier Transform.
+            \fi
             \code{mathematics/fastmul.cpp}
 
     \subsection{Binomial Coefficients}
@@ -301,8 +346,10 @@ syn on | colorscheme slate
         \code{mathematics/nck.cpp}
 
     \subsection{Euclidean algorithm}
+        \ifverbose
         The Euclidean algorithm computes the greatest common divisor of two
         integers $a$, $b$.
+        \fi
         \code{mathematics/gcd.cpp}
 
         The extended Euclidean algorithm computes the greatest common divisor
@@ -311,27 +358,39 @@ syn on | colorscheme slate
         \code{mathematics/egcd.cpp}
 
     \subsection{Trial Division Primality Testing}
+        \ifverbose
         An optimized trial division to check whether an integer is prime.
+        \fi
         \code{mathematics/is_prime.cpp}
 
     \subsection{Miller-Rabin Primality Test}
+        \ifverbose
         The Miller-Rabin probabilistic primality test.
+        \fi
         \code{mathematics/miller_rabin.cpp}
 
     \subsection{Sieve of Eratosthenes}
+        \ifverbose
         An optimized implementation of Eratosthenes' Sieve.
+        \fi
         \code{mathematics/prime_sieve.cpp}
 
     \subsection{Modular Multiplicative Inverse}
+        \ifverbose
         A function to find a modular multiplicative inverse.
+        \fi
         \code{mathematics/mod_inv.cpp}
 
+    \ifverbose
     \subsection{Modular Exponentiation}
         A function to perform fast modular exponentiation.
         \code{mathematics/mod_pow.cpp}
+    \fi
 
     \subsection{Chinese Remainder Theorem}
+        \ifverbose
         An implementation of the Chinese Remainder Theorem.
+        \fi
         \code{mathematics/crt.cpp}
 
     \subsection{Linear Congruence Solver}
@@ -339,7 +398,9 @@ syn on | colorscheme slate
         \code{mathematics/linear_congruence.cpp}
 
     \subsection{Numeric Integration}
+        \ifverbose
         Numeric integration using Simpson's rule.
+        \fi
         \code{mathematics/numeric_integration.cpp}
 
     \subsection{Fast Fourier Transform}
@@ -438,19 +499,27 @@ syn on | colorscheme slate
 
 \section{Geometry}
     \subsection{Primitives}
+        \ifverbose
         Geometry primitives.
+        \fi
         \code{geometry/primitives.cpp}
 
     \subsection{Polygon}
+        \ifverbose
         Polygon primitives.
+        \fi
         \code{geometry/polygon.cpp}
 
     \subsection{Convex Hull}
+        \ifverbose
         An algorithm that finds the Convex Hull of a set of points.
+        \fi
         \code{geometry/convex_hull.cpp}
 
     \subsection{Line Segment Intersection}
+        \ifverbose
         Computes the intersection between two line segments.
+        \fi
         \code{geometry/line_segment_intersect.cpp}
 
     \subsection{Great-Circle Distance}
@@ -465,12 +534,16 @@ syn on | colorscheme slate
         \code{geometry/circumcenter.cpp}
 
     \subsection{Closest Pair of Points}
+        \ifverbose
         A sweep line algorithm for computing the distance between the closest
         pair of points.
+        \fi
         \code{geometry/closest_pair.cpp}
 
     \subsection{3D Primitives}
+        \ifverbose
         Three-dimensional geometry primitives.
+        \fi
         \code{geometry/primitives3d.cpp}
 
     \subsection{Polygon Centroid}
@@ -490,46 +563,41 @@ syn on | colorscheme slate
 
 
 \section{Other Algorithms}
-    \subsection{Binary Search}
-        An implementation of binary search that finds a real valued root of the
-        continous function $f$ on the interval $[a,b]$, with a maximum error of
-        $\varepsilon$.
-        \code{other/binary_search_continuous.cpp}
-
-        Another implementation that takes a binary predicate $f$, and finds an
-        integer value $x$ on the integer interval $[a,b]$ such that $f(x) \land
-        \lnot f(x - 1)$.
-        \code{other/binary_search_discrete.cpp}
-
-    \subsection{Ternary Search}
-        Given a function $f$ that is first monotonically increasing and then
-        monotonically decreasing, ternary search finds the $x$ such that $f(x)$ is
-        maximized.
-        \code{other/ternary_search_continuous.cpp}
-
     \subsection{2SAT}
+        \ifverbose
         A fast 2SAT solver.
+        \fi
         \code{other/two_sat.cpp}
 
     \subsection{Stable Marriage}
+        \ifverbose
         The Gale-Shapley algorithm for solving the stable marriage problem.
+        \fi
         \code{other/stable_marriage.cpp}
 
     \subsection{Algorithm X}
+        \ifverbose
         An implementation of Knuth's Algorithm X, using dancing links. Solves the Exact Cover problem.
+        \fi
         \code{other/algorithm_x.cpp}
 
     \subsection{$n$th Permutation}
+        \ifverbose
         A very fast algorithm for computing the $n$th permutation of the list
         $\{0,1,\ldots,k-1\}$.
+        \fi
         \code{other/nth_permutation.cpp}
 
     \subsection{Cycle-Finding}
+        \ifverbose
         An implementation of Floyd's Cycle-Finding algorithm.
+        \fi
         \code{other/floyds_algorithm.cpp}
 
     \subsection{Dates}
+        \ifverbose
         Functions to simplify date calculations.
+        \fi
         \code{other/dates.cpp}
 
 
@@ -565,12 +633,14 @@ syn on | colorscheme slate
         \end{itemize}
 
     \subsection{Fast Input Reading}
+        \ifverbose
         If input or output is huge, sometimes it is beneficial to optimize the
         input reading/output writing. This can be achieved by reading all input
         in at once (using fread), and then parsing it manually. Output can also
         be stored in an output buffer and then dumped once in the end (using
         fwrite). A simpler, but still effective, way to achieve speed is to use
         the following input reading method.
+        \fi
         \code{tricks/fast_input.cpp}
 
     \ifverbose
@@ -580,6 +650,7 @@ syn on | colorscheme slate
         little more than 64-bits to represent.
     \fi
 
+    \ifverbose
     \subsection{Worst Time Complexity}
     \begin{center}
         \begin{tabular}{c|c|c}
@@ -595,6 +666,7 @@ syn on | colorscheme slate
             $\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
         \end{tabular}
     \end{center}
+    \fi
 
     \subsection{Bit Hacks}
         \begin{itemize}
