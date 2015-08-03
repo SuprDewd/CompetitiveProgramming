@@ -1,11 +1,9 @@
 template <class T>
-class trie {
-private:
+struct trie {
     struct node {
         map<T, node*> children;
         int prefixes, words;
         node() { prefixes = words = 0; } };
-public:
     node* root;
     trie() : root(new node()) {  }
     template <class I>

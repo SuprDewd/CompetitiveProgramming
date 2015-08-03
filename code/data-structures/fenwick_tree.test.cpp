@@ -38,8 +38,7 @@ void test1() {
     assert_equal(-96, ft.rsq(0, 19));
 }
 
-class fake_fenwick_tree {
-public:
+struct fake_fenwick_tree {
     vi arr;
 
     fake_fenwick_tree(int n) {

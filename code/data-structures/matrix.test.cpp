@@ -1,5 +1,6 @@
 void test() {
     double det;
+    int rank;
 
     matrix<int> A(2, 2);
     assert_equal(0, A(0, 0));
@@ -56,7 +57,7 @@ void test() {
     C(1, 0) = 1;
     C(1, 1) = 1;
     C(1, 2) = 2;
-    C = C.rref(det);
+    C = C.rref(det,rank);
     assert_equal(1.0, C(0, 0));
     assert_equal(0.0, C(0, 1));
     assert_equal(3.0, C(0, 2));
@@ -71,7 +72,7 @@ void test() {
     C(1, 0) = 6;
     C(1, 1) = 12;
     C(1, 2) = 14;
-    C = C.rref(det);
+    C = C.rref(det,rank);
     assert_equal(1.0, C(0, 0));
     assert_equal(2.0, C(0, 1));
     assert_equal(0.0, C(0, 2));
@@ -89,7 +90,7 @@ void test() {
     C(2, 0) = 7;
     C(2, 1) = 6;
     C(2, 2) = 5;
-    C = C.rref(det);
+    C = C.rref(det,rank);
     assert_equal(1.0, C(0, 0));
     assert_equal(0.0, C(0, 1));
     assert_equal(0.0, C(0, 2));
@@ -105,7 +106,7 @@ void test() {
     C(0, 1) = 2;
     C(1, 0) = 3;
     C(1, 1) = 4;
-    C = C.rref(det);
+    C = C.rref(det,rank);
     assert_equal(1.0, C(0, 0));
     assert_equal(0.0, C(0, 1));
     assert_equal(0.0, C(1, 0));
@@ -116,7 +117,7 @@ void test() {
     C(0, 1) = 3;
     C(1, 0) = 9;
     C(1, 1) = 9;
-    C = C.rref(det);
+    C = C.rref(det,rank);
     assert_equal(1.0, C(0, 0));
     assert_equal(1.0, C(0, 1));
     assert_equal(0.0, C(1, 0));
@@ -129,7 +130,7 @@ void test() {
     C(1, 0) = 4;
     C(1, 1) = 5;
     C(1, 2) = 6;
-    C = C.rref(det);
+    C = C.rref(det,rank);
     assert_equal(1.0, C(0, 0));
     assert_equal(0.0, C(0, 1));
     assert_equal(-1.0, C(0, 2));
@@ -147,7 +148,7 @@ void test() {
     C(2, 0) = 2;
     C(2, 1) = 0;
     C(2, 2) = -1;
-    C.rref(det);
+    C.rref(det,rank);
     assert_equal(6.0, det);
 
     C = matrix<double>(3, 3);
@@ -160,13 +161,13 @@ void test() {
     C(2, 0) = 2;
     C(2, 1) = 0;
     C(2, 2) = -1;
-    C.rref(det);
+    C.rref(det,rank);
     assert_equal(18.0, det);
 
     C = matrix<double>(10, 10);
     for (int i = 0; i < 10; i++)
         C(i, i) = i + 1;
 
-    C.rref(det);
+    C.rref(det,rank);
     assert_equal(3628800.0, det);
 }

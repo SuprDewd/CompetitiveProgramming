@@ -1,8 +1,5 @@
 #include "avl_tree.cpp"
-
-template <class K, class V>
-class avl_map {
-public:
+template <class K, class V> struct avl_map {
     struct node {
         K key; V value;
         node(K k, V v) : key(k), value(v) { }

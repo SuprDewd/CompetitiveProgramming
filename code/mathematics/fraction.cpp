@@ -1,8 +1,5 @@
-template <class T>
-class fraction {
-private:
+template <class T> struct fraction {
     T gcd(T a, T b) { return b == T(0) ? a : gcd(b, a % b); }
-public:
     T n, d;
     fraction(T n_, T d_) {
         assert(d_ != 0);
@@ -31,5 +28,4 @@ public:
     bool operator ==(const fraction<T>& other) const {
         return n == other.n && d == other.d; }
     bool operator !=(const fraction<T>& other) const {
-        return !(*this == other); }
-};
+        return !(*this == other); } };

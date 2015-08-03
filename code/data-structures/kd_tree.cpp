@@ -1,7 +1,5 @@
 #define INC(c) ((c) == K - 1 ? 0 : (c) + 1)
-template <int K>
-class kd_tree {
-public:
+template <int K> struct kd_tree {
     struct pt {
         double coord[K];
         pt() {}

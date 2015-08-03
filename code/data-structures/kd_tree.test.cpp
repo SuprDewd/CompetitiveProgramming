@@ -1,6 +1,5 @@
 template <int K>
-class naive_kd_tree {
-public:
+struct naive_kd_tree {
 
     struct point {
         double coord[K];

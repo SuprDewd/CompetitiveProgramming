@@ -4,7 +4,7 @@ struct union_find {
     bool unite(int x, int y) {
         int xp = find(x), yp = find(y);
         if (xp == yp) return false;
-        if (p[xp] < p[yp]) p[xp] += p[yp], p[yp] = xp;
-        else p[yp] += p[xp], p[xp] = yp;
+        if (p[xp] > p[yp]) swap(xp,yp);
+        p[xp] += p[yp], p[yp] = xp;
         return true; }
     int size(int x) { return -p[find(x)]; } };

@@ -79,7 +79,7 @@ struct intx {
         if (*this < b) return -(b - *this);
         intx c; c.data.clear();
         long long borrow = 0;
-        for (int i = 0; i < size(); i++) {
+        rep(i,0,size()) {
             borrow = data[i] - borrow - (i < b.size() ? b.data[i] : 0ULL);
             c.data.push_back(borrow < 0 ? intx::radix + borrow : borrow);
             borrow = borrow < 0 ? 1 : 0;
@@ -88,7 +88,7 @@ struct intx {
     }
     intx operator *(const intx& b) const {
         intx c; c.data.assign(size() + b.size() + 1, 0);
-        for (int i = 0; i < size(); i++) {
+        rep(i,0,size()) {
             long long carry = 0;
             for (int j = 0; j < b.size() || carry; j++) {
                 if (j < b.size()) carry += (long long)data[i] * b.data[j];

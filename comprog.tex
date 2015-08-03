@@ -17,6 +17,7 @@
 \usepackage[scaled]{beramono}
 \usepackage{titling}
 \usepackage{datetime}
+\usepackage{enumitem}
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -101,6 +102,9 @@ syn on | colorscheme slate
         An implementation of a Segment Tree.
         \fi
         \code{data-structures/segment_tree.cpp}
+
+        \subsubsection{Persistent Segment Tree}
+        \code{data-structures/persistent_segment_tree.cpp}
 
     \subsection{Fenwick Tree}
         \ifverbose
@@ -417,35 +421,47 @@ syn on | colorscheme slate
         \code{mathematics/fft.cpp}
 
     \subsection{Formulas}
-        \begin{itemize}
+        \begin{itemize}[leftmargin=*]
+            \ifverbose
             \item Number of ways to choose $k$ objects from a total of $n$
                 objects where order matters and each item can only be chosen
                 once: $P^n_k = \frac{n!}{(n-k)!}$
+            \fi
+            \ifverbose
             \item Number of ways to choose $k$ objects from a total of $n$
                 objects where order matters and each item can be chosen
                 multiple times: $n^k$
+            \fi
             \item Number of permutations of $n$ objects, where there are $n_1$
                 objects of type $1$, $n_2$ objects of type $2$, \ldots, $n_k$
                 objects of type $k$: $\binom{n}{n_1,n_2,\ldots,n_k} =
                 \frac{n!}{n_1! \times n_2! \times \cdots \times n_k!}$
+            \ifverbose
             \item Number of ways to choose $k$ objects from a total of $n$
                 objects where order does not matter and each item can only be
                 chosen once: \\ $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}k
                 = \binom{n}{n-k} = \prod_{i=1}^k \frac{n-(k-i)}{i} =
                 \frac{n!}{k!(n-k)!}, \binom n0 = 1, \binom 0k = 0$
+            \fi
             \item Number of ways to choose $k$ objects from a total of $n$
                 objects where order does not matter and each item can be chosen
                 multiple times: $f^n_k = \binom{n+k-1}{k} =
                 \frac{(n+k-1)!}{k!(n-1)!}$
             \item Number of integer solutions to $x_1 + x_2 + \cdots + x_n = k$
                 where $x_i \geq 0$: $f^n_k$
+            \ifverbose
             \item Number of subsets of a set with $n$ elements: $2^n$
+            \fi
+            \ifverbose
             \item $|A \cup B| = |A| + |B| - |A \cap B|$
             \item $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap
                 C| - |B \cap C| + |A \cap B \cap C|$
+            \fi
+            \ifverbose
             \item Number of ways to walk from the lower-left corner to the
                 upper-right corner of an $n\times m$ grid by walking only up
                 and to the right: $\binom{n+m}{m}$
+            \fi
             \item Number of strings with $n$ sets of brackets such that the
                 brackets are balanced: \\ $C_n = \sum_{k=0}^{n-1} C_kC_{n-1-k}
                 = \frac{1}{n+1}\binom{2n}n$
@@ -484,17 +500,25 @@ syn on | colorscheme slate
                 $x$th power is $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i +
                 1)x} - 1}{p_i^x - 1}$ where $n = \prod_{i=0}^r p_i^{a_i}$ is
                 the prime factorization.
+            \ifverbose
             \item \textbf{Divisor count:} A special case of the above is
                 $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$.
+            \fi
             \item \textbf{Euler's totient:} The number of integers less than
                 $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
                 where each $p$ is a distinct prime factor of $n$.
+            \ifverbose
             \item \textbf{König's theorem:} In any bipartite graph, the number
                 of edges in a maximum matching is equal to the number of
                 vertices in a minimum vertex cover.
+            \fi
+            \ifverbose
             \item The number of vertices of a graph is equal to its minimum
                 vertex cover number plus the size of a maximum independent set.
+            \fi
             \item $\gcd(2^a-1,2^b-1) = 2^{\gcd(a,b)}-1$
+            \item \textbf{Wilson's theorem:} $(n-1)! \equiv -1 \pmod{n}$ iff.\ $n$ is prime
+            \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
         \end{itemize}
 
 

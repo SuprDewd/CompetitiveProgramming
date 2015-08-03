@@ -10,11 +10,9 @@ struct cmp {
     }
 };
 
-class naive_suffix_array {
-private:
+struct naive_suffix_array {
     string s;
     int n;
-public:
     int *idx;
 
     // naive_suffix_array(string s) : s(s + "\x0c"), n(size(s)+1) {

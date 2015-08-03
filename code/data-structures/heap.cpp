@@ -3,9 +3,7 @@
 struct default_int_cmp {
     default_int_cmp() { }
     bool operator ()(const int &a, const int &b) { return a < b; } };
-template <class Compare = default_int_cmp>
-class heap {
-private:
+template <class Compare = default_int_cmp> struct heap {
     int len, count, *q, *loc, tmp;
     Compare _cmp;
     inline bool cmp(int i, int j) { return _cmp(q[i], q[j]); }
@@ -23,7 +21,6 @@ private:
             int m = r >= count || cmp(l, r) ? l : r;
             if (!cmp(m, i)) break;
             swp(m, i), i = m; } }
-public:
     heap(int init_len = 128) : count(0), len(init_len), _cmp(Compare()) {
         q = new int[len], loc = new int[len];
         memset(loc, 255, len << 2); }

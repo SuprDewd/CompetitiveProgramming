@@ -1,8 +1,7 @@
 #define AVL_MULTISET 0
 
 template <class T>
-class avl_tree {
-public:
+struct avl_tree {
     struct node {
         T item; node *p, *l, *r;
         int size, height;
@@ -10,6 +9,46 @@ public:
         l(NULL), r(NULL), size(1), height(0) { } };
     avl_tree() : root(NULL) { }
     node *root;
+    inline int sz(node *n) const { return n ? n->size : 0; }
+    inline int height(node *n) const { return n ? n->height : -1; }
+    inline bool left_heavy(node *n) const {
+        return n && height(n->l) > height(n->r); }
+    inline bool right_heavy(node *n) const {
+        return n && height(n->r) > height(n->l); }
+    inline bool too_heavy(node *n) const {
+        return n && abs(height(n->l) - height(n->r)) > 1; }
+    void delete_tree(node *n) {
+        if (n) { delete_tree(n->l), delete_tree(n->r); delete n; } }
+    node*& parent_leg(node *n) {
+        if (!n->p) return root;
+        if (n->p->l == n) return n->p->l;
+        if (n->p->r == n) return n->p->r;
+        assert(false); }
+    void augment(node *n) {
+        if (!n) return;
+        n->size = 1 + sz(n->l) + sz(n->r);
+        n->height = 1 + max(height(n->l), height(n->r)); }
+    #define rotate(l, r) \
+        node *l = n->l; \
+        l->p = n->p; \
+        parent_leg(n) = l; \
+        n->l = l->r; \
+        if (l->r) l->r->p = n; \
+        l->r = n, n->p = l; \
+        augment(n), augment(l)
+    void left_rotate(node *n) { rotate(r, l); }
+    void right_rotate(node *n) { rotate(l, r); }
+    void fix(node *n) {
+        while (n) { augment(n);
+            if (too_heavy(n)) {
+                if (left_heavy(n) && right_heavy(n->l)) left_rotate(n->l);
+                else if (right_heavy(n) && left_heavy(n->r))
+                    right_rotate(n->r);
+                if (left_heavy(n)) right_rotate(n);
+                else left_rotate(n);
+                n = n->p; }
+            n = n->p; } }
+    inline int size() const { return sz(root); }
     node* find(const T &item) const {
         node *cur = root;
         while (cur) {
@@ -59,8 +98,6 @@ public:
         node *p = n->p;
         while (p && p->l == n) n = p, p = p->p;
         return p; }
-    inline int size() const { return sz(root); }
-    void clear() { delete_tree(root), root = NULL; }
     node* nth(int n, node *cur = NULL) const {
         if (!cur) cur = root;
         while (cur) {
@@ -74,43 +111,4 @@ public:
             if (cur->p && cur->p->r == cur) sum += 1 + sz(cur->p->l);
             cur = cur->p;
         } return sum; }
-private:
-    inline int sz(node *n) const { return n ? n->size : 0; }
-    inline int height(node *n) const { return n ? n->height : -1; }
-    inline bool left_heavy(node *n) const {
-        return n && height(n->l) > height(n->r); }
-    inline bool right_heavy(node *n) const {
-        return n && height(n->r) > height(n->l); }
-    inline bool too_heavy(node *n) const {
-        return n && abs(height(n->l) - height(n->r)) > 1; }
-    void delete_tree(node *n) {
-        if (n) { delete_tree(n->l), delete_tree(n->r); delete n; } }
-    node*& parent_leg(node *n) {
-        if (!n->p) return root;
-        if (n->p->l == n) return n->p->l;
-        if (n->p->r == n) return n->p->r;
-        assert(false); }
-    void augment(node *n) {
-        if (!n) return;
-        n->size = 1 + sz(n->l) + sz(n->r);
-        n->height = 1 + max(height(n->l), height(n->r)); }
-    #define rotate(l, r) \
-        node *l = n->l; \
-        l->p = n->p; \
-        parent_leg(n) = l; \
-        n->l = l->r; \
-        if (l->r) l->r->p = n; \
-        l->r = n, n->p = l; \
-        augment(n), augment(l)
-    void left_rotate(node *n) { rotate(r, l); }
-    void right_rotate(node *n) { rotate(l, r); }
-    void fix(node *n) {
-        while (n) { augment(n);
-            if (too_heavy(n)) {
-                if (left_heavy(n) && right_heavy(n->l)) left_rotate(n->l);
-                else if (right_heavy(n) && left_heavy(n->r))
-                    right_rotate(n->r);
-                if (left_heavy(n)) right_rotate(n);
-                else left_rotate(n);
-                n = n->p; }
-            n = n->p; } } };
+    void clear() { delete_tree(root), root = NULL; } };
