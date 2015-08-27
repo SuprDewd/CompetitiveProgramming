@@ -81,7 +81,7 @@ struct HLD_naive {
 // }
 
 void test() {
-    /* Field testing: SPOJ LCA, SPOJ QTREE, TOJ 2241, Live Archive 2045, Live Archive 6140, UVa 10938 */
+    /* Field testing: SPOJ LCA, SPOJ QTREE, TOJ 2241, Live Archive 2045, Live Archive 6140, UVa 10938, IPSC 2009 L */
 
     // srand(100);
 
@@ -127,6 +127,7 @@ void test() {
                 edges.push_back(ii(b, a));
                 adj[a].push_back(b);
                 adj[b].push_back(a);
+                hld1.add_edge(a,b);
                 break;
             }
         }
@@ -149,14 +150,14 @@ void test() {
                 {
                     visited[nxt] = true;
                     S.push(nxt);
-                    hld1.add_edge(cur, nxt);
+                    // hld1.add_edge(cur, nxt);
                     hld2.add_edge(cur, nxt);
                     parent[nxt] = cur;
                 }
             }
         }
 
-        hld1.build();
+        hld1.build(root);
 
         // printf("\n\n");
         // for (int i = 0; i < n; i++)
