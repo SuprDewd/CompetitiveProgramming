@@ -333,6 +333,13 @@ syn on | colorscheme slate
         \code{strings/eertree.cpp}
         % http://arxiv.org/pdf/1506.04862v1.pdf
 
+    \subsection{Suffix Automaton}
+        Minimum automata that accepts all suffixes of a string with $O(n)$
+        construction. The automata itself is a DAG therefore suitable for DP,
+        examples are counting unique substrings, occurrences of substrings and
+        suffix.
+        \code{strings/suffix_automaton.cpp}
+
 \section{Mathematics}
     \ifverbose
     \subsection{Fraction}

@@ -40,12 +40,12 @@ struct suffix_automaton {
                 for(i = next[cur.first].begin();i != next[cur.first].end();++i){
                     S.push(ii((*i).second, 0)); } } } }
     string lexicok(ll k){
-        int st = 0; string s; map<char,int>::iterator i;
+        int st = 0; string res; map<char,int>::iterator i;
         while(k){ for(i = next[st].begin(); i != next[st].end(); ++i){
                 if(k <= cnt[(*i).second]){ st = (*i).second; 
-                    s.push_back((*i).first); k--; break;
+                    res.push_back((*i).first); k--; break;
                 } else { k -= cnt[(*i).second]; } } }
-        return s; }
+        return res; }
     void countoccur(){
         for(int i = 0; i < sz; ++i){ occur[i] = 1 - isclone[i]; }
         vii states(sz);
