@@ -14,6 +14,51 @@ Things to do
 * Simplex method
 * Add more Geometry stuff.
 * Edmond's optimum branching algorithm
+* Add a list of debugging tips:
+    - getting a NaN? make sure acos/.. are not getting values out of their range (perhaps 1+eps)
+    - stack overflow? recursive tree on dfs that is actually a long path?
+* Add a list of algorithm types to keep in mind when solving a problem:
+    - dynamic programming
+    - greedy
+    - randomized
+    - optimizations
+        - use bitset (/ 64)
+        - switch order of loops (cache locality)
+    - process queries offline
+        - Mo's algorithm
+    - square-root decomposition
+    - precomputation
+    - efficient simulation:
+        - Mo's algorithm
+        - sqrt decomposition
+        - store 2^k jump pointers
+    - data structure techniques
+        - sqrt buckets
+        - store 2^k jump pointers
+        - 2^k merging trick
+    - counting
+        - inclusion-exclusion principle
+    - strongly connected components
+    - heuristics
+        - A*
+        - branch and bound
+    - graph properties
+        - cycles
+        - bipartite (no odd cycles)
+        - cut vertex/bridge
+        - biconnected components
+    - mathematics
+        - is the function multiplicative?
+    - 2sat
+    - meet in the middle
+    - take the smaller half (log(n))
+    - trie (maybe over something weird, like bits)
+    - ...
+* Add more formulas
+    - v - e + f = 2
+    - \sum_{k=0}^m (-1)^k C(n,k) = (-1)^m C(n-1,m)
+    - 2^\omega(n) = O(\sqrt{n}), where \omega(n) is the number of distinct prime factors
+    - \sum{i=1}^n 2^\omega{i} = O(n \log n)
 
 Links
 =====
