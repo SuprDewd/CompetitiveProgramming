@@ -7,7 +7,7 @@ typedef pair<int, int> ii;
 typedef vector<int> vi;
 typedef vector<ii> vii;
 typedef long long ll;
-const int INF = 2147483647;
+const int INF = ~(1<<31); // 2147483647
 
 const double EPS = 1e-9;
 const double pi = acos(-1);
