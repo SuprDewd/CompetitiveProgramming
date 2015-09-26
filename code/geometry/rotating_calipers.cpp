@@ -1,3 +1,4 @@
+#include "primitives.cpp"
 struct caliper {
     ii pt;
     double angle;
@@ -13,9 +14,9 @@ struct caliper {
     }
     void move_to(ii pt2) { pt = pt2; }
     double dist(const caliper &other) {
-        cpoint a(pt.first,pt.second),
-               b = a + exp(cpoint(0,angle)) * 10.0,
-               c(other.pt.first, other.pt.second);
+        point a(pt.first,pt.second),
+              b = a + exp(point(0,angle)) * 10.0,
+              c(other.pt.first, other.pt.second);
         return abs(c - closest_point(a, b, c));
     } };
 
@@ -33,7 +34,7 @@ struct caliper {
 //     caliper A(hull[a], pi/2), B(hull[b], 3*pi/2);
 //     double done = 0;
 //     while (true) {
-//         mx = max(mx, abs(cpoint(hull[a].first,hull[a].second) - cpoint(hull[b].first, hull[b].second)));
+//         mx = max(mx, abs(point(hull[a].first,hull[a].second) - point(hull[b].first, hull[b].second)));
 //         double tha = A.angle_to(hull[(a+1)%h]),
 //                 thb = B.angle_to(hull[(b+1)%h]);
 //         if (tha <= thb) {
