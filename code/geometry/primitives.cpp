@@ -1,4 +1,3 @@
-#include <complex>
 #define P(p) const point &p
 #define L(p0, p1) P(p0), P(p1)
 #define C(p0, r) P(p0), double r
@@ -6,13 +5,13 @@
 typedef complex<double> point;
 double dot(P(a), P(b)) { return real(conj(a) * b); }
 double cross(P(a), P(b)) { return imag(conj(a) * b); }
-point rotate(P(p), double radians = pi / 2, P(about) = point(0,0)) { 
+point rotate(P(p), double radians = pi / 2, P(about) = point(0,0)) {
     return (p - about) * exp(point(0, radians)) + about; }
 point reflect(P(p), L(about1, about2)) {
     point z = p - about1, w = about2 - about1;
     return conj(z / w) * w + about1; }
 point proj(P(u), P(v)) { return dot(u, v) / dot(u, u) * u; }
-point normalize(P(p), double k = 1.0) { 
+point normalize(P(p), double k = 1.0) {
     return abs(p) == 0 ? point(0,0) : p / abs(p) * k; } //TODO: TEST
 bool parallel(L(a, b), L(p, q)) { return abs(cross(b - a, q - p)) < EPS; }
 double ccw(P(a), P(b), P(c)) { return cross(b - a, c - b); }
@@ -61,7 +60,7 @@ double line_segment_distance(L(a,b), L(c,d)) {
     }
     return x;
 }
-int intersect(C(A, rA), C(B, rB), point & res1, point & res2) { 
+int intersect(C(A, rA), C(B, rB), point & res1, point & res2) {
     double d = abs(B - A);
     if ((rA + rB) <  (d - EPS) || d < abs(rA - rB) - EPS) return 0;
     double a = (rA*rA - rB*rB + d*d) / 2 / d, h = sqrt(rA*rA - a*a);
