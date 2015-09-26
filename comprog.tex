@@ -754,4 +754,125 @@
                 \code{tricks/snoob.cpp}
         \end{itemize}
 
+    \section{Misc}
+        \subsection{Debugging Tips}
+            \begin{itemize}
+                \item Getting \texttt{NaN}? Make sure \texttt{acos} etc.\ are
+                    not getting values out of their range (perhaps
+                    \texttt{1+eps}).
+                \item Stack overflow? Recursive DFS on tree that is actually a long path?
+            \end{itemize}
+
+        \subsection{Solution Ideas}
+            \begin{itemize}
+                \item Dynamic Programming
+                    \begin{itemize}
+                        \item Optimizations
+                            \begin{itemize}
+                                \item Convex hull optimization
+                                    \begin{itemize}
+                                        \item $\mathrm{dp}[i] = \min_{j<i}\{\mathrm{dp}[j] + b[j] \times a[i]\}$
+                                        \item $b[j] \geq b[j+1]$
+                                        \item optionally $a[i] \leq a[i+1]$
+                                        \item $O(n^2)$ to $O(n)$
+                                    \end{itemize}
+                                \item Divide and conquer optimization
+                                    \begin{itemize}
+                                        \item $\mathrm{dp}[i][j] = \min_{k<j}\{\mathrm{dp}[i-1][k] + C[k][j]\}$
+                                        \item $A[i][j] \leq A[i][j+1]$
+                                        \item $O(kn^2)$ to $O(kn\log{n})$
+                                        \item sufficient: $C[a][c] + C[b][d] \leq C[a][d] + C[b][c]$, $a\leq b\leq c\leq d$ (QI)
+                                    \end{itemize}
+                                \item Knuth optimization
+                                    \begin{itemize}
+                                        \item $\mathrm{dp}[i][j] = \min_{i<k<j}\{\mathrm{dp}[i][k] + \mathrm{dp}[k][j] + C[i][j]\}$
+                                        \item $A[i][j-1] \leq A[i][j] \leq A[i+1][j]$
+                                        \item $O(n^3)$ to $O(n^2)$
+                                        \item sufficient: QI and $C[b][c] \leq C[a][d]$, $a\leq b\leq c\leq d$
+                                    \end{itemize}
+                            \end{itemize}
+                    \end{itemize}
+                \item Greedy
+                \item Randomized
+                \item Optimizations
+                    \begin{itemize}
+                        \item Use bitset (/64)
+                        \item Switch order of loops (cache locality)
+                    \end{itemize}
+                \item Process queries offline
+                    \begin{itemize}
+                        \item Mo's algorithm
+                    \end{itemize}
+                \item Square-root decomposition
+                \item Precomputation
+                \item Efficient simulation
+                    \begin{itemize}
+                        \item Mo's algorithm
+                        \item Sqrt decomposition
+                        \item Store $2^k$ jump pointers
+                    \end{itemize}
+                \item Data structure techniques
+                    \begin{itemize}
+                        \item Sqrt buckets
+                        \item Store $2^k$ jump pointers
+                        \item $2^k$ merging trick
+                    \end{itemize}
+                \item Counting
+                    \begin{itemize}
+                        \item Inclusion-exclusion principle
+                    \end{itemize}
+                \item Graphs
+                    \begin{itemize}
+                        \item Can we model the problem as a graph?
+                        \item Can we use any properties of the graph?
+                        \item Strongly connected components
+                        \item Cycles (or odd cycles)
+                        \item Bipartite (no odd cycles)
+                            \begin{itemize}
+                                \item Bipartite matching
+                            \end{itemize}
+                        \item Cut vertex/bridge
+                        \item Biconnected components
+                        \item Degrees of vertices (odd/even)
+                        \item Trees
+                            \begin{itemize}
+                                \item Heavy-light decomposition
+                                \item Centroid decomposition
+                            \end{itemize}
+                    \end{itemize}
+                \item Mathematics
+                    \begin{itemize}
+                        \item Is the function multiplicative?
+                    \end{itemize}
+                \item Logic
+                    \begin{itemize}
+                        \item 2-SAT
+                        \item XOR-SAT (Gauss elimination or Bipartite matching)
+                    \end{itemize}
+                \item Meet in the middle
+                \item Only work with the smaller half ($\log(n)$)
+                \item Strings
+                    \begin{itemize}
+                        \item Trie (maybe over something weird, like bits)
+                        \item Suffix array
+                        \item Suffix automaton (+DP?)
+                        \item eerTree
+                    \end{itemize}
+                \item Hashing
+                \item Euler tour, tree to array
+                \item Segment trees
+                    \begin{itemize}
+                        \item Lazy propagation
+                        \item Persistent
+                        \item Implicit
+                        \item Segment tree of X
+                    \end{itemize}
+                \item Geometry
+                    \begin{itemize}
+                        \item Minkowski sum
+                        \item Rotating calipers
+                        \item Sweep line (horizontally or vertically?)
+                        \item Sweep angle
+                    \end{itemize}
+            \end{itemize}
 \end{document}
