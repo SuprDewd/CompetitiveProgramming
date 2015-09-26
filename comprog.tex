@@ -578,6 +578,9 @@
         \ifverbose
         An algorithm that finds the Convex Hull of a set of points.
         \fi
+        NOTE: Doesn't work on some weird edge cases. (A small case that
+        included three collinear lines would return the same point on both the
+        upper and lower hull.)
         \code{geometry/convex_hull.cpp}
 
     \subsection{Line Segment Intersection}
