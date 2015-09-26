@@ -29,6 +29,7 @@
 % Minted
 \usepackage{minted}
 \newcommand{\code}[1]{\inputminted{cpp}{_code/#1}}
+\newcommand{\bashcode}[1]{\inputminted{bash}{_code/#1}}
 
 % Header/Footer
 % \geometry{includeheadfoot}
@@ -69,16 +70,12 @@
 
 \section{Code Templates}
     \subsection{Basic Configuration}
-        Vim and (Caps Lock = Escape) configuration.
-        \begin{minted}{bash}
-o.yqtxmal ekrpat  # setxkbmap dvorak for dvorak on qwerty
-setxkbmap -option caps:escape
-set -o vi
-xset r rate 150 100
-cat > ~/.vimrc
-set nocp et sw=4 ts=4 sts=4 si cindent hi=1000 nu ru noeb showcmd showmode
-syn on | colorscheme slate
-        \end{minted}
+        \subsubsection{.bashrc}
+        \bashcode{bashrc.sh}
+        ProTip\texttrademark: setxkbmap dvorak on qwerty: \texttt{o.yqtxmal ekrpat}
+
+        \subsubsection{.vimrc}
+        \bashcode{vimrc.sh}
 
     \subsection{C++ Header}
         A C++ header.
@@ -158,6 +155,7 @@ syn on | colorscheme slate
         A $k$-dimensional tree supporting fast construction, adding points, and
         nearest neighbor queries.
         \fi
+        NOTE: Not completely stable, occasionally segfaults.
         \code{data-structures/kd_tree.cpp}
 
     \subsection{Sqrt Decomposition}
