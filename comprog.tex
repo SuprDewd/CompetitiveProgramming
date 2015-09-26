@@ -314,6 +314,17 @@
         \fi
         \code{strings/kmp.cpp}
 
+    \subsection{The $Z$ algorithm}
+        \ifverbose
+        Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting
+        at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these
+        $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for
+        example, be used to find all occurrences of a pattern $P$ in a string
+        $T$ in linear time. This is accomplished by computing $Z$ values of $S
+        = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
+        \fi
+        \code{strings/z_algorithm.cpp}
+
     \ifverbose
     \subsection{Trie}
         A Trie class.
@@ -331,17 +342,6 @@
         any of the keywords.
         \fi
         \code{strings/aho_corasick.cpp}
-
-    \subsection{The $Z$ algorithm}
-        \ifverbose
-        Given a string $S$, $Z_i(S)$ is the longest substring of $S$ starting
-        at $i$ that is also a prefix of $S$. The $Z$ algorithm computes these
-        $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for
-        example, be used to find all occurrences of a pattern $P$ in a string
-        $T$ in linear time. This is accomplished by computing $Z$ values of $S
-        = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
-        \fi
-        \code{strings/z_algorithm.cpp}
 
     \subsection{Eertree}
         \ifverbose
