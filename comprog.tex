@@ -298,6 +298,13 @@
     \subsection{Tarjan's Off-line Lowest Common Ancestors Algorithm}
         \code{graph/tarjan_olca.cpp}
 
+    \subsection{Maximum Density Subgraph}
+        Given (weighted) undirected graph $G$. Binary search density. If $g$ is
+        current density, construct flow network: $(S, u, m)$, $(u, T,
+        m+2g-d_u)$, $(u,v,1)$, where $m$ is large a constant (larger than sum of
+        edge weights). If minimum cut has empty $S$-component, then maximum
+        density is smaller than $g$, otherwise it's larger.
+
 \section{Strings}
 
     \subsection{The Knuth-Morris-Pratt algorithm}
