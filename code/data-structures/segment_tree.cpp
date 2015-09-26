@@ -33,7 +33,6 @@ struct segment_tree {
         propagate(l, r, i);
         if (l > r) return ID;
         if (r < a || b < l) return data[i];
-        if (l == r) return data[i] += v;
         if (a <= l && r <= b) return (lazy[i] = v) * (r - l + 1) + data[i];
         int m = (l + r) / 2;
         return data[i] = f(ru(a, b, v, l, m, 2*i+1),
