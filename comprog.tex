@@ -757,16 +757,23 @@
     \section{Misc}
         \subsection{Debugging Tips}
             \begin{itemize}
-                \item Getting \texttt{NaN}? Make sure \texttt{acos} etc.\ are
-                    not getting values out of their range (perhaps
-                    \texttt{1+eps}).
                 \item Stack overflow? Recursive DFS on tree that is actually a long path?
+                \item Floating-point numbers
+                    \begin{itemize}
+                        \item Getting \texttt{NaN}? Make sure \texttt{acos} etc.\ are
+                            not getting values out of their range (perhaps
+                            \texttt{1+eps}).
+                        \item Rounding negative numbers?
+                        \item Outputting in scientific notation?
+                    \end{itemize}
             \end{itemize}
 
         \subsection{Solution Ideas}
             \begin{itemize}
                 \item Dynamic Programming
                     \begin{itemize}
+                        \item Drop a parameter, recover from others
+                        \item Swap answer and a parameter
                         \item Optimizations
                             \begin{itemize}
                                 \item Convex hull optimization
@@ -830,6 +837,8 @@
                         \item Bipartite (no odd cycles)
                             \begin{itemize}
                                 \item Bipartite matching
+                                \item Hall's marriage theorem
+                                \item Stable Marriage
                             \end{itemize}
                         \item Cut vertex/bridge
                         \item Biconnected components
@@ -838,11 +847,35 @@
                             \begin{itemize}
                                 \item Heavy-light decomposition
                                 \item Centroid decomposition
+                                \item Least common ancestor
+                            \end{itemize}
+                        \item Eulerian path/circuit
+                        \item Chinese postman problem
+                        \item Topological sort
+                        \item (Min-Cost) Max Flow
+                        \item Min Cut
+                            \begin{itemize}
+                                \item Maximum Density Subgraph
                             \end{itemize}
                     \end{itemize}
                 \item Mathematics
                     \begin{itemize}
                         \item Is the function multiplicative?
+                        \item Look for a pattern
+                        \item Permutations
+                            \begin{itemize}
+                                \item Consider the cycles of the permutation
+                            \end{itemize}
+                        \item Functions
+                            \begin{itemize}
+                                \item Sum of piecewise-linear functions is a piecewise-linear function
+                                \item Sum of convex (concave) functions is convex (concave)
+                            \end{itemize}
+                        \item Modular arithmetic
+                            \begin{itemize}
+                                \item Chinese Remainder Theorem
+                                \item Linear Congruence
+                            \end{itemize}
                     \end{itemize}
                 \item Logic
                     \begin{itemize}
@@ -856,7 +889,9 @@
                         \item Trie (maybe over something weird, like bits)
                         \item Suffix array
                         \item Suffix automaton (+DP?)
+                        \item Aho-Corasick
                         \item eerTree
+                        \item Work with $S+S$
                     \end{itemize}
                 \item Hashing
                 \item Euler tour, tree to array
@@ -869,10 +904,18 @@
                     \end{itemize}
                 \item Geometry
                     \begin{itemize}
-                        \item Minkowski sum
+                        \item Minkowski sum (of convex sets)
                         \item Rotating calipers
                         \item Sweep line (horizontally or vertically?)
                         \item Sweep angle
+                        \item Convex hull
                     \end{itemize}
+                \item Fix a parameter (possibly the answer).
+                \item Are there few distinct values?
+                \item Binary search
+                \item Sliding Window (+ Monotonic Queue)
+                \item Computing a Convolution? Fast Fourier Transform
+                \item Exact Cover (+ Algorithm X)
+                \item Cycle-Finding
             \end{itemize}
 \end{document}
