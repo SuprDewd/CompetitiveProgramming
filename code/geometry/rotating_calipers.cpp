@@ -34,7 +34,8 @@ struct caliper {
 //     caliper A(hull[a], pi/2), B(hull[b], 3*pi/2);
 //     double done = 0;
 //     while (true) {
-//         mx = max(mx, abs(point(hull[a].first,hull[a].second) - point(hull[b].first, hull[b].second)));
+//         mx = max(mx, abs(point(hull[a].first,hull[a].second)
+//                      - point(hull[b].first, hull[b].second)));
 //         double tha = A.angle_to(hull[(a+1)%h]),
 //                 thb = B.angle_to(hull[(b+1)%h]);
 //         if (tha <= thb) {
