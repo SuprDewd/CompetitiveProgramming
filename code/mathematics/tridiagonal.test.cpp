@@ -1,3 +1,4 @@
+/* Field testing: Timus 1047 */
 void test() {
     long double eps = 1e-7;
     rep(it,0,5000) {

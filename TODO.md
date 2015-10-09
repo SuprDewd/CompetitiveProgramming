@@ -16,6 +16,7 @@ Things to do
 * Add a list of debugging tips
 * Add a list of algorithm types to keep in mind when solving a problem
 * Add more formulas
+* Test Tridiagonal matrix algorithm on http://codeforces.com/contest/24/problem/D
 
 Links
 =====
