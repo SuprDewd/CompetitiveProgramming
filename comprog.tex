@@ -301,9 +301,20 @@
     \subsection{Maximum Density Subgraph}
         Given (weighted) undirected graph $G$. Binary search density. If $g$ is
         current density, construct flow network: $(S, u, m)$, $(u, T,
-        m+2g-d_u)$, $(u,v,1)$, where $m$ is large a constant (larger than sum of
-        edge weights). If minimum cut has empty $S$-component, then maximum
-        density is smaller than $g$, otherwise it's larger.
+        m+2g-d_u)$, $(u,v,1)$, where $m$ is a large constant (larger than sum
+        of edge weights). Run floating-point max-flow. If minimum cut has empty
+        $S$-component, then maximum density is smaller than $g$, otherwise it's
+        larger. Distance between valid densities is at least $1/(n(n-1))$. Edge
+        case when density is $0$. This also works for weighted graphs by
+        replacing $d_u$ be the weighted degree, and doing more iterations (if
+        weights are not integers).
+
+    \subsection{Maximum Weighted Independent Set in a Bipartite Graph}
+        This is the same as the minimum weighted vertex cover. Solve this by
+        constructing a flow network with edges $(S,u,w(u))$ for $u\in L$,
+        $(v,T,w(v))$ for $v\in R$ and $(u,v,\infty)$ for $(u,v)\in E$. The
+        minimum $S,T$-cut is the answer. Vertices adjacent to a cut edge are
+        in the vertex cover.
 
 \section{Strings}
 
@@ -408,6 +419,9 @@
         \fi
         \code{mathematics/miller_rabin.cpp}
 
+    \subsection{Pollard's $\rho$ algorithm}
+        \code{mathematics/pollard_rho.cpp}
+
     \subsection{Sieve of Eratosthenes}
         \ifverbose
         An optimized implementation of Eratosthenes' Sieve.
@@ -454,6 +468,56 @@
         c_ix_{i+1} = d_i$ where $a_1 = c_n = 0$. Beware of numerical
         instability.
         \code{mathematics/tridiagonal.cpp}
+
+    \subsection{Markov Chains}
+        A Markov Chain can be represented as a weighted directed graph of
+        states, where the weight of an edge represents the probability of
+        transitioning over that edge in one timestep. Let $P^{(m)} = (p^{(m)}_{ij})$
+        be the probability matrix of transitioning from state $i$ to state $j$
+        in $m$ timesteps, and note that $P^{(1)}$ is the adjacency matrix of
+        the graph. \textbf{Chapman-Kolmogorov:} $p^{(m+n)}_{ij} = \sum_{k}
+        p^{(m)}_{ik} p^{(n)}_{kj}$. It follows that $P^{(m+n)} =
+        P^{(m)}P^{(n)}$ and $P^{(m)} = P^m$. If $p^{(0)}$ is the initial
+        probability distribution (a vector), then $p^{(0)}P^{(m)}$ is the
+        probability distribution after $m$ timesteps. 
+
+        The return times of a state $i$ is $R_i = \{m\ |\ p^{(m)}_{ii} > 0 \}$,
+        and $i$ is \textit{aperiodic} if $\gcd(R_i) = 1$. A MC is aperiodic if
+        any of its vertices is aperiodic. A MC is \textit{irreducible} if the
+        corresponding graph is strongly connected.
+
+        A distribution $\pi$ is stationary if $\pi P = \pi$. If MC is
+        irreducible then $\pi_i = 1/\mathbb{E}[T_i]$, where $T_i$ is the
+        expected time between two visits at $i$. $\pi_j/\pi_i$ is the expected
+        number of visits at $j$ in between two consecutive visits at $i$. A MC
+        is \textit{ergodic} if $\lim_{m\to\infty} p^{(0)} P^{m} = \pi$. A MC is
+        ergodic iff.\ it is irreducible and aperiodic.
+
+        A MC for a random walk in an undirected weighted graph (unweighted
+        graph can be made weighted by adding $1$-weights) has $p_{uv} =
+        w_{uv}/\sum_{x} w_{ux}$. If the graph is connected, then $\pi_u =
+        \sum_{x} w_{ux} / \sum_{v}\sum_{x} w_{vx}$. Such a random walk is
+        aperiodic iff.\ the graph is not bipartite.
+
+        An \textit{absorbing} MC is of the form $P = \left(\begin{matrix} Q & R
+        \\ 0 & I_r \end{matrix}\right)$. Let $N = \sum_{m=0}^\infty Q^m = (I_t
+        - Q)^{-1}$. Then, if starting in state $i$, the expected number of
+        steps till absorption is the $i$-th entry in $N1$. If starting in state
+        $i$, the probability of being absorbed in state $j$ is the $(i,j)$-th
+        entry of $NR$.
+
+        Many problems on MC can be formulated in terms of a system of
+        recurrence relations, and then solved using Gaussian elimination.
+
+    \subsection{Burnside's Lemma}
+        Let $G$ be a finite group that acts on a set $X$. For each $g$ in $G$
+        let $X^g$ denote the set of elements in $X$ that are fixed by $g$. Then
+        the number of orbits \[ |X/G| = \frac{1}{|G|} \sum_{g\in G} |X^g| \]
+
+    \subsection{Bézout's identity}
+        If $(x,y)$ is any solution to $ax+by=d$ (e.g.\ found by the Extended
+        Euclidean Algorithm), then all solutions are given by \[
+        \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \].
 
     \subsection{Formulas}
         \begin{itemize}[leftmargin=*]
@@ -524,6 +588,7 @@
                 + D_{n-2})$
             \item Number of permutations of length $n$ that have exactly $k$
                 fixed points: $\binom{n}{k} D_{n-k}$
+            \item Number of trees on $n$ labeled vertices: $n^{n-2}$
             \item \textbf{Jacobi symbol:} $\left(\frac{a}{b}\right) = a^{(b-1)/2} \pmod{b}$
             \item \textbf{Heron's formula:} A triangle with side lengths
                 $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
@@ -547,6 +612,7 @@
                 of edges in a maximum matching is equal to the number of
                 vertices in a minimum vertex cover.
             \fi
+            \item A minumum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
             \ifverbose
             \item The number of vertices of a graph is equal to its minimum
                 vertex cover number plus the size of a maximum independent set.
@@ -636,6 +702,8 @@
                 two of its sides formed by $a$ and $b$. Half of that is the
                 area of the triangle formed by $a$ and $b$.
             \item \textbf{Euler's formula:} $V - E + F = 2$
+            \item Side lengths $a,b,c$ can form a triangle iff.\ $a+b>c$, $b+c>a$ and $a+c>b$.
+            \item Sum of internal angles of a regular convex $n$-gon is $(n-2)\pi$.
         \end{itemize}
 
 
@@ -780,6 +848,7 @@
                     \begin{itemize}
                         \item Drop a parameter, recover from others
                         \item Swap answer and a parameter
+                        \item Parsing CFGs: CYK Algorithm
                         \item Optimizations
                             \begin{itemize}
                                 \item Convex hull optimization
@@ -833,6 +902,7 @@
                 \item Counting
                     \begin{itemize}
                         \item Inclusion-exclusion principle
+                        \item Generating functions
                     \end{itemize}
                 \item Graphs
                     \begin{itemize}
@@ -863,6 +933,11 @@
                             \begin{itemize}
                                 \item Maximum Density Subgraph
                             \end{itemize}
+                        \item Huffman Coding
+                        \item Min-Cost Arborescence
+                        \item Steiner Tree
+                        \item Kirchoff's matrix tree theorem
+                        \item Pr\"ufer sequences
                     \end{itemize}
                 \item Mathematics
                     \begin{itemize}
@@ -882,6 +957,8 @@
                                 \item Chinese Remainder Theorem
                                 \item Linear Congruence
                             \end{itemize}
+                        \item Sieve
+                        \item System of linear equations
                     \end{itemize}
                 \item Logic
                     \begin{itemize}
@@ -923,5 +1000,6 @@
                 \item Computing a Convolution? Fast Fourier Transform
                 \item Exact Cover (+ Algorithm X)
                 \item Cycle-Finding
+                \item What is the smallest set of values that identify the solution? The cycle structure of the permutation? The powers of primes in the factorization?
             \end{itemize}
 \end{document}
