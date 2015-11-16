@@ -26,5 +26,25 @@ void test() {
             assert_equal(g.max_flow(i, j), compute_max_flow(i, j, gh));
         }
     }
+
+
+    N = 500;
+    g = flow_network(N);
+    int cnt = 0;
+    rep(i,0,N) {
+        rep(j,0,N) {
+            if (rand() % 1000 == 0) {
+                g.add_edge(i,j,rand() % MAX);
+                cnt++;
+            }
+        }
+    }
+
+    gh = construct_gh_tree(g);
+    rep(i,0,N) {
+        int a = rand() % N,
+            b = rand() % N;
+        assert_equal(g.max_flow(a,b), compute_max_flow(a,b,gh));
+    }
 }
 

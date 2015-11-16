@@ -287,6 +287,7 @@
         An implementation of the Gomory-Hu Tree. The spanning tree is constructed using Gusfield's algorithm
         in $O(|V| ^ 2)$ plus $|V|-1$ times the time it takes to calculate the maximum flow.
         If Dinic's algorithm is used to calculate the max flow, the running time is $O(|V|^3|E|)$.
+        NOTE: Not sure if it works correctly with disconnected graphs.
         \code{graph/gomory_hu_tree.cpp}
 
     \subsection{Heavy-Light Decomposition}

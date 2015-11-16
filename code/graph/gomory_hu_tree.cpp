@@ -8,7 +8,7 @@ pair<vii, vvi> construct_gh_tree(flow_network &g) {
         int l = 0, r = 0;
         par[s].second = g.max_flow(s, par[s].first, false);
         memset(d, 0, n * sizeof(int));
-        memset(same, 0, n * sizeof(int));
+        memset(same, 0, n * sizeof(bool));
         d[q[r++] = s] = 1;
         while (l < r) {
             same[v = q[l++]] = true;
