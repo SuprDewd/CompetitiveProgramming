@@ -34,6 +34,15 @@ void test() {
     assert_equal(point(3, -3), rotate(point(3, 3), pi + pi / 2, point(0,0)));
     assert_equal(point(3, 3), rotate(point(3, 3), 2 * pi, point(0,0)));
 
+    // assert_equal(point(0.7071067811,0.7071067811), normalize(point(2,2)));
+    assert_equal(point(cos(pi/4), sin(pi/4)), normalize(point(2,2)));
+    assert_equal(point(0,0), normalize(point(0,0)));
+    assert_equal(point(0,1), normalize(point(0,100)));
+    assert_equal(point(1,0), normalize(point(100,0)));
+    assert_equal(point(-1,0), normalize(point(-2,0)));
+    assert_equal(point(0,-1), normalize(point(0,-2)));
+    assert_equal(point(cos(pi/3), sin(pi/3)), normalize(point(cos(pi/3) * 2, sin(pi/3) * 2)));
+
     assert_equal(point(1, 1), closest_point(point(2, 2), point(3, 3), point(2, 0)));
     assert_equal(point(0.5, 0.5), closest_point(point(2, 2), point(3, 3), point(1, 0)));
     assert_equal(point(1, 1), closest_point(point(2, 2), point(3, 3), point(0, 2)));
