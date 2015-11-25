@@ -1,12 +1,9 @@
-function dvorak {
-    setxkbmap -option caps:escape dvorak is
-    xset r rate 150 100
-    set -o vi
-}
+xset r rate 150 100
+set -o vi
+setxkbmap -option caps:escape
+dvorak() { setxkbmap dvorak is; }
+james() { setxkbmap en_US; }
 alias "h.soav"="dvorak"
-function james {
-    setxkbmap en_US
-}
 alias "ham.o"="james"
 
 function check {
