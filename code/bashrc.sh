@@ -1,5 +1,6 @@
 xset r rate 150 100
 set -o vi
+
 function check {
     IFS=
     s=""
