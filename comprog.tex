@@ -23,7 +23,7 @@
   \posttitle{%
     \par\end{center}
     \begin{center}\large#1\end{center}
-    \vskip0.5em}%
+    \vskip0.1em\vspace{-1em}}%
 }
 
 % Minted
@@ -39,6 +39,8 @@
 \rhead{\thepage}
 \cfoot{}
 \setlength{\headheight}{15.2pt}
+\setlength{\droptitle}{-20pt}
+\posttitle{\par\end{center}}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
@@ -64,6 +66,8 @@
 
 \maketitle
 \thispagestyle{fancy}
+\vspace{-3em}
+% \addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
 \tableofcontents
 
 \clearpage
@@ -640,6 +644,16 @@
         Geometry primitives.
         \fi
         \code{geometry/primitives.cpp}
+    \subsection{Lines}
+        \ifverbose
+        Line related functions.
+        \fi
+        \code{geometry/lines.cpp}
+    \subsection{Circles}
+        \ifverbose
+        Circle related functions.
+        \fi
+        \code{geometry/circles.cpp}
 
     \subsection{Polygon}
         \ifverbose
