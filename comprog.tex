@@ -57,8 +57,8 @@
 
 % Output Verbosity
 \newif\ifverbose
-\verbosetrue
-% \verbosefalse
+% \verbosetrue
+\verbosefalse
 
 \begin{document}
 
@@ -118,6 +118,7 @@
         \fi
         \code{data-structures/matrix.cpp}
 
+    \ifverbose
     \subsection{AVL Tree}
         \ifverbose
         A fast, easily augmentable, balanced binary search tree.
@@ -129,22 +130,25 @@
         interface.
         \code{data-structures/avl_map.cpp}
         \fi
+    \fi
 
     \subsection{Cartesian Tree}
         \code{data-structures/cartesian_tree.cpp}
 
+    \ifverbose
     \subsection{Heap}
-        \ifverbose
         An implementation of a binary heap.
-        \fi
         \code{data-structures/heap.cpp}
+    \fi
 
+    \ifverbose
     \subsection{Dancing Links}
         \ifverbose
         An implementation of Donald Knuth's Dancing Links data structure. A
         linked list supporting deletion and restoration of elements.
         \fi
         \code{data-structures/dancing_links.cpp}
+    \fi
 
     \subsection{Misof Tree}
         \ifverbose
@@ -153,6 +157,7 @@
         \fi
         \code{data-structures/misof_tree.cpp}
 
+    \ifverbose
     \subsection{$k$-d Tree}
         \ifverbose
         A $k$-dimensional tree supporting fast construction, adding points, and
@@ -160,6 +165,7 @@
         \fi
         NOTE: Not completely stable, occasionally segfaults.
         \code{data-structures/kd_tree.cpp}
+    \fi
 
     \subsection{Sqrt Decomposition}
         \ifverbose
@@ -263,6 +269,7 @@
             \fi
             \code{graph/dinic.cpp}
 
+        \ifverbose
         \subsubsection{Edmonds Karp's algorithm}
             An implementation of Edmonds Karp's algorithm that runs in
             $O(|V||E|^2)$.
@@ -270,6 +277,7 @@
             It computes the maximum flow of a flow network.
             \fi
             \code{graph/edmonds_karps.cpp}
+        \fi
 
     \subsection{Minimum Cost Maximum Flow}
         \ifverbose
@@ -361,9 +369,9 @@
         \fi
         \code{strings/aho_corasick.cpp}
 
-    \subsection{Eertree}
+    \subsection{eerTree}
         \ifverbose
-        Constructs an Eertree in $O(n)$, one character at a time.
+        Constructs an eerTree in $O(n)$, one character at a time.
         \fi
         \code{strings/eertree.cpp}
         % http://arxiv.org/pdf/1506.04862v1.pdf
@@ -383,6 +391,7 @@
         \code{mathematics/fraction.cpp}
     \fi
 
+    \ifverbose
     \subsection{Big Integer}
         \ifverbose
         A big integer class.
@@ -394,6 +403,7 @@
             Fast multiplication for the big integer using Fast Fourier Transform.
             \fi
             \code{mathematics/fastmul.cpp}
+    \fi
 
     \subsection{Binomial Coefficients}
         The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the
@@ -544,7 +554,7 @@
     \subsection{Bézout's identity}
         If $(x,y)$ is any solution to $ax+by=d$ (e.g.\ found by the Extended
         Euclidean Algorithm), then all solutions are given by \[
-        \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \].
+        \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \]
 
     \subsection{Formulas}
         \begin{itemize}[leftmargin=*]
@@ -595,6 +605,7 @@
                 number of rooted binary trees with $n+1$ vertices, number of
                 paths across an $n\times n$ lattice which do not rise above the
                 main diagonal: $C_n$
+            \item Number of trees on $n$ labeled vertices: $n^{n-2}$
             \item Number of permutations of $n$ objects with exactly $k$
                 ascending sequences or {\it runs}: \\ $\left\langle {n \atop k}
                 \right\rangle = \left\langle {n \atop n - k - 1} \right\rangle
@@ -634,17 +645,17 @@
             \item \textbf{Euler's totient:} The number of integers less than
                 $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
                 where each $p$ is a distinct prime factor of $n$.
-            \ifverbose
-            \item \textbf{König's theorem:} In any bipartite graph, the number
+            \item \textbf{König's theorem:} In any bipartite graph $G=(L\cup R,E)$, the number
                 of edges in a maximum matching is equal to the number of
-                vertices in a minimum vertex cover.
-            \fi
+                vertices in a minimum vertex cover. Let $U$ be the set of
+                unmatched vertices in $L$, and $Z$ be the set of vertices that
+                are either in $U$ or are connected to $U$ by an alternating
+                path. Then $K=(L\setminus Z)\cup(R\cap Z)$ is the minimum
+                vertex cover.
             \item A minumum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
-            \ifverbose
             \item The number of vertices of a graph is equal to its minimum
                 vertex cover number plus the size of a maximum independent set.
-            \fi
-            \item $\gcd(2^a-1,2^b-1) = 2^{\gcd(a,b)}-1$
+            \item $\gcd(n^a-1,n^b-1) = n^{\gcd(a,b)}-1$
             \item \textbf{Wilson's theorem:} $(n-1)! \equiv -1 \pmod{n}$ iff.\ $n$ is prime
             \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
             \item $\sum_{k=0}^m (-1)^k \binom{n}{k} = (-1)^m \binom{n-1}{m}$
@@ -796,16 +807,10 @@
             \item Can we add vertices/edges to the graph to make the problem
                 easier? Can we turn the graph into some other kind of a graph
                 (perhaps a DAG, or a flow network)?
-            \item Make sure integers are not overflowing.
             \item Is it better to compute the answer modulo $n$? Perhaps we can
                 compute the answer modulo $m_1,m_2,\ldots,m_k$, where
                 $m_1,m_2,\ldots,m_k$ are pairwise coprime integers, and find
                 the real answer using CRT?
-            \item Are there any edge cases? When $n=0, n=-1, n=1, n=2^{31}-1$
-                or $n=-2^{31}$? When the list is empty, or contains a single
-                element? When the graph is empty, or contains a single vertex?
-                When the graph contains self-loops?  When the polygon is
-                concave or non-simple?
             \item Can we use exponentiation by squaring?
         \end{itemize}
 
@@ -866,6 +871,23 @@
                             \texttt{1+eps}).
                         \item Rounding negative numbers?
                         \item Outputting in scientific notation?
+                    \end{itemize}
+                \item Wrong Answer?
+                    \begin{itemize}
+                        \item Integer overflow?
+                        \item Think very carefully about boundaries of all input parameters
+                        \item Try out possible edge cases:
+                            \begin{itemize}
+                                \item $n=0, n=-1, n=1, n=2^{31}-1$ or $n=-2^{31}$
+                                \item List is empty, or contains a single element
+                                \item $n$ is even, $n$ is odd
+                                \item Graph is empty, or contains a single vertex
+                                \item Graph is a multigraph (loops or multiple edges)
+                                \item Polygon is concave or non-simple
+                            \end{itemize}
+                        \item Are multiple test cases being handled correctly?
+                              Try repeating the same test case many times.
+                        \item Is initial condition wrong for small cases?
                     \end{itemize}
             \end{itemize}
 
@@ -986,6 +1008,11 @@
                             \end{itemize}
                         \item Sieve
                         \item System of linear equations
+                        \item Values to big to represent?
+                            \begin{itemize}
+                                \item Compute using the logarithm
+                                \item Divide everything by some large value
+                            \end{itemize}
                     \end{itemize}
                 \item Logic
                     \begin{itemize}
@@ -1028,5 +1055,24 @@
                 \item Exact Cover (+ Algorithm X)
                 \item Cycle-Finding
                 \item What is the smallest set of values that identify the solution? The cycle structure of the permutation? The powers of primes in the factorization?
+                \item Look at the complement problem
+                    \begin{itemize}
+                        \item Minimize something instead of maximizing
+                    \end{itemize}
+                \item Immediately enforce necessary conditions. (All values greater than 0? Initialize them all to 1)
+                \item Add large constant to negative numbers to make them positive
+                \item Counting/Bucket sort
             \end{itemize}
+
+        \clearpage
+        \subsection*{Practice Contest Checklist}
+            \begin{itemize}
+                \item How many operations per second?
+                \item What is the stack size?
+                \item How to use printf/scanf with long long/long double?
+                \item Is \textit{\_{}\_{}int128} available?
+                \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
+                \item What is \textit{RAND\_{}MAX}?
+            \end{itemize}
+
 \end{document}
