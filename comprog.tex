@@ -470,6 +470,21 @@
         instability.
         \code{mathematics/tridiagonal.cpp}
 
+    \subsection{Mertens Function}
+        Mertens function is $M(n) = \sum_{i=1}^n \mu(i)$. Let $L\approx
+        (n\log{\log{n}})^{2/3}$ and the algorithm runs in $O(n^{2/3})$.
+        \ifverbose
+        \else
+            Can also be easily changed to compute the summatory $\Phi$.
+        \fi
+        \code{mathematics/mertens.cpp}
+    \ifverbose
+    \subsection{Summatory Phi}
+        The summatory phi function $\Phi(n) = \sum_{i=1}^n \phi(i)$. Let $L\approx
+        (n\log{\log{n}})^{2/3}$ and the algorithm runs in $O(n^{2/3})$.
+        \code{mathematics/summatory_phi.cpp}
+    \fi
+
     \subsection{Markov Chains}
         A Markov Chain can be represented as a weighted directed graph of
         states, where the weight of an edge represents the probability of
