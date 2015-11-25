@@ -1,14 +1,5 @@
-function dvorak {
-    setxkbmap -option caps:escape dvorak is
-    xset r rate 150 100
-    set -o vi
-}
-alias "h.soav"="dvorak"
-function james {
-    setxkbmap en_US
-}
-alias "ham.o"="james"
-
+xset r rate 150 100
+set -o vi
 function check {
     IFS=
     s=""
@@ -18,3 +9,5 @@ function check {
         echo "${h:0:2}  $l"
     done
 }
+# setxkbmap -option caps:escape dvorak is
+# setxkbmap en_US
