@@ -7,7 +7,6 @@ int intersect(C(A, rA), C(B, rB), point & res1, point & res2) {
     res1 = A + v + u, res2 = A + v - u;
     if (abs(u) < EPS) return 1; return 2;
 }
-
 int intersect(L(A, B), C(O, r), point & res1, point & res2) {
      double h = abs(O - closest_point(A, B, O));
      if(r < h - EPS) return 0;
@@ -15,7 +14,6 @@ int intersect(L(A, B), C(O, r), point & res1, point & res2) {
      res1 = H + v; res2 = H - v;
      if(abs(v) < EPS) return 1; return 2;
 }
-
 int tangent(P(A), C(O, r), point & res1, point & res2) {
     point v = O - A; double d = abs(v);
     if (d < r - EPS) return 0;
@@ -25,7 +23,6 @@ int tangent(P(A), C(O, r), point & res1, point & res2) {
     if (abs(r - d) < EPS || abs(v) < EPS) return 1;
     return 2;
 }
-
 void tangent_outer(point A, double rA, point B, double rB, PP(P), PP(Q)) {
     if (rA - rB > EPS) { swap(rA, rB); swap(A, B); }
     double theta = asin((rB - rA)/abs(A - B));
