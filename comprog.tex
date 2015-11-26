@@ -893,6 +893,9 @@
                     \end{itemize}
                 \item Wrong Answer?
                     \begin{itemize}
+                        \item Read the problem statement again!
+                        \item Are multiple test cases being handled correctly?
+                              Try repeating the same test case many times.
                         \item Integer overflow?
                         \item Think very carefully about boundaries of all input parameters
                         \item Try out possible edge cases:
@@ -904,9 +907,11 @@
                                 \item Graph is a multigraph (loops or multiple edges)
                                 \item Polygon is concave or non-simple
                             \end{itemize}
-                        \item Are multiple test cases being handled correctly?
-                              Try repeating the same test case many times.
                         \item Is initial condition wrong for small cases?
+                        \item Are you sure the algorithm is correct?
+                        \item Explain your solution to someone.
+                        \item Are you using any functions that you don't completely understand? Maybe STL functions?
+                        \item Maybe you (or someone else) should rewrite the solution?
                     \end{itemize}
             \end{itemize}
 
@@ -1006,6 +1011,8 @@
                         \item Steiner Tree
                         \item Kirchoff's matrix tree theorem
                         \item Pr\"ufer sequences
+                        \item Lov\'asz Toggle
+                        \item Look at the DFS tree (which has no cross-edges)
                     \end{itemize}
                 \item Mathematics
                     \begin{itemize}
@@ -1086,12 +1093,19 @@
         \clearpage
         \subsection*{Practice Contest Checklist}
             \begin{itemize}
-                \item How many operations per second?
+                \item How many operations per second? Compare to local machine.
                 \item What is the stack size?
                 \item How to use printf/scanf with long long/long double?
                 \item Is \textit{\_{}\_{}int128} available?
                 \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
                 \item What is \textit{RAND\_{}MAX}?
+                \item How does the judge handle extra spaces (or missing newlines) in the output?
+                \item Look at documentation for programming languages.
+                \item Try different programming languages: C++ and Java.
+                \item Try the submit script.
+                \item Try local programs: i?python[23], factor.
+                \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
+                \item Return-value from \texttt{main}.
             \end{itemize}
 
 \end{document}
