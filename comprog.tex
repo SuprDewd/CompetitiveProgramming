@@ -663,10 +663,6 @@
         that maximizes $\sum_{i=1}^{n-1}|p_i - p_{i+1}|$.
         \code{other/simulated_annealing.cpp}
 
-\onecolumn
-\begin{multicols*}{3}
-\section{Useful Information}
-
     \subsection{Fast Input Reading}
         \ifverbose
         If input or output is huge, sometimes it is beneficial to optimize the
@@ -676,7 +672,7 @@
         fwrite). A simpler, but still effective, way to achieve speed is to use
         the following input reading method.
         \fi
-        \regcode{tricks/fast_input.cpp}
+        \code{tricks/fast_input.cpp}
 
     \ifverbose
     \subsection{128-bit Integer}
@@ -687,6 +683,51 @@
 
     \subsection{Bit Hacks}
         \code{tricks/snoob.cpp}
+    \begin{tabular}{@{}l|l|l@{}}
+    \toprule
+    Catalan	&	$C_0=1$, $C_n=\frac{1}{n+1}\binom{2n}{n} = \sum_{i=0}^{n-1}C_iC_{n-i-1} = \frac{4n-2}{n+1}C_{n-1}$  & \\
+    Stirling 1st kind & $\left[{0\atop 0}\right]=1$, $\left[{n\atop 0}\right]=\left[{0\atop n}\right]=0$, $\left[{n\atop k}\right]=(n-1)\left[{n-1\atop k}\right]+\left[{n-1\atop k-1}\right]$ & \#perms of $n$ objs with exactly $k$ cycles\\
+    Stirling 2nd kind & $\left\{{n\atop 1}\right\}=\left\{{n\atop n}\right\}=1$, $\left\{{n\atop k}\right\} = k \left\{{ n-1 \atop k }\right\} + \left\{{n-1\atop k-1}\right\}$ & \#ways to partition $n$ objs into $k$ nonempty sets\\
+    Euler	& $\left \langle {n\atop 0} \right \rangle = \left \langle {n\atop n-1} \right \rangle = 1 $, $\left \langle {n\atop k} \right \rangle = (k+1) \left \langle {n-1\atop {k}} \right \rangle + (n-k)\left \langle {{n-1}\atop {k-1}} \right \rangle$ & \#perms of $n$ objs with exactly $k$ ascents \\
+    Euler 2nd Order &  $\left \langle \!\!\left \langle {n\atop k} \right \rangle \!\! \right \rangle = (k+1) \left \langle \!\! \left \langle {{n-1}\atop {k}} \right \rangle \!\! \right \rangle +(2n-k-1)\left \langle \!\! \left \langle {{n-1}\atop {k-1}} \right \rangle  \!\! \right \rangle$ & \#perms of ${1,1,2,2,...,n,n}$ with exactly $k$ ascents \\
+    Bell & $B_1 = 1$, $B_n = \sum_{k=0}^{n-1} B_k \binom{n-1}{k} = \sum_{k=0}^n\left\{{n\atop k}\right\}$ & \#partitions of $1..n$ (Stirling 2nd, no limit on k)\\
+    \bottomrule
+    \end{tabular}
+
+    \vspace{10pt}
+    \begin{tabular}{ll}
+        \#labeled rooted trees & $n^{n-1}$ \\
+        \#labeled unrooted trees & $n^{n-2}$ \\
+        % Kirchoff's theorem
+        $\sum_{i=1}^n i^2 = n(n+1)(2n+1)/6$ & $\sum_{i=1}^n i^3 = n^2(n+1)^2/4$ \\
+        $!n = n\times!(n-1)+(-1)^n$ & $!n = (n-1)(!(n-1)+!(n-2))$ \\
+        $\sum_{i=1}^n \binom{n}{i} F_i = F_{2n}$ & $\sum_{i} \binom{n-i}{i} = F_{n+1}$ \\
+        $\sum_{k=0}^n \binom{k}{m} = \binom{n+1}{m+1}$ & \\
+
+        $a\equiv b\pmod{x,y} \Rightarrow a\equiv b\pmod{\lcm(x,y)}$ & $\sum_{d|n} \phi(d) = n$ \\
+        $ac\equiv bc\pmod{m} \Rightarrow a\equiv b\pmod{\frac{m}{\gcd(c,m)}}$ & $(\sum_{d|n} \sigma_0(d))^2 = \sum_{d|n} \sigma_0(d)^3$ \\
+        $p$ prime $\Leftrightarrow (p-1)!\equiv -1\pmod{p}$ & $\gcd(n^a-1,n^b-1) = n^{\gcd(a,b)}-1$ \\
+        $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i + 1)x} - 1}{p_i^x - 1}$ & $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$ \\
+        $\sum_{k=0}^m (-1)^k \binom{n}{k} = (-1)^m \binom{n-1}{m}$ & \\
+        $2^{\omega(n)} = O(\sqrt{n})$ & $\sum_{i=1}^n 2^{\omega(i)} = O(n \log n)$ \\
+        $d = v_i t + \frac{1}{2}at^2$ & $v_f^2 = v_i^2 + 2ad$ \\
+        $v_f = v_i + at$ & $d = \frac{v_i + v_f}{2}t$ \\
+    \end{tabular}
+    \subsection{The Twelvefold Way}
+        Putting $n$ balls into $k$ boxes.\\
+    \begin{tabular}{@{}c|c|c|c|c|l@{}}
+    Balls & same & distinct & same & distinct & \\
+    Boxes & same & same & distinct & distinct & Remarks\\
+    \hline
+    - & $\mathrm{p}_k(n)$ & $\sum_{i=0}^k \left\{{n\atop i}\right\}$ & $\binom{n+k-1}{k-1}$ & $k^n$ & $\mathrm{p}_k(n)$: \#partitions of $n$ into $\le k$ positive parts \\
+    $\mathrm{size}\ge 1$ & $\mathrm{p}(n,k)$ & $\left\{{n\atop k}\right\}$ & $\binom{n-1}{k-1}$ & $k!\left\{{n\atop k}\right\}$ & $\mathrm{p}(n,k)$: \#partitions of $n$ into $k$ positive parts \\
+    $\mathrm{size}\le 1$ & $[n \le k]$ & $[n \le k]$ & $\binom{k}{n}$ & $n!\binom{k}{n}$ & $[cond]$: $1$ if $cond=true$, else $0$\\
+    \bottomrule
+    \end{tabular}
+
+\onecolumn
+\begin{multicols*}{3}
+\section{Useful Information}
 
     \section{Misc}
         \subsection{Debugging Tips}
@@ -900,22 +941,6 @@
             \end{myitemize}
 
     \section*{Formulas}
-        \begin{tabular}{ll}
-            \#labeled rooted trees & $n^{n-1}$ \\
-            \#labeled unrooted trees & $n^{n-2}$ \\
-            % Kirchoff's theorem
-            $\sum_{i=1}^n i^2 = n(n+1)(2n+1)/6$ & $\sum_{i=1}^n i^3 = n^2(n+1)^2/4$ \\
-            $!n = n\times!(n-1)+(-1)^n$ & $!n = (n-1)(!(n-1)+!(n-2))$ \\
-            $\sum_{i=1}^n \binom{n}{i} F_i = F_{2n}$ & $\sum_{i} \binom{n-i}{i} = F_{n+1}$ \\
-            $\sum_{k=0}^n \binom{k}{m} = \binom{n+1}{m+1}$ & \\
-
-            $a\equiv b\pmod{x,y} \Rightarrow a\equiv b\pmod{\lcm(x,y)}$ & $\sum_{d|n} \phi(d) = n$ \\
-            $ac\equiv bc\pmod{m} \Rightarrow a\equiv b\pmod{\frac{m}{\gcd(c,m)}}$ & $(\sum_{d|n} \sigma_0(d))^2 = \sum_{d|n} \sigma_0(d)^3$ \\
-            $p$ prime $\Leftrightarrow (p-1)!\equiv -1\pmod{p}$ & $\gcd(n^a-1,n^b-1) = n^{\gcd(a,b)}-1$ \\
-            $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i + 1)x} - 1}{p_i^x - 1}$ & $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$ \\
-            $\sum_{k=0}^m (-1)^k \binom{n}{k} = (-1)^m \binom{n-1}{m}$ & \\
-            $2^{\omega(n)} = O(\sqrt{n})$ & $\sum_{i=1}^n 2^{\omega(i)} = O(n \log n)$ \\
-        \end{tabular}
 
         % \item Number of permutations of length $n$ that have no fixed
         %     points (derangements): $D_0 = 1, D_1 = 0, D_n = (n - 1)(D_{n-1}
@@ -1001,28 +1026,6 @@
             Euclidean Algorithm), then all solutions are given by \[
             \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \]
 
-        \subsection{The Twelvefold Way}
-            Putting $n$ balls into $k$ boxes.\\
-        \begin{tabular}{@{}c|c|c|c|c|l@{}}
-        Balls & same & distinct & same & distinct & \\
-        Boxes & same & same & distinct & distinct & Remarks\\
-        \hline
-        - & $\mathrm{p}_k(n)$ & $\sum_{i=0}^k \left\{{n\atop i}\right\}$ & $\binom{n+k-1}{k-1}$ & $k^n$ & $\mathrm{p}_k(n)$: \#partitions of $n$ into $\le k$ positive parts \\
-        $\mathrm{size}\ge 1$ & $\mathrm{p}(n,k)$ & $\left\{{n\atop k}\right\}$ & $\binom{n-1}{k-1}$ & $k!\left\{{n\atop k}\right\}$ & $\mathrm{p}(n,k)$: \#partitions of $n$ into $k$ positive parts \\
-        $\mathrm{size}\le 1$ & $[n \le k]$ & $[n \le k]$ & $\binom{k}{n}$ & $n!\binom{k}{n}$ & $[cond]$: $1$ if $cond=true$, else $0$\\
-        \bottomrule
-        \end{tabular}
-        \\
-        \begin{tabular}{@{}l|l|l@{}}
-        \toprule
-        Catalan	&	$C_0=1$, $C_n=\frac{1}{n+1}\binom{2n}{n} = \sum_{i=0}^{n-1}C_iC_{n-i-1} = \frac{4n-2}{n+1}C_{n-1}$  & \\
-        Stirling 1st kind & $\left[{0\atop 0}\right]=1$, $\left[{n\atop 0}\right]=\left[{0\atop n}\right]=0$, $\left[{n\atop k}\right]=(n-1)\left[{n-1\atop k}\right]+\left[{n-1\atop k-1}\right]$ & \#perms of $n$ objs with exactly $k$ cycles\\
-        Stirling 2nd kind & $\left\{{n\atop 1}\right\}=\left\{{n\atop n}\right\}=1$, $\left\{{n\atop k}\right\} = k \left\{{ n-1 \atop k }\right\} + \left\{{n-1\atop k-1}\right\}$ & \#ways to partition $n$ objs into $k$ nonempty sets\\
-        Euler	& $\left \langle {n\atop 0} \right \rangle = \left \langle {n\atop n-1} \right \rangle = 1 $, $\left \langle {n\atop k} \right \rangle = (k+1) \left \langle {n-1\atop {k}} \right \rangle + (n-k)\left \langle {{n-1}\atop {k-1}} \right \rangle$ & \#perms of $n$ objs with exactly $k$ ascents \\
-        Euler 2nd Order &  $\left \langle \!\!\left \langle {n\atop k} \right \rangle \!\! \right \rangle = (k+1) \left \langle \!\! \left \langle {{n-1}\atop {k}} \right \rangle \!\! \right \rangle +(2n-k-1)\left \langle \!\! \left \langle {{n-1}\atop {k-1}} \right \rangle  \!\! \right \rangle$ & \#perms of ${1,1,2,2,...,n,n}$ with exactly $k$ ascents \\
-        Bell & $B_1 = 1$, $B_n = \sum_{k=0}^{n-1} B_k \binom{n-1}{k} = \sum_{k=0}^n\left\{{n\atop k}\right\}$ & \#partitions of $1..n$ (Stirling 2nd, no limit on k)\\
-        \bottomrule
-        \end{tabular}
 
     \clearpage
     \section*{Practice Contest Checklist}
@@ -1043,24 +1046,5 @@
 
             \item Remove this page from the notebook.
         \end{itemize}
-
-        % \clearpage
-        \subsection*{Practice Contest Checklist}
-            \begin{myitemize}
-                \item How many operations per second? Compare to local machine.
-                \item What is the stack size?
-                \item How to use printf/scanf with long long/long double?
-                \item Is \textit{\_{}\_{}int128} available?
-                \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
-                \item What is \textit{RAND\_{}MAX}?
-                \item How does the judge handle extra spaces (or missing newlines) in the output?
-                \item Look at documentation for programming languages.
-                \item Try different programming languages: C++ and Java.
-                \item Try the submit script.
-                \item Try local programs: i?python[23], factor.
-                \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
-                \item Return-value from \texttt{main}.
-                \item Remove this page from the notebook.
-            \end{myitemize}
 \end{multicols*}
 \end{document}
