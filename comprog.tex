@@ -18,6 +18,7 @@
 \usepackage{titling}
 \usepackage{datetime}
 \usepackage{enumitem}
+% \usepackage{mnsymbol}
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -521,165 +522,6 @@
         \code{mathematics/summatory_phi.cpp}
     \fi
 
-    \subsection{Markov Chains}
-        A Markov Chain can be represented as a weighted directed graph of
-        states, where the weight of an edge represents the probability of
-        transitioning over that edge in one timestep. Let $P^{(m)} = (p^{(m)}_{ij})$
-        be the probability matrix of transitioning from state $i$ to state $j$
-        in $m$ timesteps, and note that $P^{(1)}$ is the adjacency matrix of
-        the graph. \textbf{Chapman-Kolmogorov:} $p^{(m+n)}_{ij} = \sum_{k}
-        p^{(m)}_{ik} p^{(n)}_{kj}$. It follows that $P^{(m+n)} =
-        P^{(m)}P^{(n)}$ and $P^{(m)} = P^m$. If $p^{(0)}$ is the initial
-        probability distribution (a vector), then $p^{(0)}P^{(m)}$ is the
-        probability distribution after $m$ timesteps. 
-
-        The return times of a state $i$ is $R_i = \{m\ |\ p^{(m)}_{ii} > 0 \}$,
-        and $i$ is \textit{aperiodic} if $\gcd(R_i) = 1$. A MC is aperiodic if
-        any of its vertices is aperiodic. A MC is \textit{irreducible} if the
-        corresponding graph is strongly connected.
-
-        A distribution $\pi$ is stationary if $\pi P = \pi$. If MC is
-        irreducible then $\pi_i = 1/\mathbb{E}[T_i]$, where $T_i$ is the
-        expected time between two visits at $i$. $\pi_j/\pi_i$ is the expected
-        number of visits at $j$ in between two consecutive visits at $i$. A MC
-        is \textit{ergodic} if $\lim_{m\to\infty} p^{(0)} P^{m} = \pi$. A MC is
-        ergodic iff.\ it is irreducible and aperiodic.
-
-        A MC for a random walk in an undirected weighted graph (unweighted
-        graph can be made weighted by adding $1$-weights) has $p_{uv} =
-        w_{uv}/\sum_{x} w_{ux}$. If the graph is connected, then $\pi_u =
-        \sum_{x} w_{ux} / \sum_{v}\sum_{x} w_{vx}$. Such a random walk is
-        aperiodic iff.\ the graph is not bipartite.
-
-        An \textit{absorbing} MC is of the form $P = \left(\begin{matrix} Q & R
-        \\ 0 & I_r \end{matrix}\right)$. Let $N = \sum_{m=0}^\infty Q^m = (I_t
-        - Q)^{-1}$. Then, if starting in state $i$, the expected number of
-        steps till absorption is the $i$-th entry in $N1$. If starting in state
-        $i$, the probability of being absorbed in state $j$ is the $(i,j)$-th
-        entry of $NR$.
-
-        Many problems on MC can be formulated in terms of a system of
-        recurrence relations, and then solved using Gaussian elimination.
-
-    \subsection{Burnside's Lemma}
-        Let $G$ be a finite group that acts on a set $X$. For each $g$ in $G$
-        let $X^g$ denote the set of elements in $X$ that are fixed by $g$. Then
-        the number of orbits \[ |X/G| = \frac{1}{|G|} \sum_{g\in G} |X^g| \]
-
-    \subsection{Bézout's identity}
-        If $(x,y)$ is any solution to $ax+by=d$ (e.g.\ found by the Extended
-        Euclidean Algorithm), then all solutions are given by \[
-        \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \]
-
-    \subsection{Formulas}
-        \begin{itemize}[leftmargin=*]
-            \ifverbose
-            \item Number of ways to choose $k$ objects from a total of $n$
-                objects where order matters and each item can only be chosen
-                once: $P^n_k = \frac{n!}{(n-k)!}$
-            \fi
-            \ifverbose
-            \item Number of ways to choose $k$ objects from a total of $n$
-                objects where order matters and each item can be chosen
-                multiple times: $n^k$
-            \fi
-            \item Number of permutations of $n$ objects, where there are $n_1$
-                objects of type $1$, $n_2$ objects of type $2$, \ldots, $n_k$
-                objects of type $k$: $\binom{n}{n_1,n_2,\ldots,n_k} =
-                \frac{n!}{n_1! \times n_2! \times \cdots \times n_k!}$
-            \ifverbose
-            \item Number of ways to choose $k$ objects from a total of $n$
-                objects where order does not matter and each item can only be
-                chosen once: \\ $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}k
-                = \binom{n}{n-k} = \prod_{i=1}^k \frac{n-(k-i)}{i} =
-                \frac{n!}{k!(n-k)!}, \binom n0 = 1, \binom 0k = 0$
-            \fi
-            \item Number of ways to choose $k$ objects from a total of $n$
-                objects where order does not matter and each item can be chosen
-                multiple times: $f^n_k = \binom{n+k-1}{k} =
-                \frac{(n+k-1)!}{k!(n-1)!}$
-            \item Number of integer solutions to $x_1 + x_2 + \cdots + x_n = k$
-                where $x_i \geq 0$: $f^n_k$
-            \ifverbose
-            \item Number of subsets of a set with $n$ elements: $2^n$
-            \fi
-            \ifverbose
-            \item $|A \cup B| = |A| + |B| - |A \cap B|$
-            \item $|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap
-                C| - |B \cap C| + |A \cap B \cap C|$
-            \fi
-            \ifverbose
-            \item Number of ways to walk from the lower-left corner to the
-                upper-right corner of an $n\times m$ grid by walking only up
-                and to the right: $\binom{n+m}{m}$
-            \fi
-            \item Number of strings with $n$ sets of brackets such that the
-                brackets are balanced: \\ $C_n = \sum_{k=0}^{n-1} C_kC_{n-1-k}
-                = \frac{1}{n+1}\binom{2n}n$
-            \item Number of triangulations of a convex polygon with $n$ points,
-                number of rooted binary trees with $n+1$ vertices, number of
-                paths across an $n\times n$ lattice which do not rise above the
-                main diagonal: $C_n$
-            \item Number of trees on $n$ labeled vertices: $n^{n-2}$
-            \item Number of permutations of $n$ objects with exactly $k$
-                ascending sequences or {\it runs}: \\ $\left\langle {n \atop k}
-                \right\rangle = \left\langle {n \atop n - k - 1} \right\rangle
-                = k\left\langle {n - 1 \atop k} \right\rangle + (n - k +
-                1)\left\langle {n-1 \atop k-1} \right\rangle =
-                \sum_{i=0}^{k}(-1)^i \binom{n+1}{i} (k+1-i)^n, \left\langle {n
-                \atop 0} \right\rangle = \left\langle {n \atop n -1}
-                \right\rangle = 1$
-            \item Number of permutations of $n$ objects with exactly $k$
-                cycles: $\left[n \atop k\right] = \left[n-1 \atop k-1\right] +
-                (n-1)\left[n-1 \atop k\right]$
-            \item Number of ways to partition $n$ objects into $k$ sets:
-                $\left\{n \atop k\right\} = k\left\{n-1 \atop k\right\} +
-                \left\{n-1 \atop k-1\right\}, \left\{n\atop 0\right\} =
-                \left\{n\atop n\right\} = 1$
-            \item Number of permutations of length $n$ that have no fixed
-                points (derangements): $D_0 = 1, D_1 = 0, D_n = (n - 1)(D_{n-1}
-                + D_{n-2})$
-            \item Number of permutations of length $n$ that have exactly $k$
-                fixed points: $\binom{n}{k} D_{n-k}$
-            \item Number of trees on $n$ labeled vertices: $n^{n-2}$
-            \item \textbf{Jacobi symbol:} $\left(\frac{a}{b}\right) = a^{(b-1)/2} \pmod{b}$
-            \item \textbf{Heron's formula:} A triangle with side lengths
-                $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
-                \frac{a+b+c}{2}$.
-            \item \textbf{Pick's theorem:} A polygon on an integer grid
-                containing $i$ lattice points and having $b$ lattice points on
-                the boundary has area $i + \frac{b}{2} - 1$.
-            \item \textbf{Divisor sigma:} The sum of divisors of $n$ to the
-                $x$th power is $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i +
-                1)x} - 1}{p_i^x - 1}$ where $n = \prod_{i=0}^r p_i^{a_i}$ is
-                the prime factorization.
-            \ifverbose
-            \item \textbf{Divisor count:} A special case of the above is
-                $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$.
-            \fi
-            \item \textbf{Euler's totient:} The number of integers less than
-                $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
-                where each $p$ is a distinct prime factor of $n$.
-            \item \textbf{König's theorem:} In any bipartite graph $G=(L\cup R,E)$, the number
-                of edges in a maximum matching is equal to the number of
-                vertices in a minimum vertex cover. Let $U$ be the set of
-                unmatched vertices in $L$, and $Z$ be the set of vertices that
-                are either in $U$ or are connected to $U$ by an alternating
-                path. Then $K=(L\setminus Z)\cup(R\cap Z)$ is the minimum
-                vertex cover.
-            \item A minumum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
-            \item The number of vertices of a graph is equal to its minimum
-                vertex cover number plus the size of a maximum independent set.
-            \item $\gcd(n^a-1,n^b-1) = n^{\gcd(a,b)}-1$
-            \item \textbf{Wilson's theorem:} $(n-1)! \equiv -1 \pmod{n}$ iff.\ $n$ is prime
-            \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
-            \item $\sum_{k=0}^m (-1)^k \binom{n}{k} = (-1)^m \binom{n-1}{m}$
-            \item $2^{\omega(n)} = O(\sqrt{n})$, where $\omega(n)$ is the number of distinct prime factors
-            \item $\sum_{i=1}^n 2^{\omega(i)} = O(n \log n)$
-            \item \textbf{Hook length formula:} If $\lambda$ is a Young diagram and $h_{\lambda}(i,j)$ is the hook-length of cell $(i,j)$, then then the number of Young tableux $d_{\lambda} = n!/\prod h_{\lambda}(i,j)$.
-            \item \textbf{Möbius inversion formula:} If $f(n) = \sum_{d|n} g(d)$, then $g(n) = \sum_{d|n} \mu(d) f(n/d)$
-        \end{itemize}
-
 
     \subsection{Numbers and Sequences}
         Some random prime numbers: 1031, 32771, 1048583, 33554467,
@@ -815,30 +657,6 @@
 
 
 \section{Useful Information}
-    \subsection{Tips \&{} Tricks}
-        \begin{itemize}
-            \item How fast does our algorithm have to be? Can we use
-                brute-force?
-            \item Does order matter?
-            \item Is it better to look at the problem in another way? Maybe
-                backwards?
-            \item Are there subproblems that are recomputed? Can we cache them?
-            \item Do we need to remember everything we compute, or just the
-                last few iterations of computation?
-            \item Does it help to sort the data?
-            \item Can we speed up lookup by using a map (tree or hash) or an
-                array?
-            \item Can we binary search the answer?
-            \item Can we add vertices/edges to the graph to make the problem
-                easier? Can we turn the graph into some other kind of a graph
-                (perhaps a DAG, or a flow network)?
-            \item Is it better to compute the answer modulo $n$? Perhaps we can
-                compute the answer modulo $m_1,m_2,\ldots,m_k$, where
-                $m_1,m_2,\ldots,m_k$ are pairwise coprime integers, and find
-                the real answer using CRT?
-            \item Can we use exponentiation by squaring?
-        \end{itemize}
-
     \subsection{Fast Input Reading}
         \ifverbose
         If input or output is huge, sometimes it is beneficial to optimize the
@@ -857,33 +675,8 @@
         little more than 64-bits to represent.
     \fi
 
-    \ifverbose
-    \subsection{Worst Time Complexity}
-    \begin{center}
-        \begin{tabular}{c|c|c}
-            $n$ & Worst AC Algorithm & Comment \\
-            \hline
-            $\leq 10$ & $O(n!), O(n^6)$ & e.g. Enumerating a permutation \\
-            $\leq 15$ & $O(2^n\times n^2)$ & e.g. DP TSP \\
-            $\leq 20$ & $O(2^n), O(n^5)$ & e.g. DP + bitmask technique \\
-            $\leq 50$ & $O(n^4)$ & e.g. DP with 3 dimensions + $O(n)$ loop, choosing  $_nC_k=4$ \\
-            $\leq 10^2$ & $O(n^3)$ & e.g. Floyd Warshall's \\
-            $\leq 10^3$ & $O(n^2)$ & e.g. Bubble/Selection/Insertion sort \\
-            $\leq 10^5$ & $O(n\log_2{n})$ & e.g. Merge sort, building a Segment tree \\
-            $\leq 10^6$ & $O(n), O(\log_2{n}), O(1)$ & Usually, contest problems have $n\leq10^6$ (e.g. to read input) \\
-        \end{tabular}
-    \end{center}
-    \fi
-
     \subsection{Bit Hacks}
-        \begin{itemize}
-            \item \texttt{n \&{} -n} returns the first set bit in $n$.
-            \item \texttt{n \&{} (n - 1)} is $0$ only if $n$ is a power of two.
-            \item \texttt{snoob(x)} returns the next integer that has the
-                same amount of bits set as \texttt{x}. Useful for iterating
-                through subsets of some specified size.
-                \code{tricks/snoob.cpp}
-        \end{itemize}
+        \code{tricks/snoob.cpp}
 
     \section{Misc}
         \subsection{Debugging Tips}
@@ -1096,24 +889,149 @@
                 \item Counting/Bucket sort
             \end{itemize}
 
-        \clearpage
-        \subsection*{Practice Contest Checklist}
-            \begin{itemize}
-                \item How many operations per second? Compare to local machine.
-                \item What is the stack size?
-                \item How to use printf/scanf with long long/long double?
-                \item Is \textit{\_{}\_{}int128} available?
-                \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
-                \item What is \textit{RAND\_{}MAX}?
-                \item How does the judge handle extra spaces (or missing newlines) in the output?
-                \item Look at documentation for programming languages.
-                \item Try different programming languages: C++ and Java.
-                \item Try the submit script.
-                \item Try local programs: i?python[23], factor.
-                \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
-                \item Return-value from \texttt{main}.
+    \section*{Formulas}
+        \begin{tabular}{ll}
+            \#labeled rooted trees & $n^{n-1}$ \\
+            \#labeled unrooted trees & $n^{n-2}$ \\
+            % Kirchoff's theorem
+            $\sum_{i=1}^n i^2 = n(n+1)(2n+1)/6$ & $\sum_{i=1}^n i^3 = n^2(n+1)^2/4$ \\
+            $!n = n\times!(n-1)+(-1)^n$ & $!n = (n-1)(!(n-1)+!(n-2))$ \\
+            $\sum_{i=1}^n \binom{n}{i} F_i = F_{2n}$ & $\sum_{i} \binom{n-i}{i} = F_{n+1}$ \\
+            $\sum_{k=0}^n \binom{k}{m} = \binom{n+1}{m+1}$ & \\
 
-                \item Remove this page from the notebook.
-            \end{itemize}
+            $a\equiv b\pmod{x,y} \Rightarrow a\equiv b\pmod{\lcm(x,y)}$ & $\sum_{d|n} \phi(d) = n$ \\
+            $ac\equiv bc\pmod{m} \Rightarrow a\equiv b\pmod{\frac{m}{\gcd(c,m)}}$ & $(\sum_{d|n} \sigma_0(d))^2 = \sum_{d|n} \sigma_0(d)^3$ \\
+            $p$ prime $\Leftrightarrow (p-1)!\equiv -1\pmod{p}$ & $\gcd(n^a-1,n^b-1) = n^{\gcd(a,b)}-1$ \\
+            $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i + 1)x} - 1}{p_i^x - 1}$ & $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$ \\
+            $\sum_{k=0}^m (-1)^k \binom{n}{k} = (-1)^m \binom{n-1}{m}$ & \\
+            $2^{\omega(n)} = O(\sqrt{n})$ & $\sum_{i=1}^n 2^{\omega(i)} = O(n \log n)$ \\
+        \end{tabular}
+
+        % \item Number of permutations of length $n$ that have no fixed
+        %     points (derangements): $D_0 = 1, D_1 = 0, D_n = (n - 1)(D_{n-1}
+        %     + D_{n-2})$
+        % \item Number of permutations of length $n$ that have exactly $k$
+        %     fixed points: $\binom{n}{k} D_{n-k}$
+
+
+        \begin{itemize}[leftmargin=*]
+            \item \textbf{Jacobi symbol:} $\left(\frac{a}{b}\right) = a^{(b-1)/2} \pmod{b}$
+            \item \textbf{Heron's formula:} A triangle with side lengths
+                $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
+                \frac{a+b+c}{2}$.
+            \item \textbf{Pick's theorem:} A polygon on an integer grid
+                containing $i$ lattice points and having $b$ lattice points on
+                the boundary has area $i + \frac{b}{2} - 1$.
+            \item \textbf{Euler's totient:} The number of integers less than
+                $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
+                where each $p$ is a distinct prime factor of $n$.
+            \item \textbf{König's theorem:} In any bipartite graph $G=(L\cup R,E)$, the number
+                of edges in a maximum matching is equal to the number of
+                vertices in a minimum vertex cover. Let $U$ be the set of
+                unmatched vertices in $L$, and $Z$ be the set of vertices that
+                are either in $U$ or are connected to $U$ by an alternating
+                path. Then $K=(L\setminus Z)\cup(R\cap Z)$ is the minimum
+                vertex cover.
+            \item A minumum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
+            \item The number of vertices of a graph is equal to its minimum
+                vertex cover number plus the size of a maximum independent set.
+            \item \textbf{Wilson's theorem:} $(n-1)! \equiv -1 \pmod{n}$ iff.\ $n$ is prime
+            \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
+            \item \textbf{Hook length formula:} If $\lambda$ is a Young diagram and $h_{\lambda}(i,j)$ is the hook-length of cell $(i,j)$, then then the number of Young tableux $d_{\lambda} = n!/\prod h_{\lambda}(i,j)$.
+            \item \textbf{Möbius inversion formula:} If $f(n) = \sum_{d|n} g(d)$, then $g(n) = \sum_{d|n} \mu(d) f(n/d)$
+        \end{itemize}
+
+        \subsection{Markov Chains}
+            A Markov Chain can be represented as a weighted directed graph of
+            states, where the weight of an edge represents the probability of
+            transitioning over that edge in one timestep. Let $P^{(m)} = (p^{(m)}_{ij})$
+            be the probability matrix of transitioning from state $i$ to state $j$
+            in $m$ timesteps, and note that $P^{(1)}$ is the adjacency matrix of
+            the graph. \textbf{Chapman-Kolmogorov:} $p^{(m+n)}_{ij} = \sum_{k}
+            p^{(m)}_{ik} p^{(n)}_{kj}$. It follows that $P^{(m+n)} =
+            P^{(m)}P^{(n)}$ and $P^{(m)} = P^m$. If $p^{(0)}$ is the initial
+            probability distribution (a vector), then $p^{(0)}P^{(m)}$ is the
+            probability distribution after $m$ timesteps. 
+
+            The return times of a state $i$ is $R_i = \{m\ |\ p^{(m)}_{ii} > 0 \}$,
+            and $i$ is \textit{aperiodic} if $\gcd(R_i) = 1$. A MC is aperiodic if
+            any of its vertices is aperiodic. A MC is \textit{irreducible} if the
+            corresponding graph is strongly connected.
+
+            A distribution $\pi$ is stationary if $\pi P = \pi$. If MC is
+            irreducible then $\pi_i = 1/\mathbb{E}[T_i]$, where $T_i$ is the
+            expected time between two visits at $i$. $\pi_j/\pi_i$ is the expected
+            number of visits at $j$ in between two consecutive visits at $i$. A MC
+            is \textit{ergodic} if $\lim_{m\to\infty} p^{(0)} P^{m} = \pi$. A MC is
+            ergodic iff.\ it is irreducible and aperiodic.
+
+            A MC for a random walk in an undirected weighted graph (unweighted
+            graph can be made weighted by adding $1$-weights) has $p_{uv} =
+            w_{uv}/\sum_{x} w_{ux}$. If the graph is connected, then $\pi_u =
+            \sum_{x} w_{ux} / \sum_{v}\sum_{x} w_{vx}$. Such a random walk is
+            aperiodic iff.\ the graph is not bipartite.
+
+            An \textit{absorbing} MC is of the form $P = \left(\begin{matrix} Q & R
+            \\ 0 & I_r \end{matrix}\right)$. Let $N = \sum_{m=0}^\infty Q^m = (I_t
+            - Q)^{-1}$. Then, if starting in state $i$, the expected number of
+            steps till absorption is the $i$-th entry in $N1$. If starting in state
+            $i$, the probability of being absorbed in state $j$ is the $(i,j)$-th
+            entry of $NR$.
+
+            Many problems on MC can be formulated in terms of a system of
+            recurrence relations, and then solved using Gaussian elimination.
+
+        \subsection{Burnside's Lemma}
+            Let $G$ be a finite group that acts on a set $X$. For each $g$ in $G$
+            let $X^g$ denote the set of elements in $X$ that are fixed by $g$. Then
+            the number of orbits \[ |X/G| = \frac{1}{|G|} \sum_{g\in G} |X^g| \]
+
+        \subsection{Bézout's identity}
+            If $(x,y)$ is any solution to $ax+by=d$ (e.g.\ found by the Extended
+            Euclidean Algorithm), then all solutions are given by \[
+            \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \]
+
+        \subsection{The Twelvefold Way}
+            Putting $n$ balls into $k$ boxes.\\
+        \begin{tabular}{@{}c|c|c|c|c|l@{}}
+        Balls & same & distinct & same & distinct & \\
+        Boxes & same & same & distinct & distinct & Remarks\\
+        \hline
+        - & $\mathrm{p}_k(n)$ & $\sum_{i=0}^k \left\{{n\atop i}\right\}$ & $\binom{n+k-1}{k-1}$ & $k^n$ & $\mathrm{p}_k(n)$: \#partitions of $n$ into $\le k$ positive parts \\
+        $\mathrm{size}\ge 1$ & $\mathrm{p}(n,k)$ & $\left\{{n\atop k}\right\}$ & $\binom{n-1}{k-1}$ & $k!\left\{{n\atop k}\right\}$ & $\mathrm{p}(n,k)$: \#partitions of $n$ into $k$ positive parts \\
+        $\mathrm{size}\le 1$ & $[n \le k]$ & $[n \le k]$ & $\binom{k}{n}$ & $n!\binom{k}{n}$ & $[cond]$: $1$ if $cond=true$, else $0$\\
+        \bottomrule
+        \end{tabular}
+        \\
+        \begin{tabular}{@{}l|l|l@{}}
+        \toprule
+        Catalan	&	$C_0=1$, $C_n=\frac{1}{n+1}\binom{2n}{n} = \sum_{i=0}^{n-1}C_iC_{n-i-1} = \frac{4n-2}{n+1}C_{n-1}$  & \\
+        Stirling 1st kind & $\left[{0\atop 0}\right]=1$, $\left[{n\atop 0}\right]=\left[{0\atop n}\right]=0$, $\left[{n\atop k}\right]=(n-1)\left[{n-1\atop k}\right]+\left[{n-1\atop k-1}\right]$ & \#perms of $n$ objs with exactly $k$ cycles\\
+        Stirling 2nd kind & $\left\{{n\atop 1}\right\}=\left\{{n\atop n}\right\}=1$, $\left\{{n\atop k}\right\} = k \left\{{ n-1 \atop k }\right\} + \left\{{n-1\atop k-1}\right\}$ & \#ways to partition $n$ objs into $k$ nonempty sets\\
+        Euler	& $\left \langle {n\atop 0} \right \rangle = \left \langle {n\atop n-1} \right \rangle = 1 $, $\left \langle {n\atop k} \right \rangle = (k+1) \left \langle {n-1\atop {k}} \right \rangle + (n-k)\left \langle {{n-1}\atop {k-1}} \right \rangle$ & \#perms of $n$ objs with exactly $k$ ascents \\
+        Euler 2nd Order &  $\left \langle \!\!\left \langle {n\atop k} \right \rangle \!\! \right \rangle = (k+1) \left \langle \!\! \left \langle {{n-1}\atop {k}} \right \rangle \!\! \right \rangle +(2n-k-1)\left \langle \!\! \left \langle {{n-1}\atop {k-1}} \right \rangle  \!\! \right \rangle$ & \#perms of ${1,1,2,2,...,n,n}$ with exactly $k$ ascents \\
+        Bell & $B_1 = 1$, $B_n = \sum_{k=0}^{n-1} B_k \binom{n-1}{k} = \sum_{k=0}^n\left\{{n\atop k}\right\}$ & \#partitions of $1..n$ (Stirling 2nd, no limit on k)\\
+        \bottomrule
+        \end{tabular}
+
+    \clearpage
+    \section*{Practice Contest Checklist}
+        \begin{itemize}
+            \item How many operations per second? Compare to local machine.
+            \item What is the stack size?
+            \item How to use printf/scanf with long long/long double?
+            \item Is \textit{\_{}\_{}int128} available?
+            \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
+            \item What is \textit{RAND\_{}MAX}?
+            \item How does the judge handle extra spaces (or missing newlines) in the output?
+            \item Look at documentation for programming languages.
+            \item Try different programming languages: C++ and Java.
+            \item Try the submit script.
+            \item Try local programs: i?python[23], factor.
+            \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
+            \item Return-value from \texttt{main}.
+
+            \item Remove this page from the notebook.
+        \end{itemize}
 
 \end{document}
