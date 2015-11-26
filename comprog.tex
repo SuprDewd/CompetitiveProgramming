@@ -18,6 +18,7 @@
 \usepackage{titling}
 \usepackage{datetime}
 \usepackage{enumitem}
+\usepackage{multicol}
 
 \newcommand{\subtitle}[1]{%
   \posttitle{%
@@ -30,6 +31,7 @@
 \usepackage{minted}
 \newcommand{\code}[1]{\inputminted{cpp}{_code/#1}}
 \newcommand{\bashcode}[1]{\inputminted{bash}{_code/#1}}
+\newcommand{\regcode}[1]{\inputminted{cpp}{code/#1}}
 
 % Header/Footer
 % \geometry{includeheadfoot}
@@ -51,6 +53,13 @@
 \newcommand*\ShiftLeft{\ll}
 \newcommand*\ShiftRight{\gg}
 \newcommand*\BitNeg{\ensuremath{\mathord{\sim}}}
+
+\newenvironment{myitemize}
+{ \begin{itemize}[leftmargin=.5cm]
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}     }
+{ \end{itemize}                  } 
 
 % Title/Author
 \title{viRUs}
@@ -813,10 +822,11 @@
         that maximizes $\sum_{i=1}^{n-1}|p_i - p_{i+1}|$.
         \code{other/simulated_annealing.cpp}
 
-
+\onecolumn
+\begin{multicols*}{3}
 \section{Useful Information}
     \subsection{Tips \&{} Tricks}
-        \begin{itemize}
+        \begin{myitemize}
             \item How fast does our algorithm have to be? Can we use
                 brute-force?
             \item Does order matter?
@@ -837,7 +847,7 @@
                 $m_1,m_2,\ldots,m_k$ are pairwise coprime integers, and find
                 the real answer using CRT?
             \item Can we use exponentiation by squaring?
-        \end{itemize}
+        \end{myitemize}
 
     \subsection{Fast Input Reading}
         \ifverbose
@@ -848,7 +858,7 @@
         fwrite). A simpler, but still effective, way to achieve speed is to use
         the following input reading method.
         \fi
-        \code{tricks/fast_input.cpp}
+        \regcode{tricks/fast_input.cpp}
 
     \ifverbose
     \subsection{128-bit Integer}
@@ -876,18 +886,17 @@
     \fi
 
     \subsection{Bit Hacks}
-        \begin{itemize}
+        \begin{myitemize}
             \item \texttt{n \&{} -n} returns the first set bit in $n$.
             \item \texttt{n \&{} (n - 1)} is $0$ only if $n$ is a power of two.
             \item \texttt{snoob(x)} returns the next integer that has the
                 same amount of bits set as \texttt{x}. Useful for iterating
                 through subsets of some specified size.
-                \code{tricks/snoob.cpp}
-        \end{itemize}
-
+                \regcode{tricks/snoob.cpp}
+        \end{myitemize}
     \section{Misc}
         \subsection{Debugging Tips}
-            \begin{itemize}
+            \begin{myitemize}
                 \item Stack overflow? Recursive DFS on tree that is actually a long path?
                 \item Floating-point numbers
                     \begin{itemize}
@@ -919,10 +928,10 @@
                         \item Are you using any functions that you don't completely understand? Maybe STL functions?
                         \item Maybe you (or someone else) should rewrite the solution?
                     \end{itemize}
-            \end{itemize}
+            \end{myitemize}
 
         \subsection{Solution Ideas}
-            \begin{itemize}
+            \begin{myitemize}
                 \item Dynamic Programming
                     \begin{itemize}
                         \item Drop a parameter, recover from others
@@ -1094,11 +1103,11 @@
                 \item Immediately enforce necessary conditions. (All values greater than 0? Initialize them all to 1)
                 \item Add large constant to negative numbers to make them positive
                 \item Counting/Bucket sort
-            \end{itemize}
+            \end{myitemize}
 
-        \clearpage
+        % \clearpage
         \subsection*{Practice Contest Checklist}
-            \begin{itemize}
+            \begin{myitemize}
                 \item How many operations per second? Compare to local machine.
                 \item What is the stack size?
                 \item How to use printf/scanf with long long/long double?
@@ -1112,8 +1121,7 @@
                 \item Try local programs: i?python[23], factor.
                 \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
                 \item Return-value from \texttt{main}.
-
                 \item Remove this page from the notebook.
-            \end{itemize}
-
+            \end{myitemize}
+\end{multicols*}
 \end{document}
