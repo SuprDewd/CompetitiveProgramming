@@ -111,6 +111,9 @@ struct intx {
             if (d.size() - 1 < r.size()) k += r.data[d.size() - 1];
             k /= d.data.back();
             r = r - abs(d) * k;
+            // if (r < 0) for (ll t = 1LL << 62; t >= 1; t >>= 1) {
+            //     intx dd = abs(d) * t;
+            //     while (r + dd < 0) r = r + dd, k -= t; }
             while (r < 0) r = r + abs(d), k--;
             q.data[i] = k;
         }
