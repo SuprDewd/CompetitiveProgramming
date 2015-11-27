@@ -59,7 +59,7 @@
     \setlength{\itemsep}{0pt}
     \setlength{\parskip}{0pt}
     \setlength{\parsep}{0pt}     }
-{ \end{itemize}                  } 
+{ \end{itemize}                  }
 
 % Title/Author
 \title{viRUs}
@@ -940,7 +940,7 @@
                 \item Counting/Bucket sort
             \end{myitemize}
 
-    \section*{Formulas}
+    \section{Formulas}
 
         % \item Number of permutations of length $n$ that have no fixed
         %     points (derangements): $D_0 = 1, D_1 = 0, D_n = (n - 1)(D_{n-1}
@@ -986,7 +986,7 @@
             p^{(m)}_{ik} p^{(n)}_{kj}$. It follows that $P^{(m+n)} =
             P^{(m)}P^{(n)}$ and $P^{(m)} = P^m$. If $p^{(0)}$ is the initial
             probability distribution (a vector), then $p^{(0)}P^{(m)}$ is the
-            probability distribution after $m$ timesteps. 
+            probability distribution after $m$ timesteps.
 
             The return times of a state $i$ is $R_i = \{m\ |\ p^{(m)}_{ii} > 0 \}$,
             and $i$ is \textit{aperiodic} if $\gcd(R_i) = 1$. A MC is aperiodic if
@@ -1026,6 +1026,37 @@
             Euclidean Algorithm), then all solutions are given by \[
             \left(x+k\frac{b}{\gcd(a,b)}, y-k\frac{a}{\gcd(a,b)}\right) \]
 
+        \subsection{Misc}
+            \subsubsection{Determinants and PM}
+                \begin{align*}
+                    det(A) &= \sum_{\sigma \in S_n}\text{sgn}(\sigma)\prod_{i = 1}^n a_{i,\sigma(i)}\\
+                    perm(A) &= \sum_{\sigma \in S_n} \prod_{i = 1}^n a_{i,\sigma(i)}\\
+                    pf(A) &= \frac{1}{2^nn!}\sum_{\sigma \in S_{2n}} \text{sgn}(\sigma)\prod_{i = 1}^n a_{\sigma(2i-1),\sigma(2i)}\\ &= \sum_{M \in \text{PM}(n)} \text{sgn}(M) \prod_{(i,j) \in M} a_{i,j}
+                \end{align*}
+
+            \subsubsection{BEST Theorem}
+                Number of OST given by Kirchoff's Theorem (remove r/c with root)
+                $\#\textsc{OST}(G,r) \cdot \prod_{v}(d_v-1)!$
+
+            \subsubsection{Primitive Roots}
+                Only exists when $n$ is $2, 4, p^k, 2p^k$, where $p$ odd prime. Assume
+                $n$ prime. Number of primitive roots $\phi(\phi(n))$
+                Let $g$ be primitive root. All primitive roots are of the form $g^k$
+                where $k,\phi(p)$ are coprime.\\ $k$-roots:
+                $g^{i \cdot \phi(n) / k}$ for $0 \leq i < k$
+
+            \subsubsection{Sum of primes} For any multiplicative $f$:
+                \[
+                    S(n,p) = S(n, p-1) - f(p) \cdot (S(n/p,p-1) - S(p-1,p-1))
+                \]
+
+            \subsubsection{Floor}
+                \begin{align*}
+                    &\left\lfloor \left\lfloor x/y \right\rfloor / z \right\rfloor = \left\lfloor x / (yx) \right\rfloor \\
+                    &x \% y = x - y \left\lfloor x / y \right\rfloor
+                \end{align*}
+
+
 
     \clearpage
     \section*{Practice Contest Checklist}
@@ -1033,9 +1064,9 @@
             \item How many operations per second? Compare to local machine.
             \item What is the stack size?
             \item How to use printf/scanf with long long/long double?
-            \item Is \textit{\_{}\_{}int128} available?
+            \item Is \texttt{\_{}\_{}int128} available?
             \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
-            \item What is \textit{RAND\_{}MAX}?
+            \item What is \texttt{RAND\_{}MAX}?
             \item How does the judge handle extra spaces (or missing newlines) in the output?
             \item Look at documentation for programming languages.
             \item Try different programming languages: C++ and Java.
