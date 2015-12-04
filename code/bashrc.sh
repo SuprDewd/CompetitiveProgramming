@@ -12,3 +12,6 @@ function check {
 }
 # setxkbmap -option caps:escape dvorak is
 # setxkbmap en_US
+alias c='cd'
+alias l='ls -lh'
+alias la='ls -lah'

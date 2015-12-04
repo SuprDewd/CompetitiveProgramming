@@ -18,6 +18,10 @@ Things to do
 * Add more formulas
 * Test Tridiagonal matrix algorithm on http://codeforces.com/contest/24/problem/D
 
+
+How do we check how much memory is used by an executable?
+
+
 Links
 =====
 

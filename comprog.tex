@@ -469,17 +469,18 @@
         \fi
         \code{mathematics/divisor_sieve.cpp}
 
-    \subsection{Modular Multiplicative Inverse}
-        \ifverbose
-        A function to find a modular multiplicative inverse.
-        \fi
-        \code{mathematics/mod_inv.cpp}
-
     \ifverbose
     \subsection{Modular Exponentiation}
         A function to perform fast modular exponentiation.
         \code{mathematics/mod_pow.cpp}
     \fi
+
+    \subsection{Modular Multiplicative Inverse}
+        \ifverbose
+        A function to find a modular multiplicative inverse. Alternatively use
+        \texttt{mod\_{}pow(a,m-2,m)} when $m$ is prime.
+        \fi
+        \code{mathematics/mod_inv.cpp}
 
     \subsection{Primitive Root}
         \code{mathematics/primitive_root.cpp}
@@ -763,6 +764,10 @@
                         \item Are you using any functions that you don't completely understand? Maybe STL functions?
                         \item Maybe you (or someone else) should rewrite the solution?
                     \end{itemize}
+                \item Run-Time Error?
+                    \begin{itemize}
+                        \item Is it actually Memory Limit Exceeded?
+                    \end{itemize}
             \end{myitemize}
 
         \subsection{Solution Ideas}
@@ -973,7 +978,7 @@
             \item \textbf{Wilson's theorem:} $(n-1)! \equiv -1 \pmod{n}$ iff.\ $n$ is prime
             \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
             \item \textbf{Hook length formula:} If $\lambda$ is a Young diagram and $h_{\lambda}(i,j)$ is the hook-length of cell $(i,j)$, then then the number of Young tableux $d_{\lambda} = n!/\prod h_{\lambda}(i,j)$.
-            \item \textbf{Möbius inversion formula:} If $f(n) = \sum_{d|n} g(d)$, then $g(n) = \sum_{d|n} \mu(d) f(n/d)$
+            \item \textbf{Möbius inversion formula:} If $f(n) = \sum_{d|n} g(d)$, then $g(n) = \sum_{d|n} \mu(d) f(n/d)$. If $f(n) = \sum_{m=1}^n g(\lfloor n/m\rfloor)$, then $g(n) = \sum_{m=1}^n \mu(m)f(\lfloor\frac{n}{m}\rfloor)$.
         \end{itemize}
 
         \subsection{Markov Chains}
@@ -1052,7 +1057,7 @@
 
             \subsubsection{Floor}
                 \begin{align*}
-                    &\left\lfloor \left\lfloor x/y \right\rfloor / z \right\rfloor = \left\lfloor x / (yx) \right\rfloor \\
+                    &\left\lfloor \left\lfloor x/y \right\rfloor / z \right\rfloor = \left\lfloor x / (yz) \right\rfloor \\
                     &x \% y = x - y \left\lfloor x / y \right\rfloor
                 \end{align*}
 
@@ -1074,6 +1079,7 @@
             \item Try local programs: i?python[23], factor.
             \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
             \item Return-value from \texttt{main}.
+            \item Look for directory with sample test cases.
 
             \item Remove this page from the notebook.
         \end{itemize}
