@@ -1,0 +1,3 @@
+language: cpp
+compiler: g++
+script: ./tester/run_all_tests.sh
