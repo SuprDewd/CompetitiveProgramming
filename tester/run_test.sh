@@ -16,5 +16,5 @@ cat "$DIR2/$TEST.test.cpp" >> $DIR/tmp.cpp
 echo "" >> $DIR/tmp.cpp
 cat $DIR/test_footer.cpp >> $DIR/tmp.cpp
 set -e
-g++ $DIR/tmp.cpp -Wall -Wshadow -Wpedantic -Wno-long-long -std=c++11 -g -o $DIR/tmp.exe
+${CXX-g++} $DIR/tmp.cpp -Wall -Wshadow -Wpedantic -Wno-long-long -std=c++11 -g -o $DIR/tmp.exe
 $DIR/tmp.exe
