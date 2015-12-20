@@ -1,6 +1,6 @@
 #include "../mathematics/primitive_root.cpp"
 int mod = 998244353, g = primitive_root(mod),
-    ginv = mod_pow(g, mod-2, mod), inv2 = mod_pow(2, mod-2, mod);
+    ginv = mod_pow<ll>(g, mod-2, mod), inv2 = mod_pow<ll>(2, mod-2, mod);
 #define MAXN (1<<22)
 struct Num {
     int x;
@@ -9,8 +9,8 @@ struct Num {
     Num operator -(const Num &b) const { return x - b.x; }
     Num operator *(const Num &b) const { return (ll)x * b.x; }
     Num operator /(const Num &b) const { return (ll)x * b.inv().x; }
-    Num inv() const { return mod_pow((ll)x, mod-2, mod); }
-    Num pow(int p) const { return mod_pow((ll)x, p, mod); }
+    Num inv() const { return mod_pow<ll>((ll)x, mod-2, mod); }
+    Num pow(int p) const { return mod_pow<ll>((ll)x, p, mod); }
 } T1[MAXN], T2[MAXN];
 void ntt(Num x[], int n, bool inv = false) {
     Num z = inv ? ginv : g;
