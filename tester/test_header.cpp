@@ -1,6 +1,9 @@
+bool ANY_FAILED = false;
+
 template <class T>
 void assert_equal(T expected, T actual, bool kill = false) {
     if (!(expected == actual)) {
+        ANY_FAILED = true;
         cout << "Assertion failed:" << endl;
         cout << "Expected: " << expected << endl;
         cout << "  Actual: " << actual << endl;
@@ -11,6 +14,7 @@ void assert_equal(T expected, T actual, bool kill = false) {
 template <class T>
 void assert_not_equal(T not_expected, T actual, bool kill = false) {
     if (not_expected == actual) {
+        ANY_FAILED = true;
         cout << "Assertion failed:" << endl;
         cout << "Not expected: " << not_expected << endl;
         cout << "      Actual: " << actual << endl;
@@ -20,6 +24,7 @@ void assert_not_equal(T not_expected, T actual, bool kill = false) {
 
 void assert_true(bool actual, bool kill = false) {
     if (true != actual) {
+        ANY_FAILED = true;
         cout << "Assertion failed:" << endl;
         cout << "Expected: " << "true" << endl;
         cout << "  Actual: " << "false" << endl;
@@ -29,6 +34,7 @@ void assert_true(bool actual, bool kill = false) {
 
 void assert_false(bool actual, bool kill = false) {
     if (false != actual) {
+        ANY_FAILED = true;
         cout << "Assertion failed:" << endl;
         cout << "Expected: " << "false" << endl;
         cout << "  Actual: " << "true" << endl;

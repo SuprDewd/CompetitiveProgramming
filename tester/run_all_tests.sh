@@ -1,6 +1,7 @@
 #/usr/bin/env bash
 
 DIR=$(readlink -f $(dirname $0))
+set -e
 
 for i in $(find $DIR/../code -name "*.test.cpp")
 do
