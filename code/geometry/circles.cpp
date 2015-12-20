@@ -1,4 +1,4 @@
-#include "primitives.cpp"
+#include "lines.cpp"
 int intersect(C(A, rA), C(B, rB), point & res1, point & res2) {
     double d = abs(B - A);
     if ((rA + rB) <  (d - EPS) || d < abs(rA - rB) - EPS) return 0;

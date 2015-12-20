@@ -1,5 +1,4 @@
 #include "primitives.cpp"
-    
 bool collinear(L(a, b), L(p, q)) {
     return abs(ccw(a, b, p)) < EPS && abs(ccw(a, b, q)) < EPS;  }
 bool parallel(L(a, b), L(p, q)) { return abs(cross(b - a, q - p)) < EPS; }
@@ -35,4 +34,3 @@ bool intersect(L(a, b), L(p, q), point &res, bool segment = false) {
     res = a + t * r;
     return true;
 }
-

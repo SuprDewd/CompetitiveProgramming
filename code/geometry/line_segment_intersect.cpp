@@ -1,4 +1,3 @@
-#include "primitives.cpp"
 #include "lines.cpp"
 bool line_segment_intersect(L(a, b), L(c, d), point &A, point &B) {
     if (abs(a - b) < EPS && abs(c - d) < EPS) {
@@ -23,4 +22,3 @@ bool line_segment_intersect(L(a, b), L(c, d), point &A, point &B) {
         B = A; return true; }
     return false;
 }
-

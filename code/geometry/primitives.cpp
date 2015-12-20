@@ -25,5 +25,3 @@ double progress(P(p), L(a, b)) {
     if (abs(real(a) - real(b)) < EPS)
         return (imag(p) - imag(a)) / (imag(b) - imag(a));
     else return (real(p) - real(a)) / (real(b) - real(a)); }
-
-
