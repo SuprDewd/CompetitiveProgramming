@@ -537,6 +537,11 @@
         \code{mathematics/summatory_phi.cpp}
     \fi
 
+    \subsection{Prime $\pi$}
+        Returns $\pi\left(\lfloor n/k\rfloor\right)$ for all $1\leq k \leq n$,
+        where $\pi(n)$ is the number of primes $\leq n$. Can also be modified
+        to accumulate any multiplicative function over the primes.
+        \code{mathematics/primepi.cpp}
 
     \subsection{Numbers and Sequences}
         Some random prime numbers: 1031, 32771, 1048583, 33554467,
@@ -624,6 +629,8 @@
             \item \textbf{Euler's formula:} $V - E + F = 2$
             \item Side lengths $a,b,c$ can form a triangle iff.\ $a+b>c$, $b+c>a$ and $a+c>b$.
             \item Sum of internal angles of a regular convex $n$-gon is $(n-2)\pi$.
+            \item \textbf{Law of sines:} $\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$
+            \item \textbf{Law of cosines:} $b^2 = a^2 + c^2 - 2ac\cos B$
         \end{itemize}
 
 
@@ -989,6 +996,12 @@
             \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
             \item \textbf{Hook length formula:} If $\lambda$ is a Young diagram and $h_{\lambda}(i,j)$ is the hook-length of cell $(i,j)$, then then the number of Young tableux $d_{\lambda} = n!/\prod h_{\lambda}(i,j)$.
             \item \textbf{Möbius inversion formula:} If $f(n) = \sum_{d|n} g(d)$, then $g(n) = \sum_{d|n} \mu(d) f(n/d)$. If $f(n) = \sum_{m=1}^n g(\lfloor n/m\rfloor)$, then $g(n) = \sum_{m=1}^n \mu(m)f(\lfloor\frac{n}{m}\rfloor)$.
+            \item \#primitive pythagorean triples with hypotenuse $<n$ approx $n/(2\pi)$.
+            \item \textbf{Frobenius Number:} largest number which can't be
+                expressed as a linear combination of numbers $a_1,\ldots,a_n$
+                with non-negative coefficients. $g(a_1,a_2) = a_1a_2-a_1-a_2$,
+                $N(a_1,a_2)=(a_1-1)(a_2-1)/2$. If $f(a_1,a_2,a_3) =
+                g(a_1,a_2,a_3) + a_1+a_2+a_3$ then $f(d a_1,d a_2,a_3) = d f(a_1,a_2,a_3)$.
         \end{itemize}
 
         \subsection{Markov Chains}
