@@ -1,52 +1,31 @@
-#ifdef SEG_MIN
-const int ID = INF;
-int f(int a, int b) { return min(a, b); }
-#else
-const int ID = 0;
-int f(int a, int b) { return a + b; }
-#endif
+#include "segment_tree_node.cpp"
 struct segment_tree {
-    int n; vi data, lazy;
-    segment_tree() {}
-    segment_tree(const vi &arr) : n(size(arr)), data(4*n), lazy(4*n,INF) {
-        mk(arr, 0, n-1, 0); }
-    int mk(const vi &arr, int l, int r, int i) {
-        if (l == r) return data[i] = arr[l];
-        int m = (l + r) / 2;
-        return data[i] = f(mk(arr, l, m, 2*i+1), mk(arr, m+1, r, 2*i+2)); }
-    int query(int a, int b) { return q(a, b, 0, n-1, 0); }
-    int q(int a, int b, int l, int r, int i) {
-        propagate(l, r, i);
-        if (r < a || b < l) return ID;
-        if (a <= l && r <= b) return data[i];
-        int m = (l + r) / 2;
-        return f(q(a, b, l, m, 2*i+1), q(a, b, m+1, r, 2*i+2)); }
-    void update(int i, int v) { u(i, v, 0, n-1, 0); }
-    int u(int i, int v, int l, int r, int j) {
-        propagate(l, r, j);
-        if (r < i || i < l) return data[j];
-        if (l == i && r == i) return data[j] = v;
-        int m = (l + r) / 2;
-        return data[j] = f(u(i, v, l, m, 2*j+1), u(i, v, m+1, r, 2*j+2)); }
-    void range_update(int a, int b, int v) { ru(a, b, v, 0, n-1, 0); }
-    int ru(int a, int b, int v, int l, int r, int i) {
-        propagate(l, r, i);
-        if (l > r) return ID;
-        if (r < a || b < l) return data[i];
-        if (a <= l && r <= b) return (lazy[i] = v) * (r - l + 1) + data[i];
-        int m = (l + r) / 2;
-        return data[i] = f(ru(a, b, v, l, m, 2*i+1),
-                           ru(a, b, v, m+1, r, 2*i+2));
-    }
-    void propagate(int l, int r, int i) {
-        if (l > r || lazy[i] == INF) return;
-        data[i] += lazy[i] * (r - l + 1);
-        if (l < r) {
-            if (lazy[2*i+1] == INF) lazy[2*i+1] = lazy[i];
-            else lazy[2*i+1] += lazy[i];
-            if (lazy[2*i+2] == INF) lazy[2*i+2] = lazy[i];
-            else lazy[2*i+2] += lazy[i];
-        }
-        lazy[i] = INF;
-    }
-};
+    int n;
+    vector<node> arr;
+    segment_tree() { }
+    segment_tree(const vector<ll> &a) : n(size(a)), arr(4*n) { mk(a,0,0,n-1); }
+    node mk(const vector<ll> &a, int i, int l, int r) {
+        int m = (l+r)/2;
+        return arr[i] = l > r ? node(l,r) : l == r ? node(l,r,a[l]) :
+            node(mk(a,2*i+1,l,m),mk(a,2*i+2,m+1,r)); }
+    node update(int at, ll v, int i=0) {
+        propagate(i);
+        int hl = arr[i].l, hr = arr[i].r;
+        if (at < hl || hr < at) return arr[i];
+        if (hl == at && at == hr) { arr[i].update(v); return arr[i]; }
+        return arr[i] = node(update(at,v,2*i+1),update(at,v,2*i+2)); }
+    node query(int l, int r, int i=0) {
+        propagate(i);
+        int hl = arr[i].l, hr = arr[i].r;
+        if (r < hl || hr < l) return node(hl,hr);
+        if (l <= hl && hr <= r) return arr[i];
+        return node(query(l,r,2*i+1),query(l,r,2*i+2)); }
+    node range_update(int l, int r, ll v, int i=0) {
+        propagate(i);
+        int hl = arr[i].l, hr = arr[i].r;
+        if (r < hl || hr < l) return arr[i];
+        if (l <= hl && hr <= r) return arr[i].range_update(v), propagate(i), arr[i];
+        return arr[i] = node(range_update(l,r,v,2*i+1),range_update(l,r,v,2*i+2)); }
+    void propagate(int i) {
+        if (arr[i].l < arr[i].r) arr[i].push(arr[2*i+1]), arr[i].push(arr[2*i+2]);
+        arr[i].apply(); } };

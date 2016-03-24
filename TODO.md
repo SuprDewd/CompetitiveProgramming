@@ -17,6 +17,7 @@ Things to do
 * Add a list of algorithm types to keep in mind when solving a problem
 * Add more formulas
 * Test Tridiagonal matrix algorithm on http://codeforces.com/contest/24/problem/D
+* Use the Node interface of Segment Tree in HLD.
 
 
 How do we check how much memory is used by an executable?

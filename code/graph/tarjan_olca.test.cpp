@@ -1,4 +1,4 @@
-#define SEG_MIN
+#include "../code/data-structures/segment_tree_mnnode.cpp"
 #include "../code/data-structures/segment_tree.cpp"
 
 int lca_slow(int n, int *ps, int a, int b) {
@@ -81,7 +81,7 @@ struct lca_tree {
     int *label;
     int *orig;
     int *start;
-    vi s;
+    vector<ll> s;
     segment_tree st;
 
     lca_tree(int n, int root, vi *children) {
@@ -125,7 +125,7 @@ struct lca_tree {
         int x = start[a],
             y = start[b];
         if (x > y) swap(x, y);
-        return orig[st.query(x, y)];
+        return orig[st.query(x, y).x];
     }
 };
 

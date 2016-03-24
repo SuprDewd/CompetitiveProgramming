@@ -1,10 +1,12 @@
 #include "../data-structures/segment_tree.cpp"
+const int ID = 0;
+int f(int a, int b) { return a + b; }
 struct HLD {
     int n, curhead, curloc;
     vi sz, head, parent, loc;
     vvi adj; segment_tree values;
     HLD(int _n) : n(_n), sz(n, 1), head(n), parent(n, -1), loc(n), adj(n) {
-        vi tmp(n, ID); values = segment_tree(tmp); }
+        vector<ll> tmp(n, ID); values = segment_tree(tmp); }
     void add_edge(int u, int v) { adj[u].push_back(v), adj[v].push_back(u); }
     void update_cost(int u, int v, int c) {
         if (parent[v] == u) swap(u, v); assert(parent[u] == v);
@@ -34,8 +36,8 @@ struct HLD {
         return res; }
     int query_upto(int u, int v) { int res = ID;
         while (head[u] != head[v])
-            res = f(res, values.query(loc[head[u]], loc[u])),
+            res = f(res, values.query(loc[head[u]], loc[u]).x),
             u = parent[head[u]];
-        return f(res, values.query(loc[v] + 1, loc[u])); }
+        return f(res, values.query(loc[v] + 1, loc[u]).x); }
     int query(int u, int v) { int l = lca(u, v);
         return f(query_upto(u, l), query_upto(v, l)); } };
