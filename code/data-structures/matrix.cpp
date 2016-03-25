@@ -19,10 +19,10 @@ template <class T> struct matrix {
         return res; }
     matrix<T> operator *(const matrix& other) {
         matrix<T> res(rows, other.cols);
-        rep(i,0,rows) rep(j,0,other.cols) rep(k,0,cols)
+        rep(i,0,rows) rep(k,0,cols) rep(j,0,other.cols)
                 res(i, j) += at(i, k) * other.data[k * other.cols + j];
         return res; }
-    matrix<T> pow(int p) {
+    matrix<T> pow(ll p) {
         matrix<T> res(rows, cols), sq(*this);
         rep(i,0,rows) res(i, i) = T(1);
         while (p) {
