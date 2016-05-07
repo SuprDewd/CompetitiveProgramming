@@ -1,20 +1,26 @@
 void test() {
-    /* Field testing: NWERC 2012 Problem I, UVa 11294, UVa 10319 */
+    /* Field testing: NWERC 2012 Problem I, Kattis pieceittogether */
+    /* TODO: UVa 11294, UVa 10319 */
 
-    for (int n = 1; n <= 20; n++) {
-        for (int iter = 0; iter < 1000; iter++) {
-            int cnt = randint(1, 4);
+    for (int n = 1; n <= 15; n++) {
+        for (int iter = 0; iter < 100; iter++) {
+            int cnt = randint(1, 100);
             vii clauses(cnt);
             for (int i = 0; i < cnt; i++) {
                 int a = randint(1, n) * (randint(1, 2) == 1 ? 1 : -1);
                 int b = randint(1, n) * (randint(1, 2) == 1 ? 1 : -1);
                 clauses[i] = ii(a, b);
             }
+            // cout << n << " " << iter << " " << cnt << endl;
 
-            vi all_truthy;
-            if (two_sat(n, clauses, all_truthy)) {
+            TwoSat ts(n);
+            iter(it,clauses) {
+                ts.add_or(it->first, it->second);
+            }
+            if (ts.sat()) {
                 vector<bool> is_true(n+1, false);
-                for (int i = 0; i < size(all_truthy); i++) if (all_truthy[i] > 0) is_true[all_truthy[i]] = true;
+                // for (int i = 0; i < size(all_truthy); i++) if (all_truthy[i] > 0) is_true[all_truthy[i]] = true;
+                rep(i,0,n) if (V[n+(i+1)].val == 1) is_true[i+1] = true;
                 for (int i = 0; i < cnt; i++) {
                     bool a = is_true[abs(clauses[i].first)],
                          b = is_true[abs(clauses[i].second)];
