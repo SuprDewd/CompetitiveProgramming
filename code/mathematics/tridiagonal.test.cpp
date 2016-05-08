@@ -1,6 +1,6 @@
 /* Field testing: Timus 1047 */
 void test() {
-    long double eps = 1e-7;
+    long double eps = 1e-5;
     rep(it,0,5000) {
         int n = rand() % min(it+1, 4999) + 1;
         vector<long double> cX(n);
