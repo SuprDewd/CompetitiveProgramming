@@ -43,6 +43,7 @@ void test() {
     assert_equal(intersect(point(0,0), 1, point(-20973249,2938490.02983942), 1, res1, res2), 0);
 
     // Circle line intersection
+    // Field testing: Kattis redgem
     assert_equal(2, intersect(point(-5,0), point(5,0), point(0,0), 3, res1, res2));
     assert_equal(2, intersect(point(0,-5), point(0,5), point(0,0), 3, res1, res2));
 
@@ -51,6 +52,14 @@ void test() {
 
     assert_equal(1, intersect(point(-5,0), point(5,0), point(0,3), 3, res1, res2));
     assert_equal(1, intersect(point(0,-5), point(0,5), point(3, -3234.234), 3, res1, res2));
+
+    intersect(point(1.67, 0), point(3.8, -1.6), point(0,0), 10.0, res1, res2);
+    assert(abs(point(8.56, -5.17) - res1) < 0.1);
+    assert(abs(point(-7.36, 6.77) - res2) < 0.1);
+
+    intersect(point(3.8, -1.6), point(1.67, 0), point(0,0), 10.0, res1, res2);
+    assert(abs(point(8.56, -5.17) - res2) < 0.1);
+    assert(abs(point(-7.36, 6.77) - res1) < 0.1);
 
     // Point circle tangent
     point M, N;
