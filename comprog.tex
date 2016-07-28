@@ -707,7 +707,8 @@
     \subsection{128-bit Integer}
         GCC has a 128-bit integer data type named \texttt{\_\_int128}. Useful
         if doing multiplication of 64-bit integers, or something needing a
-        little more than 64-bits to represent.
+        little more than 64-bits to represent. There's also
+        \texttt{\_\_float128}.
     \fi
 
     \subsection{Bit Hacks}
@@ -727,6 +728,7 @@
     \begin{tabular}{ll}
         \#labeled rooted trees & $n^{n-1}$ \\
         \#labeled unrooted trees & $n^{n-2}$ \\
+        \#forests of $k$ rooted trees & $\frac{k}{n}\binom{n}{k}n^{n-k}$ \\
         % Kirchoff's theorem
         $\sum_{i=1}^n i^2 = n(n+1)(2n+1)/6$ & $\sum_{i=1}^n i^3 = n^2(n+1)^2/4$ \\
         $!n = n\times!(n-1)+(-1)^n$ & $!n = (n-1)(!(n-1)+!(n-2))$ \\
@@ -802,10 +804,12 @@
             \begin{myitemize}
                 \item Dynamic Programming
                     \begin{itemize}
+                        \item Parsing CFGs: CYK Algorithm
                         \item Drop a parameter, recover from others
                         \item Swap answer and a parameter
-                        \item Parsing CFGs: CYK Algorithm
-                        \item Optimizations
+                        \item When grouping: try splitting in two
+                        \item $2^k$ trick
+                        \item When optimizing
                             \begin{itemize}
                                 \item Convex hull optimization
                                     \begin{itemize}
@@ -993,8 +997,9 @@
                 $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
                 \frac{a+b+c}{2}$.
             \item \textbf{Pick's theorem:} A polygon on an integer grid
-                containing $i$ lattice points and having $b$ lattice points on
-                the boundary has area $i + \frac{b}{2} - 1$.
+                strictly containing $i$ lattice points and having $b$ lattice
+                points on the boundary has area $i + \frac{b}{2} - 1$. (Nothing
+                similar in higher dimensions)
             \item \textbf{Euler's totient:} The number of integers less than
                 $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
                 where each $p$ is a distinct prime factor of $n$.
@@ -1016,8 +1021,10 @@
             \item \textbf{Frobenius Number:} largest number which can't be
                 expressed as a linear combination of numbers $a_1,\ldots,a_n$
                 with non-negative coefficients. $g(a_1,a_2) = a_1a_2-a_1-a_2$,
-                $N(a_1,a_2)=(a_1-1)(a_2-1)/2$. If $f(a_1,a_2,a_3) =
-                g(a_1,a_2,a_3) + a_1+a_2+a_3$ then $f(d a_1,d a_2,a_3) = d f(a_1,a_2,a_3)$.
+                $N(a_1,a_2)=(a_1-1)(a_2-1)/2$. $g(d\cdot a_1,d\cdot a_2,a_3) =
+                d\cdot g(a_1,a_2,a_3) + a_3(d-1)$. An integer $x>\left(\max_i
+                a_i\right)^2$ can be expressed in such a way iff.\ $x\ |\
+                \mathrm{gcd}(a_1,\ldots,a_n)$.
         \end{itemize}
 
         \subsection{Markov Chains}
@@ -1108,7 +1115,7 @@
             \item How many operations per second? Compare to local machine.
             \item What is the stack size?
             \item How to use printf/scanf with long long/long double?
-            \item Is \texttt{\_{}\_{}int128} available?
+            \item Are \texttt{\_{}\_{}int128} and \texttt{\_{}\_{}float128} available?
             \item Does MLE give RTE or MLE as a verdict? What about stack overflow?
             \item What is \texttt{RAND\_{}MAX}?
             \item How does the judge handle extra spaces (or missing newlines) in the output?
