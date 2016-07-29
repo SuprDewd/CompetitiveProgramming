@@ -741,6 +741,7 @@
         $\sigma_x(n) = \prod_{i=0}^{r} \frac{p_i^{(a_i + 1)x} - 1}{p_i^x - 1}$ & $\sigma_0(n) = \prod_{i=0}^r (a_i + 1)$ \\
         $\sum_{k=0}^m (-1)^k \binom{n}{k} = (-1)^m \binom{n-1}{m}$ & \\
         $2^{\omega(n)} = O(\sqrt{n})$ & $\sum_{i=1}^n 2^{\omega(i)} = O(n \log n)$ \\
+        % Kinematic equations
         $d = v_i t + \frac{1}{2}at^2$ & $v_f^2 = v_i^2 + 2ad$ \\
         $v_f = v_i + at$ & $d = \frac{v_i + v_f}{2}t$ \\
     \end{tabular}
@@ -1013,7 +1014,6 @@
             \item A minumum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
             \item The number of vertices of a graph is equal to its minimum
                 vertex cover number plus the size of a maximum independent set.
-            \item \textbf{Wilson's theorem:} $(n-1)! \equiv -1 \pmod{n}$ iff.\ $n$ is prime
             \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$
             \item \textbf{Hook length formula:} If $\lambda$ is a Young diagram and $h_{\lambda}(i,j)$ is the hook-length of cell $(i,j)$, then then the number of Young tableux $d_{\lambda} = n!/\prod h_{\lambda}(i,j)$.
             \item \textbf{Möbius inversion formula:} If $f(n) = \sum_{d|n} g(d)$, then $g(n) = \sum_{d|n} \mu(d) f(n/d)$. If $f(n) = \sum_{m=1}^n g(\lfloor n/m\rfloor)$, then $g(n) = \sum_{m=1}^n \mu(m)f(\lfloor\frac{n}{m}\rfloor)$.
@@ -1026,6 +1026,11 @@
                 a_i\right)^2$ can be expressed in such a way iff.\ $x\ |\
                 \mathrm{gcd}(a_1,\ldots,a_n)$.
         \end{itemize}
+
+        \subsection{Physics}
+            \begin{itemize}
+                \item \textbf{Snell's law:} $\frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2}$
+            \end{itemize}
 
         \subsection{Markov Chains}
             A Markov Chain can be represented as a weighted directed graph of
