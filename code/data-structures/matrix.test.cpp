@@ -1,3 +1,4 @@
+/* Field testing: http://codeforces.com/gym/100962 ABBA */
 void test() {
     double det;
     int rank;
@@ -163,6 +164,20 @@ void test() {
     C(2, 2) = -1;
     C.rref(det,rank);
     assert_equal(18.0, det);
+
+    C = matrix<double>(3,1);
+    C(0,0) = -2;
+    C(1,0) = 1;
+    C(2,0) = 3;
+    C.rref(det,rank);
+    assert_equal(1, rank);
+
+    C = matrix<double>(1,3);
+    C(0,0) = -2;
+    C(0,1) = 1;
+    C(0,2) = 3;
+    C.rref(det,rank);
+    assert_equal(1, rank);
 
     C = matrix<double>(10, 10);
     for (int i = 0; i < 10; i++)

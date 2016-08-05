@@ -31,16 +31,15 @@ template <class T> struct matrix {
             if (p) sq = sq * sq;
         } return res; }
     matrix<T> rref(T &det, int &rank) {
-        matrix<T> mat(*this); det = T(1), rank = max(rows, cols);
+        matrix<T> mat(*this); det = T(1), rank = 0;
         for (int r = 0, c = 0; c < cols; c++) {
             int k = r;
-            while (k < rows && eq<T>(mat(k, c), T(0))) k++;
-            if (k >= rows) { rank--; continue; }
+            rep(i,k+1,rows) if (abs(mat(i,c)) > abs(mat(k,c))) k = i;
+            if (k >= rows || eq<T>(mat(k, c), T(0))) continue;
             if (k != r) {
                 det *= T(-1);
-                rep(i,0,cols)
-                    swap(mat.at(k, i), mat.at(r, i));
-            } det *= mat(r, r);
+                rep(i,0,cols) swap(mat.at(k, i), mat.at(r, i));
+            } det *= mat(r, r); rank++;
             T d = mat(r,c);
             rep(i,0,cols) mat(r, i) /= d;
             rep(i,0,rows) {
