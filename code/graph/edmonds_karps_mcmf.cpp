@@ -32,7 +32,7 @@ struct flow_network {
             memset(d, -1, n << 2);
             memset(p, -1, n << 2);
             set<int, cmp> q;
-            q.insert(s); d[s] = 0;
+            d[s] = 0; q.insert(s);
             while (!q.empty()) {
                 int u = *q.begin();
                 q.erase(q.begin());
@@ -40,7 +40,7 @@ struct flow_network {
                     if (e[i].cap == 0) continue;
                     int cd = d[u] + e[i].cost + pot[u] - pot[v = e[i].v];
                     if (d[v] == -1 || cd < d[v]) {
-                        if (q.find(v) != q.end()) q.erase(q.find(v));
+                        q.erase(v);
                         d[v] = cd; p[v] = i;
                         q.insert(v);
                     }
