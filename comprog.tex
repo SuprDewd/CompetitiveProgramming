@@ -62,7 +62,7 @@
 { \end{itemize}                  }
 
 % Title/Author
-\title{viRUs}
+\title{.*RU.*}
 \subtitle{Team Reference Document}
 \date{\ddmmyyyydate{\today{}}}
 
@@ -198,6 +198,8 @@
 
     \subsection{Convex Hull Trick}
         \code{data-structures/convex_hull_trick.cpp}
+        And dynamic variant:
+        \code{data-structures/convex_hull_trick_dynamic.cpp}
 
 \section{Graphs}
     \subsection{Single-Source Shortest Paths}
@@ -258,6 +260,8 @@
         none exist.
         \fi
         \code{graph/euler_path.cpp}
+        And an undirected version, which finds a cycle.
+        \code{graph/euler_path_undirected.cpp}
 
     \subsection{Bipartite Matching}
 
@@ -341,8 +345,17 @@
         $S$-component, then maximum density is smaller than $g$, otherwise it's
         larger. Distance between valid densities is at least $1/(n(n-1))$. Edge
         case when density is $0$. This also works for weighted graphs by
-        replacing $d_u$ be the weighted degree, and doing more iterations (if
+        replacing $d_u$ by the weighted degree, and doing more iterations (if
         weights are not integers).
+
+    \subsection{Maximum-Weight Closure}
+        Given a vertex-weighted directed graph $G$. Turn the graph into a flow
+        network, adding weight $\infty$ to each edge. Add vertices $S,T$. For
+        each vertex $v$ of weight $w$, add edge $(S,v,w)$ if $w\geq 0$, or edge
+        $(v,T,-w)$ if $w<0$. Sum of positive weights minus minimum $S-T$ cut is
+        the answer. Vertices reachable from $S$ are in the closure. The
+        maximum-weight closure is the same as the complement of the
+        minimum-weight closure on the graph with edges reversed.
 
     \subsection{Maximum Weighted Independent Set in a Bipartite Graph}
         This is the same as the minimum weighted vertex cover. Solve this by
@@ -367,7 +380,7 @@
         $Z$ values in $O(n)$ time, where $n = |S|$. $Z$ values can, for
         example, be used to find all occurrences of a pattern $P$ in a string
         $T$ in linear time. This is accomplished by computing $Z$ values of $S
-        = T P$, and looking for all $i$ such that $Z_i \geq |T|$.
+        = P T$, and looking for all $i$ such that $Z_i \geq |P|$.
         \fi
         \code{strings/z_algorithm.cpp}
 
@@ -434,7 +447,8 @@
         The binomial coefficient $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ is the
         number of ways to choose $k$ items out of a total of $n$ items. Also
         contains an implementation of Lucas' theorem for computing the answer
-        modulo a prime $p$.
+        modulo a prime $p$. Use modular multiplicative inverse if needed, and
+        be very careful of overflows.
         \code{mathematics/nck.cpp}
 
     \subsection{Euclidean algorithm}
@@ -692,6 +706,9 @@
         that maximizes $\sum_{i=1}^{n-1}|p_i - p_{i+1}|$.
         \code{other/simulated_annealing.cpp}
 
+    \subsection{Simplex}
+        \code{other/simplex.cpp}
+
     \subsection{Fast Square Testing}
         An optimized test for square integers.
         \code{tricks/is_square.cpp}
@@ -717,6 +734,7 @@
 
     \subsection{Bit Hacks}
         \code{tricks/snoob.cpp}
+        \newpage
     \begin{tabular}{@{}l|l|l@{}}
     \toprule
     Catalan	&	$C_0=1$, $C_n=\frac{1}{n+1}\binom{2n}{n} = \sum_{i=0}^{n-1}C_iC_{n-i-1} = \frac{4n-2}{n+1}C_{n-1}$  & \\
@@ -798,6 +816,7 @@
                         \item Explain your solution to someone.
                         \item Are you using any functions that you don't completely understand? Maybe STL functions?
                         \item Maybe you (or someone else) should rewrite the solution?
+                        \item Can the input line be empty?
                     \end{itemize}
                 \item Run-Time Error?
                     \begin{itemize}
@@ -927,7 +946,7 @@
                             \end{itemize}
                         \item Sieve
                         \item System of linear equations
-                        \item Values to big to represent?
+                        \item Values too big to represent?
                             \begin{itemize}
                                 \item Compute using the logarithm
                                 \item Divide everything by some large value
@@ -999,7 +1018,7 @@
 
 
         \begin{itemize}[leftmargin=*]
-            \item \textbf{Jacobi symbol:} $\left(\frac{a}{b}\right) = a^{(b-1)/2} \pmod{b}$
+            \item \textbf{Legendre symbol:} $\left(\frac{a}{b}\right) = a^{(b-1)/2} \pmod{b}$, $b$ odd prime.
             \item \textbf{Heron's formula:} A triangle with side lengths
                 $a,b,c$ has area $\sqrt{s(s-a)(s-b)(s-c)}$ where $s =
                 \frac{a+b+c}{2}$.
@@ -1008,7 +1027,7 @@
                 points on the boundary has area $i + \frac{b}{2} - 1$. (Nothing
                 similar in higher dimensions)
             \item \textbf{Euler's totient:} The number of integers less than
-                $n$ that are comprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
+                $n$ that are coprime to $n$ are $n\prod_{p|n}\left(1 - \frac{1}{p}\right)$
                 where each $p$ is a distinct prime factor of $n$.
             \item \textbf{König's theorem:} In any bipartite graph $G=(L\cup R,E)$, the number
                 of edges in a maximum matching is equal to the number of
@@ -1097,8 +1116,9 @@
                 \end{align*}
 
             \subsubsection{BEST Theorem}
-                Number of OST given by Kirchoff's Theorem (remove r/c with root)
-                $\#\textsc{OST}(G,r) \cdot \prod_{v}(d_v-1)!$
+                Count directed Eulerian cycles. Number of OST given by
+                Kirchoff's Theorem (remove r/c with root) $\#\textsc{OST}(G,r)
+                \cdot \prod_{v}(d_v-1)!$
 
             \subsubsection{Primitive Roots}
                 Only exists when $n$ is $2, 4, p^k, 2p^k$, where $p$ odd prime. Assume
@@ -1134,7 +1154,7 @@
             \item Try different programming languages: C++ and Java.
             \item Try the submit script.
             \item Try local programs: i?python[23], factor.
-            \item Try submitting with \texttt{assert(false)} and \texttt{assert(false)}.
+            \item Try submitting with \texttt{assert(false)} and \texttt{assert(true)}.
             \item Return-value from \texttt{main}.
             \item Look for directory with sample test cases.
 
