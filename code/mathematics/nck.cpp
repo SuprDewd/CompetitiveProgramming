@@ -8,8 +8,8 @@ int nck(int n, int k) {
 int nck(int n, int k, int p) {
     int res = 1;
     while (n || k) {
-        res *= nck(n % p, k % p);
-        res %= p, n /= p, k /= p;
+        res = nck(n % p, k % p) % p * res % p;
+        n /= p, k /= p;
     }
     return res;
 }
