@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 
 DIR=$(readlink -f $(dirname $0))
 DIR2=$(readlink -f $(dirname $1))
