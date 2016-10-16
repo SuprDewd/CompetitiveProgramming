@@ -1,7 +1,6 @@
 Things to do
 ============
 
-* Fix min cost max flow (infinite loop on negative weights, e.g. https://icpc.kattis.com/problems/catering)
 * Fix convex hull edge case (some small edge case that included at least three collinear lines would return the same point on both the upper and lower hull)
 * Fix 2d-Tree (for some reason it's segfaulting on tests)
 * Shortest Path Faster Algorithm
@@ -18,7 +17,6 @@ Things to do
 * Add more formulas
 * Test Tridiagonal matrix algorithm on http://codeforces.com/contest/24/problem/D
 * Use the Node interface of Segment Tree in HLD.
-
 
 How do we check how much memory is used by an executable?
 
