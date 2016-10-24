@@ -17,6 +17,11 @@ Things to do
 * Add more formulas
 * Test Tridiagonal matrix algorithm on http://codeforces.com/contest/24/problem/D
 * Use the Node interface of Segment Tree in HLD.
+* Primitive root finder should only check prime divisors
+* Clean up undirected Euler path (and don't assume cycle)
+* Dynamic convex hull trick
+* Simplex
+* Refactor matrix code (what about inverse?)
 
 How do we check how much memory is used by an executable?
 
