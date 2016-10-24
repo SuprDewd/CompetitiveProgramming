@@ -29,22 +29,22 @@ void check(int mxn, int x) {
 void test() {
     /* Field testing: UVa 681 */
 
-    polygon p;
-    p.push_back(point(1,1));
-    p.push_back(point(2,2));
-    p.push_back(point(3,3));
-    p.push_back(point(4,4));
-    p.push_back(point(1,-1));
-    p.push_back(point(2,-2));
-    p.push_back(point(3,-3));
-    p.push_back(point(4,-4));
-
-    int cnt = convex_hull(p);
-    rep(i,0,cnt) {
-        cout << hull[i] << endl;
-    }
-
-    return;
+    // polygon p;
+    // p.push_back(point(1,1));
+    // p.push_back(point(2,2));
+    // p.push_back(point(3,3));
+    // p.push_back(point(4,4));
+    // p.push_back(point(1,-1));
+    // p.push_back(point(2,-2));
+    // p.push_back(point(3,-3));
+    // p.push_back(point(4,-4));
+    //
+    // int cnt = convex_hull(p);
+    // rep(i,0,cnt) {
+    //     cout << hull[i] << endl;
+    // }
+    //
+    // return;
 
     rep(n,1,20) {
         rep(k,1,100) {
