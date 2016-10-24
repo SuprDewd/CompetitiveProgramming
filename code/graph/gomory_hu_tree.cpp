@@ -31,7 +31,6 @@ pair<vii, vvi> construct_gh_tree(flow_network &g) {
     return make_pair(par, cap);
 }
 int compute_max_flow(int s, int t, const pair<vii, vvi> &gh) {
-    if (s == t) return 0;
     int cur = INF, at = s;
     while (gh.second[at][t] == -1)
         cur = min(cur, gh.first[at].second), at = gh.first[at].first;

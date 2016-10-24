@@ -6,8 +6,8 @@ struct flow_network {
             : v(_v), nxt(_nxt), cap(_cap) { } };
     int n, *head, *curh; vector<edge> e, e_store;
     flow_network(int _n) : n(_n) {
-        head = new int[n], curh = new int[n];
-        memset(head, -1, n*sizeof(int)); }
+        curh = new int[n];
+        memset(head = new int[n], -1, n*sizeof(int)); }
     void reset() { e = e_store; }
     void add_edge(int u, int v, int uv, int vu=0) {
         e.push_back(edge(v, uv, head[u])); head[u] = size(e)-1;

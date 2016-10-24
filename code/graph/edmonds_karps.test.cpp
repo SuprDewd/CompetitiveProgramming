@@ -19,6 +19,7 @@ void test1() {
 
     for(int i = 0; i < N; ++i) {
         for(int j = 0; j < N; ++j) {
+            if (i == j) continue;
             assert_equal(mf2.max_flow(i, j), mf.max_flow(i, j));
         }
     }
@@ -41,6 +42,7 @@ void test2() {
 
     for(int i = 0; i < N; ++i) {
         for(int j = 0; j < N; ++j) {
+            if (i == j) continue;
             assert_equal(mf2.max_flow(i, j), mf.max_flow(i, j));
         }
     }
@@ -65,6 +67,7 @@ void test3() {
 
     for(int i = 0; i < N; ++i) {
         for(int j = 0; j < N; ++j) {
+            if (i == j) continue;
             assert_equal(mf2.max_flow(i, j), mf.max_flow(i, j));
         }
     }
@@ -74,7 +77,7 @@ void test() {
     /* Field testing: UVa259, UVa670, UVa10080, UVa10330, ICPC Live Archive 5905, ICPC Live Archive 3792 */
     /* Field testing (v2): Kattis maxflow */
 
-    flow_network mf(4, 4*4);
+    flow_network mf(4);
     mf.add_edge(0, 1, 133700);
     mf.add_edge(0, 2, 133700);
     mf.add_edge(1, 2, 1);
@@ -82,7 +85,7 @@ void test() {
     mf.add_edge(2, 3, 133700);
     assert_equal(2 * 133700, mf.max_flow(0, 3));
 
-    mf = flow_network(5, 5*5);
+    mf = flow_network(5);
     mf.add_edge(1, 2, 100);
     mf.add_edge(1, 3, 50);
     mf.add_edge(2, 3, 50);
@@ -92,7 +95,7 @@ void test() {
     mf.add_edge(4, 0, 125);
     assert_equal(150, mf.max_flow(1, 0));
 
-    mf = flow_network(5, 5*5);
+    mf = flow_network(5);
     mf.add_edge(1, 2, 100);
     mf.add_edge(1, 3, 50);
     mf.add_edge(2, 3, 50);
@@ -102,7 +105,7 @@ void test() {
     mf.add_edge(4, 0, 75);
     assert_equal(125, mf.max_flow(1, 0));
 
-    mf = flow_network(5, 5*5);
+    mf = flow_network(5);
     mf.add_edge(1, 2, 100);
     mf.add_edge(1, 3, 50);
     mf.add_edge(2, 4, 5);

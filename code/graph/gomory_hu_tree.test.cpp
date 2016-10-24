@@ -11,6 +11,7 @@ void test() {
             gh = construct_gh_tree(g);
             for(int x = 0; x < N; ++x) {
                 for(int y = 0; y < N; ++y) {
+                    if (x == y) continue;
                     assert_equal(g.max_flow(x, y), compute_max_flow(x, y, gh));
                 }
             }
@@ -23,6 +24,7 @@ void test() {
     gh = construct_gh_tree(g);
     for(int i = 0; i < N; ++i) {
         for(int j = 0; j < N; ++j) {
+            if (i == j) continue;
             assert_equal(g.max_flow(i, j), compute_max_flow(i, j, gh));
         }
     }
