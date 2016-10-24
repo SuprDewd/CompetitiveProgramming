@@ -513,7 +513,8 @@
         \code{mathematics/crt.cpp}
 
     \subsection{Linear Congruence Solver}
-        A function that returns all solutions to $ax \equiv b \pmod{n}$, modulo $n$.
+        Given $ax \equiv b \pmod{n}$, returns $(t,m)$ such that all solutions
+        are given by $x\equiv t\pmod{m}$. No solutions iff $(0,0)$ is returned.
         \code{mathematics/linear_congruence.cpp}
 
     \subsection{Tonelli-Shanks algorithm}

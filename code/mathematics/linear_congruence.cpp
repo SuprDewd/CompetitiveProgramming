@@ -1,9 +1,5 @@
 #include "egcd.cpp"
-vi linear_congruence(int a, int b, int n) {
-    int x, y, d = egcd(a, n, x, y);
-    vi res;
-    if (b % d != 0) return res;
-    int x0 = smod(b / d * x, n);
-    rep(k,0,d) res.push_back(smod(x0 + k * n / d, n));
-    return res;
-}
+pair<ll,ll> linear_congruence(ll a, ll b, ll n) {
+    ll x, y, d = egcd(smod(a,n), n, x, y);
+    if ((b = smod(b,n)) % d != 0) return ii(0,0);
+    return make_pair(smod(b / d * x, n),n/d); }
