@@ -1,4 +1,4 @@
-\documentclass[9pt,a4paper,twocolumn,landscape,oneside]{amsart}
+\documentclass[8pt,a4paper,landscape,oneside]{amsart}
 \usepackage{amsmath, amsthm, amssymb, amsfonts}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -29,7 +29,7 @@
 
 % Minted
 \usepackage{minted}
-\newcommand{\code}[1]{\inputminted{cpp}{_code/#1}}
+\newcommand{\code}[1]{\inputminted[fontsize=\normalsize,baselinestretch=1]{cpp}{_code/#1}}
 \newcommand{\bashcode}[1]{\inputminted{bash}{_code/#1}}
 \newcommand{\regcode}[1]{\inputminted{cpp}{code/#1}}
 
@@ -73,13 +73,15 @@
 
 \begin{document}
 
+\begin{multicols*}{3}
 \maketitle
 \thispagestyle{fancy}
 \vspace{-3em}
 % \addtocontents{toc}{\protect\enlargethispage{\baselineskip}}
 \tableofcontents
 
-\clearpage
+% \clearpage
+
 
 \section{Code Templates}
     \subsection{Basic Configuration}
@@ -776,6 +778,8 @@
     $\mathrm{size}\le 1$ & $[n \le k]$ & $[n \le k]$ & $\binom{k}{n}$ & $n!\binom{k}{n}$ & $[cond]$: $1$ if $cond=true$, else $0$\\
     \bottomrule
     \end{tabular}
+
+\end{multicols*}
 
 \onecolumn
 \begin{multicols*}{3}

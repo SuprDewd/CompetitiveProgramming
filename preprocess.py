@@ -2,7 +2,7 @@ import os
 import hashlib
 import re
 
-MARGIN = 100 - 21
+MARGIN = 100 - 40 - 8 + 7
 
 
 def mkhash(dat):
@@ -22,16 +22,37 @@ for path, dirs, files in os.walk('./code'):
             except:
                 pass
 
-            dat = open(p).read().splitlines()
+            dat = [ line for line in open(p).read().splitlines() if not line.startswith('// vim: ') and not line.startswith('# vim: ') ]
             out = open(q, 'w')
 
-            ok = True
+            warning = False
+            error = False
+            last = False
             for dat, hash in zip(dat, mkhash(dat)):
-                if(len(dat) > MARGIN):
-                    print>>out, dat.replace('    ', '----')
-                    ok = False
+                last = False
+                s = dat.lstrip(' ')
+                add = len(dat) - len(s)
+                if add > 0:
+                    s = ' ' + s
+                    add -= 1
+                s = '-'*add + s
+                if(len(s) > MARGIN):
+                    print>>out, s
+                    warning = True
+                    last = True
+                    if len(s) > MARGIN+4:
+                        error = True
+                        print len(s), MARGIN
+                        print repr(s)
                 else:
-                    print>>out, dat.ljust(MARGIN, '-').replace('    ', '----') + "// " + hash
+                    if len(s) < MARGIN:
+                        s = s+' '
+                    print>>out, s.ljust(MARGIN, '-') + "//" + hash
 
-            if not ok:
-                print('Code too wide: %s' % p)
+            if last:
+                error = True
+            if error:
+                print('ERROR: Code too wide: %s' % p)
+            elif warning:
+                print('WARNING: Code (almost) too wide: %s' % p)
+
