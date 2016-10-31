@@ -38,7 +38,7 @@ string random_string(int n, int cc) {
 }
 
 void test() {
-  /* Field testing: Kattis stringmultimatching */
+  /* Field testing: Kattis stringmultimatching, Codeforces 366C */
 
   int ts = 100,
     ts2 = 10;
