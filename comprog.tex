@@ -336,6 +336,13 @@
     \subsection{Tarjan's Off-line Lowest Common Ancestors Algorithm}
         \code{graph/tarjan_olca.cpp}
 
+    \subsection{Minimum Arborescence}
+        Given a weighted directed graph, finds a subset of edges of minimum
+        total weight so that there is a unique path from the root $r$ to each
+        vertex. Returns a vector of size $n$, where the $i$th element is the
+        edge for the $i$th vertex. The answer for the root is undefined!
+        \code{graph/arborescence.cpp}
+
     \subsection{Maximum Density Subgraph}
         Given (weighted) undirected graph $G$. Binary search density. If $g$ is
         current density, construct flow network: $(S, u, m)$, $(u, T,
