@@ -379,6 +379,12 @@
         minimum $S,T$-cut is the answer. Vertices adjacent to a cut edge are
         in the vertex cover.
 
+    \subsection{Synchronizing word problem}
+        A DFA has a synchronizing word (an input sequence that moves all states
+        to the same state) iff.\ each pair of states has a synchronizing word.
+        That can be checked using reverse DFS over pairs of states. Finding the
+        shortest synchronizing word is NP-complete.
+
 \section{Strings}
 
     \subsection{The Knuth-Morris-Pratt algorithm}
@@ -956,6 +962,10 @@
                         \item Pr\"ufer sequences
                         \item Lov\'asz Toggle
                         \item Look at the DFS tree (which has no cross-edges)
+                        \item Is the graph a DFA or NFA?
+                            \begin{itemize}
+                                \item Is it the Synchronizing word problem?
+                            \end{itemize}
                     \end{itemize}
                 \item Mathematics
                     \begin{itemize}
