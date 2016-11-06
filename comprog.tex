@@ -557,6 +557,14 @@
     \subsection{Number-Theoretic Transform}
         \code{mathematics/ntt.cpp}
 
+    \subsection{Fast Hadamard Transform}
+        Computes the Hadamard transform of the given array. Can be used to
+        compute the \texttt{XOR}-convolution of arrays, exactly like with FFT.
+        For \texttt{AND}-convolution, use $(x+y,y)$ and $(x-y,y)$. For
+        \texttt{OR}-convolution, use $(x,x+y)$ and $(x,-x+y)$. \textbf{Note}:
+        Size of array must be a power of $2$.
+        \code{mathematics/fht.cpp}
+
     \subsection{Tridiagonal Matrix Algorithm}
         Solves a tridiagonal system of linear equations $a_ix_{i-1} + b_ix_i +
         c_ix_{i+1} = d_i$ where $a_1 = c_n = 0$. Beware of numerical
