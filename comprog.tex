@@ -603,6 +603,14 @@
         does not kill $0$ on first pass.
         \code{mathematics/josephus.cpp}
 
+    \subsection{Number of Integer Points under Line}
+        Count the number of integer solutions to $Ax+By\leq C$, $0 \leq x \leq
+        n$, $0 \leq y$. In other words, evaluate the sum $\sum_{x=0}^n
+        \left\lfloor \frac{C-Ax}{B} + 1\right\rfloor$. To count all solutions,
+        let $n = \left\lfloor \frac{c}{a}\right\rfloor$. In any case, it must hold
+        that $C-nA \geq 0$. Be very careful about overflows.
+        \code{mathematics/floor_sum.cpp}
+
     \subsection{Numbers and Sequences}
         Some random prime numbers: 1031, 32771, 1048583, 33554467,
         1073741827, 34359738421, 1099511627791, 35184372088891,
