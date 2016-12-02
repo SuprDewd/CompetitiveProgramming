@@ -53,6 +53,7 @@
 \newcommand*\ShiftLeft{\ll}
 \newcommand*\ShiftRight{\gg}
 \newcommand*\BitNeg{\ensuremath{\mathord{\sim}}}
+\DeclareRobustCommand{\stirling}{\genfrac\{\}{0pt}{}}
 
 \newenvironment{myitemize}
 { \begin{itemize}[leftmargin=.5cm]
@@ -243,6 +244,9 @@
             Kosarajus's algorithm finds strongly connected components of a
             directed graph in $O(|V|+|E|)$ time.
             \fi
+            Returns a Union-Find of the SCCs, as well as a topological ordering
+            of the SCCs. Note that the ordering specifies a random element from
+            each SCC, not the UF parents!
             \code{graph/scc.cpp}
 
     \subsection{Cut Points and Bridges}
@@ -384,6 +388,23 @@
         to the same state) iff.\ each pair of states has a synchronizing word.
         That can be checked using reverse DFS over pairs of states. Finding the
         shortest synchronizing word is NP-complete.
+
+    \subsection{Max flow with lower bounds on edges}
+        % TODO: Test this!
+        Change edge $(u,v,l\leq f\leq c)$ to $(u,v,f\leq c-l)$. Add edge
+        $(t,s,\infty)$. Create super-nodes $S$, $T$. Let $M(u) = \sum_{v}
+        l(v,u) - \sum_{v} l(u,v)$. If $M(u)<0$, add edge $(u,T,-M(u))$, else
+        add edge $(S,u,M(u))$. Max flow from $S$ to $T$. If all edges from $S$
+        are saturated, then we have a feasible flow. Continue running max flow
+        from $s$ to $t$ in original graph.
+        % TODO: Was there something similar for vertex capacities that we should add?
+
+    \subsection{Tutte matrix for general matching}
+        Create an $n\times n$ matrix $A$. For each edge $(i,j)$, $i<j$, let
+        $A_{ij} = x_{ij}$ and $A_{ji} = -x_{ij}$. All other entries are $0$.
+        The determinant of $A$ is zero iff.\ the graph has a perfect matching.
+        A randomized algorithm uses the Schwartz--Zippel lemma to check if it is
+        zero.
 
 \section{Strings}
 
@@ -561,6 +582,7 @@
         size, but is slightly slower.
         \code{mathematics/fft.cpp}
     \subsection{Number-Theoretic Transform}
+        Other possible moduli: $2\,113\,929\,217$ ($2^{25}$), $2\,013\,265\,920\,268\,435\,457$ ($2^{28}$, with $g=5$). % XXX: Should $g=1976010382590097340$, or is $g=5$ alright as well?
         \code{mathematics/ntt.cpp}
 
     \subsection{Fast Hadamard Transform}
@@ -615,6 +637,24 @@
         Some random prime numbers: 1031, 32771, 1048583, 33554467,
         1073741827, 34359738421, 1099511627791, 35184372088891,
         1125899906842679, 36028797018963971.
+
+        More random prime numbers: $10^3 + \{-9,-3,9,13\}$, $10^6+
+        \{-17,3,33\}$, $10^9+ \{7,9,21,33,87\}$.
+
+        Some maximal divisor counts:
+        \begin{tabular}{rr}
+        840 & 32 \\
+        720\,720 & 240 \\
+        735\,134\,400 & 1\,344 \\
+        963\,761\,198\,400 & 6\,720 \\
+        866\,421\,317\,361\,600 & 26\,880 \\
+        897\,612\,484\,786\,617\,600 & 103\,680 \\
+        \end{tabular}
+
+    \subsection{Game Theory}
+        Useful identity: \[
+            \oplus_{x=0}^{a-1}\, x = [0,a-1,1,a][a\% 4]
+            \]
 
 \section{Geometry}
     \subsection{Primitives}
@@ -683,6 +723,11 @@
 
     \subsection{Rotating Calipers}
         \code{geometry/rotating_calipers.cpp}
+
+    \subsection{Line upper/lower envelope}
+        To find the upper/lower envelope of a collection of lines $a_i+b_i x$,
+        plot the points $(b_i,a_i)$, add the point $(0,\pm \infty)$ (depending
+        on if upper/lower envelope is desired), and then find the convex hull.
 
     \subsection{Formulas}
         Let $a = (a_x, a_y)$ and $b = (b_x, b_y)$ be two-dimensional vectors.
@@ -798,7 +843,7 @@
         $\sum_{i=1}^n i^2 = n(n+1)(2n+1)/6$ & $\sum_{i=1}^n i^3 = n^2(n+1)^2/4$ \\
         $!n = n\times!(n-1)+(-1)^n$ & $!n = (n-1)(!(n-1)+!(n-2))$ \\
         $\sum_{i=1}^n \binom{n}{i} F_i = F_{2n}$ & $\sum_{i} \binom{n-i}{i} = F_{n+1}$ \\
-        $\sum_{k=0}^n \binom{k}{m} = \binom{n+1}{m+1}$ & \\
+        $\sum_{k=0}^n \binom{k}{m} = \binom{n+1}{m+1}$ & $x^k = \sum_{i=0}^k i!\stirling{k}{i}\binom{x}{i}$ \\
 
         $a\equiv b\pmod{x,y} \Rightarrow a\equiv b\pmod{\lcm(x,y)}$ & $\sum_{d|n} \phi(d) = n$ \\
         $ac\equiv bc\pmod{m} \Rightarrow a\equiv b\pmod{\frac{m}{\gcd(c,m)}}$ & $(\sum_{d|n} \sigma_0(d))^2 = \sum_{d|n} \sigma_0(d)^3$ \\
@@ -816,9 +861,9 @@
     Balls & same & distinct & same & distinct & \\
     Boxes & same & same & distinct & distinct & Remarks\\
     \hline
-    - & $\mathrm{p}_k(n)$ & $\sum_{i=0}^k \left\{{n\atop i}\right\}$ & $\binom{n+k-1}{k-1}$ & $k^n$ & $\mathrm{p}_k(n)$: \#partitions of $n$ into $\le k$ positive parts \\
-    $\mathrm{size}\ge 1$ & $\mathrm{p}(n,k)$ & $\left\{{n\atop k}\right\}$ & $\binom{n-1}{k-1}$ & $k!\left\{{n\atop k}\right\}$ & $\mathrm{p}(n,k)$: \#partitions of $n$ into $k$ positive parts \\
-    $\mathrm{size}\le 1$ & $[n \le k]$ & $[n \le k]$ & $\binom{k}{n}$ & $n!\binom{k}{n}$ & $[cond]$: $1$ if $cond=true$, else $0$\\
+        - & $\mathrm{p}_k(n)$ & $\sum_{i=0}^k \stirling{n}{i}$ & $\binom{n+k-1}{k-1}$ & $k^n$ & $\mathrm{p}_k(n)$: \#partitions of $n$ into $\le k$ positive parts \\
+        $\mathrm{size}\ge 1$ & $\mathrm{p}(n,k)$ & $\stirling{n}{k}$ & $\binom{n-1}{k-1}$ & $k!\stirling{n}{k}$ & $\mathrm{p}(n,k)$: \#partitions of $n$ into $k$ positive parts \\
+        $\mathrm{size}\le 1$ & $[n \le k]$ & $[n \le k]$ & $\binom{k}{n}$ & $n!\binom{k}{n}$ & $[cond]$: $1$ if $cond=true$, else $0$\\
     \bottomrule
     \end{tabular}
 

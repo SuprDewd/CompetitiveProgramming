@@ -9,9 +9,7 @@ Things to do
 * Edmonds's maximum matching algorithm (Blossom algorithm)
 * Hungarian algorithm
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
-* Simplex method
 * Add more Geometry stuff.
-* Edmond's optimum branching algorithm
 * Add a list of debugging tips
 * Add a list of algorithm types to keep in mind when solving a problem
 * Add more formulas
@@ -19,9 +17,12 @@ Things to do
 * Use the Node interface of Segment Tree in HLD.
 * Primitive root finder should only check prime divisors
 * Clean up undirected Euler path (and don't assume cycle)
-* Dynamic convex hull trick
-* Simplex
 * Refactor matrix code (what about inverse?)
+* http://codeforces.com/blog/entry/47758
+
+
+* Implement our own Simplex method? Or simplify the current code?
+* Implement our own Dynamic convex hull trick?
 
 How do we check how much memory is used by an executable?
 
