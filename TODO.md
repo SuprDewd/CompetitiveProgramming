@@ -19,6 +19,7 @@ Things to do
 * Clean up undirected Euler path (and don't assume cycle)
 * Refactor matrix code (what about inverse?)
 * http://codeforces.com/blog/entry/47758
+* Simplify KMP
 
 
 * Implement our own Simplex method? Or simplify the current code?
