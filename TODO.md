@@ -6,7 +6,6 @@ Things to do
 * Shortest Path Faster Algorithm
 * Prim's algorithm
 * More formulas for geometry, trigonometry, сombinatorics, number theory
-* Edmonds's maximum matching algorithm (Blossom algorithm)
 * Hungarian algorithm
 * Sweeping line algorithm for finding the pair of intersecting segments in a set of segments
 * Add more Geometry stuff.

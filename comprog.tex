@@ -356,6 +356,11 @@
         edge for the $i$th vertex. The answer for the root is undefined!
         \code{graph/arborescence.cpp}
 
+    \subsection{Blossom algorithm}
+        Finds a maximum matching in an arbitrary graph in $O(|V|^4)$ time. Be
+        vary of loop edges.
+        \code{graph/blossom.cpp}
+
     \subsection{Maximum Density Subgraph}
         Given (weighted) undirected graph $G$. Binary search density. If $g$ is
         current density, construct flow network: $(S, u, m)$, $(u, T,
