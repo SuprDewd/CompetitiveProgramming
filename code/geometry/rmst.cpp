@@ -7,7 +7,7 @@ struct RMST {
     ll d2() { return x - y; }
     ll dist(point other) {
       return abs(x - other.x) + abs(y - other.y); }
-    bool operator <(point other) {
+    bool operator <(const point &other) const {
       return y == other.y ? x > other.x : y < other.y; }
   } best[MAXN], arr[MAXN], tmp[MAXN];
   int n;
