@@ -729,6 +729,14 @@
     \subsection{Rotating Calipers}
         \code{geometry/rotating_calipers.cpp}
 
+    \subsection{Rectilinear Minimum Spanning Tree}
+        Given a set of $n$ points in the plane, and the aim is to find a
+        minimum spanning tree connecting these $n$ points, assuming the
+        Manhattan distance is used. The function \texttt{candidates} returns at
+        most $4n$ edges that are a superset of the edges in a minimum spanning
+        tree, and then one can use Kruskal's algorithm.
+        \code{geometry/rmst.cpp}
+
     \subsection{Line upper/lower envelope}
         To find the upper/lower envelope of a collection of lines $a_i+b_i x$,
         plot the points $(b_i,a_i)$, add the point $(0,\pm \infty)$ (depending
