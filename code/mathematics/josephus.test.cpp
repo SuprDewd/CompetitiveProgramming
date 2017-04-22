@@ -1,3 +1,3 @@
-// Field testing: UVa 11351
+// Field testing: UVa 11351, Kattis toys
 void test() {
 }
