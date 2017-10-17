@@ -41,19 +41,20 @@ struct naive_kd_tree {
     pts.insert(p);
   }
 
-  point nearest_neighbour(const point &p, bool allow_same = true) {
+  pair<point, bool> nearest_neighbour(const point &p, bool allow_same = true) {
     double mn = INFINITY;
     point res;
+    bool found = false;
     for (typename set<point>::const_iterator it = pts.begin(); it != pts.end(); ++it) {
       double dist = p.dist_to(*it);
       if (abs(dist) < EPS && !allow_same) continue;
       if (dist < mn) {
         mn = dist;
         res = *it;
+        found = true;
       }
     }
-
-    return res;
+    return make_pair(res, found);
   }
 };
 
@@ -149,19 +150,29 @@ void test() {
         bool allow_same = rand() % 2 == 0;
         // bool allow_same = true;
 #if TREE1
-        kd_tree<CURK>::pt a = tree1.nearest_neighbour(kd_tree<CURK>::pt(pt), allow_same);
+        pair<kd_tree<CURK>::pt, bool> a = tree1.nearest_neighbour(kd_tree<CURK>::pt(pt), allow_same);
 #endif
 
 #if TREE2
-        naive_kd_tree<CURK>::point b = tree2.nearest_neighbour(naive_kd_tree<CURK>::point(pt), allow_same);
+        pair<naive_kd_tree<CURK>::point, bool> b = tree2.nearest_neighbour(naive_kd_tree<CURK>::point(pt), allow_same);
+#endif
+
+#if TREE1 && TREE2
+        assert(a.second == b.second);
+#endif
+#if TREE1
+        if (!a.second) continue;
+#endif
+#if TREE2
+        if (!b.second) continue;
 #endif
 
 #if TREE1
-        double x = a.dist(kd_tree<CURK>::pt(pt));
+        double x = a.first.dist(kd_tree<CURK>::pt(pt));
 #endif
 
 #if TREE2
-        double y = b.dist_to(naive_kd_tree<CURK>::point(pt));
+        double y = b.first.dist_to(naive_kd_tree<CURK>::point(pt));
 #endif
 
 #if TREE1 && TREE2

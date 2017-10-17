@@ -65,31 +65,24 @@ template <int K> struct kd_tree {
   void clear() { _clr(root); root = NULL; }
   void _clr(node *n) {
     if (n) _clr(n->l), _clr(n->r), delete n; }
-  pt nearest_neighbour(const pt &p, bool allow_same=true) {
-    assert(root);
+  pair<pt, bool> nearest_neighbour(const pt &p,
+      bool allow_same=true) {
     double mn = INFINITY, cs[K];
     rep(i,0,K) cs[i] = -INFINITY;
     pt from(cs);
     rep(i,0,K) cs[i] = INFINITY;
-    pt to(cs);
-    return _nn(p, root, bb(from, to), mn, 0, allow_same).first;
-  }
-  pair<pt, bool> _nn(const pt &p, node *n, bb b,
-      double &mn, int c, bool same) {
-    if (!n || b.dist(p) > mn) return make_pair(pt(), false);
-    bool found = same || p.dist(n->p) > EPS,
-         l1 = true, l2 = false;
-    pt resp = n->p;
-    if (found) mn = min(mn, p.dist(resp));
+    pt to(cs), resp;
+    _nn(p, root, bb(from, to), mn, resp, 0, allow_same);
+    return make_pair(resp, !std::isinf(mn)); }
+  void _nn(const pt &p, node *n, bb b,
+      double &mn, pt &resp, int c, bool same) {
+    if (!n || b.dist(p) > mn) return;
+    bool l1 = true, l2 = false;
+    if ((same || p.dist(n->p) > EPS) && p.dist(n->p) < mn)
+        mn = p.dist(resp = n->p);
     node *n1 = n->l, *n2 = n->r;
     rep(i,0,2) {
-      if (i == 1 || cmp(c)(n->p, p))
-        swap(n1, n2), swap(l1, l2);
-      pair<pt, bool> res =_nn(p, n1,
-          b.bound(n->p.coord[c], c, l1), mn, INC(c), same);
-      if (res.second &&
-          (!found || p.dist(res.first) < p.dist(resp)))
-        resp = res.first, found = true;
-    }
-    return make_pair(resp, found); } };
+      if (i == 1 || cmp(c)(n->p, p)) swap(n1,n2),swap(l1,l2);
+      _nn(p, n1, b.bound(n->p.coord[c], c, l1), mn,
+          resp, INC(c), same); } } };
 // vim: cc=60 ts=2 sts=2 sw=2:
