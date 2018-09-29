@@ -28,6 +28,11 @@ struct point3d {
   double distTo(P(A), P(B)) const {
     // A and B must be two different points
     return ((*this - A) * (*this - B)).length() / A.distTo(B);}
+  double signedDistTo(PL(A,B,C)) const {
+    // A, B and C must not be collinear
+    point3d N = (B-A)*(C-A);
+    double D = A%N;
+    return ((*this)%N - D)/N.length();}
   point3d normalize(double k = 1) const {
     // length() must not return 0
     return (*this) * (k / length()); }
