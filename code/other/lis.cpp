@@ -1,4 +1,5 @@
 vi lis(vi arr) {
+  if (arr.empty()) return vi();
   vi seq, back(size(arr)), ans;
   rep(i,0,size(arr)) {
     int res = 0, lo = 1, hi = size(seq);
