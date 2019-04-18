@@ -32,7 +32,7 @@ struct SAT {
     int v = log.size(), x; ll b = -1;
     rep(i,0,n) if (val[2*i] == val[2*i+1]) {
       ll s = 0, t = 0;
-      rep(j,0,2) { iter(it,loc[2*i])
+      rep(j,0,2) { iter(it,loc[2*i+j])
         s+=1LL<<max(0,40-tail[*it]+head[*it]); swap(s,t); }
       if (max(s,t) >= b) b = max(s,t), x = 2*i + (t>=s); }
     if (b == -1 || (assume(x) && bt())) return true;
