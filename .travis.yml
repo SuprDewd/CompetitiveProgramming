@@ -7,7 +7,7 @@ before_install:
 - sudo apt-get update -qq
 
 install:
-- sudo apt-get install -qq g++
-- export CXX="g++"
+- sudo apt-get install -qq g++-7
+- export CXX="g++-7"
 
 script: ./tester/run_all_tests.sh
