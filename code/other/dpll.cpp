@@ -37,8 +37,8 @@ struct SAT {
       if (max(s,t) >= b) b = max(s,t), x = 2*i + (t>=s); }
     if (b == -1 || (assume(x) && bt())) return true;
     while (log.size() != v) {
-      int a = log.back().first, b = log.back().second;
-      if (a == -1) val[b] = false; else head[a] = b;
+      int p = log.back().first, q = log.back().second;
+      if (p == -1) val[q] = false; else head[p] = q;
       log.pop_back(); }
     return assume(x^1) && bt(); }
   bool solve() {

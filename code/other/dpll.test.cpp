@@ -1,6 +1,6 @@
 void test() {
     // Field testing: https://icpc.kattis.com/problems/checks
-    rep(it,0,1000) {
+    rep(its,0,1000) {
         int n = rand() % 20 + 1,
             m = rand() % (4*n);
         vector<vi> cl;
@@ -57,13 +57,13 @@ void test() {
             }
 
             rep(i,0,m) {
-                bool found = false;
+                bool any = false;
                 iter(it,cl[i]) {
                     if (sat.get_value(*it)) {
-                        found = true;
+                        any = true;
                     }
                 }
-                assert_true(found);
+                assert_true(any);
             }
         }
     }
