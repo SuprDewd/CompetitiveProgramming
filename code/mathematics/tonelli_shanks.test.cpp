@@ -12,7 +12,7 @@ void test() {
     int a;
     while (true) {
       a = randint(1,n-1);
-      if (legendre(a, n) == 1) {
+      if (leg(a, n) == 1) {
         break;
       }
     }

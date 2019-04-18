@@ -14,7 +14,6 @@ int lis_dp(const vi &arr, int last) {
 }
 
 void check(int n) {
-  cout << n << endl;
   vi arr(n);
   rep(i,0,n) arr[i] = rand() % 100;
 

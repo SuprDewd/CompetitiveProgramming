@@ -14,7 +14,7 @@ void test() {
     avl_tree<int>::node *p = t1.insert(n);
     assert_equal(n, p->item);
     t2.insert(n);
-    assert_equal(size(t2), size(t1));
+    assert_equal((int)size(t2), (int)size(t1));
 
     int n1 = rand() % range;
     avl_tree<int>::node *b = t1.find(n1);
@@ -24,7 +24,7 @@ void test() {
     int n2 = rand() % range;
     t1.erase(n2);
     t2.erase(n2);
-    assert_equal(size(t2), size(t1));
+    assert_equal((int)size(t2), (int)size(t1));
   }
 
   t1.clear();
@@ -37,7 +37,7 @@ void test() {
     avl_tree<int>::node *p = t1.insert(n);
     assert_equal(n, p->item);
     t2.insert(n);
-    assert_equal(size(t2), size(t1));
+    assert_equal((int)size(t2), (int)size(t1));
 
     int n1 = rand() % range;
     avl_tree<int>::node *b = t1.find(n1);
@@ -47,13 +47,13 @@ void test() {
     int n2 = rand() % range;
     t1.erase(n2);
     t2.erase(n2);
-    assert_equal(size(t2), size(t1));
+    assert_equal((int)size(t2), (int)size(t1));
   }
 
   for (int i = 0; i < range; i++) {
     t1.erase(i);
     t2.erase(i);
-    assert_equal(size(t2), size(t1));
+    assert_equal((int)size(t2), (int)size(t1));
   }
 
   assert_equal(0, t1.size());
