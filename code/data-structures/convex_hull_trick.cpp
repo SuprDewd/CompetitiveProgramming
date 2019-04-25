@@ -11,7 +11,7 @@ struct convex_hull_trick {
       swap(h[n-2], h[n-1]);
       h.pop_back(); } }
   double get_min(double x) {
-    int lo = 0, hi = size(h) - 2, res = -1;
+    int lo = 0, hi = (int)size(h) - 2, res = -1;
     while (lo <= hi) {
       int mid = lo + (hi - lo) / 2;
       if (intersect(mid) <= x) res = mid, lo = mid + 1;

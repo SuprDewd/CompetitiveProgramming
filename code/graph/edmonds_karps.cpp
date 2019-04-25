@@ -9,8 +9,8 @@ struct flow_network {
     memset(head = new int[n], -1, n*sizeof(int)); }
   void reset() { e = e_store; }
   void add_edge(int u, int v, int uv, int vu=0) {
-    e.push_back(edge(v, uv, head[u])); head[u] = size(e)-1;
-    e.push_back(edge(u, vu, head[v])); head[v] = size(e)-1; }
+    e.push_back(edge(v,uv,head[u])); head[u]=(int)size(e)-1;
+    e.push_back(edge(u,vu,head[v])); head[v]=(int)size(e)-1;}
   int max_flow(int s, int t, bool res=true) {
     e_store = e;
     int l, r, v, f = 0;

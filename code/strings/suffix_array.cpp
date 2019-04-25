@@ -15,11 +15,11 @@ struct suffix_array {
       rep(i,0,n)
         P[stp][L[i].p] = i > 0 &&
           L[i].nr == L[i - 1].nr ? P[stp][L[i - 1].p] : i; }
-    rep(i,0,n) idx[P[size(P) - 1][i]] = i; }
+    rep(i,0,n) idx[P[(int)size(P) - 1][i]] = i; }
   int lcp(int x, int y) {
     int res = 0;
     if (x == y) return n - x;
-    for (int k = size(P) - 1; k >= 0 && x < n && y < n; k--)
+    for (int k = (int)size(P)-1; k >= 0 && x<n && y<n; k--)
       if (P[k][x] == P[k][y])
         x += 1 << k, y += 1 << k, res += 1 << k;
     return res; } };

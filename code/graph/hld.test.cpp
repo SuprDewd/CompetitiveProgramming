@@ -33,7 +33,7 @@ struct HLD_naive {
     vi uat, vat; int res = -1;
     while (u != -1) uat.push_back(u), u = parent[u].first;
     while (v != -1) vat.push_back(v), v = parent[v].first;
-    u = size(uat) - 1, v = size(vat) - 1;
+    u = (int)size(uat) - 1, v = (int)size(vat) - 1;
     while (u >= 0 && v >= 0 && uat[u] == vat[v])
       res = uat[u], u--, v--;
     return res;
@@ -205,7 +205,7 @@ void test() {
       {
         if (n > 1)
         {
-          int i = randint(0, size(edges) - 1);
+          int i = randint(0, (int)size(edges) - 1);
           int u = edges[i].first,
             v = edges[i].second;
 

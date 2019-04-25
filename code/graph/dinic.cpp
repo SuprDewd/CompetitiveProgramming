@@ -10,8 +10,8 @@ struct flow_network {
     memset(head = new int[n], -1, n*sizeof(int)); }
   void reset() { e = e_store; }
   void add_edge(int u, int v, int uv, int vu=0) {
-    e.push_back(edge(v, uv, head[u])); head[u] = size(e)-1;
-    e.push_back(edge(u, vu, head[v])); head[v] = size(e)-1; }
+    e.push_back(edge(v,uv,head[u])); head[u]=(int)size(e)-1;
+    e.push_back(edge(u,vu,head[v])); head[v]=(int)size(e)-1;}
   int augment(int v, int t, int f) {
     if (v == t) return f;
     for (int &i = curh[v], ret; i != -1; i = e[i].nxt)

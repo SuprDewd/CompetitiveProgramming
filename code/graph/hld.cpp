@@ -34,7 +34,7 @@ struct HLD {
     vi uat, vat; int res = -1;
     while (u != -1) uat.push_back(u), u = parent[head[u]];
     while (v != -1) vat.push_back(v), v = parent[head[v]];
-    u = size(uat) - 1, v = size(vat) - 1;
+    u = (int)size(uat) - 1, v = (int)size(vat) - 1;
     while (u >= 0 && v >= 0 && head[uat[u]] == head[vat[v]])
       res = (loc[uat[u]] < loc[vat[v]] ? uat[u] : vat[v]),
       u--, v--;

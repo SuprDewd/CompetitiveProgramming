@@ -7,8 +7,8 @@ unordered_map<ll,ll> primepi(ll n) {
   vi ps = prime_sieve(st);
   ps.push_back(st+1);
   rep(i,0,3) dp[i] = new ll[2*st];
-  ll *pre = new ll[size(ps)-1];
-  rep(i,0,size(ps)-1)
+  ll *pre = new ll[(int)size(ps)-1];
+  rep(i,0,(int)size(ps)-1)
     pre[i] = f(ps[i]) + (i == 0 ? f(1) : pre[i-1]);
 #define L(i) ((i)<st?(i)+1:n/(2*st-(i)))
 #define I(l) ((l)<st?(l)-1:2*st-n/(l))

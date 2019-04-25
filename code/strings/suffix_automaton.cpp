@@ -57,7 +57,7 @@ struct suffix_automaton {
     vii states(sz);
     for(int i = 0; i < sz; ++i){ states[i] = ii(len[i],i); }
     sort(states.begin(), states.end());
-    for(int i = size(states)-1; i >= 0; --i){
+    for(int i = (int)size(states)-1; i >= 0; --i){
       int v = states[i].second;
       if(link[v] != -1) { occur[link[v]] += occur[v]; }}}};
 // vim: cc=60 ts=2 sts=2 sw=2:

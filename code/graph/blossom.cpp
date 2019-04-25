@@ -55,15 +55,15 @@ vi find_augmenting_path(const vector<vi> &adj,const vi &m){
             rep(i,0,size(p)) p[i] = root[p[i]];
             return p; }
           if (!p[0] || (m[c] != -1 && p[t+1] != par[m[c]]))
-            reverse(p.begin(), p.end()), t = size(p)-t-1;
+            reverse(p.begin(), p.end()), t=(int)size(p)-t-1;
           rep(i,0,t) q.push_back(root[p[i]]);
           iter(it,adj[root[p[t-1]]]) {
             if (par[*it] != (s = 0)) continue;
             a.push_back(c), reverse(a.begin(), a.end());
             iter(jt,b) a.push_back(*jt);
             while (a[s] != *it) s++;
-            if ((height[*it] & 1) ^ (s < size(a) - size(b)))
-              reverse(a.begin(), a.end()), s = size(a)-s-1;
+            if((height[*it]&1)^(s<(int)size(a)-(int)size(b)))
+              reverse(a.begin(),a.end()), s=(int)size(a)-s-1;
             while(a[s]!=c)q.push_back(a[s]),s=(s+1)%size(a);
             q.push_back(c);
             rep(i,t+1,size(p)) q.push_back(root[p[i]]);

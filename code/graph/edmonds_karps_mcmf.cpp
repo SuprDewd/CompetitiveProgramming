@@ -11,9 +11,9 @@ struct flow_network {
   void reset() { e = e_store; }
   void add_edge(int u, int v, int cost, int uv, int vu=0) {
     e.push_back(edge(v, uv, cost, head[u]));
-    head[u] = size(e)-1;
+    head[u] = (int)size(e)-1;
     e.push_back(edge(u, vu, -cost, head[v]));
-    head[v] = size(e)-1; }
+    head[v] = (int)size(e)-1; }
   ii min_cost_max_flow(int s, int t, bool res=true) {
     e_store = e;
     memset(pot, 0, n*sizeof(int));

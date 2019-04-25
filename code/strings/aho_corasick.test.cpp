@@ -11,7 +11,7 @@ struct aho_corasick_slow {
     for (int i = 0; i < size(s); i++) {
       for (int j = 0; j < size(keywords); j++) {
         string kw = keywords[j];
-        if (i + size(kw) - 1 >= size(s))
+        if (i + (int)size(kw) - 1 >= size(s))
           continue;
 
         bool ok = true;

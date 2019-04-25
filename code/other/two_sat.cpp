@@ -21,7 +21,7 @@ struct TwoSat {
       br |= !V[*v].val; }
     res = br - 3;
     if (V[u].num == V[u].lo) rep(i,res+1,2) {
-      for (int j = size(S)-1; ; j--) {
+      for (int j = (int)size(S)-1; ; j--) {
         int v = S[j];
         if (i) {
           if (!put(v-n, res)) return 0;
