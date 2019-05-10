@@ -22,9 +22,8 @@ int tangent(P(A), C(O, r), point &r1, point &r2) {
   v = normalize(v, L);
   r1 = A + rotate(v, alpha), r2 = A + rotate(v, -alpha);
   return 1 + (abs(v) > EPS); }
-void tangent_outer(point A, double rA,
-                   point B, double rB, PP(P), PP(Q)) {
-  if (rA - rB > EPS) { swap(rA, rB); swap(A, B); }
+void tangent_outer(C(A,rA), C(B,rB), PP(P), PP(Q)) {
+  // if (rA - rB > EPS) { swap(rA, rB); swap(A, B); }
   double theta = asin((rB - rA)/abs(A - B));
   point v = rotate(B - A, theta + pi/2),
         u = rotate(B - A, -(theta + pi/2));
@@ -33,4 +32,8 @@ void tangent_outer(point A, double rA,
   P.second = B + normalize(v, rB);
   Q.first = A + normalize(u, rA);
   Q.second = B + normalize(u, rB); }
+void tangent_inner(C(A,rA), C(B,rB), PP(P), PP(Q)) {
+    point ip = (rA*B + rB*A)/(rA+rB);
+    assert(tangent(ip, A, rA, P.first, Q.first) == 2);
+    assert(tangent(ip, B, rB, P.second, Q.second) == 2); }
 // vim: cc=60 ts=2 sts=2 sw=2:
