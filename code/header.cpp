@@ -1,3 +1,6 @@
+#pragma GCC optimize("Ofast")
+#pragma GCC target("avx,avx2,fma")
+#pragma GCC optimization ("unroll-loops")
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i,a,b) for (__typeof(a) i=(a); i<(b); ++i)
