@@ -1,5 +1,6 @@
 void test() {
     // Field testing: https://icpc.kattis.com/problems/checks
+    // Was too slow on https://open.kattis.com/problems/boardcovering
     rep(its,0,1000) {
         int n = rand() % 20 + 1,
             m = rand() % (4*n);
