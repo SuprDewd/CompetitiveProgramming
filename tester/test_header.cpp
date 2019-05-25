@@ -43,7 +43,7 @@ void assert_false(bool actual, bool kill = false) {
     }
 }
 
-void assert_almost_equal(double a, double b, double eps, bool kill = false) {
+void assert_almost_equal(double a, double b, double eps = 1e-9, bool kill = false) {
     assert_true(abs(a - b) < eps, kill);
 }
 

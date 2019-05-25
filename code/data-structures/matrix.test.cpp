@@ -59,12 +59,12 @@ void test() {
   C(1, 1) = 1;
   C(1, 2) = 2;
   C = C.rref(det,rank);
-  assert_equal(1.0, C(0, 0));
-  assert_equal(0.0, C(0, 1));
-  assert_equal(3.0, C(0, 2));
-  assert_equal(0.0, C(1, 0));
-  assert_equal(1.0, C(1, 1));
-  assert_equal(-1.0, C(1, 2));
+  assert_almost_equal(1.0, C(0, 0));
+  assert_almost_equal(0.0, C(0, 1));
+  assert_almost_equal(3.0, C(0, 2));
+  assert_almost_equal(0.0, C(1, 0));
+  assert_almost_equal(1.0, C(1, 1));
+  assert_almost_equal(-1.0, C(1, 2));
 
   C = matrix<double>(2, 3);
   C(0, 0) = 2;
@@ -74,12 +74,12 @@ void test() {
   C(1, 1) = 12;
   C(1, 2) = 14;
   C = C.rref(det,rank);
-  assert_equal(1.0, C(0, 0));
-  assert_equal(2.0, C(0, 1));
-  assert_equal(0.0, C(0, 2));
-  assert_equal(0.0, C(1, 0));
-  assert_equal(0.0, C(1, 1));
-  assert_equal(1.0, C(1, 2));
+  assert_almost_equal(1.0, C(0, 0));
+  assert_almost_equal(2.0, C(0, 1));
+  assert_almost_equal(0.0, C(0, 2));
+  assert_almost_equal(0.0, C(1, 0));
+  assert_almost_equal(0.0, C(1, 1));
+  assert_almost_equal(1.0, C(1, 2));
 
   C = matrix<double>(3, 3);
   C(0, 0) = 2;
@@ -92,15 +92,15 @@ void test() {
   C(2, 1) = 6;
   C(2, 2) = 5;
   C = C.rref(det,rank);
-  assert_equal(1.0, C(0, 0));
-  assert_equal(0.0, C(0, 1));
-  assert_equal(0.0, C(0, 2));
-  assert_equal(0.0, C(1, 0));
-  assert_equal(1.0, C(1, 1));
-  assert_equal(0.0, C(1, 2));
-  assert_equal(0.0, C(2, 0));
-  assert_equal(0.0, C(2, 1));
-  assert_equal(1.0, C(2, 2));
+  assert_almost_equal(1.0, C(0, 0));
+  assert_almost_equal(0.0, C(0, 1));
+  assert_almost_equal(0.0, C(0, 2));
+  assert_almost_equal(0.0, C(1, 0));
+  assert_almost_equal(1.0, C(1, 1));
+  assert_almost_equal(0.0, C(1, 2));
+  assert_almost_equal(0.0, C(2, 0));
+  assert_almost_equal(0.0, C(2, 1));
+  assert_almost_equal(1.0, C(2, 2));
 
   C = matrix<double>(2, 2);
   C(0, 0) = 1;
@@ -108,10 +108,10 @@ void test() {
   C(1, 0) = 3;
   C(1, 1) = 4;
   C = C.rref(det,rank);
-  assert_equal(1.0, C(0, 0));
-  assert_equal(0.0, C(0, 1));
-  assert_equal(0.0, C(1, 0));
-  assert_equal(1.0, C(1, 1));
+  assert_almost_equal(1.0, C(0, 0));
+  assert_almost_equal(0.0, C(0, 1));
+  assert_almost_equal(0.0, C(1, 0));
+  assert_almost_equal(1.0, C(1, 1));
 
   C = matrix<double>(2, 2);
   C(0, 0) = 3;
@@ -119,10 +119,10 @@ void test() {
   C(1, 0) = 9;
   C(1, 1) = 9;
   C = C.rref(det,rank);
-  assert_equal(1.0, C(0, 0));
-  assert_equal(1.0, C(0, 1));
-  assert_equal(0.0, C(1, 0));
-  assert_equal(0.0, C(1, 1));
+  assert_almost_equal(1.0, C(0, 0));
+  assert_almost_equal(1.0, C(0, 1));
+  assert_almost_equal(0.0, C(1, 0));
+  assert_almost_equal(0.0, C(1, 1));
 
   C = matrix<double>(3, 3);
   C(0, 0) = 1;
@@ -132,12 +132,12 @@ void test() {
   C(1, 1) = 5;
   C(1, 2) = 6;
   C = C.rref(det,rank);
-  assert_equal(1.0, C(0, 0));
-  assert_equal(0.0, C(0, 1));
-  assert_equal(-1.0, C(0, 2));
-  assert_equal(0.0, C(1, 0));
-  assert_equal(1.0, C(1, 1));
-  assert_equal(2.0, C(1, 2));
+  assert_almost_equal(1.0, C(0, 0));
+  assert_almost_equal(0.0, C(0, 1));
+  assert_almost_equal(-1.0, C(0, 2));
+  assert_almost_equal(0.0, C(1, 0));
+  assert_almost_equal(1.0, C(1, 1));
+  assert_almost_equal(2.0, C(1, 2));
 
   C = matrix<double>(3, 3);
   C(0, 0) = -2;
@@ -150,7 +150,7 @@ void test() {
   C(2, 1) = 0;
   C(2, 2) = -1;
   C.rref(det,rank);
-  assert_equal(6.0, det);
+  assert_almost_equal(6.0, det);
 
   C = matrix<double>(3, 3);
   C(0, 0) = -2;
@@ -163,7 +163,7 @@ void test() {
   C(2, 1) = 0;
   C(2, 2) = -1;
   C.rref(det,rank);
-  assert_equal(18.0, det);
+  assert_almost_equal(18.0, det);
 
   C = matrix<double>(3,1);
   C(0,0) = -2;
@@ -184,6 +184,6 @@ void test() {
     C(i, i) = i + 1;
 
   C.rref(det,rank);
-  assert_equal(3628800.0, det);
+  assert_almost_equal(3628800.0, det);
 }
 // vim: cc=60 ts=2 sts=2 sw=2:
