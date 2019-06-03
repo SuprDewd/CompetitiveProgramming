@@ -19,7 +19,7 @@ bool line_segment_intersect(L(a, b), L(c, d), point &A,
     B = c + min(bp, 1.0) * (d - c);
     return true; }
   else if (parallel(a,b, c,d)) return false;
-  else if (intersect(a,b, c,d, A, true)) {
+  else if (intersect(a,b, c,d, A, true,true)) {
     B = A; return true; }
   return false; }
 // vim: cc=60 ts=2 sts=2 sw=2:

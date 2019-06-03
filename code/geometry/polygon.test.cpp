@@ -8,7 +8,7 @@ void assert_equal(point a, point b) {
 }
 
 void test() {
-  /* Field testing: Kattis pointinpolygon, UVa 11030, UVa 634  */
+  /* Field testing: Kattis pointinpolygon, Kattis forest, Kattis polygongame, UVa 11030, UVa 634  */
 
   polygon pts;
   pts.push_back(point(1, 1));

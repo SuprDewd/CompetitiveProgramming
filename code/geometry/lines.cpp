@@ -26,14 +26,13 @@ double line_segment_distance(L(a,b), L(c,d)) {
     x = min(x, abs(d - closest_point(a,b, d, true)));
   }
   return x; }
-bool intersect(L(a,b), L(p,q), point &res, bool seg=false) {
+bool intersect(L(a,b), L(p,q), point &res,
+    bool lseg=false, bool rseg=false) {
   // NOTE: check parallel/collinear before
   point r = b - a, s = q - p;
   double c = cross(r, s),
          t = cross(p - a, s) / c, u = cross(p - a, r) / c;
-  if (seg &&
-      (t < 0-EPS || t > 1+EPS || u < 0-EPS || u > 1+EPS))
-    return false;
-  res = a + t * r;
-  return true; }
+  if (lseg && (t < 0-EPS || t > 1+EPS)) return false;
+  if (rseg && (u < 0-EPS || u > 1+EPS)) return false;
+  res = a + t * r; return true; }
 // vim: cc=60 ts=2 sts=2 sw=2:

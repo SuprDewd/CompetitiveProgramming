@@ -1,4 +1,4 @@
-#include "primitives.cpp"
+#include "lines.cpp"
 typedef vector<point> polygon;
 double polygon_area_signed(polygon p) {
   double area = 0; int cnt = size(p);
@@ -18,18 +18,14 @@ int point_in_polygon(polygon p, point q) {
     if (CHK(real, p[i], q, p[j]) || CHK(real, p[j], q, p[i]))
       in = !in;
   return in ? -1 : 1; }
-// pair<polygon, polygon> cut_polygon(const polygon &poly,
-//                                    point a, point b) {
-//     polygon left, right;
-//     point it(-100, -100);
-//     for (int i = 0, cnt = poly.size(); i < cnt; i++) {
-//         int j = i == cnt-1 ? 0 : i + 1;
-//         point p = poly[i], q = poly[j];
-//         if (ccw(a, b, p) <= 0) left.push_back(p);
-//         if (ccw(a, b, p) >= 0) right.push_back(p);
-//         // myintersect = intersect where
-//         // (a,b) is a line, (p,q) is a line segment
-//         if (myintersect(a, b, p, q, it))
-//             left.push_back(it), right.push_back(it); }
-//     return pair<polygon, polygon>(left, right); }
+pair<polygon, polygon> cut_polygon(const polygon &poly,
+                                   point a, point b) {
+  polygon left, right; point it;
+  for (int i = 0, cnt = poly.size(); i < cnt; i++) {
+    point p = poly[i], q = poly[i == cnt-1 ? 0 : i + 1];
+    if (ccw(a, b, p) < EPS) left.push_back(p);
+    if (ccw(a, b, p) > -EPS) right.push_back(p);
+    if (intersect(a, b, p, q, it, false, true))
+      left.push_back(it), right.push_back(it); }
+  return {left,right}; }
 // vim: cc=60 ts=2 sts=2 sw=2:
