@@ -708,11 +708,10 @@
         coordinates) on a sphere of radius $r$.
         \code{geometry/gc_distance.cpp}
 
-    \subsection{Triangle Circumcenter}
-        Returns the unique point that is the same distance from all three
-        points. It is also the center of the unique circle that goes through
-        all three points.
-        \code{geometry/circumcenter.cpp}
+    \subsection{Smallest Enclosing Circle}
+        Computes the smallest enclosing circle using Welzl's algorithm in
+        expected $O(n)$ time.
+        \code{geometry/welzl.cpp}
 
     \subsection{Closest Pair of Points}
         \ifverbose
@@ -1162,7 +1161,7 @@
                 are either in $U$ or are connected to $U$ by an alternating
                 path. Then $K=(L\setminus Z)\cup(R\cap Z)$ is the minimum
                 vertex cover.
-            \item A minumum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
+            \item A minimum Steiner tree for $n$ vertices requires at most $n-2$ additional Steiner vertices.
             \item The number of vertices of a graph is equal to its minimum
                 vertex cover number plus the size of a maximum independent set.
             \item \textbf{Lagrange polynomial} through points $(x_0,y_0),\ldots,(x_k,y_k)$ is $L(x) = \sum_{j=0}^k y_j \prod_{\shortstack{$\scriptscriptstyle 0\leq m \leq k$ \\ $\scriptscriptstyle m\neq j$}} \frac{x-x_m}{x_j - x_m}$

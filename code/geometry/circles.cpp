@@ -33,7 +33,11 @@ void tangent_outer(C(A,rA), C(B,rB), PP(P), PP(Q)) {
   Q.first = A + normalize(u, rA);
   Q.second = B + normalize(u, rB); }
 void tangent_inner(C(A,rA), C(B,rB), PP(P), PP(Q)) {
-    point ip = (rA*B + rB*A)/(rA+rB);
-    assert(tangent(ip, A, rA, P.first, Q.first) == 2);
-    assert(tangent(ip, B, rB, P.second, Q.second) == 2); }
+  point ip = (rA*B + rB*A)/(rA+rB);
+  assert(tangent(ip, A, rA, P.first, Q.first) == 2);
+  assert(tangent(ip, B, rB, P.second, Q.second) == 2); }
+pair<point,double> circumcircle(point a, point b, point c) {
+  b -= a, c -= a;
+  point p = perp(b*norm(c)-c*norm(b))/2.0/cross(b, c);
+  return make_pair(a+p,abs(p)); }
 // vim: cc=60 ts=2 sts=2 sw=2:
