@@ -31,7 +31,7 @@ struct point3d {
   double signedDistTo(PL(A,B,C)) const {
     // A, B and C must not be collinear
     point3d N = (B-A)*(C-A); double D = A%N;
-    return ((*this)%N - D)/N.length();}
+    return ((*this)%N - D)/N.length(); }
   point3d normalize(double k = 1) const {
     // length() must not return 0
     return (*this) * (k / length()); }
@@ -84,12 +84,12 @@ bool plane_plane_intersect(P(A), P(nA), P(B), P(nB),
   P = A + (n * nA) * ((B - A) % nB / (v % nB));
   Q = P + n;
   return true; }
-double line_line_distance(L(A, B), L(C, D),point3d &E,
-                                           point3d &F) {
+double line_line_distance(L(A, B), L(C, D), point3d &E,
+                                            point3d &F) {
   point3d w = (C-A), v = (B-A), u = (D-C),
           N = v*u, N1 = v*(u*v), N2 = u*(v*u);
-  if(w.isZero() || (v*w).isZero()) E = F = A;
-  else if(N.isZero()) E = A,
+  if (w.isZero() || (v*w).isZero()) E = F = A;
+  else if (N.isZero()) E = A,
     F = A + w - v * ((w%v)/(v%v));
   else E = A + v*((w % N2)/(v%N2)),
     F = C + u*(((-w) % N1)/(u%N1));
