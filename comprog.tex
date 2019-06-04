@@ -567,6 +567,11 @@
         are given by $x\equiv t\pmod{m}$. No solutions iff $(0,0)$ is returned.
         \code{mathematics/linear_congruence.cpp}
 
+    \subsection{Berlekamp-Massey algorithm}
+        Given a sequence of integers in some field, finds a linear recurrence
+        of minimum order that generates the sequence in $O(n^2)$.
+        \code{mathematics/berlekamp_massey.cpp}
+
     \subsection{Tonelli-Shanks algorithm}
         Given prime $p$ and integer $1\leq n<p$, returns the square root $r$ of
         $n$ modulo $p$. There is also another solution given by $-r$ modulo
