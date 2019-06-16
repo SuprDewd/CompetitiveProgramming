@@ -666,9 +666,11 @@
         \end{tabular}
 
     \subsection{Game Theory}
-        Useful identity: \[
-            \oplus_{x=0}^{a-1}\, x = [0,a-1,1,a][a\% 4]
-            \]
+        \begin{itemize}
+            \item Useful identity: $\oplus_{x=0}^{a-1}\, x = [0,a-1,1,a][a\% 4]$
+            \item \textbf{Nim}: Winning position if $n_1\oplus \cdots \oplus n_k = 0$
+            \item \textbf{Misére Nim}: Winning position if some $n_i > 1$ and $n_1\oplus \cdots \oplus n_k = 0$, or all $n_i \leq 1$ and $n_1\oplus \cdots \oplus n_k = 1$
+        \end{itemize}
 
 \section{Geometry}
     \subsection{Primitives}
