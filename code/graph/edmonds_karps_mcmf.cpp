@@ -1,6 +1,6 @@
 #define MAXV 2000
 int d[MAXV], p[MAXV], pot[MAXV];
-struct cmp { bool operator ()(int i, int j) {
+struct cmp { bool operator()(int i, int j) const {
     return d[i] == d[j] ? i < j : d[i] < d[j]; } };
 struct flow_network {
   struct edge { int v, nxt, cap, cost;

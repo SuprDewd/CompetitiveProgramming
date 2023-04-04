@@ -1,6 +1,6 @@
 int *dist, *dad;
 struct cmp {
-  bool operator()(int a, int b) {
+  bool operator()(int a, int b) const {
     return dist[a] != dist[b] ? dist[a] < dist[b] : a < b; }
 };
 pair<int*, int*> dijkstra(int n, int s, vii *adj) {
