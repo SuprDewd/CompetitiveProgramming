@@ -1,11 +1,11 @@
 #include "primitives3d.cpp"
 double mixed(P(a), P(b), P(c)) { return a % (b * c); }
-bool cmpy(const point3d& a, const point3d& b) {
+bool cmpy(point3d& a, point3d& b) {
   if (abs(a.y-b.y) > EPS) return a.y < b.y;
   if (abs(a.x-b.x) > EPS) return a.x < b.x;
   return a.z < b.z; }
 point3d slp;
-bool cmpsl(const point3d& a, const point3d& b) {
+bool cmpsl(point3d& a, point3d& b) {
   point3d ad = a-slp, bd = b-slp;
   return atan2(ad.y, sqrt(ad.x*ad.x + ad.z*ad.z)) <
          atan2(bd.y, sqrt(bd.x*bd.x + bd.z*bd.z)); }

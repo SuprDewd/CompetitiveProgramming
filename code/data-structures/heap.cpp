@@ -2,7 +2,7 @@
 #define SWP(x,y) tmp = x, x = y, y = tmp
 struct default_int_cmp {
   default_int_cmp() { }
-  bool operator ()(const int &a, const int &b) const {
+  bool operator ()(const int &a, const int &b) {
     return a < b; } };
 template <class Compare = default_int_cmp> struct heap {
   int len, count, *q, *loc, tmp;
