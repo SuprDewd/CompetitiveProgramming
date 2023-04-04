@@ -1,11 +1,11 @@
 #include "primitives.cpp"
 
 struct cmpx { bool operator ()(const point &a,
-                               const point &b) {
+                               const point &b) const {
     return abs(real(a) - real(b)) > EPS ?
       real(a) < real(b) : imag(a) < imag(b); } };
 struct cmpy { bool operator ()(const point &a,
-                               const point &b) {
+                               const point &b) const {
   return abs(imag(a) - imag(b)) > EPS ?
       imag(a) < imag(b) : real(a) < real(b); } };
 double closest_pair(vector<point> pts) {

@@ -11,7 +11,7 @@ template <int K> struct kd_tree {
   struct cmp {
     int c;
     cmp(int _c) : c(_c) {}
-    bool operator ()(const pt &a, const pt &b) {
+    bool operator ()(const pt &a, const pt &b) const {
       for (int i = 0, cc; i <= K; i++) {
         cc = i == 0 ? c : i - 1;
         if (abs(a.coord[cc] - b.coord[cc]) > EPS)
