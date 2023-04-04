@@ -5,7 +5,7 @@ struct cmp {
   int *idx;
   string s;
   cmp(int *_idx, string _s) : idx(_idx), s(_s) { }
-  bool operator()(int a, int b) {
+  bool operator()(int a, int b) const {
     return s.substr(a) < s.substr(b);
   }
 };
