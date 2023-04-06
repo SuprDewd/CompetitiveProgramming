@@ -1,12 +1,13 @@
 #include "mod_pow.cpp"
-bool is_probable_prime(ll n, int k) {
+template <class T>
+bool is_probable_prime(T n, int k) {
   if (~n & 1) return n == 2;
   if (n <= 3) return n == 3;
-  int s = 0; ll d = n - 1;
+  int s = 0; T d = n - 1;
   while (~d & 1) d >>= 1, s++;
   while (k--) {
-    ll a = (n - 3) * rand() / RAND_MAX + 2;
-    ll x = mod_pow(a, d, n);
+    T a = (n - 3) * rand() / RAND_MAX + 2;
+    T x = mod_pow(a, d, n);
     if (x == 1 || x == n - 1) continue;
     bool ok = false;
     rep(i,0,s-1) {
