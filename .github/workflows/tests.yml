@@ -12,9 +12,9 @@ jobs:
       - name: Set up dependencies
         run: sudo apt-get update && sudo apt-get install -y g++ texlive-latex-recommended texlive-fonts-extra
 
+      - name: Build comprog.pdf
+        run: make clean && make
+
       - name: Run tests
         run: ./tester/run_all_tests.sh
-
-      - name: Build comprog.pdf
-        run: make
 
