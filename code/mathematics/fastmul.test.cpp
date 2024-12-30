@@ -1,17 +1,15 @@
 
 intx randint(int len) {
   stringstream ss;
-  ss << rand() % 9 + 1;
+  ss << rng() % 9 + 1;
   for (int i = 0; i < len-1; i++)
-    ss << rand() % 10;
+    ss << rng() % 10;
 
   return intx(ss.str());
 }
 
 void test() {
   /* Field testing: SPOJ {MUL,TMUL,VFMUL} */
-
-  srand(1337); // TODO: remove this
 
   int ts = 1000,
     l1 = 1,
@@ -20,8 +18,8 @@ void test() {
   for (int t = 0; t < ts; t++) {
     // printf("%d\n", t);
 
-    int la = rand() % (l2 - l1 + 1) + l1,
-      lb = rand() % (l2 - l1 + 1) + l1;
+    int la = uniform_int_distribution(l1, l2)(rng),
+      lb = uniform_int_distribution(l1, l2)(rng);
 
     intx a = randint(la),
        b = randint(lb),

@@ -48,9 +48,9 @@ void assert_almost_equal(double a, double b, double eps = 1e-9, bool kill = fals
 }
 
 double randdouble(double a, double b) {
-    return static_cast<double>(rand()) / RAND_MAX * (b - a) + a;
+    return uniform_real_distribution(a, b)(rng);
 }
 
 int randint(int a, int b) {
-    return static_cast<int>(randdouble(a, b) + 0.5);
+    return uniform_int_distribution(a, b)(rng);
 }

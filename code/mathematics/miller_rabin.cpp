@@ -5,7 +5,7 @@ bool is_probable_prime(ll n, int k) {
   int s = 0; ll d = n - 1;
   while (~d & 1) d >>= 1, s++;
   while (k--) {
-    ll a = (n - 3) * rand() / RAND_MAX + 2;
+    ll a = uniform_int_distribution(2LL, n-1)(rng);
     ll x = mod_pow(a, d, n);
     if (x == 1 || x == n - 1) continue;
     bool ok = false;

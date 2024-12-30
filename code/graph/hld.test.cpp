@@ -75,15 +75,8 @@ struct HLD_naive {
   }
 };
 
-// int randint(int a, int b)
-// {
-//     return rand() % (b - a + 1) + a;
-// }
-
 void test() {
   /* Field testing: SPOJ LCA, SPOJ QTREE, TOJ 2241, Live Archive 2045, Live Archive 6140, UVa 10938, IPSC 2009 L */
-
-  // srand(100);
 
   int ts = 100,
     maxn = 1000,

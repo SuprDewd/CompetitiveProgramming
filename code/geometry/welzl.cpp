@@ -13,7 +13,7 @@ pair<point,double> welzl() {
           mx = d, res = (wR[i] + wR[j]) / 2.0;
       return make_pair(res, mx/2.0); }
     return circumcircle(wR[0], wR[1], wR[2]); }
-  swap(wP[rand() % wP.size()], wP.back());
+  swap(wP[rng() % wP.size()], wP.back());
   point res = wP.back(); wP.pop_back();
   pair<point,double> D = welzl();
   if (abs(res - D.first) > D.second + EPS) {

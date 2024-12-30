@@ -1,13 +1,13 @@
 /* Field testing: Kattis sensor */
 void test() {
   rep(ite,0,10000) {
-    int n = rand() % 400 + 1,
-      m = rand() % 400 + 1;
-    int k = rand() % n + 1;
+    int n = rng() % 400 + 1,
+      m = rng() % 400 + 1;
+    int k = rng() % n + 1;
     vii es;
     rep(i,0,n) {
       rep(j,0,m) {
-        if (rand() % k == 0) {
+        if (rng() % k == 0) {
           es.push_back(ii(i,j));
         }
       }

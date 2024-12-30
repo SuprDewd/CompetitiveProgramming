@@ -9,7 +9,7 @@ void test() {
   }
 
   for (int i = 0; i < 10000; i++) {
-    int x = rand() % 100000000;
+    int x = rng() % 100000000;
     bool a = is_probable_prime(x, 10),
        b = is_prime(x);
 

@@ -19,15 +19,15 @@ void test() {
 
   for (int t = 0; t < ts; t++) {
 
-    int n = rand() % maxn;
+    int n = rng() % maxn;
 
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
         m[i][j] = w[i][j] = j;
       }
 
-      random_shuffle(m[i], m[i] + n);
-      random_shuffle(w[i], w[i] + n);
+      shuffle(m[i], m[i] + n, rng);
+      shuffle(w[i], w[i] + n, rng);
 
       for (int j = 0; j < n; j++) {
         minv[i][m[i][j]] = j;

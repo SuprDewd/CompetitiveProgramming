@@ -17,7 +17,7 @@ void test_rand(int N, int M) {
   for(int i = 0; i < N; i++) {
     g.add_edge(SOURCE, i, 1, 0);
     for(int j = 0; j < M; j++) {
-      if(rand() % 2) {
+      if(rng() % 2) {
         // cout << i << " -> " << j << endl;
         g.add_edge(i, N + j, 1, 0);
         adj[i].push_back(j);
@@ -89,7 +89,7 @@ void test() {
   test_1();
   int TESTS = 1000, MAX_N = 50, MAX_M = 50;
   for(int i = 0; i < TESTS; ++i) {
-    test_rand(rand() % MAX_N, rand() % MAX_M);
+    test_rand(rng() % MAX_N, rng() % MAX_M);
   }
 }
 // vim: cc=60 ts=2 sts=2 sw=2:

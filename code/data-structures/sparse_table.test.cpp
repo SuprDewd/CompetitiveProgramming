@@ -14,7 +14,7 @@ struct sparse_table_slow {
 void test() {
     rep(n,0,257) {
         vi arr(n);
-        rep(i,0,n) arr[i] = rand() % 1000000000;
+        rep(i,0,n) arr[i] = rng() % 1000000000;
 
         sparse_table_slow A(arr);
         sparse_table B(arr);

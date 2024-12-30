@@ -31,15 +31,15 @@ ostream& operator <<(ostream &outs, const Mod &x) {
 
 void testMod() {
     for (int it = 0; it < 10000; it++) {
-        int K = rand() % 20 + 1,
-            S = rand() % 1000 + 1;
+        int K = rng() % 20 + 1,
+            S = rng() % 1000 + 1;
 
-        int k = rand() % K + 1;
+        int k = rng() % K + 1;
         vector<Mod> init(k);
-        rep(i,0,k) init[i] = rand() % (2*S) - S;
+        rep(i,0,k) init[i] = (int)(rng() % (2*S)) - S;
 
         vector<Mod> c(k);
-        rep(i,0,k) c[i] = rand() % (2*S) - S;
+        rep(i,0,k) c[i] = (int)(rng() % (2*S)) - S;
         rep(i,0,k) {
             Mod cur = 0;
             rep(j,0,k) {
@@ -62,15 +62,15 @@ void testMod() {
 
 void testDouble() {
     for (int it = 0; it < 10000; it++) {
-        int K = rand() % 5 + 1,
-            S = rand() % 10 + 1;
+        int K = rng() % 5 + 1,
+            S = rng() % 10 + 1;
 
-        int k = rand() % K + 1;
+        int k = rng() % K + 1;
         vector<long double> init(k);
-        rep(i,0,k) init[i] = rand() % (2*S) - S;
+        rep(i,0,k) init[i] = (int)(rng() % (2*S)) - S;
 
         vector<long double> c(k);
-        rep(i,0,k) c[i] = rand() % (2*S) - S;
+        rep(i,0,k) c[i] = (int)(rng() % (2*S)) - S;
         rep(i,0,k) {
             long double cur = 0;
             rep(j,0,k) {

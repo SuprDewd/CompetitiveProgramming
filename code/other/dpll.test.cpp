@@ -2,14 +2,14 @@ void test() {
     // Field testing: https://icpc.kattis.com/problems/checks
     // Was too slow on https://open.kattis.com/problems/boardcovering
     rep(its,0,1000) {
-        int n = rand() % 20 + 1,
-            m = rand() % (4*n);
+        int n = rng() % 20 + 1,
+            m = rng() % (4*n);
         vector<vi> cl;
         rep(i,0,m) {
             vi cur;
             while (cur.empty()) rep(j,0,n) {
-                if (rand() % 4 == 0) {
-                    if (rand() % 2 == 0) {
+                if (rng() % 4 == 0) {
+                    if (rng() % 2 == 0) {
                         cur.push_back(-(j+1));
                     } else {
                         cur.push_back(j+1);

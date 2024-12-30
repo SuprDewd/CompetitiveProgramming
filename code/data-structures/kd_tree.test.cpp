@@ -66,7 +66,7 @@ void randomize_pt() {
       hi = 10;
 
   for (int i = 0; i < CURK; i++) {
-    pt[i] = static_cast<double>(rand()) / RAND_MAX * (hi - lo) + lo;
+    pt[i] = uniform_real_distribution(lo, hi)(rng);
     pt[i] = round(pt[i] * 3.0) / 3.0;
   }
 }
@@ -80,7 +80,7 @@ void test() {
   for (int t = 0; t < 100; t++) {
     // printf("%d\n", t);
 
-    int startcnt = rand() % 1000;
+    int startcnt = rng() % 1000;
 
     vector<kd_tree<CURK>::pt> pts1(startcnt);
     vector<naive_kd_tree<CURK>::point> pts2(startcnt);
@@ -112,7 +112,7 @@ void test() {
     int ops = 1000;
     int found = 0;
     for (int cop = 0; cop < ops; cop++) {
-      int op = rand() % 3;
+      int op = rng() % 3;
 
       if (op == 0) {
         // insert
@@ -147,7 +147,7 @@ void test() {
       } else if (op == 2) {
         // nearest neighbour
         randomize_pt();
-        bool allow_same = rand() % 2 == 0;
+        bool allow_same = rng() % 2 == 0;
         // bool allow_same = true;
 #if TREE1
         pair<kd_tree<CURK>::pt, bool> a = tree1.nearest_neighbour(kd_tree<CURK>::pt(pt), allow_same);

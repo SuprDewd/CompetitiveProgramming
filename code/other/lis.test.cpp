@@ -15,7 +15,7 @@ int lis_dp(const vi &arr, int last) {
 
 void check(int n) {
   vi arr(n);
-  rep(i,0,n) arr[i] = rand() % 100;
+  rep(i,0,n) arr[i] = rng() % 100;
 
   mem.clear();
   int mx = 0;

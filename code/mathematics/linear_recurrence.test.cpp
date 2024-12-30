@@ -15,21 +15,21 @@ void test() {
 
     ll mod = 1000000007;
     for (int it = 0; it < 1000; it++) {
-        int k = rand() % 10 + 1;
+        int k = rng() % 10 + 1;
         vector<ll> init, c;
-        rep(i,0,k) init.push_back(rand() % mod);
-        rep(i,0,k) c.push_back(rand() % mod);
+        rep(i,0,k) init.push_back(rng() % mod);
+        rep(i,0,k) c.push_back(rng() % mod);
         for (int jt = 0; jt < 20; jt++) {
-            ll n = rand() % 10;
+            ll n = rng() % 10;
             assert_equal(slow(init, c, n, mod), nth_term(init, c, n, mod), true);
 
-            n = rand() % 100;
+            n = rng() % 100;
             assert_equal(slow(init, c, n, mod), nth_term(init, c, n, mod), true);
 
-            n = rand() % 1000;
+            n = rng() % 1000;
             assert_equal(slow(init, c, n, mod), nth_term(init, c, n, mod), true);
 
-            n = rand() % 1000;
+            n = rng() % 1000;
             assert_equal(slow(init, c, n, 123456), nth_term(init, c, n, 123456), true);
         }
     }

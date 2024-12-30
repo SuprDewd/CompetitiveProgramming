@@ -41,8 +41,8 @@ pair<vi*, int> random_tree(int n) {
   union_find uf(n);
 
   for (int i = 0; uf.size(0) < n; i++) {
-    int a = rand() % n,
-      b = rand() % n;
+    int a = rng() % n,
+      b = rng() % n;
 
     if (uf.find(a) != uf.find(b)) {
       uf.unite(a, b);
@@ -51,7 +51,7 @@ pair<vi*, int> random_tree(int n) {
     }
   }
 
-  int root = rand() % n;
+  int root = rng() % n;
   stack<int> S;
   S.push(root);
   bool *visited = new bool[n];
@@ -133,8 +133,8 @@ void test() {
   int tests = 100;
 
   for (int t = 0; t < tests; t++) {
-    int n = rand() % 10000 + 1;
-    int q = rand() % 10000 + 1;
+    int n = rng() % 10000 + 1;
+    int q = rng() % 10000 + 1;
 
     pair<vi*, int> xadj = random_tree(n);
     vi *adj = xadj.first;
@@ -147,8 +147,8 @@ void test() {
 
     vii qs;
     for (int i = 0; i < q; i++) {
-      int a = rand() % n,
-        b = rand() % n;
+      int a = rng() % n,
+        b = rng() % n;
 
       qs.push_back(ii(a, b));
       lca.query(a, b);

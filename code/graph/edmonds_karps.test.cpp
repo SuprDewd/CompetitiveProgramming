@@ -11,7 +11,7 @@ void test1() {
 
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < N; j++) {
-      int cap = rand() % MAX + 1;
+      int cap = rng() % MAX + 1;
       mf.add_edge(i, j, cap);
       mf2.add_edge(i, j, cap);
     }
@@ -34,7 +34,7 @@ void test2() {
 
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < N; j++) {
-      int cap = rand() % MAX + 1;
+      int cap = rng() % MAX + 1;
       mf.add_edge(i, j, cap, cap);
       mf2.add_edge(i, j, cap, cap);
     }
@@ -57,7 +57,7 @@ void test3() {
 
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < N; j++) {
-      int cap = rand() % MAX + 1;
+      int cap = rng() % MAX + 1;
       mf.add_edge(i, j, cap, cap);
       mf.add_edge(i, j, cap, cap);
       mf2.add_edge(i, j, cap, cap);

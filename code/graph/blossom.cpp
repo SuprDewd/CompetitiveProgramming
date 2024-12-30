@@ -73,7 +73,7 @@ vi find_augmenting_path(const vector<vi> &adj,const vi &m){
 vii max_matching(const vector<vi> &adj) {
   vi m(size(adj), -1), ap; vii res, es;
   rep(i,0,size(adj)) iter(it,adj[i]) es.emplace_back(i,*it);
-  random_shuffle(es.begin(), es.end());
+  shuffle(es.begin(), es.end(), rng);
   iter(it,es) if (m[it->first] == -1 && m[it->second] == -1)
     m[it->first] = it->second, m[it->second] = it->first;
   do { ap = find_augmenting_path(adj, m);

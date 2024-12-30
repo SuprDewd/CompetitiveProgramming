@@ -16,4 +16,7 @@ typedef vector<vi> vvi;
 typedef vector<vii> vvii;
 template <class T> T smod(T a, T b) {
   return (a % b + b) % b; }
+
+default_random_engine rng(
+    chrono::system_clock::now().time_since_epoch().count());
 // vim: cc=60 ts=2 sts=2 sw=2:

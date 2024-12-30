@@ -1,13 +1,12 @@
 double curtime() {
   return static_cast<double>(clock()) / CLOCKS_PER_SEC; }
 int simulated_annealing(int n, double seconds) {
-  default_random_engine rng;
   uniform_real_distribution<double> randfloat(0.0, 1.0);
   uniform_int_distribution<int> randint(0, n - 2);
   // random initial solution
   vi sol(n);
   rep(i,0,n) sol[i] = i + 1;
-  random_shuffle(sol.begin(), sol.end());
+  shuffle(sol.begin(), sol.end(), rng);
   // initialize score
   int score = 0;
   rep(i,1,n) score += abs(sol[i] - sol[i-1]);

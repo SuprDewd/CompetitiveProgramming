@@ -1,11 +1,11 @@
 string rand_string(int l, int h) {
-  int len = rand() % (h - l + 1) + l;
+  int len = uniform_int_distribution(l, h)(rng);
   stringstream ss;
   rep(i,0,len) {
-    if (rand() % 2 == 0) {
-      ss << static_cast<char>(rand() % 26 + 'a');
+    if (rng() % 2 == 0) {
+      ss << static_cast<char>(rng() % 26 + 'a');
     } else {
-      ss << static_cast<char>(rand() % 26 + 'A');
+      ss << static_cast<char>(rng() % 26 + 'A');
     }
   }
   return ss.str();

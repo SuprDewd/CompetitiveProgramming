@@ -16,7 +16,7 @@ void test() {
         }
       }
 
-      int cap = rand() % MAX;
+      int cap = rng() % MAX;
       g.add_edge(i, j, cap, cap);
     }
   }
@@ -36,8 +36,8 @@ void test() {
   // int cnt = 0;
   // rep(i,0,N) {
   //     rep(j,0,N) {
-  //         if (rand() % 1000 == 0) {
-  //             g.add_edge(i,j,rand() % MAX);
+  //         if (rng() % 1000 == 0) {
+  //             g.add_edge(i,j,rng() % MAX);
   //             cnt++;
   //         }
   //     }
@@ -45,8 +45,8 @@ void test() {
   //
   // gh = construct_gh_tree(g);
   // rep(i,0,N) {
-  //     int a = rand() % N,
-  //         b = rand() % N;
+  //     int a = rng() % N,
+  //         b = rng() % N;
   //     assert_equal(g.max_flow(a,b), compute_max_flow(a,b,gh));
   // }
 }

@@ -13,7 +13,7 @@ void test_rand(int N, int M, int sparseness = 2) {
 
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < M; j++) {
-      if(rand() % sparseness == 0) {
+      if(rng() % sparseness == 0) {
         g.add_edge(i, j);
         adj[i].push_back(j);
       }
@@ -36,7 +36,7 @@ void test_rand(int N, int M, int sparseness = 2) {
 void test() {
   int TESTS = 1000, MAX_N = 400, MAX_M = 300;
   for(int i = 0; i < TESTS; ++i) {
-    test_rand(rand() % MAX_N, rand() % MAX_M, rand() % 100 + 1);
+    test_rand(rng() % MAX_N, rng() % MAX_M, rng() % 100 + 1);
   }
 }
 
@@ -47,7 +47,7 @@ void test() {
 //
 //     for(int i = 0; i < N; i++) {
 //         for(int j = 0; j < M; j++) {
-//             if(rand() % sparse == 0) {
+//             if(rng() % sparse == 0) {
 //                 cnt++;
 //                 g.add_edge(i, j);
 //             }
@@ -60,8 +60,8 @@ void test() {
 // void test() {
 //     int TESTS = 20, MAX_N = 5000, MAX_M = 5000;
 //     for(int i = 0; i < TESTS; ++i) {
-//         // test_rand(rand() % MAX_N, rand() % MAX_M);
-//         test_rand(MAX_N, MAX_M, rand() % 100000);
+//         // test_rand(rng() % MAX_N, rng() % MAX_M);
+//         test_rand(MAX_N, MAX_M, rng() % 100000);
 //     }
 // }
 // vim: cc=60 ts=2 sts=2 sw=2:

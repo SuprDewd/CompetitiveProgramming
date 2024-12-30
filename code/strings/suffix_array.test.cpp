@@ -88,10 +88,10 @@ void test() {
   make_sure_ok("ABAAAAAAA");
 
   for (int i = 0; i < 10000; i++) {
-    int len = rand() % 1000;
+    int len = rng() % 1000;
     stringstream ss;
     for (int j = 0; j < len; j++) {
-      ss << static_cast<char>('A' + (rand() % 26));
+      ss << static_cast<char>('A' + (rng() % 26));
     }
 
     string s = ss.str();

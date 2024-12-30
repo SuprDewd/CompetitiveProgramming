@@ -31,7 +31,7 @@ struct aho_corasick_slow {
 string random_string(int n, int cc) {
   stringstream ss;
   for (int i = 0; i < n; i++) {
-    ss << static_cast<char>(rand() % cc + 'a');
+    ss << static_cast<char>(rng() % cc + 'a');
   }
 
   return ss.str();
@@ -44,18 +44,18 @@ void test() {
     ts2 = 10;
 
   for (int t = 0; t < ts; t++) {
-    int n = rand() % 1000;
+    int n = rng() % 1000;
 
     vector<string> kws;
     for (int i = 0; i < n; i++) {
-      kws.push_back(random_string(rand() % 10 + 1, rand() % 5 + 1));
+      kws.push_back(random_string(rng() % 10 + 1, rng() % 5 + 1));
     }
 
     aho_corasick ac(kws);
     aho_corasick_slow ac2(kws);
 
     for (int p = 0; p < ts2; p++) {
-      string s = random_string(rand() % 100, rand() % 5 + 1);
+      string s = random_string(rng() % 100, rng() % 5 + 1);
       vector<string> res = ac.search(s);
       vector<string> res2 = ac2.search(s);
       sort(res.begin(), res.end());

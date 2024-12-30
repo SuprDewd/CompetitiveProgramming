@@ -8,7 +8,7 @@ void test() {
   assert_true(is_square(4));
 
   rep(i,0,100000) {
-    int n = rand() % 100000000;
+    int n = rng() % 100000000;
     int st = sqrt(n);
     while (st*st > n) st--;
     while (st*st < n) st++;

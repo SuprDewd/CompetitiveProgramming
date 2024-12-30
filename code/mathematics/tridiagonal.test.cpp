@@ -2,7 +2,7 @@
 void test() {
   long double eps = 1e-5;
   rep(it,0,5000) {
-    int n = rand() % min(it+1, 4999) + 1;
+    int n = rng() % min(it+1, 4999) + 1;
     vector<long double> cX(n);
     rep(i,0,n) {
       A[i] = randdouble(-1000, 1000);

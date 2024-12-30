@@ -40,13 +40,13 @@ intx gcd(intx a, intx b) {
 //         printf("%d\n", i);
 //         stringstream ss;
 //         for (int j = 0; j < len; j++)
-//             ss << (rand() % 10 + '0');
+//             ss << (rng() % 10 + '0');
 // 
 //         intx a(ss.str());
 //         ss.str("");
 // 
 //         for (int j = 0; j < len; j++)
-//             ss << (rand() % 10 + '0');
+//             ss << (rng() % 10 + '0');
 // 
 //         intx b(ss.str());
 // 

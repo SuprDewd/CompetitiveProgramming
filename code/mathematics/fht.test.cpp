@@ -12,12 +12,12 @@ vi slow(vi a, vi b) {
 
 void test() {
     rep(it,0,1000) {
-        int k = rand() % 10;
+        int k = rng() % 10;
         int n = 1<<k;
         vi a(n), b(n);
         rep(i,0,n) {
-            a[i] = rand() % 200 - 100;
-            b[i] = rand() % 200 - 100;
+            a[i] = uniform_int_distribution(-100, 100)(rng);
+            b[i] = uniform_int_distribution(-100, 100)(rng);
         }
         vi ans = slow(a,b);
 
