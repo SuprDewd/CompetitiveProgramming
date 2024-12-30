@@ -19,7 +19,7 @@ jobs:
         run: make clean && make
 
       - name: Upload comprog.pdf
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: comprog.pdf
           path: comprog.pdf
