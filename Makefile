@@ -3,7 +3,7 @@ PDFLATEX=pdflatex -shell-escape
 all: comprog.pdf
 
 comprog.pdf: comprog.tex
-	python2 preprocess.py
+	python3 preprocess.py
 	$(PDFLATEX) comprog
 	$(PDFLATEX) comprog
 	$(PDFLATEX) comprog
