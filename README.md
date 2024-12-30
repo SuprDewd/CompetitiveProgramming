@@ -1,6 +1,6 @@
 # Competitive Programming
 
-[![Build Status](https://travis-ci.org/SuprDewd/CompetitiveProgramming.svg?branch=master)](https://travis-ci.org/SuprDewd/CompetitiveProgramming)
+[![Tests](https://github.com/SuprDewd/CompetitiveProgramming/actions/workflows/tests.yml/badge.svg)](https://github.com/SuprDewd/CompetitiveProgramming/actions/workflows/tests.yml)
 
 This repository contains the notebook of team viRUs from Reykjavik University.
 
