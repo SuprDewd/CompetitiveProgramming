@@ -10,9 +10,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up dependencies
-        run: sudo apt-get update && sudo apt-get install -y g++
+        run: sudo apt-get update && sudo apt-get install -y g++ texlive-latex-recommended texlive-fonts-extra
 
       - name: Run tests
-        run: |
-          ./tester/run_all_tests.sh
+        run: ./tester/run_all_tests.sh
+
+      - name: Build comprog.pdf
+        run: make
 
