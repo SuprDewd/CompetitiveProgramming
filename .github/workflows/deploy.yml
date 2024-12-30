@@ -1,0 +1,26 @@
+name: Deploy PDF
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up dependencies
+        run: sudo apt-get update && sudo apt-get install -y texlive-latex-recommended texlive-fonts-extra
+
+      - name: Build comprog.pdf
+        run: make clean && make
+
+      - name: Upload comprog.pdf
+        uses: actions/upload-artifact@v3
+        with:
+          name: comprog.pdf
+          path: comprog.pdf
+
