@@ -5,5 +5,5 @@
 This repository contains the notebook of team viRUs from Reykjavik University.
 
 ## License
-MIT: see the [LICENSE](https://github.com/SuprDewd/CompetitiveProgramming/blob/master/LICENSE) file.
+MIT: see the [LICENSE](https://github.com/SuprDewd/CompetitiveProgramming/blob/main/LICENSE) file.
 
