@@ -25,6 +25,10 @@
 *.fls
 *.dvi
 
+# Temporary files
+*.swp
+*.swo
+
 # Other
 /tester/tmp.cpp
 /_code
