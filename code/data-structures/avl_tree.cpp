@@ -84,7 +84,7 @@ struct avl_tree {
       if (n->l) n->l->p = s;
       if (n->r) n->r->p = s;
       parent_leg(n) = s, fix(s);
-      return;
+      if (free) delete n; return;
     } else parent_leg(n) = NULL;
     fix(n->p), n->p = n->l = n->r = NULL;
     if (free) delete n; }
